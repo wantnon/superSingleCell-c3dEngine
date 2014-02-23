@@ -425,7 +425,7 @@
 		18E73E5D1893F4A20002DEBA /* Icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Icon.png; sourceTree = "<group>"; };
 		18E73E5E1893F4A20002DEBA /* Icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon@2x.png"; sourceTree = "<group>"; };
 		18FC286B1666AFAA008C2222 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = "iPad/en.lproj/MainWindow-iPad.xib"; sourceTree = "<group>"; };
-		35DF643C138C40D500FF9459 /* super germ.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "super germ.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		35DF643C138C40D500FF9459 /* super single cell.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "super single cell.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		35DF6440138C40D500FF9459 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		35DF6442138C40D500FF9459 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		35DF6444138C40D500FF9459 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -884,7 +884,7 @@
 		35DF643D138C40D500FF9459 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				35DF643C138C40D500FF9459 /* super germ.app */,
+				35DF643C138C40D500FF9459 /* super single cell.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -941,7 +941,7 @@
 			);
 			name = HelloOpenGL;
 			productName = HelloOpenGL;
-			productReference = 35DF643C138C40D500FF9459 /* super germ.app */;
+			productReference = 35DF643C138C40D500FF9459 /* super single cell.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -1222,7 +1222,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
 				New_Setting = "";
 				OTHER_CFLAGS = "";
-				PRODUCT_NAME = "super germ";
+				PRODUCT_NAME = "super single cell";
 				TARGETED_DEVICE_FAMILY = 1;
 				VALID_ARCHS = "armv7 armv7s";
 				WRAPPER_EXTENSION = app;
@@ -1241,7 +1241,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
 				New_Setting = "";
 				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
-				PRODUCT_NAME = "super germ";
+				PRODUCT_NAME = "super single cell";
 				TARGETED_DEVICE_FAMILY = 1;
 				VALIDATE_PRODUCT = YES;
 				VALID_ARCHS = "armv7 armv7s";
