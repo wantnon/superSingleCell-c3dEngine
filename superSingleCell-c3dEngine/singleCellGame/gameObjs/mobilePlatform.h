@@ -791,7 +791,8 @@ public:
                 fscanf(fp, "%s",buffer);
                 fscanf(fp, "%f",&initRotAngle);
                 //求initRmat
-                Cc3dMatrix4 Rmat=calculateRotationMatrix(initRotAxis[0], initRotAxis[1], initRotAxis[2], cosf(initRotAngle*c3d_PI/180), sinf(initRotAngle*c3d_PI/180));
+                Cc3dMatrix4 Rmat=calculateRotationMatrix(Cc3dVector4(initRotAxis[0], initRotAxis[1], initRotAxis[2],0),cosf(initRotAngle*c3d_PI/180), sinf(initRotAngle*c3d_PI/180));
+                //calculateRotationMatrix(initRotAxis[0], initRotAxis[1], initRotAxis[2], cosf(initRotAngle*c3d_PI/180), sinf(initRotAngle*c3d_PI/180));
                 pmobilePlatform->initRMat=Rmat;
                 //求初始位置（根据startPos,endPos和initMovPercentage）
                 Cc3dVector4 initPos=Cc3dVector4(startPos)+(Cc3dVector4(endPos)-Cc3dVector4(startPos))*pmobilePlatform->initMovPercentage;

@@ -103,7 +103,7 @@ Cc3dMatrix4 Cc3dTransform::getRTSmat()const{
 void Cc3dTransform::rotate(float nx,float ny,float nz,float cosa,float sina)
 //n必须是单位向量
 {
-    Cc3dMatrix4 rotmat=calculateRotationMatrix(nx, ny, nz, cosa, sina);
+    Cc3dMatrix4 rotmat=calculateRotationMatrix(Cc3dVector4(nx,ny,nz,0),cosa,sina); //calculateRotationMatrix(nx, ny, nz, cosa, sina);
     m_RTmat=m_RTmat*rotmat;
 }
 

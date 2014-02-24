@@ -14,6 +14,7 @@
 #include "c3dMatrix.h"
 #include "c3dVector.h"
 #include "c3dMath.h"
+#include "c3dGLMath.h"
 class Cc3dTransform
 {
 protected:

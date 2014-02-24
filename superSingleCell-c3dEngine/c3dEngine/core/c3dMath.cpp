@@ -244,32 +244,6 @@ float getLength(const Cc3dVector4&v){
     return sqrtf(v.x()*v.x()+v.y()*v.y()+v.z()*v.z());
 }
 
-Cc3dMatrix4 calculateRotationMatrix(float nx,float ny,float nz,float cosa,float sina)
-//制作旋转矩阵
-//n必须是单位向量
-{
-    //n必须是单位向量
-    float _cosa=1-cosa;
-    float nx_cosa=nx*_cosa;
-    float nz_cosa=nz*_cosa;
-    float nxnx_cosa=nx*nx_cosa;
-    float nxny_cosa=ny*nx_cosa;
-    float nxnz_cosa=nz*nx_cosa;
-    float nyny_cosa=ny*ny*_cosa;
-    float nynz_cosa=ny*nz_cosa;
-    float nznz_cosa=nz*nz_cosa;
-    float nxsina=nx*sina;
-    float nzsina=nz*sina;
-    float nysina=ny*sina;
-    float _rotmat[16]={
-        nxnx_cosa+cosa,nxny_cosa+nzsina,nxnz_cosa-nysina,0,//第一列
-        nxny_cosa-nzsina,nyny_cosa+cosa,nynz_cosa+nxsina,0,//第二列
-        nxnz_cosa+nysina,nynz_cosa-nxsina,nznz_cosa+cosa,0,//第三列
-        0,0,0,1//第四列
-    };
-    return Cc3dMatrix4(_rotmat);
-}
-
 Cc3dMatrix4 orthogonalization3x3(const Cc3dMatrix4&mat)
 //对mat的3*3部分进行规范正交化
 //*****除了计算误差外，软旋转的近似插值也会使矩阵变得非正交*****

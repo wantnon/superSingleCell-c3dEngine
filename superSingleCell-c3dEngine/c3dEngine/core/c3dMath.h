@@ -31,6 +31,5 @@ Cc3dMatrix4 inverse(const Cc3dMatrix4&mat);
 Cc3dMatrix4 transpose(const Cc3dMatrix4&mat);
 float getLength2(const Cc3dVector4&v);
 float getLength(const Cc3dVector4&v);
-Cc3dMatrix4 calculateRotationMatrix(float nx,float ny,float nz,float cosa,float sina);
 Cc3dMatrix4 orthogonalization3x3(const Cc3dMatrix4&mat);
 #endif /* defined(__HelloCpp__c3dMath__) */
