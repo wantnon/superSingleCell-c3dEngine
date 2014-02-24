@@ -9,11 +9,11 @@
 #include "viewingTipPage.h"
 #include "globalVars.h"
 #include "c3dSceneManger.h"
-#include "sceneRoot.h"
+#include "playingPage.h"
 #include "myFunc.h"
 #include "c3dGestureAnalyzer.h"
 bool CviewingTipPage::init(){
-    int level=((CsceneRoot*)Cc3dSceneManager::sharedSceneManager()->getRoot()->getChildByName("sceneRoot"))->getLevel();
+    int level=(( CplayingPage*)Cc3dSceneManager::sharedSceneManager()->getRoot()->getChildByName("playingPage"))->getLevel();
     string levelStr=numberToStr(level);
     string rootPath="data/levels/level_"+levelStr+"/";
     //

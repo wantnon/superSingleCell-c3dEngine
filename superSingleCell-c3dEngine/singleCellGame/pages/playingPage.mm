@@ -1,12 +1,12 @@
 //
-//  CsceneRoot.cpp
+//  playingPage.cpp
 //  HelloOpenGL
 //
 //  Created by wantnon (yang chao) on 14-2-9.
 //
 //
 
-#include "sceneRoot.h"
+#include "playingPage.h"
 
 #include "globalVars.h"
 #include "makeTemplate.h"
@@ -22,7 +22,7 @@
 #include "gameState.h"
 #include "c3dGestureAnalyzer.h"
 #include "userConfig.h"
-CsceneRoot::CsceneRoot(){
+ CplayingPage:: CplayingPage(){
     m_cell=NULL;
     m_ground=NULL;
     m_seabed=NULL;
@@ -33,7 +33,7 @@ CsceneRoot::CsceneRoot(){
   
  
 }
-CsceneRoot::~CsceneRoot(){
+ CplayingPage::~CplayingPage(){
     m_fbo->release();
     m_depthTex->release();
     m_fbo2->release();
@@ -51,7 +51,7 @@ CsceneRoot::~CsceneRoot(){
     Cc3dTextureCache::sharedTextureCache()->removeUnusedTexturesOnNextFrame();
     Cc3dAudioCache::sharedAudioCache()->removeUnusedBuffersAndSourcesOnNextFrame();
 }
-void CsceneRoot::unloadGame(){
+void  CplayingPage::unloadGame(){
     cout<<"unload Game..."<<endl;
     /*  if(ground)assert(ground->getRetainCount()==1);
      if(water)assert(water->getRetainCount()==1);
@@ -85,7 +85,7 @@ void CsceneRoot::unloadGame(){
     this->stopAllALSource();
     cout<<"unload game done!"<<endl;
 }
-void CsceneRoot::debugSwitch(){
+void  CplayingPage::debugSwitch(){
     CgameSettings::sharedGameSettings()->setShowBubbleID(!CgameSettings::sharedGameSettings()->getShowBubbleID());
     {
         int n=m_bubbleSet.getActorCount();
@@ -118,7 +118,7 @@ void CsceneRoot::debugSwitch(){
 
 
 }
-void CsceneRoot::update(){
+void  CplayingPage::update(){
     //---------------------logic
     //必须将logic放在这里，不要将logic放在update里!!!，否则造成卡顿
     this->logic();
@@ -514,7 +514,7 @@ void CsceneRoot::update(){
 
 
 }
-bool CsceneRoot::init(int level){
+bool  CplayingPage::init(int level){
     const float wReso=Cc3dDeviceAndOSInfo::sharedDeviceAndOSInfo()->getResolutionSize().x();
     const float hReso=Cc3dDeviceAndOSInfo::sharedDeviceAndOSInfo()->getResolutionSize().y();
     const float width=Cc3dDeviceAndOSInfo::sharedDeviceAndOSInfo()->getScreenSize().x();
@@ -2239,7 +2239,7 @@ bool CsceneRoot::init(int level){
     
     return true;
 }
-void CsceneRoot::visitDraw(){
+void  CplayingPage::visitDraw(){
     GLint oldFrameBuffer;
     glGetIntegerv(GL_FRAMEBUFFER_BINDING, &oldFrameBuffer);
 
@@ -2405,7 +2405,7 @@ void CsceneRoot::visitDraw(){
 
 
 
-void CsceneRoot::makeSound(){//必须加static
+void  CplayingPage::makeSound(){//必须加static
     //----划水声
     if(m_cell->get_isPuddleWater()){
         //更新声源位置（注意，不管是否重启，都要更新声源）
@@ -2453,10 +2453,10 @@ void CsceneRoot::makeSound(){//必须加static
     
 }
 
-bool CsceneRoot::getIsCheckPointEmpty()const{
+bool  CplayingPage::getIsCheckPointEmpty()const{
     return m_checkPoint.getIsEmpty();
 }
-bool CsceneRoot::resetToCheckPoint()
+bool  CplayingPage::resetToCheckPoint()
 {
     if(m_checkPoint.getIsEmpty())return false;
     //恢复检查点

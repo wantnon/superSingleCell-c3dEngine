@@ -11,7 +11,7 @@
 #include "homePage.h"
 #include "loadingPage.h"
 #include "c3dSceneManger.h"
-#include "sceneRoot.h"
+#include "playingPage.h"
 #include "define.h"
 #include "c3dGestureAnalyzer.h"
 bool CpausePage::init(){

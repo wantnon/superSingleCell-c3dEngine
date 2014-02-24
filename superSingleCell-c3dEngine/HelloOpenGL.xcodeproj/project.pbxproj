@@ -108,8 +108,8 @@
 		180A837318BA165B0079E6C9 /* loadingPage.mm in Sources */ = {isa = PBXBuildFile; fileRef = 180A831118BA165B0079E6C9 /* loadingPage.mm */; };
 		180A837418BA165B0079E6C9 /* menuPage.mm in Sources */ = {isa = PBXBuildFile; fileRef = 180A831318BA165B0079E6C9 /* menuPage.mm */; };
 		180A837518BA165B0079E6C9 /* pausePage.mm in Sources */ = {isa = PBXBuildFile; fileRef = 180A831518BA165B0079E6C9 /* pausePage.mm */; };
-		180A837618BA165B0079E6C9 /* sceneRoot.mm in Sources */ = {isa = PBXBuildFile; fileRef = 180A831718BA165B0079E6C9 /* sceneRoot.mm */; };
-		180A837718BA165B0079E6C9 /* sceneRootLogic.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 180A831818BA165B0079E6C9 /* sceneRootLogic.cpp */; };
+		180A837618BA165B0079E6C9 /* playingPage.mm in Sources */ = {isa = PBXBuildFile; fileRef = 180A831718BA165B0079E6C9 /* playingPage.mm */; };
+		180A837718BA165B0079E6C9 /* playingPageLogic.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 180A831818BA165B0079E6C9 /* playingPageLogic.cpp */; };
 		180A837818BA165B0079E6C9 /* settingPage.mm in Sources */ = {isa = PBXBuildFile; fileRef = 180A831B18BA165B0079E6C9 /* settingPage.mm */; };
 		180A837918BA165B0079E6C9 /* startPage.mm in Sources */ = {isa = PBXBuildFile; fileRef = 180A831D18BA165B0079E6C9 /* startPage.mm */; };
 		180A837A18BA165B0079E6C9 /* succedPage.mm in Sources */ = {isa = PBXBuildFile; fileRef = 180A831F18BA165B0079E6C9 /* succedPage.mm */; };
@@ -372,10 +372,10 @@
 		180A831318BA165B0079E6C9 /* menuPage.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = menuPage.mm; sourceTree = "<group>"; };
 		180A831418BA165B0079E6C9 /* pausePage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = pausePage.h; sourceTree = "<group>"; };
 		180A831518BA165B0079E6C9 /* pausePage.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = pausePage.mm; sourceTree = "<group>"; };
-		180A831618BA165B0079E6C9 /* sceneRoot.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = sceneRoot.h; sourceTree = "<group>"; };
-		180A831718BA165B0079E6C9 /* sceneRoot.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = sceneRoot.mm; sourceTree = "<group>"; };
-		180A831818BA165B0079E6C9 /* sceneRootLogic.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = sceneRootLogic.cpp; sourceTree = "<group>"; };
-		180A831918BA165B0079E6C9 /* sceneRootLogic.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = sceneRootLogic.h; sourceTree = "<group>"; };
+		180A831618BA165B0079E6C9 /* playingPage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = playingPage.h; sourceTree = "<group>"; };
+		180A831718BA165B0079E6C9 /* playingPage.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = playingPage.mm; sourceTree = "<group>"; };
+		180A831818BA165B0079E6C9 /* playingPageLogic.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = playingPageLogic.cpp; sourceTree = "<group>"; };
+		180A831918BA165B0079E6C9 /* playingPageLogic.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = playingPageLogic.h; sourceTree = "<group>"; };
 		180A831A18BA165B0079E6C9 /* settingPage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = settingPage.h; sourceTree = "<group>"; };
 		180A831B18BA165B0079E6C9 /* settingPage.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = settingPage.mm; sourceTree = "<group>"; };
 		180A831C18BA165B0079E6C9 /* startPage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = startPage.h; sourceTree = "<group>"; };
@@ -776,10 +776,10 @@
 				180A831318BA165B0079E6C9 /* menuPage.mm */,
 				180A831418BA165B0079E6C9 /* pausePage.h */,
 				180A831518BA165B0079E6C9 /* pausePage.mm */,
-				180A831618BA165B0079E6C9 /* sceneRoot.h */,
-				180A831718BA165B0079E6C9 /* sceneRoot.mm */,
-				180A831818BA165B0079E6C9 /* sceneRootLogic.cpp */,
-				180A831918BA165B0079E6C9 /* sceneRootLogic.h */,
+				180A831618BA165B0079E6C9 /* playingPage.h */,
+				180A831718BA165B0079E6C9 /* playingPage.mm */,
+				180A831818BA165B0079E6C9 /* playingPageLogic.cpp */,
+				180A831918BA165B0079E6C9 /* playingPageLogic.h */,
 				180A831A18BA165B0079E6C9 /* settingPage.h */,
 				180A831B18BA165B0079E6C9 /* settingPage.mm */,
 				180A831C18BA165B0079E6C9 /* startPage.h */,
@@ -1071,7 +1071,7 @@
 				180A82AE18BA162F0079E6C9 /* triangleWithNorm.cpp in Sources */,
 				180A836E18BA165B0079E6C9 /* descPage2.mm in Sources */,
 				180A829318BA162F0079E6C9 /* c3dMaterial.cpp in Sources */,
-				180A837718BA165B0079E6C9 /* sceneRootLogic.cpp in Sources */,
+				180A837718BA165B0079E6C9 /* playingPageLogic.cpp in Sources */,
 				180A82A318BA162F0079E6C9 /* c3dTextureCache.mm in Sources */,
 				180A834818BA165B0079E6C9 /* initGame.mm in Sources */,
 				180A835E18BA165B0079E6C9 /* sky.cpp in Sources */,
@@ -1095,7 +1095,7 @@
 				35DF644E138C40D500FF9459 /* main.m in Sources */,
 				180A828B18BA162F0079E6C9 /* c3dFileUtils.mm in Sources */,
 				180A827E18BA162F0079E6C9 /* c3dActor.cpp in Sources */,
-				180A837618BA165B0079E6C9 /* sceneRoot.mm in Sources */,
+				180A837618BA165B0079E6C9 /* playingPage.mm in Sources */,
 				180A834D18BA165B0079E6C9 /* programSetUp.cpp in Sources */,
 				180A829118BA162F0079E6C9 /* c3dLight.cpp in Sources */,
 				180A82AD18BA162F0079E6C9 /* octree.cpp in Sources */,

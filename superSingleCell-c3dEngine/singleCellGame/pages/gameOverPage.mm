@@ -10,12 +10,12 @@
 #include "globalVars.h"
 #include "loadingPage.h"
 #include "c3dSceneManger.h"
-#include "sceneRoot.h"
+#include "playingPage.h"
 #include "define.h"
 #include "c3dGestureAnalyzer.h"
 bool CgameOverPage::init(){
     //whether check point is empty
-    bool isCheckPointEmpty=((CsceneRoot*)Cc3dSceneManager::sharedSceneManager()->getRoot()->getChildByName("sceneRoot"))->getIsCheckPointEmpty();
+    bool isCheckPointEmpty=(( CplayingPage*)Cc3dSceneManager::sharedSceneManager()->getRoot()->getChildByName("playingPage"))->getIsCheckPointEmpty();
 
     //--quad_gameover
     {
@@ -124,7 +124,7 @@ void CgameOverPage::update(){
     //----rebirthKey
     if(m_rebirthKey->getIsVisible()){
         if(m_rebirthKey->isContainPoint(Cc3dGestureAnalyzer::sharedGestureAnalyzer()->getPoint())&&Cc3dGestureAnalyzer::sharedGestureAnalyzer()->getIsTapOnce()){
-            ((CsceneRoot*)Cc3dSceneManager::sharedSceneManager()->getRoot()->getChildByName("sceneRoot"))->resetToCheckPoint();
+            (( CplayingPage*)Cc3dSceneManager::sharedSceneManager()->getRoot()->getChildByName("playingPage"))->resetToCheckPoint();
             this->removeFromParentOnNextFrame();
             this->getFather()->setIsDoUpdate(true);
         }

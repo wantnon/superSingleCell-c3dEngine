@@ -9,7 +9,7 @@
 #include "loadingPage.h"
 #include "globalVars.h"
 #include "c3dSceneManger.h"
-#include "sceneRoot.h"
+#include "playingPage.h"
 #include "c3dDeviceAndOSInfo.h"
 #include "gameState.h"
 bool CloadingPage::init(){
@@ -76,14 +76,12 @@ bool CloadingPage::init(){
     return true;
 }
 void CloadingPage::update(){
-//    if(gameState!=GAME_STATE_loading)return;
- //   gameState=GAME_STATE_playing;
-    CsceneRoot*sceneRoot=new CsceneRoot();
-    sceneRoot->autorelease();
-    sceneRoot->init(CgameState::sharedGameState()->getCurrentLevel());
-    sceneRoot->setName("sceneRoot");
+    CplayingPage*playingPage=new  CplayingPage();
+    playingPage->autorelease();
+    playingPage->init(CgameState::sharedGameState()->getCurrentLevel());
+    playingPage->setName("playingPage");
     Cc3dSceneManager::sharedSceneManager()->getRoot()->removeAllChildOnNextFrame();
-    Cc3dSceneManager::sharedSceneManager()->getRoot()->addChild(sceneRoot);
+    Cc3dSceneManager::sharedSceneManager()->getRoot()->addChild(playingPage);
 }
 CloadingPage::CloadingPage(){
 

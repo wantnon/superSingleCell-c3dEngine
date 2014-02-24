@@ -12,7 +12,7 @@
 #include "loadingPage.h"
 #include "homePage.h"
 #include "c3dSceneManger.h"
-#include "sceneRoot.h"
+#include "playingPage.h"
 #include "c3dSceneManger.h"
 #include "define.h"
 #include "c3dDeviceAndOSInfo.h"

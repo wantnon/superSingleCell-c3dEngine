@@ -1,13 +1,13 @@
 //
-//  sceneRoot.h
+//  playingPage.h
 //  HelloOpenGL
 //
 //  Created by wantnon (yang chao) on 14-2-9.
 //
 //
 
-#ifndef __HelloOpenGL__sceneRoot__
-#define __HelloOpenGL__sceneRoot__
+#ifndef __HelloOpenGL__playingPage__
+#define __HelloOpenGL__playingPage__
 
 #include <iostream>
 using namespace std;
@@ -25,14 +25,14 @@ using namespace std;
 #include "sky.h"
 #include "checkPoint.h"
 
-class CsceneRoot:public Cc3dActor//public Cc3dNode
+class  CplayingPage:public Cc3dActor//public Cc3dNode
 {
 public:
     void visitDraw();
     bool init(int level);
     void update();
-    CsceneRoot();
-    virtual~CsceneRoot();
+     CplayingPage();
+    virtual~CplayingPage();
 
 public:
     
@@ -122,4 +122,4 @@ protected:
     Cc3dTexture* m_tex_quad_key_colored;//m_quad_keyList的彩色纹理
    
 };
-#endif /* defined(__HelloOpenGL__sceneRoot__) */
+#endif /* defined(__HelloOpenGL__playingPage__) */

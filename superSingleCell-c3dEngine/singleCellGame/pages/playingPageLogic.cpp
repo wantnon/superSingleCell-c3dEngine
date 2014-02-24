@@ -1,17 +1,17 @@
 //
-//  sceneRootLogic.cpp
+//  playingPageLogic.cpp
 //  HelloOpenGL
 //
 //  Created by apple on 14-2-23.
 //
 //
 
-#include "sceneRootLogic.h"
-#include "sceneRoot.h"
+#include "playingPageLogic.h"
+#include "playingPage.h"
 #include "globalVars.h"
 #include "define.h"
 #include "c3dGestureAnalyzer.h"
-void CsceneRoot::logic(){
+void  CplayingPage::logic(){
     
     CbossCell*cell=m_cell;
     
