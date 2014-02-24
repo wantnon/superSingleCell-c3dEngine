@@ -34,16 +34,17 @@ public:
  
 protected:
     void performDelayRemove_inn(Cc3dNode*node){
-        if(node->getIsRemoveOnNextFrame()){
-            node->setIsRemoveOnNextFrame(false);//must set isDirty to false first
-            node->removeFromParent();
-            return;
-        }
+        //to guarantee all node marked as isRemoveOnNextFrame to be removed
+        //we remove children first, then remove parent
         vector<Cc3dNode*> childList=node->getChildren();
         int nChild=(int)childList.size();
         for(int i=0;i<nChild;i++){
             assert(childList[i]);
             performDelayRemove_inn(childList[i]);
+        }
+        if(node->getIsRemoveOnNextFrame()){
+            node->setIsRemoveOnNextFrame(false);//must set isRemoveOnNextFrame to false first
+            node->removeFromParent();
         }
     
     }
