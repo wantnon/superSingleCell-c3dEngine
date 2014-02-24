@@ -17,23 +17,23 @@ using namespace std;
 class Cc3dObject{
 public:
     Cc3dObject(){
-        retainCount=1;
+        m_retainCount=1;
     }
     virtual~Cc3dObject(){}
     void retain(){
-        retainCount++;
+        m_retainCount++;
     }
     void autorelease();
     void release(){
-        assert(retainCount>0);
-        retainCount--;
-        if(retainCount==0)delete this;
+        assert(m_retainCount>0);
+        m_retainCount--;
+        if(m_retainCount==0)delete this;
     
     }
-    int getRetainCount()const {return retainCount;}
+    int getRetainCount()const {return m_retainCount;}
     bool init(){return true;}
   
 protected:
-    int retainCount;
+    int m_retainCount;
 };
 #endif /* defined(__HelloOpenGL__c3dObject__) */
