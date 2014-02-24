@@ -28,8 +28,8 @@ void c3dDefaultPassUnifoCallback(Cc3dNode*node, Cc3dProgram*program);
 class Cc3dNode:public Cc3dObject{
 public:
     Cc3dNode(){
-        m_visitOrder=0;
-        m_visitLogicOrder=0;
+        m_visitDrawOrder=0;
+        m_visitUpdateOrder=0;
         m_tag=0;
         m_isVisible=true;
         m_isDoUpdate=true;
@@ -192,10 +192,10 @@ public:
         assert(tag>=0);
         m_tag=tag;
     }
-    void setVisitOrder(float visitOrder){m_visitOrder=visitOrder;}
-    float getVisitOrder()const{return m_visitOrder;}
-    void setVisitLogicOrder(float visitLogicOrder){m_visitLogicOrder=visitLogicOrder;}
-    float getVisitLogicOrder()const{return m_visitLogicOrder;}
+    void setVisitDrawOrder(float visitDrawOrder){m_visitDrawOrder=visitDrawOrder;}
+    float getVisitDrawOrder()const{return m_visitDrawOrder;}
+    void setVisitUpdateOrder(float visitUpdateOrder){m_visitUpdateOrder=visitUpdateOrder;}
+    float getVisitUpdateOrder()const{return m_visitUpdateOrder;}
     void setName(string name){m_name=name;}
     string getName()const{return m_name;}
     virtual void draw(){
@@ -203,8 +203,8 @@ public:
     virtual void update(){
     }
 
-    virtual void visit();
-    virtual void visitLogic();
+    virtual void visitDraw();
+    virtual void visitUpdate();
     virtual Cc3dVector4 getPos()const{return getTransform().getPos();}//chance to override
     virtual void setPos(const Cc3dVector4&pos){getTransformPointer()->setPos(pos);}//chance to override
     
@@ -255,8 +255,8 @@ protected:
     bool m_isIgnorTransform;//just ignore self's transform, but will not ignore parent's transform
     int m_tag;
     Cc3dTransform m_transform;//变换
-    float m_visitOrder;
-    float m_visitLogicOrder;
+    float m_visitDrawOrder;
+    float m_visitUpdateOrder;
     Cc3dProgram*m_program;
     Cc3dCamera*m_camera;
     void (*m_passUnifoCallback)(Cc3dNode*, Cc3dProgram*);
@@ -266,18 +266,18 @@ protected:
 };
 //compare function object for stable_sort
 //http://www.codeproject.com/Articles/38381/STL-Sort-Comparison-Function
-struct comp_smallerVisitOrder
+struct comp_smallerVisitDrawOrder
 {
     inline bool operator()(const Cc3dNode*a, const Cc3dNode*b)
     {
-        return a->getVisitOrder()<b->getVisitOrder();
+        return a->getVisitDrawOrder()<b->getVisitDrawOrder();
     }
 };
-struct comp_smallerVisitLogicOrder
+struct comp_smallervisitUpdateOrder
 {
     inline bool operator()(const Cc3dNode*a, const Cc3dNode*b)
     {
-        return a->getVisitOrder()<b->getVisitLogicOrder();
+        return a->getVisitDrawOrder()<b->getVisitUpdateOrder();
     }
 };
 

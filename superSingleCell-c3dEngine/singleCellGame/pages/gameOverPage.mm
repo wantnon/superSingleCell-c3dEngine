@@ -35,7 +35,7 @@ bool CgameOverPage::init(){
         m_quad_gameover->getModelList()[0]->setIsWriteDepthBuffer(false);
         m_quad_gameover->setProgram(Cc3dProgramCache::sharedProgramCache()->getProgramByName("shaderNoLight"));
         m_quad_gameover->setCallback(passUnifoCallback_noLight);
-        m_quad_gameover->setVisitOrder(10000);
+        m_quad_gameover->setVisitDrawOrder(10000);
         //
         float _bx=52;
         float _by=340;
@@ -60,7 +60,7 @@ bool CgameOverPage::init(){
         m_restartKey->getModelList()[0]->setIsWriteDepthBuffer(false);
         m_restartKey->setProgram(Cc3dProgramCache::sharedProgramCache()->getProgramByName("shaderNoLight"));
         m_restartKey->setCallback(passUnifoCallback_noLight);
-        m_restartKey->setVisitOrder(10000);
+        m_restartKey->setVisitDrawOrder(10000);
         //
         float center[2];
         if(isCheckPointEmpty){
@@ -93,7 +93,7 @@ bool CgameOverPage::init(){
         m_rebirthKey->getModelList()[0]->setIsWriteDepthBuffer(false);
         m_rebirthKey->setProgram(Cc3dProgramCache::sharedProgramCache()->getProgramByName("shaderNoLight"));
         m_rebirthKey->setCallback(passUnifoCallback_noLight);
-        m_rebirthKey->setVisitOrder(10000);
+        m_rebirthKey->setVisitDrawOrder(10000);
         //
         float center[2]={200,300};
         m_rebirthKey->reSetCenter(center[0],center[1]);

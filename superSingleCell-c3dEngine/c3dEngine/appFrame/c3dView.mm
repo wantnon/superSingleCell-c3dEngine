@@ -144,10 +144,10 @@ using namespace std;
     //remove unused resource in caches (must after performDelayRemove)
     Cc3dTextureCache::sharedTextureCache()->performDelayRemoveUnusedTextures();
     Cc3dAudioCache::sharedAudioCache()->performDelayRemoveUnusedBuffersAndSources();
-    //visitLogic
-    Cc3dSceneManager::sharedSceneManager()->getRoot()->visitLogic();
-    //visit
-    Cc3dSceneManager::sharedSceneManager()->getRoot()->visit();
+    //visitUpdate
+    Cc3dSceneManager::sharedSceneManager()->getRoot()->visitUpdate();
+    //visitDraw
+    Cc3dSceneManager::sharedSceneManager()->getRoot()->visitDraw();
     //autorelease
     Cc3dAutoreleasePool::sharedAutoreleasePool()->releaseAll();
     //refresh

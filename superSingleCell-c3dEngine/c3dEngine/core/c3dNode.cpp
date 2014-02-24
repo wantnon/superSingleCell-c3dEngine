@@ -34,20 +34,20 @@ void c3dDefaultPassUnifoCallback(Cc3dNode*node, Cc3dProgram*program){
     program->passUnifoValueMatrixNfv("projectionModelview", PVMmat.getArray(), PVMmat.getArrayLen());
 }
 
-void Cc3dNode::visitLogic(){
+void Cc3dNode::visitUpdate(){
     if(this->getIsDoUpdateRecursively()){
         if(this->getIsDoUpdate()){
             this->update();
         }
         
-        //sort children by their visitOrder
+        //sort children by their visitDrawOrder
         int nchild=(int)m_childList.size();
         if(nchild!=0){
             //sort
-            stable_sort(m_childList.begin(), m_childList.end(),comp_smallerVisitLogicOrder());
+            stable_sort(m_childList.begin(), m_childList.end(),comp_smallervisitUpdateOrder());
             for(int i=0;i<nchild;i++){
                 assert(m_childList[i]);
-                m_childList[i]->visitLogic();
+                m_childList[i]->visitUpdate();
             }
             
         }
@@ -55,7 +55,7 @@ void Cc3dNode::visitLogic(){
  
 
 }
-void Cc3dNode::visit(){
+void Cc3dNode::visitDraw(){
  //   cout<<"enter node: "<<m_name<<endl;
     if(this->getIsVisibleRecursively()){
         Cc3dModelMatStack::sharedModelMatStack()->pushMatrix();
@@ -66,14 +66,14 @@ void Cc3dNode::visit(){
         }
         
         
-        //sort children by their visitOrder
+        //sort children by their visitDrawOrder
         int nchild=(int)m_childList.size();
         if(nchild!=0){
             //sort
-            stable_sort(m_childList.begin(), m_childList.end(),comp_smallerVisitOrder());
+            stable_sort(m_childList.begin(), m_childList.end(),comp_smallerVisitDrawOrder());
             for(int i=0;i<nchild;i++){
                 assert(m_childList[i]);
-                m_childList[i]->visit();
+                m_childList[i]->visitDraw();
             }
             
         }

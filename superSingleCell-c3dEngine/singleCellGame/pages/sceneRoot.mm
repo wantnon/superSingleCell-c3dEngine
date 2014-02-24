@@ -133,7 +133,7 @@ void CsceneRoot::update(){
             CpausePage*pausePage=new CpausePage();
             pausePage->autorelease();
             pausePage->init();
-            pausePage->setVisitOrder(10000);
+            pausePage->setVisitDrawOrder(10000);
             this->addChild(pausePage);
             this->setIsDoUpdate(false);
         }
@@ -163,7 +163,7 @@ void CsceneRoot::update(){
             CviewingTipPage*viewingTipPage=new CviewingTipPage();
             viewingTipPage->autorelease();
             viewingTipPage->init();
-            viewingTipPage->setVisitOrder(10000);
+            viewingTipPage->setVisitDrawOrder(10000);
             this->addChild(viewingTipPage);
             this->setIsDoUpdate(false);
         }
@@ -444,7 +444,7 @@ void CsceneRoot::update(){
         CgameOverPage*gameOverPage=new CgameOverPage();
         gameOverPage->autorelease();
         gameOverPage->init();
-        gameOverPage->setVisitOrder(10000);
+        gameOverPage->setVisitDrawOrder(10000);
         this->addChild(gameOverPage);
         this->setIsDoUpdate(false);
     }
@@ -501,7 +501,7 @@ void CsceneRoot::update(){
 
         succedPage->autorelease();
         succedPage->init(nStar,nEnemyKilledCount,nCoinEatenCount);
-        succedPage->setVisitOrder(10000);
+        succedPage->setVisitDrawOrder(10000);
         this->addChild(succedPage);
         this->setIsDoUpdate(false);
         //将uiNode及子节点隐藏
@@ -556,7 +556,7 @@ bool CsceneRoot::init(int level){
     //
     m_cell->getModelList()[CELLPART_body]->setProgram(Cc3dProgramCache::sharedProgramCache()->getProgramByName("shader_diffuse_ambient_specular_noSelfShadow"));
     m_cell->getModelList()[CELLPART_body]->setCallback(passUnifoCallback_diffuse_ambient_specular_noSelfShadow);
-    m_cell->getModelList()[CELLPART_body]->setVisitOrder(1000);
+    m_cell->getModelList()[CELLPART_body]->setVisitDrawOrder(1000);
     
     m_cell->getModelList()[CELLPART_wingL]->setProgram(Cc3dProgramCache::sharedProgramCache()->getProgramByName("shader_diffuse_ambient_specular_noSelfShadow"));
     m_cell->getModelList()[CELLPART_wingL]->setCallback(passUnifoCallback_diffuse_ambient_specular_noSelfShadow);
@@ -647,7 +647,7 @@ bool CsceneRoot::init(int level){
         j++;
         
     }
-    m_cell->setVisitOrder(1000);
+    m_cell->setVisitDrawOrder(1000);
     
     m_cell->setName("cell");
     
@@ -690,14 +690,14 @@ bool CsceneRoot::init(int level){
             float rx=rxList[i];
             float ry=ryList[i];
             pmolecule->init(rx,ry);
-            //setProgram, setCallback, setIsVisible,setIsWriteDepthBuffer,setVisitOrder等
+            //setProgram, setCallback, setIsVisible,setIsWriteDepthBuffer,setVisitDrawOrder等
             //都必须放在init之后，否则无法生效
             pmolecule->setProgram(Cc3dProgramCache::sharedProgramCache()->getProgramByName("shader_texOnly_rgb011Transp"));
             pmolecule->setCallback(passUnifoCallback_texOnly_blackTransp);
             pmolecule->setCamera(camera);
             pmolecule->setIsVisible(false);
             pmolecule->getModel()->setIsWriteDepthBuffer(false);
-            pmolecule->setVisitOrder(1001);
+            pmolecule->setVisitDrawOrder(1001);
             pmolecule->setRc(0);
             pmolecule->getModel()->getMeshByIndex(0)->getIndexVBO()->genBuffers();
             string texClipName="data/global/tex/moleculeLibrary/fire3/";
@@ -894,7 +894,7 @@ bool CsceneRoot::init(int level){
                 pcenterSquare->setCamera(camera);
                 pcenterSquare->getModel()->setIsWriteDepthBuffer(false);
                 m_water->setCenterSquare(pcenterSquare);
-                m_water->setVisitOrder(999);
+                m_water->setVisitDrawOrder(999);
                 
             }
             //声音
@@ -1053,7 +1053,7 @@ bool CsceneRoot::init(int level){
             }
             pblast->setCamera(camera);
             pblast->getModel()->setIsWriteDepthBuffer(false);
-            pblast->setVisitOrder(1001);
+            pblast->setVisitDrawOrder(1001);
             pblast->getModel()->submit(GL_STATIC_DRAW);
             if(pALSourceList[i]){
                 pblast->addALSource(pALSourceList[i]);
@@ -1092,7 +1092,7 @@ bool CsceneRoot::init(int level){
             pblast->setCallback(passUnifoCallback_texOnly_blackTransp);
             pblast->setCamera(camera);
             pblast->getModel()->setIsWriteDepthBuffer(false);
-            pblast->setVisitOrder(1001);
+            pblast->setVisitDrawOrder(1001);
             pblast->getModel()->getMeshByIndex(0)->getIndexVBO()->genBuffers();
             pblast->useTex(0);
             pblast->getModel()->submit(GL_STATIC_DRAW);
@@ -1204,7 +1204,7 @@ bool CsceneRoot::init(int level){
                 IDboard0->getModel()->setCallback(passUnifoCallback_noLight);
                 IDboard0->getModel()->setCamera(camera);
                 IDboard0->setIsVisible(CgameSettings::sharedGameSettings()->getShowMobilePlatformID());
-                IDboard0->setVisitOrder(10000);
+                IDboard0->setVisitDrawOrder(10000);
                 //IDboard1
                 Csprite*IDboard1=new Csprite();
                 IDboard1->autorelease();
@@ -1219,7 +1219,7 @@ bool CsceneRoot::init(int level){
                 IDboard1->getModel()->setCallback(passUnifoCallback_noLight);
                 IDboard1->setCamera(camera);
                 IDboard1->setIsVisible(CgameSettings::sharedGameSettings()->getShowMobilePlatformID());
-                IDboard1->setVisitOrder(10000);
+                IDboard1->setVisitDrawOrder(10000);
             }
         }
     }
@@ -1241,7 +1241,7 @@ bool CsceneRoot::init(int level){
             pbubble->setCallback(passUnifoCallback_texOnly_useTexAsAlpha);
             pbubble->setCamera(camera);
             pbubble->getModel()->setIsWriteDepthBuffer(false);
-            pbubble->setVisitOrder(1001);
+            pbubble->setVisitDrawOrder(1001);
             pbubble->getModel()->getMeshByIndex(0)->getIndexVBO()->genBuffers();
             string bubbleTexPath="data/global/tex/sprites/"+pbubble->name+".png";
             pbubble->getModel()->getMeshByIndex(0)->setTexture(Cc3dTextureCache::sharedTextureCache()->addImage(bubbleTexPath));
@@ -1313,7 +1313,7 @@ bool CsceneRoot::init(int level){
                 IDboard0->getModel()->setCallback(passUnifoCallback_noLight);
                 IDboard0->setCamera(camera);
                 IDboard0->setIsVisible(CgameSettings::sharedGameSettings()->getShowBubbleID());
-                IDboard0->setVisitOrder(10000);
+                IDboard0->setVisitDrawOrder(10000);
                 //IDboard1
                 Csprite*IDboard1=new Csprite();
                 IDboard1->autorelease();
@@ -1328,7 +1328,7 @@ bool CsceneRoot::init(int level){
                 IDboard1->getModel()->setCallback(passUnifoCallback_noLight);
                 IDboard1->setCamera(camera);
                 IDboard1->setIsVisible(CgameSettings::sharedGameSettings()->getShowBubbleID());
-                IDboard1->setVisitOrder(10000);
+                IDboard1->setVisitDrawOrder(10000);
                 
                 
             }
@@ -1366,7 +1366,7 @@ bool CsceneRoot::init(int level){
             pfakeLight->setCallback(passUnifoCallback_texOnly_useTexAsAlpha);
             pfakeLight->setCamera(camera);
             pfakeLight->getModel()->setIsWriteDepthBuffer(false);
-            pfakeLight->setVisitOrder(1001);
+            pfakeLight->setVisitDrawOrder(1001);
             this->addChild(pfakeLight);
             pfakeLight->getModel()->getMeshByIndex(0)->getIndexVBO()->genBuffers();
             pfakeLight->getModel()->getMeshByIndex(0)->setTexture(Cc3dTextureCache::sharedTextureCache()->addImage("data/global/tex/sprites/glow_sprite_big.png"));
@@ -1673,7 +1673,7 @@ bool CsceneRoot::init(int level){
         m_quad_oops->getModelList()[0]->setIsWriteDepthBuffer(false);
         m_quad_oops->setProgram(Cc3dProgramCache::sharedProgramCache()->getProgramByName("shaderNoLight"));
         m_quad_oops->setCallback(passUnifoCallback_noLight);
-        m_quad_oops->setVisitOrder(10000);
+        m_quad_oops->setVisitDrawOrder(10000);
         //
         float c[2]={164,300};
         m_quad_oops->reSetCenter(c[0], c[1]);
@@ -1703,7 +1703,7 @@ bool CsceneRoot::init(int level){
         m_quad_out_of_fuel->getModelList()[0]->setIsWriteDepthBuffer(false);
         m_quad_out_of_fuel->setProgram(Cc3dProgramCache::sharedProgramCache()->getProgramByName("shaderNoLight"));
         m_quad_out_of_fuel->setCallback(passUnifoCallback_noLight);
-        m_quad_out_of_fuel->setVisitOrder(10000);
+        m_quad_out_of_fuel->setVisitDrawOrder(10000);
         //
         float c[2]={164,300};
         m_quad_out_of_fuel->reSetCenter(c[0], c[1]);
@@ -1732,7 +1732,7 @@ bool CsceneRoot::init(int level){
         m_quad_halfFuelHaveBeenUsed->getModelList()[0]->setIsWriteDepthBuffer(false);
         m_quad_halfFuelHaveBeenUsed->setProgram(Cc3dProgramCache::sharedProgramCache()->getProgramByName("shaderNoLight"));
         m_quad_halfFuelHaveBeenUsed->setCallback(passUnifoCallback_noLight);
-        m_quad_halfFuelHaveBeenUsed->setVisitOrder(10000);
+        m_quad_halfFuelHaveBeenUsed->setVisitDrawOrder(10000);
         //
         float c[2]={164,300};
         m_quad_halfFuelHaveBeenUsed->reSetCenter(c[0], c[1]);
@@ -1749,7 +1749,7 @@ bool CsceneRoot::init(int level){
     m_uiRoot=new Cc3dNode();
     m_uiRoot->init();
     m_uiRoot->autorelease();
-    m_uiRoot->setVisitOrder(10000);
+    m_uiRoot->setVisitDrawOrder(10000);
     addChild(m_uiRoot);
     //----ui
     const float keyMovUp=height-480;//按钮向上移动量
@@ -1771,7 +1771,7 @@ bool CsceneRoot::init(int level){
         m_quad_depthTex->setProgram(Cc3dProgramCache::sharedProgramCache()->getProgramByName("shaderNoLight"));
         m_quad_depthTex->setCallback(passUnifoCallback_noLight);
         m_quad_depthTex->setIsVisible(CgameSettings::sharedGameSettings()->getShowDepthTexs());
-        m_quad_depthTex->setVisitOrder(10000);
+        m_quad_depthTex->setVisitDrawOrder(10000);
         //
         m_quad_depthTex->reSetLeftDownCorner(0, 80);
         m_quad_depthTex->getModelList()[0]->getMeshByIndex(0)->submit(GL_STATIC_DRAW);
@@ -1797,7 +1797,7 @@ bool CsceneRoot::init(int level){
         m_quad_depthTex2->setProgram(Cc3dProgramCache::sharedProgramCache()->getProgramByName("shaderNoLight"));
         m_quad_depthTex2->setCallback(passUnifoCallback_noLight);
         m_quad_depthTex2->setIsVisible(CgameSettings::sharedGameSettings()->getShowDepthTexs());
-        m_quad_depthTex2->setVisitOrder(10000);
+        m_quad_depthTex2->setVisitDrawOrder(10000);
         //
         m_quad_depthTex2->reSetLeftDownCorner(100, 80);
         m_quad_depthTex2->getModelList()[0]->getMeshByIndex(0)->submit(GL_STATIC_DRAW);
@@ -1823,7 +1823,7 @@ bool CsceneRoot::init(int level){
         m_debugKey->getModelList()[0]->setIsWriteDepthBuffer(false);
         m_debugKey->setProgram(Cc3dProgramCache::sharedProgramCache()->getProgramByName("shaderNoLight"));
         m_debugKey->setCallback(passUnifoCallback_noLight);
-        m_debugKey->setVisitOrder(10000);
+        m_debugKey->setVisitDrawOrder(10000);
         //
         float center[2]={width-r_key,0+r_key};
         m_debugKey->reSetCenter(center[0], center[1]);
@@ -1847,7 +1847,7 @@ bool CsceneRoot::init(int level){
         m_tipKey->getModelList()[0]->setIsWriteDepthBuffer(false);
         m_tipKey->setProgram(Cc3dProgramCache::sharedProgramCache()->getProgramByName("shaderNoLight"));
         m_tipKey->setCallback(passUnifoCallback_noLight);
-        m_tipKey->setVisitOrder(10000);
+        m_tipKey->setVisitDrawOrder(10000);
         //
         float center[2]={30,30};
         m_tipKey->reSetCenter(center[0], center[1]);
@@ -1871,7 +1871,7 @@ bool CsceneRoot::init(int level){
         m_pauseKey->getModelList()[0]->setIsWriteDepthBuffer(false);
         m_pauseKey->setProgram(Cc3dProgramCache::sharedProgramCache()->getProgramByName("shaderNoLight"));
         m_pauseKey->setCallback(passUnifoCallback_noLight);
-        m_pauseKey->setVisitOrder(10000);
+        m_pauseKey->setVisitDrawOrder(10000);
         //
         float center[2]={35,450+keyMovUp};
         m_pauseKey->reSetCenter(center[0], center[1]);
@@ -1896,7 +1896,7 @@ bool CsceneRoot::init(int level){
         m_zoomOutKey->getModelList()[0]->setIsWriteDepthBuffer(false);
         m_zoomOutKey->setProgram(Cc3dProgramCache::sharedProgramCache()->getProgramByName("shaderNoLight"));
         m_zoomOutKey->setCallback(passUnifoCallback_noLight);
-        m_zoomOutKey->setVisitOrder(10000);
+        m_zoomOutKey->setVisitDrawOrder(10000);
         //
         float center[2]={2*r_key+r_key,30};
         m_zoomOutKey->reSetCenter(center[0], center[1]);
@@ -1925,7 +1925,7 @@ bool CsceneRoot::init(int level){
         m_shotBigKey->getModelList()[0]->setIsWriteDepthBuffer(false);
         m_shotBigKey->setProgram(Cc3dProgramCache::sharedProgramCache()->getProgramByName("shaderNoLight"));
         m_shotBigKey->setCallback(passUnifoCallback_noLight);
-        m_shotBigKey->setVisitOrder(10000);
+        m_shotBigKey->setVisitDrawOrder(10000);
         //
         m_shotBigKey->reSetCenter(pos_shotBigKey[0], pos_shotBigKey[1]);
         m_shotBigKey->getModelList()[0]->getMeshByIndex(0)->submit(GL_STATIC_DRAW);
@@ -1951,7 +1951,7 @@ bool CsceneRoot::init(int level){
         m_shotKey->getModelList()[0]->setIsWriteDepthBuffer(false);
         m_shotKey->setProgram(Cc3dProgramCache::sharedProgramCache()->getProgramByName("shaderNoLight"));
         m_shotKey->setCallback(passUnifoCallback_noLight);
-        m_shotKey->setVisitOrder(10000);
+        m_shotKey->setVisitDrawOrder(10000);
         //
         m_shotKey->reSetCenter(pos_shotKey[0], pos_shotKey[1]);
         m_shotKey->getModelList()[0]->getMeshByIndex(0)->submit(GL_STATIC_DRAW);
@@ -1979,7 +1979,7 @@ bool CsceneRoot::init(int level){
         m_goDownShipKey->setCallback(passUnifoCallback_noLight);
         m_goDownShipKey->setIsVisible(false);
         m_goDownShipKey->setIsDoUpdate(false);
-        m_goDownShipKey->setVisitOrder(10000);
+        m_goDownShipKey->setVisitDrawOrder(10000);
         //
         float center[2]={35,450+keyMovUp-r_key*3};
         m_goDownShipKey->reSetCenter(center[0], center[1]);
@@ -2005,7 +2005,7 @@ bool CsceneRoot::init(int level){
         m_lifeBar->getQuadBack()->getModelList()[0]->setIsWriteDepthBuffer(false);
         m_lifeBar->getQuadBack()->setProgram(Cc3dProgramCache::sharedProgramCache()->getProgramByName("shaderNoLight"));
         m_lifeBar->getQuadBack()->setCallback(passUnifoCallback_noLight);
-        m_lifeBar->getQuadBack()->setVisitOrder(10000);
+        m_lifeBar->getQuadBack()->setVisitDrawOrder(10000);
         //quad_front
         m_lifeBar->getQuadFront()->getModelList()[0]->getMeshByIndex(0)->getIndexVBO()->genBuffers();
         m_lifeBar->getQuadFront()->getModelList()[0]->getMeshByIndex(0)->setTexture(Cc3dTextureCache::sharedTextureCache()->addImage("data/global/tex/white.png"));
@@ -2015,7 +2015,7 @@ bool CsceneRoot::init(int level){
         m_lifeBar->getQuadFront()->getModelList()[0]->setIsWriteDepthBuffer(false);
         m_lifeBar->getQuadFront()->setProgram(Cc3dProgramCache::sharedProgramCache()->getProgramByName("shaderNoLight"));
         m_lifeBar->getQuadFront()->setCallback(passUnifoCallback_noLight);
-        m_lifeBar->getQuadFront()->setVisitOrder(10000);
+        m_lifeBar->getQuadFront()->setVisitDrawOrder(10000);
         //
         m_lifeBar->reSetLeftDownCorner(190, 450+keyMovUp);
         m_lifeBar->getQuadBack()->getModelList()[0]->getMeshByIndex(0)->submit(GL_STATIC_DRAW);
@@ -2043,7 +2043,7 @@ bool CsceneRoot::init(int level){
             quad_key->getModelList()[0]->setIsWriteDepthBuffer(false);
             quad_key->setProgram(Cc3dProgramCache::sharedProgramCache()->getProgramByName("shaderNoLight"));
             quad_key->setCallback(passUnifoCallback_noLight);
-            quad_key->setVisitOrder(10000);
+            quad_key->setVisitDrawOrder(10000);
             m_uiRoot->addChild(quad_key);
             m_quad_keyList.push_back(quad_key);
         }
@@ -2088,7 +2088,7 @@ bool CsceneRoot::init(int level){
         m_quad_coin->getModelList()[0]->setIsWriteDepthBuffer(false);
         m_quad_coin->setProgram(Cc3dProgramCache::sharedProgramCache()->getProgramByName("shaderNoLight"));
         m_quad_coin->setCallback(passUnifoCallback_noLight);
-        m_quad_coin->setVisitOrder(10000);
+        m_quad_coin->setVisitDrawOrder(10000);
         //
         float bx=190;
         float by=415-35+keyMovUp;
@@ -2112,7 +2112,7 @@ bool CsceneRoot::init(int level){
             quad->getModelList()[0]->setIsWriteDepthBuffer(false);
             quad->setProgram(Cc3dProgramCache::sharedProgramCache()->getProgramByName("shaderNoLight"));
             quad->setCallback(passUnifoCallback_noLight);
-            quad->setVisitOrder(10000);
+            quad->setVisitDrawOrder(10000);
             m_uiRoot->addChild(quad);
             m_quad_nCoinPositivePlaceList.push_back(quad);
             
@@ -2142,7 +2142,7 @@ bool CsceneRoot::init(int level){
         m_quad_killEnemy->getModelList()[0]->setIsWriteDepthBuffer(false);
         m_quad_killEnemy->setProgram(Cc3dProgramCache::sharedProgramCache()->getProgramByName("shaderNoLight"));
         m_quad_killEnemy->setCallback(passUnifoCallback_noLight);
-        m_quad_killEnemy->setVisitOrder(10000);
+        m_quad_killEnemy->setVisitDrawOrder(10000);
         //
         float bx=190;
         float by=380-35+keyMovUp;
@@ -2166,7 +2166,7 @@ bool CsceneRoot::init(int level){
             quad->getModelList()[0]->setIsWriteDepthBuffer(false);
             quad->setProgram(Cc3dProgramCache::sharedProgramCache()->getProgramByName("shaderNoLight"));
             quad->setCallback(passUnifoCallback_noLight);
-            quad->setVisitOrder(10000);
+            quad->setVisitDrawOrder(10000);
             m_uiRoot->addChild(quad);
             m_quad_nKillEnemyPositivePlaceList.push_back(quad);
         }
@@ -2196,7 +2196,7 @@ bool CsceneRoot::init(int level){
         m_fuelBar->getQuadBack()->getModelList()[0]->setIsWriteDepthBuffer(false);
         m_fuelBar->getQuadBack()->setProgram(Cc3dProgramCache::sharedProgramCache()->getProgramByName("shaderNoLight"));
         m_fuelBar->getQuadBack()->setCallback(passUnifoCallback_noLight);
-        m_fuelBar->getQuadBack()->setVisitOrder(10000);
+        m_fuelBar->getQuadBack()->setVisitDrawOrder(10000);
         //quad_front
         m_fuelBar->getQuadFront()->getModelList()[0]->getMeshByIndex(0)->getIndexVBO()->genBuffers();
         m_fuelBar->getQuadFront()->getModelList()[0]->getMeshByIndex(0)->setTexture(Cc3dTextureCache::sharedTextureCache()->addImage("data/global/tex/white.png"));
@@ -2206,7 +2206,7 @@ bool CsceneRoot::init(int level){
         m_fuelBar->getQuadFront()->getModelList()[0]->setIsWriteDepthBuffer(false);
         m_fuelBar->getQuadFront()->setProgram(Cc3dProgramCache::sharedProgramCache()->getProgramByName("shaderNoLight"));
         m_fuelBar->getQuadFront()->setCallback(passUnifoCallback_noLight);
-        m_fuelBar->getQuadFront()->setVisitOrder(10000);
+        m_fuelBar->getQuadFront()->setVisitDrawOrder(10000);
         //
         m_fuelBar->reSetLeftDownCorner(190, 360-35+keyMovUp);
         m_fuelBar->getQuadBack()->getModelList()[0]->getMeshByIndex(0)->submit(GL_STATIC_DRAW);
@@ -2239,7 +2239,7 @@ bool CsceneRoot::init(int level){
     
     return true;
 }
-void CsceneRoot::visit(){
+void CsceneRoot::visitDraw(){
     GLint oldFrameBuffer;
     glGetIntegerv(GL_FRAMEBUFFER_BINDING, &oldFrameBuffer);
 
@@ -2281,7 +2281,7 @@ void CsceneRoot::visit(){
             skipTagList.push_back(tag_collisionMesh);
             m_archScene->updateVisibleIDTriList(skipTagList);
             m_archScene->submitVisibleIDTriList();
-            m_archScene->visit();
+            m_archScene->visitDraw();
             
             m_depthTex_got=true;
             
@@ -2319,11 +2319,11 @@ void CsceneRoot::visit(){
         if(m_cell->get_onShip()==false){
             bool isLegVisible=m_cell->getModelList()[CELLPART_legs]->getIsVisible();
             m_cell->getModelList()[CELLPART_legs]->setIsVisible(false);
-            m_cell->visit();
+            m_cell->visitDraw();
             m_cell->getModelList()[CELLPART_legs]->setIsVisible(isLegVisible);
             
         }else{
-            m_cell->get_ship()->visit();
+            m_cell->get_ship()->visitDraw();
             
         }
         //recover
@@ -2376,7 +2376,7 @@ void CsceneRoot::visit(){
         glEnable(GL_BLEND);
         {
             //场景
-            Cc3dNode::visit();
+            Cc3dNode::visitDraw();
             
             //相机在墙内时看到的透明面
             if((int)m_archScene->getModel()->getMeshCount()>=1){
@@ -2385,7 +2385,7 @@ void CsceneRoot::visit(){
                 m_archScene->getModel()->setDiffuseAlpha(0.5);
                 m_archScene->getModel()->setCullFace(ec3dCullFront);
                 m_archScene->submitIDtriAroundSphere(cellPos,m_cell->getRc()*3);
-                m_archScene->visit();
+                m_archScene->visitDraw();
                 m_archScene->getModel()->setCullFace(oldCullFace);
                 m_archScene->getModel()->setDiffuseAlpha(oldDiffuseAlpha);
                 

@@ -28,7 +28,7 @@ using namespace std;
 class CsceneRoot:public Cc3dActor//public Cc3dNode
 {
 public:
-    void visit();
+    void visitDraw();
     bool init(int level);
     void update();
     CsceneRoot();
