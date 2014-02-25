@@ -16,5 +16,3 @@ after entered the level selecting page, press the debug button at the right down
 now only the code in c3dEngine folder is relatively neat. the code in extension folder is less neat. and the code in singleCellGame folder is a bit of mess. i will refactor it later. anyhow, you can run the game.
 
 目前c3dEngine文件夹下的代码相对整齐。extension文件夹下的代码还不太整齐。singleCellGame文件夹下的代码则比较乱。我会陆续进行重构。不管怎样，游戏是可以运行的。
-
-![screenshot](https://github.com/wantnon2/superSingleCell-c3dEngine/blob/master/screenshot/screenshot.png)
