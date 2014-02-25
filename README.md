@@ -1,11 +1,14 @@
-3d game Super Single Cell + c3dEngine
+Super Single Cell + c3dEngine
 ==========
 by wantnon (yang chao) 2014-2-23  
   
+c3dEngine is a 3d engine imitating cocos2d-x. 
+
 platform: iOS  
 language: c++  
   
-文档：https://github.com/wantnon2/superSingleCell-c3dEngine/wiki  
+
+document：https://github.com/wantnon2/superSingleCell-c3dEngine/wiki  
   
   
 after entered the level selecting page, press the debug button at the right down corner, all the levels will be unlocked.   
