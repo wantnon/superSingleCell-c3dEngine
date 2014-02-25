@@ -166,22 +166,14 @@ public:
     
     
     void setTexture(Cc3dTexture*texture){
-        if(texture==NULL){
-            if(m_texture==NULL){
-                //do nothing
-            }else{
-                m_texture->release();
-                m_texture=NULL;
-            }
+        assert(texture);
+        if(m_texture==NULL){
+            m_texture=texture;
+            m_texture->retain();
         }else{
-            if(m_texture==NULL){
-                m_texture=texture;
-                m_texture->retain();
-            }else{
-                m_texture->release();
-                m_texture=texture;
-                m_texture->retain();
-            }
+            m_texture->release();
+            m_texture=texture;
+            m_texture->retain();
         }
         
     }
