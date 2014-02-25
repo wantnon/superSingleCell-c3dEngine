@@ -1,7 +1,6 @@
 3d game Super Single Cell + c3dEngine
 ==========
 by wantnon (yang chao) 2014-2-23  
-blog: http://user.qzone.qq.com/350479720/blog/1393165837  
   
 platform: iOS  
 language: c++  
@@ -19,3 +18,5 @@ now only the code in c3dEngine folder is relatively neat. the code in extension 
 目前c3dEngine文件夹下的代码相对整齐。extension文件夹下的代码还不太整齐。singleCellGame文件夹下的代码则比较乱。我会陆续进行重构。不管怎样，游戏是可以运行的。  
 
 ![screenshot](https://raw.github.com/wantnon2/superSingleCell-c3dEngine/master/screenshot/screenshot.png)
+  
+blog: http://user.qzone.qq.com/350479720/blog/1393165837  
