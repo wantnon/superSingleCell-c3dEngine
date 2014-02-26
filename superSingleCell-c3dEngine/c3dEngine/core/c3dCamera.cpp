@@ -20,7 +20,7 @@ bool Cfrustum::ballIsPotentiallyVisible(const Cc3dVector4&c,float R){//判断球
     
 }
 void Cfrustum::updateFrustum(const Cc3dMatrix4&projectionMatrix,const Cc3dMatrix4&viewMatrix,const  Cc3dRect&viewport)
-//仅适用于透视投影模式
+//对透视投影模式和正交投影模式均适用
 {
 
     float left=viewport.getMinX();
@@ -29,13 +29,13 @@ void Cfrustum::updateFrustum(const Cc3dMatrix4&projectionMatrix,const Cc3dMatrix
     float up=down+viewport.getHeight();
     //近平面
     //   p3(left,up,0)------p2(right,up,0)
-    //      |                                   |
-    //      |                                   |
+    //      |                   |
+    //      |                   |
     //   p0(left,down,0)----p1(right,down,0)
     //远平面
     //   q3(left,up,1)------q2(right,up,1)
-    //      |                                   |
-    //      |                                   |
+    //      |                   |
+    //      |                   |
     //   q0(left,down,1)----q1(right,down,1)
     Cc3dVector4 p[4];//近平面四个顶点的视口空间坐标
     p[0].init(left, down, 0, 1);
