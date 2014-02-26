@@ -30,9 +30,7 @@ public:
 
 class Cc3dCamera:public Cc3dObject
 {
-protected:
-    Cfrustum m_frustum;//视截体
-    
+
 public:
     Cc3dCamera(){
         m_eyePos.init(0,0,0,1);
@@ -90,6 +88,9 @@ protected:
     Cc3dVector4 m_eyePos;
     Cc3dVector4 m_up;
     Cc3dVector4 m_center;
+protected:
+    Cfrustum m_frustum;//视截体
+    
     
 };
 #endif /* defined(__HelloOpenGL__c3dCamera__) */
