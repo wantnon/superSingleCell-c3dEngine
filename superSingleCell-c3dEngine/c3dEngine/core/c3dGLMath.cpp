@@ -13,20 +13,20 @@ Cc3dMatrix4 calculateViewMatrixInverse(const Cc3dVector4&_eyePos,const Cc3dVecto
     assert(_eyePos.w()==1);
     assert(_center.w()==1);
     assert(_up.w()==0);
-    Cc3dVector4 forward,side,up;
+    Cc3dVector4 forward,right,up;
     forward=_center-_eyePos;
     up=_up;
     forward=normalize(forward);
     /* Side = forward x up */
-    side=cross(forward, up);
-    side=normalize(side);
-    /* Recompute up as: up = side x forward */
-    up=cross(side, forward);
+    right=cross(forward, up);
+    right=normalize(right);
+    /* Recompute up as: up = right x forward */
+    up=cross(right, forward);
     //calculate back (use back as Z axis)
     Cc3dVector4 back=Cc3dVector4(0,0,0,0)-forward;
     //the matrix transform point from camera space to world space is
     float m[16]={
-        side.x(),side.y(),side.z(),0,//col1
+        right.x(),right.y(),right.z(),0,//col1
         up.x(),up.y(),up.z(),0,
         back.x(),back.y(),back.z(),0,
         _eyePos.x(),_eyePos.y(),_eyePos.z(),1

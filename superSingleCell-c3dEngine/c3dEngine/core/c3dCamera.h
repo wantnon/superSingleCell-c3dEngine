@@ -67,7 +67,7 @@ public:
     Cc3dRange getRange()const{return m_range;}
     Cc3dVector4 getEyePos()const{return m_eyePos;};
     Cc3dVector4 getCenter()const{return m_center;};
-    Cc3dVector4 getUp()const{return m_up;};
+    Cc3dVector4 getUp()const{return m_up;};//note: it is not the corrected up, just the up we previously set
     Cc3dMatrix4 calculateViewMat()const;
     Cc3dMatrix4 calculateViewMatInverse();
     Cc3dMatrix4 calculateProjectionMat()const;
