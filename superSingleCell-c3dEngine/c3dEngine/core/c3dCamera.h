@@ -20,7 +20,7 @@ protected:
     Cplane planeList[6];//视锥表示为六个平面（第一个为近平面，最后一个为远平面，中间四个为侧面）
 public:
     bool ballIsPotentiallyVisible(const Cc3dVector4&c,float R);
-    void updateFrustum(const Cc3dMatrix4&projectionMatrix,const Cc3dMatrix4&viewMatrix,const  Cc3dRect&viewport);
+    void updateFrustum(const Cc3dMatrix4&projectionMatrix,const Cc3dMatrix4&viewMatrix/*,const  Cc3dRect&viewport*/);
     const Cplane&getPlaneByIndex(int index)const{
         assert(index>=0&&index<6);
         return planeList[index];
@@ -49,7 +49,7 @@ public:
     }
     ~Cc3dCamera(){};
     Cfrustum getFrustum()const{return m_frustum;}
-    void updateFrustum(const Cc3dRect&viewport);
+    void updateFrustum();
     void setEyePos(const Cc3dVector4&eyePos){m_eyePos=eyePos;};
     void setCenter(const Cc3dVector4&center){m_center=center;};
     void setUp(const Cc3dVector4&up){m_up=up;};

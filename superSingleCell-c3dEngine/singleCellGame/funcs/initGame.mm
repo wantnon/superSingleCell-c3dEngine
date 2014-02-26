@@ -84,7 +84,7 @@ bool initGame(){
         camera->setEyePos(Cc3dVector3(eyePos).toV4(1));
         camera->setCenter(Cc3dVector3(eyeTg).toV4(1));
         camera->setUp(Cc3dVector3(up).toV4(0));
-        camera->updateFrustum(Cc3dDeviceAndOSInfo::sharedDeviceAndOSInfo()->getViewport());
+        camera->updateFrustum();
     }
     //----设置听者gain
     alListenerf(AL_GAIN, 1.0);

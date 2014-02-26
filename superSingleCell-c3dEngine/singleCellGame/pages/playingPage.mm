@@ -669,7 +669,7 @@ bool  CplayingPage::init(int level){
     camera->setEyePos(eyePos);
     camera->setCenter(m_cell->getTransform().getPos());
     camera->setUp(eyeUp);
-    camera->updateFrustum(Cc3dDeviceAndOSInfo::sharedDeviceAndOSInfo()->getViewport());
+    camera->updateFrustum();
     
     cout<<"cell shotBall count:"<<(int)m_cell->getShotBallList().size()<<endl;
     
@@ -2264,7 +2264,7 @@ void  CplayingPage::visitDraw(){
             light0.updateEyePosForAllLightViewCameras();
             light0.getLightViewCameraByIndex(0)->setCenter(center);
             light0.getLightViewCameraByIndex(0)->setUp(up);
-            light0.getLightViewCameraByIndex(0)->updateFrustum(Cc3dDeviceAndOSInfo::sharedDeviceAndOSInfo()->getViewport());
+            light0.getLightViewCameraByIndex(0)->updateFrustum();
             //----渲染depthTex
             glBindFramebuffer(GL_FRAMEBUFFER, m_fbo->getID());
             //we should ensoure depthMask is true before call glClear(GL_DEPTH_BUFFER_BIT...)
@@ -2346,7 +2346,7 @@ void  CplayingPage::visitDraw(){
     camera->setEyePos(eyePos_real);
     camera->setCenter(cellPos);
     camera->setUp(up);
-    camera->updateFrustum(Cc3dDeviceAndOSInfo::sharedDeviceAndOSInfo()->getViewport());
+    camera->updateFrustum();
     
     
     

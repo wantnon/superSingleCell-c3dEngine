@@ -19,10 +19,13 @@ bool Cfrustum::ballIsPotentiallyVisible(const Cc3dVector4&c,float R){//判断球
     return true;
     
 }
-void Cfrustum::updateFrustum(const Cc3dMatrix4&projectionMatrix,const Cc3dMatrix4&viewMatrix,const  Cc3dRect&viewport)
+void Cfrustum::updateFrustum(const Cc3dMatrix4&projectionMatrix,const Cc3dMatrix4&viewMatrix)
 //对透视投影模式和正交投影模式均适用
 {
-
+    //由于显然视截体与viewport无关，而我们这里计算视截体的方法又要用到viewport，
+    //那么意味着计算过程中viewport会被抵消掉，所以viewport的值可随便取。为了简单，我们取viewport=Cc3dRect(0,1,0,1)即可。
+    Cc3dRect viewport(0,1,0,1);
+    //
     float left=viewport.getMinX();
     float down=viewport.getMinY();
     float right=left+viewport.getWidth();
@@ -79,8 +82,8 @@ void Cfrustum::updateFrustum(const Cc3dMatrix4&projectionMatrix,const Cc3dMatrix
     planeList[5].init(q[0],norm[5]);//远平面
 }
 //--------camera
-void Cc3dCamera::updateFrustum(const Cc3dRect&viewport){
-    getFrustum().updateFrustum(calculateProjectionMat(), calculateViewMat(), viewport);
+void Cc3dCamera::updateFrustum(){
+    getFrustum().updateFrustum(calculateProjectionMat(), calculateViewMat());
 }
 Cc3dMatrix4 Cc3dCamera::calculateViewMat()const {
     Cc3dMatrix4 ret;
