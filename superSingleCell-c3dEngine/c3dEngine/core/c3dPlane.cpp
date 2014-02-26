@@ -1,9 +1,9 @@
 //
-//  plane.cpp
+//  c3dPlane.cpp
 //  HelloOpenGL
 //
 //  Created by wantnon (yang chao) on 14-2-2.
 //
 //
 
-#include "plane.h"
+#include "c3dPlane.h"

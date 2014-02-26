@@ -335,9 +335,9 @@ void Cterrain::showAndMark(int jmin,int jmax,int imin,int imax,int curDepth)
     //看球体(c,r)是否都在planeList中某个面的反面，如果是则可剔除
     bool visible=true;
     for(int i=0;i<5;i++){//不考虑远平面
-        const Cplane&plane=this->getModel()->getMeshByIndex(0)->getCamera()->getFrustum().getPlaneByIndex(i);
+        const Cc3dPlane&plane=this->getModel()->getMeshByIndex(0)->getCamera()->getFrustum().getPlaneByIndex(i);
         //看球体(c,r)是否在plane的背面
-        float PND=PND_point_plane(plane, c);
+        float PND=directedDistanceFromPointToPlane(plane, c);
         if(PND<-r){//如果在背面
             //断定为不可见，不用再继续检测
             visible=false;

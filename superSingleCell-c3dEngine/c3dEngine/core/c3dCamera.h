@@ -10,18 +10,18 @@
 #define __HelloOpenGL__c3dCamera__
 
 #include <iostream>
-#include "geoMath.h"
+#include "c3dPlane.h"
 #include "c3dObject.h"
 #include "c3dGLMath.h"
 #include "c3dRange.h"
-class Cfrustum
+class Cc3dFrustum
 {
 protected:
-    Cplane planeList[6];//视锥表示为六个平面（第一个为近平面，最后一个为远平面，中间四个为侧面）
+    Cc3dPlane planeList[6];//视锥表示为六个平面（第一个为近平面，最后一个为远平面，中间四个为侧面）
 public:
     bool ballIsPotentiallyVisible(const Cc3dVector4&c,float R);
     void updateFrustum(const Cc3dMatrix4&projectionMatrix,const Cc3dMatrix4&viewMatrix/*,const  Cc3dRect&viewport*/);
-    const Cplane&getPlaneByIndex(int index)const{
+    const Cc3dPlane&getPlaneByIndex(int index)const{
         assert(index>=0&&index<6);
         return planeList[index];
     }
@@ -48,7 +48,7 @@ public:
         m_projectionMode=ec3dPerspectiveMode;
     }
     ~Cc3dCamera(){};
-    Cfrustum getFrustum()const{return m_frustum;}
+    Cc3dFrustum getFrustum()const{return m_frustum;}
     void updateFrustum();
     void setEyePos(const Cc3dVector4&eyePos){m_eyePos=eyePos;};
     void setCenter(const Cc3dVector4&center){m_center=center;};
@@ -89,7 +89,7 @@ protected:
     Cc3dVector4 m_up;
     Cc3dVector4 m_center;
 protected:
-    Cfrustum m_frustum;//视截体
+    Cc3dFrustum m_frustum;//视截体
     
     
 };

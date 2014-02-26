@@ -1,18 +1,18 @@
 //
-//  plane.h
+//  c3dPlane.h
 //  HelloOpenGL
 //
 //  Created by wantnon (yang chao) on 14-2-2.
 //
 //
 
-#ifndef __HelloOpenGL__plane__
-#define __HelloOpenGL__plane__
+#ifndef __HelloOpenGL__c3dPlane__
+#define __HelloOpenGL__c3dPlane__
 
 #include <iostream>
 using namespace std;
 #include "c3dVector.h"
-class Cplane final//用点法式描述
+class Cc3dPlane//用点法式描述
 {
 protected:
 	Cc3dVector4 m_point;
@@ -32,4 +32,4 @@ public:
 };
 
 
-#endif /* defined(__HelloOpenGL__plane__) */
+#endif /* defined(__HelloOpenGL__c3dPlane__) */

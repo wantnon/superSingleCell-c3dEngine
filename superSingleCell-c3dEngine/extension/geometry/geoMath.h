@@ -12,14 +12,9 @@
 #include <iostream>
 #include <vector>
 using namespace std;
-#include "plane.h"
+#include "c3dPlane.h"
 #include "c3dMath.h"
-Cc3dVector4 calculateNormOfTri(const Cc3dVector4&v0,const Cc3dVector4&v1,const Cc3dVector4&v2);
-
-static inline float PND_point_plane(const Cplane&plane,const Cc3dVector4&point){//点到平面的有向距离
-    Cc3dVector4 planePointToPoint=point-plane.getPoint();
-    return dot(planePointToPoint, plane.getNorm());
-}
+#include "c3dGeoMath.h"
 
 
 static inline bool point_in_triVolum(const Cc3dVector4&norm,const Cc3dVector4&v0,const Cc3dVector4&v1,const Cc3dVector4&v2,const Cc3dVector4&p)
@@ -29,7 +24,7 @@ static inline bool point_in_triVolum(const Cc3dVector4&norm,const Cc3dVector4&v0
     Cc3dVector4 v[3]={v0,v1,v2};
     //norm是三角形的法向量
     //求三角形各边的垂直于三角形所在平面的平面
-    Cplane planeList[3];
+    Cc3dPlane planeList[3];
     for(int i=0;i<3;i++){
         const Cc3dVector4&p1=v[i];
         const Cc3dVector4&p2=v[(i+1)%3];
@@ -41,21 +36,21 @@ static inline bool point_in_triVolum(const Cc3dVector4&norm,const Cc3dVector4&v0
     }//得到planeList
     //根据点p到planeList中各平面的有向距离判断点是否在多边形内
     for(int i=0;i<3;i++){
-        Cplane&plane=planeList[i];
-        float side=PND_point_plane(plane,p);
+        Cc3dPlane&plane=planeList[i];
+        float side=directedDistanceFromPointToPlane(plane,p);
         if(side<0)return false;
     }
     return true;
 }
 
-static inline vector<Cplane> getLeanedVolum(const Cc3dVector4&dir,const vector<Cc3dVector4> &polygon)
+static inline vector<Cc3dPlane> getLeanedVolum(const Cc3dVector4&dir,const vector<Cc3dVector4> &polygon)
 //求以polygon为底dir为方向向量的斜棱柱
 //dir为柱体的方向向量，不必为单位向量
 {
     //dir和polygon构成一个斜棱柱，看c是否在此柱体之内
     int nv=(int)polygon.size();//polygon顶点数
     //制作柱体的nv个侧壁（法向量指向内）
-    vector<Cplane> planeList(nv);
+    vector<Cc3dPlane> planeList(nv);
     //开始制作nv个侧壁
     for(int j=0;j<nv;j++){
         //求过v[j],v[(j+1)%nv]边的侧壁
@@ -71,13 +66,13 @@ static inline vector<Cplane> getLeanedVolum(const Cc3dVector4&dir,const vector<C
     }//得到planeList
     return planeList;
 }
-static inline bool isPointInVolum(const vector<Cplane>&planeList,const Cc3dVector4&p,const float margin=0)
+static inline bool isPointInVolum(const vector<Cc3dPlane>&planeList,const Cc3dVector4&p,const float margin=0)
 //判断点p是否在planeList形成的volume（再放大margin）内（包括边上）
 {
     int nPlane=(int)planeList.size();
     for(int i=0;i<nPlane;i++){
-        const Cplane&plane=planeList[i];
-        float side=PND_point_plane(plane,p);
+        const Cc3dPlane&plane=planeList[i];
+        float side=directedDistanceFromPointToPlane(plane,p);
         if(side<-margin)return false;
     }
     return true;
@@ -85,7 +80,7 @@ static inline bool isPointInVolum(const vector<Cplane>&planeList,const Cc3dVecto
 static inline bool isPointInLeanedVolum(const Cc3dVector4&dir,const vector<Cc3dVector4> &polygon,const Cc3dVector4&p,const float margin=0)
 //判断点p是否位于以polygon为底dir为方向的斜棱柱(再放大margin)内(包括边上)
 {
-    const vector<Cplane> planeList=getLeanedVolum(dir, polygon);
+    const vector<Cc3dPlane> planeList=getLeanedVolum(dir, polygon);
     return isPointInVolum(planeList, p,margin);
 }
 
@@ -96,10 +91,10 @@ static inline bool getPointFootOnTri(const Cc3dVector4&p,
                        Cc3dVector4&foot
                        ){//求点p到三角面p0p1p2的垂足，前端返回垂足是否落在三角面内
     //求p0p1p2所在平面
-    Cplane plane;
+    Cc3dPlane plane;
     plane.init(p0,norm);
     //求垂足
-    float PND=PND_point_plane(plane,p);//p到plane的有向距离
+    float PND=directedDistanceFromPointToPlane(plane,p);//p到plane的有向距离
     foot=p+plane.getNorm()*(-PND);
     foot.setw(1);//得到foot
     //判断foot是否在三角面内
@@ -174,7 +169,7 @@ static inline float minDis_point_Tri(const Cc3dVector4&point,
     }//得到minDis和minp
     return minDis;
 }
-static inline int getPointOfIntersect_line_plane_np(const Cc3dVector4&p1,const Cc3dVector4&p2,const Cplane&plane,Cc3dVector4&p3)
+static inline int getPointOfIntersect_line_plane_np(const Cc3dVector4&p1,const Cc3dVector4&p2,const Cc3dPlane&plane,Cc3dVector4&p3)
 //getPointOfIntersect_line_plane的欠精确版本
 //-----------------------------------------------------------------
 //求p1p2所确定的直线与平面plane的交点p3（注意是直线而非线段）

@@ -7,11 +7,12 @@
 //
 #include <math.h>
 #include "c3dCamera.h"
+#include "c3dGeoMath.h"
 //--------frustum
-bool Cfrustum::ballIsPotentiallyVisible(const Cc3dVector4&c,float R){//判断球体(c,R)是否与视锥相交
+bool Cc3dFrustum::ballIsPotentiallyVisible(const Cc3dVector4&c,float R){//判断球体(c,R)是否与视锥相交
 
     for(int i=0;i<6;i++){
-        float PND=PND_point_plane(planeList[i], c);
+        float PND=directedDistanceFromPointToPlane(planeList[i], c);
         if(PND<-R){//只有一个平面，球体位于其背面且不与之相交，就是不可见
             return false;
         }
@@ -19,7 +20,7 @@ bool Cfrustum::ballIsPotentiallyVisible(const Cc3dVector4&c,float R){//判断球
     return true;
     
 }
-void Cfrustum::updateFrustum(const Cc3dMatrix4&projectionMatrix,const Cc3dMatrix4&viewMatrix)
+void Cc3dFrustum::updateFrustum(const Cc3dMatrix4&projectionMatrix,const Cc3dMatrix4&viewMatrix)
 //对透视投影模式和正交投影模式均适用
 {
     //由于显然视截体与viewport无关，而我们这里计算视截体的方法又要用到viewport，

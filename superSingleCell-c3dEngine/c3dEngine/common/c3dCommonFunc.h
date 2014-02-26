@@ -25,30 +25,6 @@ int findFirst(const vector<T>&list,const T&element)//return -1 if not found
     }
     return -1;
 }
-/*
-template<class T>
-void setRCObject(T &dstObjPtr,const T &srcObjPtr){//set srcObjPtr to dstObjPtr
-    if(srcObjPtr==NULL){
-        if(dstObjPtr==NULL){
-            //do nothing
-        }else{//dstObjPtr!=NULL
-            dstObjPtr->release();
-            dstObjPtr=NULL;
-        }
-    }else{//srcObjPtr!=NULL
-        if(dstObjPtr==NULL){
-            dstObjPtr=srcObjPtr;
-            dstObjPtr->retain();
-        }else{//dstObjPtr!=NULL
-            if(dstObjPtr==srcObjPtr){
-                //do nothing
-            }else{//dstObjPtr!=srcObjPtr
-                dstObjPtr->release();
-                dstObjPtr=srcObjPtr;
-                dstObjPtr->retain();
-            }
-        }
-    }
-}*/
+
 
 #endif /* defined(__HelloOpenGL__c3dCommonFunc__) */

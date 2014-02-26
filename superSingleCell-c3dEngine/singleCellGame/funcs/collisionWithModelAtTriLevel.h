@@ -13,7 +13,8 @@
 #include <vector>
 using namespace std;
 #include "c3dModel.h"
-//#include "circleGenerator.h"
+#include "c3dGeoMath.h"
+#include "geoMath.h"
 #include "triangleWithNorm.h"
 //----------------------------------------------------------------------
 #define IDTRI_WALL 0//IDtri是墙壁
@@ -43,12 +44,12 @@ static inline bool collisionTest_lineSeg_common(const vector<CtriangleWithNorm>&
     for(int i=0;i<nTri;i++){
         const CtriangleWithNorm&tri=triWithNormList[i];
         //求IDtri所在平面
-        Cplane plane;
+        Cc3dPlane plane;
         plane.init(tri.getVert(0),tri.getNorm());
         //求线段p1p2与IDtri所在平面的交点
         //先判断p1,p2是否在IDtri异侧或IDri上
-        float side1=PND_point_plane(plane,p1);
-        float side2=PND_point_plane(plane,p2);
+        float side1=directedDistanceFromPointToPlane(plane,p1);
+        float side2=directedDistanceFromPointToPlane(plane,p2);
         if(side1*side2>0){//不在异侧或IDtri上
             //p1p2与IDtri不可能相交，可能与其它IDtri相交
             continue;//尝试下一个IDtri
@@ -242,9 +243,9 @@ static inline vector<float> collisionTestWithWall_multiPoint_common(const vector
             continue;
         }
         //看球体中心是否在IDtri正面及球体是否与IDtriEx所在平面是否相交     
-        Cplane plane;
+        Cc3dPlane plane;
         plane.init(p0,tri.getNorm());
-        float PND=PND_point_plane(plane,c);
+        float PND=directedDistanceFromPointToPlane(plane,c);
         if(PND<-Rc_smallDivN){//球中在IDtri背面大于一定深度，认为不相交
             continue;
         }
@@ -269,7 +270,7 @@ static inline vector<float> collisionTestWithWall_multiPoint_common(const vector
                 polygon[0]=p0;
                 polygon[1]=p1;
                 polygon[2]=p2;
-                vector<Cplane> planeList=getLeanedVolum(projv, polygon);
+                vector<Cc3dPlane> planeList=getLeanedVolum(projv, polygon);
                 //球体赤道线是否有在planeList内的部分
                 //为了简单，我们先求赤道线在projv方向的投影
                 //然后在此投影（一条直径线）上取若干个采样点
@@ -431,9 +432,9 @@ static inline float collisionTestWithWall_singlePoint_common(const vector<Ctrian
             continue;
         }
         //看球体中心是否在IDtri正面及球体是否与IDtriEx所在平面是否相交
-        Cplane plane;
+        Cc3dPlane plane;
         plane.init(p0,tri.getNorm());
-        float PND=PND_point_plane(plane,c);
+        float PND=directedDistanceFromPointToPlane(plane,c);
         if(PND<-Rc_smallDivN){//球中在IDtri背面大于一定深度，认为不相交
             continue;
         }
@@ -458,7 +459,7 @@ static inline float collisionTestWithWall_singlePoint_common(const vector<Ctrian
                 polygon[0]=Cc3dVector3(p0).toV4(1);
                 polygon[1]=Cc3dVector3(p1).toV4(1);
                 polygon[2]=Cc3dVector3(p2).toV4(1);
-                vector<Cplane> planeList=getLeanedVolum(projv, polygon);
+                vector<Cc3dPlane> planeList=getLeanedVolum(projv, polygon);
                 //球体赤道线是否有在planeList内的部分
                 //为了简单，我们先求赤道线在projv方向的投影
                 //然后在此投影（一条直径线）上取若干个采样点

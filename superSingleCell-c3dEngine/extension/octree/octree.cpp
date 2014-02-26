@@ -172,9 +172,9 @@ void Coctree::updateVisibleNodeList_inn(CocNode*pNode){
     assert(camera);
     bool visible=true;
     for(int i=0;i<=4;i++){
-        const Cplane&plane=camera->getFrustum().getPlaneByIndex(i);
+        const Cc3dPlane&plane=camera->getFrustum().getPlaneByIndex(i);
         //求c到plane的距离
-        float PND=PND_point_plane(plane,c);
+        float PND=directedDistanceFromPointToPlane(plane,c);
         if(PND<0&&-PND>R){
             visible=false;
             break;

@@ -56,7 +56,6 @@
 		180A82A718BA162F0079E6C9 /* c3dVector.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 180A826418BA162F0079E6C9 /* c3dVector.cpp */; };
 		180A82A818BA162F0079E6C9 /* c3dVertex.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 180A826618BA162F0079E6C9 /* c3dVertex.cpp */; };
 		180A82AB18BA162F0079E6C9 /* geoMath.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 180A826D18BA162F0079E6C9 /* geoMath.cpp */; };
-		180A82AC18BA162F0079E6C9 /* plane.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 180A826F18BA162F0079E6C9 /* plane.cpp */; };
 		180A82AD18BA162F0079E6C9 /* octree.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 180A827218BA162F0079E6C9 /* octree.cpp */; };
 		180A82AE18BA162F0079E6C9 /* triangleWithNorm.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 180A827418BA162F0079E6C9 /* triangleWithNorm.cpp */; };
 		180A82AF18BA162F0079E6C9 /* terrain.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 180A827718BA162F0079E6C9 /* terrain.cpp */; };
@@ -165,6 +164,8 @@
 		35DF6454138C40D500FF9459 /* MainWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 35DF6452138C40D500FF9459 /* MainWindow.xib */; };
 		35DF645E138C427700FF9459 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 35DF645D138C427700FF9459 /* QuartzCore.framework */; };
 		35DF6460138C427E00FF9459 /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 35DF645F138C427E00FF9459 /* OpenGLES.framework */; };
+		5742830B18BDDECE00D050D1 /* c3dGeoMath.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5742830918BDDECE00D050D1 /* c3dGeoMath.cpp */; };
+		5742830E18BDE35700D050D1 /* c3dPlane.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5742830C18BDE35700D050D1 /* c3dPlane.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -268,8 +269,6 @@
 		180A826A18BA162F0079E6C9 /* shader_texColorOnly.vert */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = shader_texColorOnly.vert; sourceTree = "<group>"; };
 		180A826D18BA162F0079E6C9 /* geoMath.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = geoMath.cpp; sourceTree = "<group>"; };
 		180A826E18BA162F0079E6C9 /* geoMath.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = geoMath.h; sourceTree = "<group>"; };
-		180A826F18BA162F0079E6C9 /* plane.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = plane.cpp; sourceTree = "<group>"; };
-		180A827018BA162F0079E6C9 /* plane.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = plane.h; sourceTree = "<group>"; };
 		180A827218BA162F0079E6C9 /* octree.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = octree.cpp; sourceTree = "<group>"; };
 		180A827318BA162F0079E6C9 /* octree.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = octree.h; sourceTree = "<group>"; };
 		180A827418BA162F0079E6C9 /* triangleWithNorm.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = triangleWithNorm.cpp; sourceTree = "<group>"; };
@@ -436,6 +435,10 @@
 		35DF6453138C40D500FF9459 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/MainWindow.xib; sourceTree = "<group>"; };
 		35DF645D138C427700FF9459 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		35DF645F138C427E00FF9459 /* OpenGLES.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGLES.framework; path = System/Library/Frameworks/OpenGLES.framework; sourceTree = SDKROOT; };
+		5742830918BDDECE00D050D1 /* c3dGeoMath.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = c3dGeoMath.cpp; sourceTree = "<group>"; };
+		5742830A18BDDECE00D050D1 /* c3dGeoMath.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = c3dGeoMath.h; sourceTree = "<group>"; };
+		5742830C18BDE35700D050D1 /* c3dPlane.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = c3dPlane.cpp; sourceTree = "<group>"; };
+		5742830D18BDE35700D050D1 /* c3dPlane.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = c3dPlane.h; sourceTree = "<group>"; };
 		57513850188FDD490016F104 /* NEED_TO_DO.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NEED_TO_DO.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -523,6 +526,8 @@
 				180A822B18BA162F0079E6C9 /* c3dFbo.h */,
 				180A822C18BA162F0079E6C9 /* c3dFileUtils.h */,
 				180A822D18BA162F0079E6C9 /* c3dFileUtils.mm */,
+				5742830918BDDECE00D050D1 /* c3dGeoMath.cpp */,
+				5742830A18BDDECE00D050D1 /* c3dGeoMath.h */,
 				180A822E18BA162F0079E6C9 /* c3dGestureAnalyzer.h */,
 				180A822F18BA162F0079E6C9 /* c3dGestureAnalyzer.mm */,
 				180A823018BA162F0079E6C9 /* c3dGLdebug.cpp */,
@@ -555,6 +560,8 @@
 				180A824B18BA162F0079E6C9 /* c3dNode.h */,
 				180A824C18BA162F0079E6C9 /* c3dObject.cpp */,
 				180A824D18BA162F0079E6C9 /* c3dObject.h */,
+				5742830C18BDE35700D050D1 /* c3dPlane.cpp */,
+				5742830D18BDE35700D050D1 /* c3dPlane.h */,
 				180A824E18BA162F0079E6C9 /* c3dProgram.h */,
 				180A824F18BA162F0079E6C9 /* c3dProgram.mm */,
 				180A825018BA162F0079E6C9 /* c3dProgramCache.cpp */,
@@ -609,8 +616,6 @@
 			children = (
 				180A826D18BA162F0079E6C9 /* geoMath.cpp */,
 				180A826E18BA162F0079E6C9 /* geoMath.h */,
-				180A826F18BA162F0079E6C9 /* plane.cpp */,
-				180A827018BA162F0079E6C9 /* plane.h */,
 			);
 			path = geometry;
 			sourceTree = "<group>";
@@ -1066,6 +1071,7 @@
 				180A829418BA162F0079E6C9 /* c3dMath.cpp in Sources */,
 				180A827B18BA162F0079E6C9 /* c3dViewController.mm in Sources */,
 				180A837018BA165B0079E6C9 /* endPage.mm in Sources */,
+				5742830E18BDE35700D050D1 /* c3dPlane.cpp in Sources */,
 				180A836F18BA165B0079E6C9 /* descPage3.mm in Sources */,
 				180A837518BA165B0079E6C9 /* pausePage.mm in Sources */,
 				180A82AE18BA162F0079E6C9 /* triangleWithNorm.cpp in Sources */,
@@ -1110,8 +1116,8 @@
 				180A828C18BA162F0079E6C9 /* c3dGestureAnalyzer.mm in Sources */,
 				180A829E18BA162F0079E6C9 /* c3dRange.cpp in Sources */,
 				180A837318BA165B0079E6C9 /* loadingPage.mm in Sources */,
-				180A82AC18BA162F0079E6C9 /* plane.cpp in Sources */,
 				180A829C18BA162F0079E6C9 /* c3dProgram.mm in Sources */,
+				5742830B18BDDECE00D050D1 /* c3dGeoMath.cpp in Sources */,
 				180A829018BA162F0079E6C9 /* c3dIndexVBO.cpp in Sources */,
 				180A834A18BA165B0079E6C9 /* makeTemplate.cpp in Sources */,
 				180A829818BA162F0079E6C9 /* c3dModel.mm in Sources */,
