@@ -76,7 +76,7 @@ public:
             p->setProgram(program);
         }
     }
-    void setCallback(void (*callback)(Cc3dNode*, Cc3dProgram*)){
+    void setCallback(passUnifoCallbackPtr callback){
         assert(callback);
         this->Cc3dNode::setCallback(callback);
         

@@ -259,7 +259,7 @@ protected:
     float m_visitUpdateOrder;
     Cc3dProgram*m_program;
     Cc3dCamera*m_camera;
-    void (*m_passUnifoCallback)(Cc3dNode*, Cc3dProgram*);
+    passUnifoCallbackPtr m_passUnifoCallback;
     Cc3dLight*m_light;
     bool m_isRemoveOnNextFrame;
     
