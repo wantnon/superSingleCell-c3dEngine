@@ -19,7 +19,7 @@ using namespace std;
 #include "c3dLight.h"
 #include "c3dProgramCache.h"
 class Cc3dNode;
-typedef void(*passUnifoCallbackPtr)(Cc3dNode*, Cc3dProgram*);
+typedef void(*c3dPassUnifoCallbackPtr)(Cc3dNode*, Cc3dProgram*);
 extern string c3dDefaultProgramName;
 void c3dDefaultShadersSetup();
 void c3dDefaultPassUnifoCallback(Cc3dNode*node, Cc3dProgram*program);
@@ -100,11 +100,11 @@ public:
         }
     }
     Cc3dCamera*getCamera()const{return m_camera;}
-    void setPassUnifoCallback(passUnifoCallbackPtr callback){
+    void setPassUnifoCallback(c3dPassUnifoCallbackPtr callback){
         assert(callback);
         m_passUnifoCallback=callback;
     }
-    passUnifoCallbackPtr getPassUnifoCallback()const{return m_passUnifoCallback;}
+    c3dPassUnifoCallbackPtr getPassUnifoCallback()const{return m_passUnifoCallback;}
     void setProgram(Cc3dProgram*program){
         assert(program);
         if(m_program==NULL){
@@ -259,7 +259,7 @@ protected:
     float m_visitUpdateOrder;
     Cc3dProgram*m_program;
     Cc3dCamera*m_camera;
-    passUnifoCallbackPtr m_passUnifoCallback;
+    c3dPassUnifoCallbackPtr m_passUnifoCallback;
     Cc3dLight*m_light;
     bool m_isRemoveOnNextFrame;
     

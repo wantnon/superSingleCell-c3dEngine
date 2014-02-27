@@ -98,7 +98,7 @@ public:
             pmesh->setProgram(program);
         }
     }
-    void setPassUnifoCallback(passUnifoCallbackPtr callback){
+    void setPassUnifoCallback(c3dPassUnifoCallbackPtr callback){
         assert(callback);
         this->Cc3dNode::setPassUnifoCallback(callback);
         

@@ -2252,7 +2252,7 @@ void  CplayingPage::visitDraw(){
             cout<<"渲染depthTex..."<<endl;
             //change program, passUnifoCallback, light for all nodes of scene
             map<Cc3dNode*,Cc3dProgram*> nodeProgramMap=changeProgramRecursively(this, Cc3dProgramCache::sharedProgramCache()->getProgramByName("shader_renderDepth"));
-            map<Cc3dNode*,passUnifoCallbackPtr> nodeCallbackMap=changePassUnifoCallbackRecursively(this, passUnifoCallback_renderDepth);
+            map<Cc3dNode*,c3dPassUnifoCallbackPtr> nodeCallbackMap=changePassUnifoCallbackRecursively(this, passUnifoCallback_renderDepth);
             map<Cc3dNode*,Cc3dCamera*> nodeCameraMap=changeCameraRecursively(this,light0.getLightViewCameraByIndex(0));
             //设置光源视角
             Cc3dRange sceneRange=m_archScene->getModel()->getRange();
@@ -2303,7 +2303,7 @@ void  CplayingPage::visitDraw(){
         light0.getLightViewCameraByIndex(1)->setUp(up);
         //change program, passUnifoCallback, light for all nodes of scene
         map<Cc3dNode*,Cc3dProgram*> nodeProgramMap=changeProgramRecursively(this, Cc3dProgramCache::sharedProgramCache()->getProgramByName("shader_renderDepth"));
-        map<Cc3dNode*,passUnifoCallbackPtr> nodeCallbackMap=changePassUnifoCallbackRecursively(this, passUnifoCallback_renderDepth);
+        map<Cc3dNode*,c3dPassUnifoCallbackPtr> nodeCallbackMap=changePassUnifoCallbackRecursively(this, passUnifoCallback_renderDepth);
         map<Cc3dNode*,Cc3dCamera*> nodeCameraMap=changeCameraRecursively(this,light0.getLightViewCameraByIndex(1));
         //----渲染depthTex2
         glBindFramebuffer(GL_FRAMEBUFFER,m_fbo2->getID());
