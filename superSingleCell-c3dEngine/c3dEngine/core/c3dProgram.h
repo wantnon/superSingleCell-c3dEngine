@@ -30,12 +30,6 @@ public:
     virtual~Cc3dProgram(){
         if(m_program!=0)glDeleteProgram( m_program );
     }
-    static Cc3dProgram*createProgram(const string&vertShaderFileName,const string&fragShaderFileName){
-        Cc3dProgram*p=new Cc3dProgram();
-        p->autorelease();
-        p->initWithFile(vertShaderFileName,fragShaderFileName);
-        return p;
-    }
     void useProgram(){
         glUseProgram(m_program);
     }
