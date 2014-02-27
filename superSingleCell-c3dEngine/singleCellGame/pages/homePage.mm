@@ -63,7 +63,7 @@ bool ChomePage::init(){
         m_quad_homePage_backGround->setCamera(camera2D);
         m_quad_homePage_backGround->getModelList()[0]->setIsWriteDepthBuffer(false);
         m_quad_homePage_backGround->setProgram(Cc3dProgramCache::sharedProgramCache()->getProgramByName("shaderNoLight"));
-        m_quad_homePage_backGround->setCallback(passUnifoCallback_noLight);
+        m_quad_homePage_backGround->setPassUnifoCallback(passUnifoCallback_noLight);
         
         m_quad_homePage_backGround->reSetLeftDownCorner(0, 0);
         m_quad_homePage_backGround->getModelList()[0]->getMeshByIndex(0)->submit(GL_STATIC_DRAW);
@@ -84,7 +84,7 @@ bool ChomePage::init(){
         m_debugKey->setCamera(camera2D);
         m_debugKey->getModelList()[0]->setIsWriteDepthBuffer(false);
         m_debugKey->setProgram(Cc3dProgramCache::sharedProgramCache()->getProgramByName("shaderNoLight"));
-        m_debugKey->setCallback(passUnifoCallback_noLight);
+        m_debugKey->setPassUnifoCallback(passUnifoCallback_noLight);
         //
         float center[2]={width-r_key,0+r_key};
         m_debugKey->reSetCenter(center[0], center[1]);
@@ -109,7 +109,7 @@ bool ChomePage::init(){
         m_backKey->setCamera(camera2D);
         m_backKey->getModelList()[0]->setIsWriteDepthBuffer(false);
         m_backKey->setProgram(Cc3dProgramCache::sharedProgramCache()->getProgramByName("shaderNoLight"));
-        m_backKey->setCallback(passUnifoCallback_noLight);
+        m_backKey->setPassUnifoCallback(passUnifoCallback_noLight);
         
         float center[2]={160,30};
         m_backKey->reSetCenter(center[0], center[1]);
@@ -144,7 +144,7 @@ bool ChomePage::init(){
                 key->setCamera(camera2D);
                 key->getModelList()[0]->setIsWriteDepthBuffer(false);
                 key->setProgram(Cc3dProgramCache::sharedProgramCache()->getProgramByName("shaderNoLight"));
-                key->setCallback(passUnifoCallback_noLight);
+                key->setPassUnifoCallback(passUnifoCallback_noLight);
                 addChild(key);
                 m_gameKeyList.push_back(key);
             }
@@ -198,7 +198,7 @@ bool ChomePage::init(){
                 key->setCamera(camera2D);
                 key->getModelList()[0]->setIsWriteDepthBuffer(false);
                 key->setProgram(Cc3dProgramCache::sharedProgramCache()->getProgramByName("shaderNoLight"));
-                key->setCallback(passUnifoCallback_noLight);
+                key->setPassUnifoCallback(passUnifoCallback_noLight);
                 addChild(key);
                 m_gameKeyList_lock.push_back(key);
             }
@@ -252,7 +252,7 @@ bool ChomePage::init(){
                 key->setCamera(camera2D);
                 key->getModelList()[0]->setIsWriteDepthBuffer(false);
                 key->setProgram(Cc3dProgramCache::sharedProgramCache()->getProgramByName("shaderNoLight"));
-                key->setCallback(passUnifoCallback_noLight);
+                key->setPassUnifoCallback(passUnifoCallback_noLight);
                 addChild(key);
                 m_gameKeyList_star.push_back(key);
             }

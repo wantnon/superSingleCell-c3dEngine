@@ -98,15 +98,15 @@ public:
             pmesh->setProgram(program);
         }
     }
-    void setCallback(passUnifoCallbackPtr callback){
+    void setPassUnifoCallback(passUnifoCallbackPtr callback){
         assert(callback);
-        this->Cc3dNode::setCallback(callback);
+        this->Cc3dNode::setPassUnifoCallback(callback);
         
         int nMesh=(int)m_meshList.size();
         for(int i=0;i<nMesh;i++){
             Cc3dMesh*pmesh=m_meshList[i];
             if(pmesh==NULL)continue;
-            pmesh->setCallback(callback);
+            pmesh->setPassUnifoCallback(callback);
         }
     
     }

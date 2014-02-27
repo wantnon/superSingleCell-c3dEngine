@@ -34,7 +34,7 @@ bool CgameOverPage::init(){
         m_quad_gameover->setCamera(camera2D);
         m_quad_gameover->getModelList()[0]->setIsWriteDepthBuffer(false);
         m_quad_gameover->setProgram(Cc3dProgramCache::sharedProgramCache()->getProgramByName("shaderNoLight"));
-        m_quad_gameover->setCallback(passUnifoCallback_noLight);
+        m_quad_gameover->setPassUnifoCallback(passUnifoCallback_noLight);
         m_quad_gameover->setVisitDrawOrder(10000);
         //
         float _bx=52;
@@ -59,7 +59,7 @@ bool CgameOverPage::init(){
         m_restartKey->setCamera(camera2D);
         m_restartKey->getModelList()[0]->setIsWriteDepthBuffer(false);
         m_restartKey->setProgram(Cc3dProgramCache::sharedProgramCache()->getProgramByName("shaderNoLight"));
-        m_restartKey->setCallback(passUnifoCallback_noLight);
+        m_restartKey->setPassUnifoCallback(passUnifoCallback_noLight);
         m_restartKey->setVisitDrawOrder(10000);
         //
         float center[2];
@@ -92,7 +92,7 @@ bool CgameOverPage::init(){
         m_rebirthKey->setCamera(camera2D);
         m_rebirthKey->getModelList()[0]->setIsWriteDepthBuffer(false);
         m_rebirthKey->setProgram(Cc3dProgramCache::sharedProgramCache()->getProgramByName("shaderNoLight"));
-        m_rebirthKey->setCallback(passUnifoCallback_noLight);
+        m_rebirthKey->setPassUnifoCallback(passUnifoCallback_noLight);
         m_rebirthKey->setVisitDrawOrder(10000);
         //
         float center[2]={200,300};

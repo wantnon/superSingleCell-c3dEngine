@@ -19,6 +19,6 @@ map<Cc3dNode*,Cc3dCamera*> changeCameraRecursively(Cc3dNode*node,Cc3dCamera*came
 map<Cc3dNode*,passUnifoCallbackPtr> changePassUnifoCallbackRecursively(Cc3dNode*node,passUnifoCallbackPtr callback);
 void setPrograms( map<Cc3dNode*,Cc3dProgram*>&nodeProgramMap);
 void setCameras( map<Cc3dNode*,Cc3dCamera*>&nodeCameraMap);
-void setCallbacks( map<Cc3dNode*,passUnifoCallbackPtr>&nodeCallbackMap);
+void setPassUnifoCallbacks( map<Cc3dNode*,passUnifoCallbackPtr>&nodeCallbackMap);
 
 #endif /* defined(__HelloOpenGL__changeNodeComponents__) */

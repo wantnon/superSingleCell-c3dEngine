@@ -42,7 +42,7 @@ bool CendPage::init(){
         m_quad_endPage_backGround->setCamera(camera2D);
         m_quad_endPage_backGround->getModelList()[0]->setIsWriteDepthBuffer(false);
         m_quad_endPage_backGround->setProgram(Cc3dProgramCache::sharedProgramCache()->getProgramByName("shaderNoLight"));
-        m_quad_endPage_backGround->setCallback(passUnifoCallback_noLight);
+        m_quad_endPage_backGround->setPassUnifoCallback(passUnifoCallback_noLight);
         //
         m_quad_endPage_backGround->reSetLeftDownCorner(0, 0);
         m_quad_endPage_backGround->getModelList()[0]->getMeshByIndex(0)->submit(GL_STREAM_DRAW);
@@ -66,7 +66,7 @@ bool CendPage::init(){
         m_quad_waitingForMusicToStop->setCamera(camera2D);
         m_quad_waitingForMusicToStop->getModelList()[0]->setIsWriteDepthBuffer(false);
         m_quad_waitingForMusicToStop->setProgram(Cc3dProgramCache::sharedProgramCache()->getProgramByName("shaderNoLight"));
-        m_quad_waitingForMusicToStop->setCallback(passUnifoCallback_noLight);
+        m_quad_waitingForMusicToStop->setPassUnifoCallback(passUnifoCallback_noLight);
         //
         float c[2]={160,440+keyMovUp};
         m_quad_waitingForMusicToStop->reSetCenter(c[0], c[1]);
@@ -90,7 +90,7 @@ bool CendPage::init(){
         m_homeKey->setCamera(camera2D);
         m_homeKey->getModelList()[0]->setIsWriteDepthBuffer(false);
         m_homeKey->setProgram(Cc3dProgramCache::sharedProgramCache()->getProgramByName("shaderNoLight"));
-        m_homeKey->setCallback(passUnifoCallback_noLight);
+        m_homeKey->setPassUnifoCallback(passUnifoCallback_noLight);
         //
         float center[2]={30,450+keyMovUp};
         m_homeKey->reSetCenter(center[0], center[1]);

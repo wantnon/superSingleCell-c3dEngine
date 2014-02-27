@@ -472,9 +472,9 @@ public:
         set_Rc_small(Rc_small_value_flat);
         //change shader
         this->getModelList()[CELLPART_body]->setProgram(Cc3dProgramCache::sharedProgramCache()->getProgramByName("shader_diffuse_ambient_noSelfShadow"));
-        this->getModelList()[CELLPART_body]->setCallback(passUnifoCallback_diffuse_ambient_noSelfShadow);
+        this->getModelList()[CELLPART_body]->setPassUnifoCallback(passUnifoCallback_diffuse_ambient_noSelfShadow);
         this->getModelList()[CELLPART_shell]->setProgram(Cc3dProgramCache::sharedProgramCache()->getProgramByName("shader_texOnly_noSelfShadow"));
-        this->getModelList()[CELLPART_shell]->setCallback(passUnifoCallback_texOnly_noSelfShadow);
+        this->getModelList()[CELLPART_shell]->setPassUnifoCallback(passUnifoCallback_texOnly_noSelfShadow);
 
     }
     void undoFallFlat(){//撤销摔扁
@@ -498,9 +498,9 @@ public:
                 jumpH_landH.setBoth(0);
                 //change shader
                 this->getModelList()[CELLPART_body]->setProgram(Cc3dProgramCache::sharedProgramCache()->getProgramByName("shader_diffuse_ambient_specular_noSelfShadow"));
-                this->getModelList()[CELLPART_body]->setCallback(passUnifoCallback_diffuse_ambient_specular_noSelfShadow);
+                this->getModelList()[CELLPART_body]->setPassUnifoCallback(passUnifoCallback_diffuse_ambient_specular_noSelfShadow);
                 this->getModelList()[CELLPART_shell]->setProgram(Cc3dProgramCache::sharedProgramCache()->getProgramByName("shader_diffuse_ambient_noSelfShadow"));
-                this->getModelList()[CELLPART_shell]->setCallback(passUnifoCallback_diffuse_ambient_noSelfShadow);
+                this->getModelList()[CELLPART_shell]->setPassUnifoCallback(passUnifoCallback_diffuse_ambient_noSelfShadow);
 
             }
         }

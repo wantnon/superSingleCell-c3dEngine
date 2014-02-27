@@ -32,7 +32,7 @@ bool CpausePage::init(){
         m_quad_pause->setCamera(camera2D);
         m_quad_pause->getModelList()[0]->setIsWriteDepthBuffer(false);
         m_quad_pause->setProgram(Cc3dProgramCache::sharedProgramCache()->getProgramByName("shaderNoLight"));
-        m_quad_pause->setCallback(passUnifoCallback_noLight);
+        m_quad_pause->setPassUnifoCallback(passUnifoCallback_noLight);
         m_quad_pause->setVisitDrawOrder(10000);
         //
         float _bx=60;
@@ -58,7 +58,7 @@ bool CpausePage::init(){
         m_continueKey->setCamera(camera2D);
         m_continueKey->getModelList()[0]->setIsWriteDepthBuffer(false);
         m_continueKey->setProgram(Cc3dProgramCache::sharedProgramCache()->getProgramByName("shaderNoLight"));
-        m_continueKey->setCallback(passUnifoCallback_noLight);
+        m_continueKey->setPassUnifoCallback(passUnifoCallback_noLight);
         m_continueKey->setVisitDrawOrder(10000);
         //
         float center[2]={160,280};
@@ -83,7 +83,7 @@ bool CpausePage::init(){
         m_homeKey->setCamera(camera2D);
         m_homeKey->getModelList()[0]->setIsWriteDepthBuffer(false);
         m_homeKey->setProgram(Cc3dProgramCache::sharedProgramCache()->getProgramByName("shaderNoLight"));
-        m_homeKey->setCallback(passUnifoCallback_noLight);
+        m_homeKey->setPassUnifoCallback(passUnifoCallback_noLight);
         m_homeKey->setVisitDrawOrder(10000);
         //
         float center[2]={193,340};
@@ -107,7 +107,7 @@ bool CpausePage::init(){
         m_restartKey->setCamera(camera2D);
         m_restartKey->getModelList()[0]->setIsWriteDepthBuffer(false);
         m_restartKey->setProgram(Cc3dProgramCache::sharedProgramCache()->getProgramByName("shaderNoLight"));
-        m_restartKey->setCallback(passUnifoCallback_noLight);
+        m_restartKey->setPassUnifoCallback(passUnifoCallback_noLight);
         m_restartKey->setVisitDrawOrder(10000);
         //
         float center[2]={125,340};

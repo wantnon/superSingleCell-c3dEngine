@@ -100,11 +100,11 @@ public:
         }
     }
     Cc3dCamera*getCamera()const{return m_camera;}
-    void setCallback(passUnifoCallbackPtr callback){
+    void setPassUnifoCallback(passUnifoCallbackPtr callback){
         assert(callback);
         m_passUnifoCallback=callback;
     }
-    passUnifoCallbackPtr getCallback()const{return m_passUnifoCallback;}
+    passUnifoCallbackPtr getPassUnifoCallback()const{return m_passUnifoCallback;}
     void setProgram(Cc3dProgram*program){
         assert(program);
         if(m_program==NULL){

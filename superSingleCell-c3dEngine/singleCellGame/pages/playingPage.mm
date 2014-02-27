@@ -555,29 +555,29 @@ bool  CplayingPage::init(int level){
     m_cell->getModelList()[CELLPART_core]->setAmbient(0.4,0,0);
     //
     m_cell->getModelList()[CELLPART_body]->setProgram(Cc3dProgramCache::sharedProgramCache()->getProgramByName("shader_diffuse_ambient_specular_noSelfShadow"));
-    m_cell->getModelList()[CELLPART_body]->setCallback(passUnifoCallback_diffuse_ambient_specular_noSelfShadow);
+    m_cell->getModelList()[CELLPART_body]->setPassUnifoCallback(passUnifoCallback_diffuse_ambient_specular_noSelfShadow);
     m_cell->getModelList()[CELLPART_body]->setVisitDrawOrder(1000);
     
     m_cell->getModelList()[CELLPART_wingL]->setProgram(Cc3dProgramCache::sharedProgramCache()->getProgramByName("shader_diffuse_ambient_specular_noSelfShadow"));
-    m_cell->getModelList()[CELLPART_wingL]->setCallback(passUnifoCallback_diffuse_ambient_specular_noSelfShadow);
+    m_cell->getModelList()[CELLPART_wingL]->setPassUnifoCallback(passUnifoCallback_diffuse_ambient_specular_noSelfShadow);
     
     m_cell->getModelList()[CELLPART_wingR]->setProgram(Cc3dProgramCache::sharedProgramCache()->getProgramByName("shader_diffuse_ambient_specular_noSelfShadow"));
-    m_cell->getModelList()[CELLPART_wingR]->setCallback(passUnifoCallback_diffuse_ambient_specular_noSelfShadow);
+    m_cell->getModelList()[CELLPART_wingR]->setPassUnifoCallback(passUnifoCallback_diffuse_ambient_specular_noSelfShadow);
     
     m_cell->getModelList()[CELLPART_core]->setProgram(Cc3dProgramCache::sharedProgramCache()->getProgramByName("shader_diffuse_ambient_noSelfShadow"));
-    m_cell->getModelList()[CELLPART_core]->setCallback(passUnifoCallback_diffuse_ambient_noSelfShadow);
+    m_cell->getModelList()[CELLPART_core]->setPassUnifoCallback(passUnifoCallback_diffuse_ambient_noSelfShadow);
     
     m_cell->getModelList()[CELLPART_ene]->setProgram(Cc3dProgramCache::sharedProgramCache()->getProgramByName("shader_diffuse_ambient_noSelfShadow"));
-    m_cell->getModelList()[CELLPART_ene]->setCallback(passUnifoCallback_diffuse_ambient_noSelfShadow);
+    m_cell->getModelList()[CELLPART_ene]->setPassUnifoCallback(passUnifoCallback_diffuse_ambient_noSelfShadow);
     
     m_cell->getModelList()[CELLPART_shell]->setProgram(Cc3dProgramCache::sharedProgramCache()->getProgramByName("shader_diffuse_ambient_noSelfShadow"));
-    m_cell->getModelList()[CELLPART_shell]->setCallback(passUnifoCallback_diffuse_ambient_noSelfShadow);
+    m_cell->getModelList()[CELLPART_shell]->setPassUnifoCallback(passUnifoCallback_diffuse_ambient_noSelfShadow);
     
     m_cell->getModelList()[CELLPART_tooth]->setProgram(Cc3dProgramCache::sharedProgramCache()->getProgramByName("shader_diffuse_ambient_noSelfShadow"));
-    m_cell->getModelList()[CELLPART_tooth]->setCallback(passUnifoCallback_diffuse_ambient_noSelfShadow);
+    m_cell->getModelList()[CELLPART_tooth]->setPassUnifoCallback(passUnifoCallback_diffuse_ambient_noSelfShadow);
     
     m_cell->getModelList()[CELLPART_eye]->setProgram(Cc3dProgramCache::sharedProgramCache()->getProgramByName("shader_diffuse_ambient_noSelfShadow"));
-    m_cell->getModelList()[CELLPART_eye]->setCallback(passUnifoCallback_diffuse_ambient_noSelfShadow);
+    m_cell->getModelList()[CELLPART_eye]->setPassUnifoCallback(passUnifoCallback_diffuse_ambient_noSelfShadow);
     
     m_cell->setLight(&light0);
     m_cell->setCamera(camera);
@@ -637,7 +637,7 @@ bool  CplayingPage::init(int level){
             }
             pball->setLight(&light0);
             pball->setProgram(Cc3dProgramCache::sharedProgramCache()->getProgramByName("shader_diffuse_ambient_noSelfShadow"));
-            pball->setCallback(passUnifoCallback_diffuse_ambient_noSelfShadow);
+            pball->setPassUnifoCallback(passUnifoCallback_diffuse_ambient_noSelfShadow);
             pball->setCamera(camera);
             m_cell->addShotBall(pball);
          //   pball->retain();
@@ -690,10 +690,10 @@ bool  CplayingPage::init(int level){
             float rx=rxList[i];
             float ry=ryList[i];
             pmolecule->init(rx,ry);
-            //setProgram, setCallback, setIsVisible,setIsWriteDepthBuffer,setVisitDrawOrder等
+            //setProgram, setPassUnifoCallback, setIsVisible,setIsWriteDepthBuffer,setVisitDrawOrder等
             //都必须放在init之后，否则无法生效
             pmolecule->setProgram(Cc3dProgramCache::sharedProgramCache()->getProgramByName("shader_texOnly_rgb011Transp"));
-            pmolecule->setCallback(passUnifoCallback_texOnly_blackTransp);
+            pmolecule->setPassUnifoCallback(passUnifoCallback_texOnly_blackTransp);
             pmolecule->setCamera(camera);
             pmolecule->setIsVisible(false);
             pmolecule->getModel()->setIsWriteDepthBuffer(false);
@@ -839,7 +839,7 @@ bool  CplayingPage::init(int level){
                 preflectSquare->getModel()->getMeshByIndex(0)->submitVertex(GL_STATIC_DRAW);
                 preflectSquare->setProgram(Cc3dProgramCache::sharedProgramCache()->getProgramByName("shader_water"));
 
-                preflectSquare->setCallback(passUnifoCallback_water);
+                preflectSquare->setPassUnifoCallback(passUnifoCallback_water);
                 preflectSquare->setCamera(camera);
                 preflectSquare->getModel()->setIsWriteDepthBuffer(false);
                 m_water->setReflectSquare(preflectSquare);
@@ -863,7 +863,7 @@ bool  CplayingPage::init(int level){
                 pArabesquiticSquare->getModel()->getMeshByIndex(0)->submitIndex(GL_STATIC_DRAW);
                 pArabesquiticSquare->getModel()->getMeshByIndex(0)->submitVertex(GL_STATIC_DRAW);
                 pArabesquiticSquare->setProgram(Cc3dProgramCache::sharedProgramCache()->getProgramByName("shader_texOnly_useTexAsAlpha"));
-                pArabesquiticSquare->setCallback(passUnifoCallback_texOnly_useTexAsAlpha);
+                pArabesquiticSquare->setPassUnifoCallback(passUnifoCallback_texOnly_useTexAsAlpha);
                 pArabesquiticSquare->setCamera(camera);
                 pArabesquiticSquare->getModel()->setIsWriteDepthBuffer(false);
                 m_water->setArabesquiticSquare(pArabesquiticSquare);
@@ -890,7 +890,7 @@ bool  CplayingPage::init(int level){
                 pcenterSquare->getModel()->getMeshByIndex(0)->submitVertex(GL_STATIC_DRAW);
                 pcenterSquare->useLastTex();//播到最后一帧
                 pcenterSquare->setProgram(Cc3dProgramCache::sharedProgramCache()->getProgramByName("shader_texOnly_useTexAsAlpha"));
-                pcenterSquare->setCallback(passUnifoCallback_texOnly_useTexAsAlpha);
+                pcenterSquare->setPassUnifoCallback(passUnifoCallback_texOnly_useTexAsAlpha);
                 pcenterSquare->setCamera(camera);
                 pcenterSquare->getModel()->setIsWriteDepthBuffer(false);
                 m_water->setCenterSquare(pcenterSquare);
@@ -947,7 +947,7 @@ bool  CplayingPage::init(int level){
         m_ground->getModel()->setAmbient(0.2, 0.2, 0.2);
         m_ground->setCamera(camera);
         m_ground->setLight(&light0);
-        m_ground->setCallback(passUnifoCallback_diffuse_ambient_noTransf_noSelfShadow);
+        m_ground->setPassUnifoCallback(passUnifoCallback_diffuse_ambient_noTransf_noSelfShadow);
         m_ground->setCamera(camera);
         m_ground->setProgram(Cc3dProgramCache::sharedProgramCache()->getProgramByName("shader_diffuse_ambient_noTransf_noSelfShadow"));
         //提交数据
@@ -989,7 +989,7 @@ bool  CplayingPage::init(int level){
         m_archScene->getModel()->setColor(1, 1, 1, 0.7);//设置透明度，但在show_solid时不开启混合，在show_transp时开启混合
         m_archScene->setLight(&light0);
         m_archScene->setProgram(Cc3dProgramCache::sharedProgramCache()->getProgramByName("shader_diffuse_ambient_noTransf_shadowMap"));
-        m_archScene->setCallback(passUnifoCallback_diffuse_ambient_noTransf_shadowMap);
+        m_archScene->setPassUnifoCallback(passUnifoCallback_diffuse_ambient_noTransf_shadowMap);
         m_archScene->setCamera(camera);
         
     }
@@ -1044,10 +1044,10 @@ bool  CplayingPage::init(int level){
             pblast->useTex(0);
             if(pblast->effectType==MOLECULEEFFECTTYPE_useColorValueAsAlpha){
                 pblast->setProgram(Cc3dProgramCache::sharedProgramCache()->getProgramByName("shader_texOnly_useTexAsAlpha"));
-                pblast->setCallback(passUnifoCallback_texOnly_useTexAsAlpha);
+                pblast->setPassUnifoCallback(passUnifoCallback_texOnly_useTexAsAlpha);
             }else if(pblast->effectType==MOLECULEEFFECTTYPE_specifiedColorTransp){
                 pblast->setProgram(Cc3dProgramCache::sharedProgramCache()->getProgramByName("shader_texOnly_rgb011Transp"));
-                pblast->setCallback(passUnifoCallback_texOnly_blackTransp);
+                pblast->setPassUnifoCallback(passUnifoCallback_texOnly_blackTransp);
             }else{
                 assert(false);
             }
@@ -1089,7 +1089,7 @@ bool  CplayingPage::init(int level){
             float Rc=rx_molecule;
             pblast->setRc(Rc);
             pblast->setProgram(Cc3dProgramCache::sharedProgramCache()->getProgramByName("shader_texOnly_rgb011Transp"));
-            pblast->setCallback(passUnifoCallback_texOnly_blackTransp);
+            pblast->setPassUnifoCallback(passUnifoCallback_texOnly_blackTransp);
             pblast->setCamera(camera);
             pblast->getModel()->setIsWriteDepthBuffer(false);
             pblast->setVisitDrawOrder(1001);
@@ -1159,7 +1159,7 @@ bool  CplayingPage::init(int level){
             pmobilePlatform->updateAndSubmitVertex(true);//无条件更新vlist
             pmobilePlatform->setLight(&light0);
             pmobilePlatform->setProgram(Cc3dProgramCache::sharedProgramCache()->getProgramByName("shader_diffuse_ambient_noTransf_noSelfShadow"));
-            pmobilePlatform->setCallback(passUnifoCallback_diffuse_ambient_noTransf_noSelfShadow);
+            pmobilePlatform->setPassUnifoCallback(passUnifoCallback_diffuse_ambient_noTransf_noSelfShadow);
             pmobilePlatform->setCamera(camera);
             pmobilePlatform->setIsIgnorTransform(true);
             //声音
@@ -1201,7 +1201,7 @@ bool  CplayingPage::init(int level){
                 IDboard0->getModel()->getMeshByIndex(0)->submit(GL_STATIC_DRAW);//submitIndex(GL_STATIC_DRAW);
                 IDboard0->getModel()->setIsDoDepthTest(false);
                 IDboard0->getModel()->setProgram(Cc3dProgramCache::sharedProgramCache()->getProgramByName("shaderNoLight"));
-                IDboard0->getModel()->setCallback(passUnifoCallback_noLight);
+                IDboard0->getModel()->setPassUnifoCallback(passUnifoCallback_noLight);
                 IDboard0->getModel()->setCamera(camera);
                 IDboard0->setIsVisible(CgameSettings::sharedGameSettings()->getShowMobilePlatformID());
                 IDboard0->setVisitDrawOrder(10000);
@@ -1216,7 +1216,7 @@ bool  CplayingPage::init(int level){
                 IDboard1->getModel()->getMeshByIndex(0)->submit(GL_STATIC_DRAW);//submitIndex(GL_STATIC_DRAW);
                 IDboard1->getModel()->setIsDoDepthTest(false);
                 IDboard1->getModel()->setProgram(Cc3dProgramCache::sharedProgramCache()->getProgramByName("shaderNoLight"));
-                IDboard1->getModel()->setCallback(passUnifoCallback_noLight);
+                IDboard1->getModel()->setPassUnifoCallback(passUnifoCallback_noLight);
                 IDboard1->setCamera(camera);
                 IDboard1->setIsVisible(CgameSettings::sharedGameSettings()->getShowMobilePlatformID());
                 IDboard1->setVisitDrawOrder(10000);
@@ -1238,7 +1238,7 @@ bool  CplayingPage::init(int level){
             pbubble->life.set_maxValue(24);
             pbubble->life.chargeFull();
             pbubble->setProgram(Cc3dProgramCache::sharedProgramCache()->getProgramByName("shader_texOnly_useTexAsAlpha"));
-            pbubble->setCallback(passUnifoCallback_texOnly_useTexAsAlpha);
+            pbubble->setPassUnifoCallback(passUnifoCallback_texOnly_useTexAsAlpha);
             pbubble->setCamera(camera);
             pbubble->getModel()->setIsWriteDepthBuffer(false);
             pbubble->setVisitDrawOrder(1001);
@@ -1276,10 +1276,10 @@ bool  CplayingPage::init(int level){
             pmolecule->useTex(0);
             if(isEqual(pmolecule->getTranspColor(),Cc3dVector4(0,0,0,1))){
                 pmolecule->setProgram(Cc3dProgramCache::sharedProgramCache()->getProgramByName("shader_texOnly_rgb011Transp"));
-                pmolecule->setCallback(passUnifoCallback_texOnly_blackTransp);
+                pmolecule->setPassUnifoCallback(passUnifoCallback_texOnly_blackTransp);
             }else if(isEqual(pmolecule->getTranspColor(),Cc3dVector4(0,1,1,1))){
                 pmolecule->setProgram(Cc3dProgramCache::sharedProgramCache()->getProgramByName("shader_texOnly_rgb011Transp"));
-                pmolecule->setCallback(passUnifoCallback_texOnly_brightBlueTransp);
+                pmolecule->setPassUnifoCallback(passUnifoCallback_texOnly_brightBlueTransp);
             }else{
                 assert(false);//还没处理
             }
@@ -1310,7 +1310,7 @@ bool  CplayingPage::init(int level){
                 IDboard0->getModel()->getMeshByIndex(0)->submit(GL_STATIC_DRAW);//submitIndex(GL_STATIC_DRAW);
                 IDboard0->getModel()->setIsDoDepthTest(false);
                 IDboard0->getModel()->setProgram(Cc3dProgramCache::sharedProgramCache()->getProgramByName("shaderNoLight"));
-                IDboard0->getModel()->setCallback(passUnifoCallback_noLight);
+                IDboard0->getModel()->setPassUnifoCallback(passUnifoCallback_noLight);
                 IDboard0->setCamera(camera);
                 IDboard0->setIsVisible(CgameSettings::sharedGameSettings()->getShowBubbleID());
                 IDboard0->setVisitDrawOrder(10000);
@@ -1325,7 +1325,7 @@ bool  CplayingPage::init(int level){
                 IDboard1->getModel()->getMeshByIndex(0)->submit(GL_STATIC_DRAW);//submitIndex(GL_STATIC_DRAW);
                 IDboard1->getModel()->setIsDoDepthTest(false);
                 IDboard1->getModel()->setProgram(Cc3dProgramCache::sharedProgramCache()->getProgramByName("shaderNoLight"));
-                IDboard1->getModel()->setCallback(passUnifoCallback_noLight);
+                IDboard1->getModel()->setPassUnifoCallback(passUnifoCallback_noLight);
                 IDboard1->setCamera(camera);
                 IDboard1->setIsVisible(CgameSettings::sharedGameSettings()->getShowBubbleID());
                 IDboard1->setVisitDrawOrder(10000);
@@ -1363,7 +1363,7 @@ bool  CplayingPage::init(int level){
             CfakeLight*pfakeLight=(CfakeLight*)m_fakeLightSet.getActorByIndex(i);
             pfakeLight->setName("fake light i");
             pfakeLight->setProgram(Cc3dProgramCache::sharedProgramCache()->getProgramByName("shader_texOnly_useTexAsAlpha"));
-            pfakeLight->setCallback(passUnifoCallback_texOnly_useTexAsAlpha);
+            pfakeLight->setPassUnifoCallback(passUnifoCallback_texOnly_useTexAsAlpha);
             pfakeLight->setCamera(camera);
             pfakeLight->getModel()->setIsWriteDepthBuffer(false);
             pfakeLight->setVisitDrawOrder(1001);
@@ -1387,7 +1387,7 @@ bool  CplayingPage::init(int level){
                 Cship*ship=(Cship*)m_shipSet.getActorByIndex(i);
                 ship->setName("ship i");
                 ship->setProgram(Cc3dProgramCache::sharedProgramCache()->getProgramByName("shader_diffuse_ambient_noSelfShadow"));
-                ship->setCallback(passUnifoCallback_diffuse_ambient_noSelfShadow);
+                ship->setPassUnifoCallback(passUnifoCallback_diffuse_ambient_noSelfShadow);
                 ship->setCamera(camera);
                 ship->setLight(&light0);
                 this->addChild(ship);
@@ -1407,22 +1407,22 @@ bool  CplayingPage::init(int level){
             this->addChild(pbossCell);
             //
             pbossCell->getModelList()[CELLPART_body]->setProgram(Cc3dProgramCache::sharedProgramCache()->getProgramByName("shader_diffuse_ambient_specular_noSelfShadow"));
-            pbossCell->getModelList()[CELLPART_body]->setCallback(passUnifoCallback_diffuse_ambient_specular_noSelfShadow);
+            pbossCell->getModelList()[CELLPART_body]->setPassUnifoCallback(passUnifoCallback_diffuse_ambient_specular_noSelfShadow);
             
             pbossCell->getModelList()[CELLPART_core]->setProgram(Cc3dProgramCache::sharedProgramCache()->getProgramByName("shader_diffuse_ambient_noSelfShadow"));
-            pbossCell->getModelList()[CELLPART_core]->setCallback(passUnifoCallback_diffuse_ambient_noSelfShadow);
+            pbossCell->getModelList()[CELLPART_core]->setPassUnifoCallback(passUnifoCallback_diffuse_ambient_noSelfShadow);
             
             pbossCell->getModelList()[CELLPART_ene]->setProgram(Cc3dProgramCache::sharedProgramCache()->getProgramByName("shader_diffuse_ambient_noSelfShadow"));
-            pbossCell->getModelList()[CELLPART_ene]->setCallback(passUnifoCallback_diffuse_ambient_noSelfShadow);
+            pbossCell->getModelList()[CELLPART_ene]->setPassUnifoCallback(passUnifoCallback_diffuse_ambient_noSelfShadow);
             
             pbossCell->getModelList()[CELLPART_shell]->setProgram(Cc3dProgramCache::sharedProgramCache()->getProgramByName("shader_diffuse_ambient_noSelfShadow"));
-            pbossCell->getModelList()[CELLPART_shell]->setCallback(passUnifoCallback_diffuse_ambient_noSelfShadow);
+            pbossCell->getModelList()[CELLPART_shell]->setPassUnifoCallback(passUnifoCallback_diffuse_ambient_noSelfShadow);
             
             pbossCell->getModelList()[CELLPART_tooth]->setProgram(Cc3dProgramCache::sharedProgramCache()->getProgramByName("shader_diffuse_ambient_noSelfShadow"));
-            pbossCell->getModelList()[CELLPART_tooth]->setCallback(passUnifoCallback_diffuse_ambient_noSelfShadow);
+            pbossCell->getModelList()[CELLPART_tooth]->setPassUnifoCallback(passUnifoCallback_diffuse_ambient_noSelfShadow);
             
             pbossCell->getModelList()[CELLPART_eye]->setProgram(Cc3dProgramCache::sharedProgramCache()->getProgramByName("shader_diffuse_ambient_noSelfShadow"));
-            pbossCell->getModelList()[CELLPART_eye]->setCallback(passUnifoCallback_diffuse_ambient_noSelfShadow);
+            pbossCell->getModelList()[CELLPART_eye]->setPassUnifoCallback(passUnifoCallback_diffuse_ambient_noSelfShadow);
             
             pbossCell->setLight(&light0);
             pbossCell->setCamera(camera);
@@ -1462,7 +1462,7 @@ bool  CplayingPage::init(int level){
             pmeteor->setDied(true);
             pmeteor->setIsVisible(false);
             pmeteor->setProgram(Cc3dProgramCache::sharedProgramCache()->getProgramByName("shader_texOnly_useTexAsAlpha"));
-            pmeteor->setCallback(passUnifoCallback_texOnly_useTexAsAlpha);
+            pmeteor->setPassUnifoCallback(passUnifoCallback_texOnly_useTexAsAlpha);
             pmeteor->setCamera(camera);
             pmeteor->getModel()->getMeshByIndex(0)->getIndexVBO()->genBuffers();
             pmeteor->getModel()->getMeshByIndex(0)->setTexture(Cc3dTextureCache::sharedTextureCache()->addImage("data/global/tex/sprites/meteor.png"));
@@ -1486,7 +1486,7 @@ bool  CplayingPage::init(int level){
         model->submit(GL_STATIC_DRAW);
         m_levelBackGroundMusicCube->addModel(model);
         m_levelBackGroundMusicCube->setProgram(Cc3dProgramCache::sharedProgramCache()->getProgramByName("shaderNoLight"));
-        m_levelBackGroundMusicCube->setCallback(passUnifoCallback_noLight);
+        m_levelBackGroundMusicCube->setPassUnifoCallback(passUnifoCallback_noLight);
         m_levelBackGroundMusicCube->setCamera(camera);//如果物体显示不出来，可能是忘记了设置相机
         m_levelBackGroundMusicCube->setIsVisible(false);
         //
@@ -1672,7 +1672,7 @@ bool  CplayingPage::init(int level){
         m_quad_oops->setCamera(camera2D);
         m_quad_oops->getModelList()[0]->setIsWriteDepthBuffer(false);
         m_quad_oops->setProgram(Cc3dProgramCache::sharedProgramCache()->getProgramByName("shaderNoLight"));
-        m_quad_oops->setCallback(passUnifoCallback_noLight);
+        m_quad_oops->setPassUnifoCallback(passUnifoCallback_noLight);
         m_quad_oops->setVisitDrawOrder(10000);
         //
         float c[2]={164,300};
@@ -1702,7 +1702,7 @@ bool  CplayingPage::init(int level){
         m_quad_out_of_fuel->setCamera(camera2D);
         m_quad_out_of_fuel->getModelList()[0]->setIsWriteDepthBuffer(false);
         m_quad_out_of_fuel->setProgram(Cc3dProgramCache::sharedProgramCache()->getProgramByName("shaderNoLight"));
-        m_quad_out_of_fuel->setCallback(passUnifoCallback_noLight);
+        m_quad_out_of_fuel->setPassUnifoCallback(passUnifoCallback_noLight);
         m_quad_out_of_fuel->setVisitDrawOrder(10000);
         //
         float c[2]={164,300};
@@ -1731,7 +1731,7 @@ bool  CplayingPage::init(int level){
         m_quad_halfFuelHaveBeenUsed->setCamera(camera2D);
         m_quad_halfFuelHaveBeenUsed->getModelList()[0]->setIsWriteDepthBuffer(false);
         m_quad_halfFuelHaveBeenUsed->setProgram(Cc3dProgramCache::sharedProgramCache()->getProgramByName("shaderNoLight"));
-        m_quad_halfFuelHaveBeenUsed->setCallback(passUnifoCallback_noLight);
+        m_quad_halfFuelHaveBeenUsed->setPassUnifoCallback(passUnifoCallback_noLight);
         m_quad_halfFuelHaveBeenUsed->setVisitDrawOrder(10000);
         //
         float c[2]={164,300};
@@ -1769,7 +1769,7 @@ bool  CplayingPage::init(int level){
         m_quad_depthTex->setCamera(camera2D);
         m_quad_depthTex->getModelList()[0]->setIsWriteDepthBuffer(false);
         m_quad_depthTex->setProgram(Cc3dProgramCache::sharedProgramCache()->getProgramByName("shaderNoLight"));
-        m_quad_depthTex->setCallback(passUnifoCallback_noLight);
+        m_quad_depthTex->setPassUnifoCallback(passUnifoCallback_noLight);
         m_quad_depthTex->setIsVisible(CgameSettings::sharedGameSettings()->getShowDepthTexs());
         m_quad_depthTex->setVisitDrawOrder(10000);
         //
@@ -1795,7 +1795,7 @@ bool  CplayingPage::init(int level){
         m_quad_depthTex2->setCamera(camera2D);
         m_quad_depthTex2->getModelList()[0]->setIsWriteDepthBuffer(false);
         m_quad_depthTex2->setProgram(Cc3dProgramCache::sharedProgramCache()->getProgramByName("shaderNoLight"));
-        m_quad_depthTex2->setCallback(passUnifoCallback_noLight);
+        m_quad_depthTex2->setPassUnifoCallback(passUnifoCallback_noLight);
         m_quad_depthTex2->setIsVisible(CgameSettings::sharedGameSettings()->getShowDepthTexs());
         m_quad_depthTex2->setVisitDrawOrder(10000);
         //
@@ -1822,7 +1822,7 @@ bool  CplayingPage::init(int level){
         m_debugKey->setCamera(camera2D);
         m_debugKey->getModelList()[0]->setIsWriteDepthBuffer(false);
         m_debugKey->setProgram(Cc3dProgramCache::sharedProgramCache()->getProgramByName("shaderNoLight"));
-        m_debugKey->setCallback(passUnifoCallback_noLight);
+        m_debugKey->setPassUnifoCallback(passUnifoCallback_noLight);
         m_debugKey->setVisitDrawOrder(10000);
         //
         float center[2]={width-r_key,0+r_key};
@@ -1846,7 +1846,7 @@ bool  CplayingPage::init(int level){
         m_tipKey->setCamera(camera2D);
         m_tipKey->getModelList()[0]->setIsWriteDepthBuffer(false);
         m_tipKey->setProgram(Cc3dProgramCache::sharedProgramCache()->getProgramByName("shaderNoLight"));
-        m_tipKey->setCallback(passUnifoCallback_noLight);
+        m_tipKey->setPassUnifoCallback(passUnifoCallback_noLight);
         m_tipKey->setVisitDrawOrder(10000);
         //
         float center[2]={30,30};
@@ -1870,7 +1870,7 @@ bool  CplayingPage::init(int level){
         m_pauseKey->setCamera(camera2D);
         m_pauseKey->getModelList()[0]->setIsWriteDepthBuffer(false);
         m_pauseKey->setProgram(Cc3dProgramCache::sharedProgramCache()->getProgramByName("shaderNoLight"));
-        m_pauseKey->setCallback(passUnifoCallback_noLight);
+        m_pauseKey->setPassUnifoCallback(passUnifoCallback_noLight);
         m_pauseKey->setVisitDrawOrder(10000);
         //
         float center[2]={35,450+keyMovUp};
@@ -1895,7 +1895,7 @@ bool  CplayingPage::init(int level){
         m_zoomOutKey->setCamera(camera2D);
         m_zoomOutKey->getModelList()[0]->setIsWriteDepthBuffer(false);
         m_zoomOutKey->setProgram(Cc3dProgramCache::sharedProgramCache()->getProgramByName("shaderNoLight"));
-        m_zoomOutKey->setCallback(passUnifoCallback_noLight);
+        m_zoomOutKey->setPassUnifoCallback(passUnifoCallback_noLight);
         m_zoomOutKey->setVisitDrawOrder(10000);
         //
         float center[2]={2*r_key+r_key,30};
@@ -1924,7 +1924,7 @@ bool  CplayingPage::init(int level){
         m_shotBigKey->setCamera(camera2D);
         m_shotBigKey->getModelList()[0]->setIsWriteDepthBuffer(false);
         m_shotBigKey->setProgram(Cc3dProgramCache::sharedProgramCache()->getProgramByName("shaderNoLight"));
-        m_shotBigKey->setCallback(passUnifoCallback_noLight);
+        m_shotBigKey->setPassUnifoCallback(passUnifoCallback_noLight);
         m_shotBigKey->setVisitDrawOrder(10000);
         //
         m_shotBigKey->reSetCenter(pos_shotBigKey[0], pos_shotBigKey[1]);
@@ -1950,7 +1950,7 @@ bool  CplayingPage::init(int level){
         m_shotKey->setCamera(camera2D);
         m_shotKey->getModelList()[0]->setIsWriteDepthBuffer(false);
         m_shotKey->setProgram(Cc3dProgramCache::sharedProgramCache()->getProgramByName("shaderNoLight"));
-        m_shotKey->setCallback(passUnifoCallback_noLight);
+        m_shotKey->setPassUnifoCallback(passUnifoCallback_noLight);
         m_shotKey->setVisitDrawOrder(10000);
         //
         m_shotKey->reSetCenter(pos_shotKey[0], pos_shotKey[1]);
@@ -1976,7 +1976,7 @@ bool  CplayingPage::init(int level){
         m_goDownShipKey->setCamera(camera2D);
         m_goDownShipKey->getModelList()[0]->setIsWriteDepthBuffer(false);
         m_goDownShipKey->setProgram(Cc3dProgramCache::sharedProgramCache()->getProgramByName("shaderNoLight"));
-        m_goDownShipKey->setCallback(passUnifoCallback_noLight);
+        m_goDownShipKey->setPassUnifoCallback(passUnifoCallback_noLight);
         m_goDownShipKey->setIsVisible(false);
         m_goDownShipKey->setIsDoUpdate(false);
         m_goDownShipKey->setVisitDrawOrder(10000);
@@ -2004,7 +2004,7 @@ bool  CplayingPage::init(int level){
         m_lifeBar->getQuadBack()->setCamera(camera2D);
         m_lifeBar->getQuadBack()->getModelList()[0]->setIsWriteDepthBuffer(false);
         m_lifeBar->getQuadBack()->setProgram(Cc3dProgramCache::sharedProgramCache()->getProgramByName("shaderNoLight"));
-        m_lifeBar->getQuadBack()->setCallback(passUnifoCallback_noLight);
+        m_lifeBar->getQuadBack()->setPassUnifoCallback(passUnifoCallback_noLight);
         m_lifeBar->getQuadBack()->setVisitDrawOrder(10000);
         //quad_front
         m_lifeBar->getQuadFront()->getModelList()[0]->getMeshByIndex(0)->getIndexVBO()->genBuffers();
@@ -2014,7 +2014,7 @@ bool  CplayingPage::init(int level){
         m_lifeBar->getQuadFront()->setCamera(camera2D);
         m_lifeBar->getQuadFront()->getModelList()[0]->setIsWriteDepthBuffer(false);
         m_lifeBar->getQuadFront()->setProgram(Cc3dProgramCache::sharedProgramCache()->getProgramByName("shaderNoLight"));
-        m_lifeBar->getQuadFront()->setCallback(passUnifoCallback_noLight);
+        m_lifeBar->getQuadFront()->setPassUnifoCallback(passUnifoCallback_noLight);
         m_lifeBar->getQuadFront()->setVisitDrawOrder(10000);
         //
         m_lifeBar->reSetLeftDownCorner(190, 450+keyMovUp);
@@ -2042,7 +2042,7 @@ bool  CplayingPage::init(int level){
             quad_key->setCamera(camera2D);
             quad_key->getModelList()[0]->setIsWriteDepthBuffer(false);
             quad_key->setProgram(Cc3dProgramCache::sharedProgramCache()->getProgramByName("shaderNoLight"));
-            quad_key->setCallback(passUnifoCallback_noLight);
+            quad_key->setPassUnifoCallback(passUnifoCallback_noLight);
             quad_key->setVisitDrawOrder(10000);
             m_uiRoot->addChild(quad_key);
             m_quad_keyList.push_back(quad_key);
@@ -2087,7 +2087,7 @@ bool  CplayingPage::init(int level){
         m_quad_coin->setCamera(camera2D);
         m_quad_coin->getModelList()[0]->setIsWriteDepthBuffer(false);
         m_quad_coin->setProgram(Cc3dProgramCache::sharedProgramCache()->getProgramByName("shaderNoLight"));
-        m_quad_coin->setCallback(passUnifoCallback_noLight);
+        m_quad_coin->setPassUnifoCallback(passUnifoCallback_noLight);
         m_quad_coin->setVisitDrawOrder(10000);
         //
         float bx=190;
@@ -2111,7 +2111,7 @@ bool  CplayingPage::init(int level){
             quad->setCamera(camera2D);
             quad->getModelList()[0]->setIsWriteDepthBuffer(false);
             quad->setProgram(Cc3dProgramCache::sharedProgramCache()->getProgramByName("shaderNoLight"));
-            quad->setCallback(passUnifoCallback_noLight);
+            quad->setPassUnifoCallback(passUnifoCallback_noLight);
             quad->setVisitDrawOrder(10000);
             m_uiRoot->addChild(quad);
             m_quad_nCoinPositivePlaceList.push_back(quad);
@@ -2141,7 +2141,7 @@ bool  CplayingPage::init(int level){
         m_quad_killEnemy->setCamera(camera2D);
         m_quad_killEnemy->getModelList()[0]->setIsWriteDepthBuffer(false);
         m_quad_killEnemy->setProgram(Cc3dProgramCache::sharedProgramCache()->getProgramByName("shaderNoLight"));
-        m_quad_killEnemy->setCallback(passUnifoCallback_noLight);
+        m_quad_killEnemy->setPassUnifoCallback(passUnifoCallback_noLight);
         m_quad_killEnemy->setVisitDrawOrder(10000);
         //
         float bx=190;
@@ -2165,7 +2165,7 @@ bool  CplayingPage::init(int level){
             quad->setCamera(camera2D);
             quad->getModelList()[0]->setIsWriteDepthBuffer(false);
             quad->setProgram(Cc3dProgramCache::sharedProgramCache()->getProgramByName("shaderNoLight"));
-            quad->setCallback(passUnifoCallback_noLight);
+            quad->setPassUnifoCallback(passUnifoCallback_noLight);
             quad->setVisitDrawOrder(10000);
             m_uiRoot->addChild(quad);
             m_quad_nKillEnemyPositivePlaceList.push_back(quad);
@@ -2195,7 +2195,7 @@ bool  CplayingPage::init(int level){
         m_fuelBar->getQuadBack()->setCamera(camera2D);
         m_fuelBar->getQuadBack()->getModelList()[0]->setIsWriteDepthBuffer(false);
         m_fuelBar->getQuadBack()->setProgram(Cc3dProgramCache::sharedProgramCache()->getProgramByName("shaderNoLight"));
-        m_fuelBar->getQuadBack()->setCallback(passUnifoCallback_noLight);
+        m_fuelBar->getQuadBack()->setPassUnifoCallback(passUnifoCallback_noLight);
         m_fuelBar->getQuadBack()->setVisitDrawOrder(10000);
         //quad_front
         m_fuelBar->getQuadFront()->getModelList()[0]->getMeshByIndex(0)->getIndexVBO()->genBuffers();
@@ -2205,7 +2205,7 @@ bool  CplayingPage::init(int level){
         m_fuelBar->getQuadFront()->setCamera(camera2D);
         m_fuelBar->getQuadFront()->getModelList()[0]->setIsWriteDepthBuffer(false);
         m_fuelBar->getQuadFront()->setProgram(Cc3dProgramCache::sharedProgramCache()->getProgramByName("shaderNoLight"));
-        m_fuelBar->getQuadFront()->setCallback(passUnifoCallback_noLight);
+        m_fuelBar->getQuadFront()->setPassUnifoCallback(passUnifoCallback_noLight);
         m_fuelBar->getQuadFront()->setVisitDrawOrder(10000);
         //
         m_fuelBar->reSetLeftDownCorner(190, 360-35+keyMovUp);
@@ -2288,7 +2288,7 @@ void  CplayingPage::visitDraw(){
             cout<<"depthTex渲染完成!"<<endl;
             //recover
             setPrograms(nodeProgramMap);
-            setCallbacks(nodeCallbackMap);
+            setPassUnifoCallbacks(nodeCallbackMap);
             setCameras(nodeCameraMap);
             
         }
@@ -2328,7 +2328,7 @@ void  CplayingPage::visitDraw(){
         }
         //recover
         setPrograms(nodeProgramMap);
-        setCallbacks(nodeCallbackMap);
+        setPassUnifoCallbacks(nodeCallbackMap);
         setCameras(nodeCameraMap);
     }
 

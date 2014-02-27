@@ -39,7 +39,7 @@ bool CstartPage::init(){
         m_quad_startPage_backGround->setCamera(camera2D);
         m_quad_startPage_backGround->getModelList()[0]->setIsWriteDepthBuffer(false);
         m_quad_startPage_backGround->setProgram(Cc3dProgramCache::sharedProgramCache()->getProgramByName("shaderNoLight"));
-        m_quad_startPage_backGround->setCallback(passUnifoCallback_noLight);
+        m_quad_startPage_backGround->setPassUnifoCallback(passUnifoCallback_noLight);
         //
         m_quad_startPage_backGround->reSetLeftDownCorner(0, 0);
         m_quad_startPage_backGround->getModelList()[0]->getMeshByIndex(0)->submit(GL_STREAM_DRAW);

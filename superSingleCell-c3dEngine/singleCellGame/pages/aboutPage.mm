@@ -61,7 +61,7 @@ bool CaboutPage::init(){
         m_backKey->setCamera(camera2D);
         m_backKey->getModelList()[0]->setIsWriteDepthBuffer(false);
         m_backKey->setProgram(Cc3dProgramCache::sharedProgramCache()->getProgramByName("shaderNoLight"));
-        m_backKey->setCallback(passUnifoCallback_noLight);
+        m_backKey->setPassUnifoCallback(passUnifoCallback_noLight);
         //
         float center[2]={30,30};
         m_backKey->reSetCenter(center[0], center[1]);

@@ -44,7 +44,7 @@ bool CmenuPage::init(){
         m_quad_menuPage_backGround->setCamera(camera2D);
         m_quad_menuPage_backGround->getModelList()[0]->setIsWriteDepthBuffer(false);
         m_quad_menuPage_backGround->setProgram(Cc3dProgramCache::sharedProgramCache()->getProgramByName("shaderNoLight"));
-        m_quad_menuPage_backGround->setCallback(passUnifoCallback_noLight);
+        m_quad_menuPage_backGround->setPassUnifoCallback(passUnifoCallback_noLight);
         //
         m_quad_menuPage_backGround->reSetLeftDownCorner(0, 0);
         m_quad_menuPage_backGround->getModelList()[0]->getMeshByIndex(0)->submit(GL_STATIC_DRAW);
@@ -66,7 +66,7 @@ bool CmenuPage::init(){
         m_playKey->setCamera(camera2D);
         m_playKey->getModelList()[0]->setIsWriteDepthBuffer(false);
         m_playKey->setProgram(Cc3dProgramCache::sharedProgramCache()->getProgramByName("shaderNoLight"));
-        m_playKey->setCallback(passUnifoCallback_noLight);
+        m_playKey->setPassUnifoCallback(passUnifoCallback_noLight);
         //
         float center[2]={160,350+keyMovUp/2};
         m_playKey->reSetCenter(center[0], center[1]);
@@ -91,7 +91,7 @@ bool CmenuPage::init(){
         m_descKey->setCamera(camera2D);
         m_descKey->getModelList()[0]->setIsWriteDepthBuffer(false);
         m_descKey->setProgram(Cc3dProgramCache::sharedProgramCache()->getProgramByName("shaderNoLight"));
-        m_descKey->setCallback(passUnifoCallback_noLight);
+        m_descKey->setPassUnifoCallback(passUnifoCallback_noLight);
         //
         float center[2]={160,290+keyMovUp/2};
         m_descKey->reSetCenter(center[0], center[1]);
@@ -117,7 +117,7 @@ bool CmenuPage::init(){
         m_settingKey->setCamera(camera2D);
         m_settingKey->getModelList()[0]->setIsWriteDepthBuffer(false);
         m_settingKey->setProgram(Cc3dProgramCache::sharedProgramCache()->getProgramByName("shaderNoLight"));
-        m_settingKey->setCallback(passUnifoCallback_noLight);
+        m_settingKey->setPassUnifoCallback(passUnifoCallback_noLight);
         //
         float center[2]={160,230+keyMovUp/2};
         m_settingKey->reSetCenter(center[0], center[1]);
@@ -142,7 +142,7 @@ bool CmenuPage::init(){
         m_aboutKey->setCamera(camera2D);
         m_aboutKey->getModelList()[0]->setIsWriteDepthBuffer(false);
         m_aboutKey->setProgram(Cc3dProgramCache::sharedProgramCache()->getProgramByName("shaderNoLight"));
-        m_aboutKey->setCallback(passUnifoCallback_noLight);
+        m_aboutKey->setPassUnifoCallback(passUnifoCallback_noLight);
         //
         float center[2]={160,170+keyMovUp/2};
         m_aboutKey->reSetCenter(center[0], center[1]);

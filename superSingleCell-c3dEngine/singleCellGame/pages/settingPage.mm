@@ -43,7 +43,7 @@ bool CsettingPage::init(){
         m_quad_settingPage_backGround->setCamera(camera2D);
         m_quad_settingPage_backGround->getModelList()[0]->setIsWriteDepthBuffer(false);
         m_quad_settingPage_backGround->setProgram(Cc3dProgramCache::sharedProgramCache()->getProgramByName("shaderNoLight"));
-        m_quad_settingPage_backGround->setCallback(passUnifoCallback_noLight);
+        m_quad_settingPage_backGround->setPassUnifoCallback(passUnifoCallback_noLight);
         //
         m_quad_settingPage_backGround->reSetLeftDownCorner(0, 0);
         m_quad_settingPage_backGround->getModelList()[0]->getMeshByIndex(0)->submit(GL_STATIC_DRAW);
@@ -66,7 +66,7 @@ bool CsettingPage::init(){
         m_backKey->setCamera(camera2D);
         m_backKey->getModelList()[0]->setIsWriteDepthBuffer(false);
         m_backKey->setProgram(Cc3dProgramCache::sharedProgramCache()->getProgramByName("shaderNoLight"));
-        m_backKey->setCallback(passUnifoCallback_noLight);
+        m_backKey->setPassUnifoCallback(passUnifoCallback_noLight);
         //
         float center[2]={30,30};
         m_backKey->reSetCenter(center[0], center[1]);
@@ -91,7 +91,7 @@ bool CsettingPage::init(){
         m_turnOnAudioKey->setCamera(camera2D);
         m_turnOnAudioKey->getModelList()[0]->setIsWriteDepthBuffer(false);
         m_turnOnAudioKey->setProgram(Cc3dProgramCache::sharedProgramCache()->getProgramByName("shaderNoLight"));
-        m_turnOnAudioKey->setCallback(passUnifoCallback_noLight);
+        m_turnOnAudioKey->setPassUnifoCallback(passUnifoCallback_noLight);
         //
         float center[2]={160,380+keyMovUp/2};
         m_turnOnAudioKey->reSetCenter(center[0], center[1]);
@@ -118,7 +118,7 @@ bool CsettingPage::init(){
         m_turnOffAudioKey->setCamera(camera2D);
         m_turnOffAudioKey->getModelList()[0]->setIsWriteDepthBuffer(false);
         m_turnOffAudioKey->setProgram(Cc3dProgramCache::sharedProgramCache()->getProgramByName("shaderNoLight"));
-        m_turnOffAudioKey->setCallback(passUnifoCallback_noLight);
+        m_turnOffAudioKey->setPassUnifoCallback(passUnifoCallback_noLight);
         //
         float center[2]={160,380+keyMovUp/2};
         m_turnOffAudioKey->reSetCenter(center[0], center[1]);

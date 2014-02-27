@@ -38,7 +38,7 @@ bool CloadingPage::init(){
         m_quad_loadingPage_backGround->setCamera(camera2D);
         m_quad_loadingPage_backGround->getModelList()[0]->setIsWriteDepthBuffer(false);
         m_quad_loadingPage_backGround->setProgram(Cc3dProgramCache::sharedProgramCache()->getProgramByName("shaderNoLight"));
-        m_quad_loadingPage_backGround->setCallback(passUnifoCallback_noLight);
+        m_quad_loadingPage_backGround->setPassUnifoCallback(passUnifoCallback_noLight);
         //
         m_quad_loadingPage_backGround->reSetLeftDownCorner(0, 0);
         m_quad_loadingPage_backGround->getModelList()[0]->getMeshByIndex(0)->submit(GL_STATIC_DRAW);
@@ -64,7 +64,7 @@ bool CloadingPage::init(){
         m_quad_loading->setCamera(camera2D);
         m_quad_loading->getModelList()[0]->setIsWriteDepthBuffer(false);
         m_quad_loading->setProgram(Cc3dProgramCache::sharedProgramCache()->getProgramByName("shaderNoLight"));
-        m_quad_loading->setCallback(passUnifoCallback_noLight);
+        m_quad_loading->setPassUnifoCallback(passUnifoCallback_noLight);
         //
         float _bx=60;
         float _by=40;

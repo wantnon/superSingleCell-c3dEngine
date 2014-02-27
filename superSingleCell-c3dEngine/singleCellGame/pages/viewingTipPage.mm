@@ -37,7 +37,7 @@ bool CviewingTipPage::init(){
         m_quad_tipTex->setCamera(camera2D);
         m_quad_tipTex->getModelList()[0]->setIsWriteDepthBuffer(false);
         m_quad_tipTex->setProgram(Cc3dProgramCache::sharedProgramCache()->getProgramByName("shaderNoLight"));
-        m_quad_tipTex->setCallback(passUnifoCallback_noLight);
+        m_quad_tipTex->setPassUnifoCallback(passUnifoCallback_noLight);
         m_quad_tipTex->setVisitDrawOrder(10000);
         //
         m_quad_tipTex->reSetCenter(width/2,height/2);

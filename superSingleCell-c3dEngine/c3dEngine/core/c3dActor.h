@@ -76,15 +76,15 @@ public:
             p->setProgram(program);
         }
     }
-    void setCallback(passUnifoCallbackPtr callback){
+    void setPassUnifoCallback(passUnifoCallbackPtr callback){
         assert(callback);
-        this->Cc3dNode::setCallback(callback);
+        this->Cc3dNode::setPassUnifoCallback(callback);
         
         int n=(int)m_modelList.size();
         for(int i=0;i<n;i++){
             Cc3dModel*p=m_modelList[i];
             if(p==NULL)continue;
-            p->setCallback(callback);
+            p->setPassUnifoCallback(callback);
         }
         
     }

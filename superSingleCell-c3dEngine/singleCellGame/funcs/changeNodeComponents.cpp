@@ -60,12 +60,12 @@ map<Cc3dNode*,Cc3dCamera*> changeCameraRecursively(Cc3dNode*node,Cc3dCamera*came
 
 void changePassUnifoCallbackRecursively_inn(Cc3dNode*node,passUnifoCallbackPtr callback,map<Cc3dNode*,passUnifoCallbackPtr>&_map){
     if(node==NULL)return;
-    passUnifoCallbackPtr oldCallback =node->getCallback();
+    passUnifoCallbackPtr oldCallback =node->getPassUnifoCallback();
     if(oldCallback==NULL){
         //do nothing
     }else{
         _map[node]=oldCallback;//store old callback to map
-        ((Cc3dNode*)node)->setCallback(callback);//change callback
+        ((Cc3dNode*)node)->setPassUnifoCallback(callback);//change callback
     }
     //do same thing to children
     vector<Cc3dNode*> children=node->getChildren();
@@ -109,13 +109,13 @@ void setCameras( map<Cc3dNode*,Cc3dCamera*>&nodeCameraMap){
         
     }
 }
-void setCallbacks( map<Cc3dNode*,passUnifoCallbackPtr>&nodeCallbackMap){
+void setPassUnifoCallbacks( map<Cc3dNode*,passUnifoCallbackPtr>&nodeCallbackMap){
     map<Cc3dNode*,passUnifoCallbackPtr>::iterator iter;
     for ( iter = nodeCallbackMap.begin(); iter != nodeCallbackMap.end(); iter++ ){
         Cc3dNode*node=iter->first;
         passUnifoCallbackPtr callback=iter->second;
         if(node){
-            ((Cc3dNode*)node)->setCallback(callback);
+            ((Cc3dNode*)node)->setPassUnifoCallback(callback);
         }
         
     }

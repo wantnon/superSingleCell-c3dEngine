@@ -55,7 +55,7 @@ bool CsuccedPage::init(int nStar,int nEnemyKilled,int nCoinEaten){
         m_quad_succeed->setCamera(camera2D);
         m_quad_succeed->getModelList()[0]->setIsWriteDepthBuffer(false);
         m_quad_succeed->setProgram(Cc3dProgramCache::sharedProgramCache()->getProgramByName("shaderNoLight"));
-        m_quad_succeed->setCallback(passUnifoCallback_noLight);
+        m_quad_succeed->setPassUnifoCallback(passUnifoCallback_noLight);
         m_quad_succeed->setVisitDrawOrder(10000);
         //
         float _bx=52;
@@ -83,7 +83,7 @@ bool CsuccedPage::init(int nStar,int nEnemyKilled,int nCoinEaten){
         m_quad_star->setCamera(camera2D);
         m_quad_star->getModelList()[0]->setIsWriteDepthBuffer(false);
         m_quad_star->setProgram(Cc3dProgramCache::sharedProgramCache()->getProgramByName("shaderNoLight"));
-        m_quad_star->setCallback(passUnifoCallback_noLight);
+        m_quad_star->setPassUnifoCallback(passUnifoCallback_noLight);
         m_quad_star->setVisitDrawOrder(10000);
         //
         float _bx=60;
@@ -110,7 +110,7 @@ bool CsuccedPage::init(int nStar,int nEnemyKilled,int nCoinEaten){
         m_nextLevelKey->setCamera(camera2D);
         m_nextLevelKey->getModelList()[0]->setIsWriteDepthBuffer(false);
         m_nextLevelKey->setProgram(Cc3dProgramCache::sharedProgramCache()->getProgramByName("shaderNoLight"));
-        m_nextLevelKey->setCallback(passUnifoCallback_noLight);
+        m_nextLevelKey->setPassUnifoCallback(passUnifoCallback_noLight);
         m_nextLevelKey->setVisitDrawOrder(10000);
         //
         Cc3dVector4 center;
@@ -139,7 +139,7 @@ bool CsuccedPage::init(int nStar,int nEnemyKilled,int nCoinEaten){
         m_homeKey->setCamera(camera2D);
         m_homeKey->getModelList()[0]->setIsWriteDepthBuffer(false);
         m_homeKey->setProgram(Cc3dProgramCache::sharedProgramCache()->getProgramByName("shaderNoLight"));
-        m_homeKey->setCallback(passUnifoCallback_noLight);
+        m_homeKey->setPassUnifoCallback(passUnifoCallback_noLight);
         m_homeKey->setVisitDrawOrder(10000);
         m_homeKey->setIsVisible(CgameState::sharedGameState()->getCurrentLevel()!=CuserConfig::sharedUserConfig()->get_levelCount());
         //
@@ -164,7 +164,7 @@ bool CsuccedPage::init(int nStar,int nEnemyKilled,int nCoinEaten){
         m_restartKey->setCamera(camera2D);
         m_restartKey->getModelList()[0]->setIsWriteDepthBuffer(false);
         m_restartKey->setProgram(Cc3dProgramCache::sharedProgramCache()->getProgramByName("shaderNoLight"));
-        m_restartKey->setCallback(passUnifoCallback_noLight);
+        m_restartKey->setPassUnifoCallback(passUnifoCallback_noLight);
         m_restartKey->setVisitDrawOrder(10000);
         m_restartKey->setIsVisible(CgameState::sharedGameState()->getCurrentLevel()!=CuserConfig::sharedUserConfig()->get_levelCount());
         //
@@ -188,7 +188,7 @@ bool CsuccedPage::init(int nStar,int nEnemyKilled,int nCoinEaten){
         m_quad_coin->setCamera(camera2D);
         m_quad_coin->getModelList()[0]->setIsWriteDepthBuffer(false);
         m_quad_coin->setProgram(Cc3dProgramCache::sharedProgramCache()->getProgramByName("shaderNoLight"));
-        m_quad_coin->setCallback(passUnifoCallback_noLight);
+        m_quad_coin->setPassUnifoCallback(passUnifoCallback_noLight);
         m_quad_coin->setVisitDrawOrder(10000);
         //quad_coin
         float bx=100;
@@ -228,7 +228,7 @@ bool CsuccedPage::init(int nStar,int nEnemyKilled,int nCoinEaten){
             quad->setCamera(camera2D);
             quad->getModelList()[0]->setIsWriteDepthBuffer(false);
             quad->setProgram(Cc3dProgramCache::sharedProgramCache()->getProgramByName("shaderNoLight"));
-            quad->setCallback(passUnifoCallback_noLight);
+            quad->setPassUnifoCallback(passUnifoCallback_noLight);
             quad->setVisitDrawOrder(10000);
             addChild(quad);
             m_quad_nCoinPositivePlaceList.push_back(quad);
@@ -259,7 +259,7 @@ bool CsuccedPage::init(int nStar,int nEnemyKilled,int nCoinEaten){
         m_quad_killEnemy->setCamera(camera2D);
         m_quad_killEnemy->getModelList()[0]->setIsWriteDepthBuffer(false);
         m_quad_killEnemy->setProgram(Cc3dProgramCache::sharedProgramCache()->getProgramByName("shaderNoLight"));
-        m_quad_killEnemy->setCallback(passUnifoCallback_noLight);
+        m_quad_killEnemy->setPassUnifoCallback(passUnifoCallback_noLight);
         m_quad_killEnemy->setVisitDrawOrder(10000);
         //
         float bx=100;
@@ -299,7 +299,7 @@ bool CsuccedPage::init(int nStar,int nEnemyKilled,int nCoinEaten){
             quad->setCamera(camera2D);
             quad->getModelList()[0]->setIsWriteDepthBuffer(false);
             quad->setProgram(Cc3dProgramCache::sharedProgramCache()->getProgramByName("shaderNoLight"));
-            quad->setCallback(passUnifoCallback_noLight);
+            quad->setPassUnifoCallback(passUnifoCallback_noLight);
             quad->setVisitDrawOrder(10000);
             addChild(quad);
             m_quad_nKillEnemyPositivePlaceList.push_back(quad);
@@ -332,7 +332,7 @@ bool CsuccedPage::init(int nStar,int nEnemyKilled,int nCoinEaten){
             quad_key->setCamera(camera2D);
             quad_key->getModelList()[0]->setIsWriteDepthBuffer(false);
             quad_key->setProgram(Cc3dProgramCache::sharedProgramCache()->getProgramByName("shaderNoLight"));
-            quad_key->setCallback(passUnifoCallback_noLight);
+            quad_key->setPassUnifoCallback(passUnifoCallback_noLight);
             quad_key->setVisitDrawOrder(10000);
             addChild(quad_key);
             m_quad_keyList.push_back(quad_key);

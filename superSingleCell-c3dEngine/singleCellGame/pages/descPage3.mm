@@ -42,7 +42,7 @@ bool CdescPage3::init(){
         m_quad_descPage3_backGround->setCamera(camera2D);
         m_quad_descPage3_backGround->getModelList()[0]->setIsWriteDepthBuffer(false);
         m_quad_descPage3_backGround->setProgram(Cc3dProgramCache::sharedProgramCache()->getProgramByName("shaderNoLight"));
-        m_quad_descPage3_backGround->setCallback(passUnifoCallback_noLight);
+        m_quad_descPage3_backGround->setPassUnifoCallback(passUnifoCallback_noLight);
         //
         m_quad_descPage3_backGround->reSetLeftDownCorner(0, 0);
         m_quad_descPage3_backGround->getModelList()[0]->getMeshByIndex(0)->submit(GL_STATIC_DRAW);
@@ -65,7 +65,7 @@ bool CdescPage3::init(){
         m_foeKey->setCamera(camera2D);
         m_foeKey->getModelList()[0]->setIsWriteDepthBuffer(false);
         m_foeKey->setProgram(Cc3dProgramCache::sharedProgramCache()->getProgramByName("shaderNoLight"));
-        m_foeKey->setCallback(passUnifoCallback_noLight);
+        m_foeKey->setPassUnifoCallback(passUnifoCallback_noLight);
         //
         float center[2]={width/2-50,20};
         m_foeKey->reSetCenter(center[0], center[1]);
@@ -89,7 +89,7 @@ bool CdescPage3::init(){
         m_menuKey->setCamera(camera2D);
         m_menuKey->getModelList()[0]->setIsWriteDepthBuffer(false);
         m_menuKey->setProgram(Cc3dProgramCache::sharedProgramCache()->getProgramByName("shaderNoLight"));
-        m_menuKey->setCallback(passUnifoCallback_noLight);
+        m_menuKey->setPassUnifoCallback(passUnifoCallback_noLight);
         //
         float center[2]={width/2+50,20};
         m_menuKey->reSetCenter(center[0], center[1]);
