@@ -20,7 +20,7 @@ class Cc3dTexture:public Cc3dObject
 protected:
     GLuint m_texture;
     float m_width,m_height;
-    string m_filePath;
+    string m_filePath;//for the textures not load from file (created by program), m_filePath is ""
 public:
     Cc3dTexture(){
         m_texture=0;
