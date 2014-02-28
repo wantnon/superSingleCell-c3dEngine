@@ -32,6 +32,7 @@ public:
         assert((int)m_stack.size()!=0);//m_stack at least have one element (the inital element)
     }
     void mulMatrix(const Cc3dMatrix4&mat){
+        assert(m_stack.empty()==false);
         int n=(int)m_stack.size();
         Cc3dMatrix4 topMat=m_stack[(int)m_stack.size()-1];
         Cc3dMatrix4 newTopMat=topMat*mat;
