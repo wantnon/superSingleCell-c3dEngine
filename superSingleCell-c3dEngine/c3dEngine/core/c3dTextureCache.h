@@ -73,7 +73,7 @@ public:
             return rsList[0];
         }
     }
-    Cc3dTexture* addImage( const string&filePathShort,int wrapS=GL_REPEAT,int wrapT=GL_REPEAT)
+    Cc3dTexture* addImage( const string&filePathShort,int wrapS=GL_REPEAT,int wrapT=GL_REPEAT,GLint minFilter=GL_LINEAR,GLint magFilter=GL_LINEAR)
     //如果纹理已存在，则不重复创建
     {
         //先查找是否已经存在，如果存在，直接返回句柄
@@ -85,7 +85,7 @@ public:
         //新建texture
         texture=new Cc3dTexture();
         texture->autorelease();
-        texture->init(filePathShort,wrapS,wrapT);
+        texture->init(filePathShort,wrapS,wrapT,minFilter,magFilter);
         m_textureList.push_back(texture);
         texture->retain();
     //    C3DLOG("texture filePathShort:%s",filePathShort.c_str());
