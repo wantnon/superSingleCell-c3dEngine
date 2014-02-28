@@ -7,7 +7,9 @@
 //
 
 #include "c3dTexture.h"
-bool Cc3dTexture::initDepthTexture(int width,int height,int wrapS,int wrapT,GLint minFilter,GLint magFilter){
+bool Cc3dTexture::initDepthTexture(int width,int height,int wrapS,int wrapT,GLint minFilter,GLint magFilter)
+//注意，如果用作render to texture的渲染目标，则wrapS和wrapT均应取GL_CLAMP_TO_EDGE
+{
     assert(m_texture==0);
     m_width=width;
     m_height=height;
@@ -16,8 +18,7 @@ bool Cc3dTexture::initDepthTexture(int width,int height,int wrapS,int wrapT,GLin
     //GL_NEAREST,GL_LINEAR
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, minFilter);
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, magFilter);
-    //      // Remove artifact on the edges of the shadowmap
-    //      //使用GL_CLAMP_TO_EDGE, 去掉下面两句效果完全混乱
+    //
     glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S,wrapS);
     glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T,wrapT);
     //注意：深度纹理特殊
@@ -31,7 +32,9 @@ bool Cc3dTexture::initDepthTexture(int width,int height,int wrapS,int wrapT,GLin
     return true;
 }
 
-bool Cc3dTexture::initColorTexture(int width,int height,int wrapS,int wrapT,GLint minFilter,GLint magFilter){
+bool Cc3dTexture::initColorTexture(int width,int height,int wrapS,int wrapT,GLint minFilter,GLint magFilter)
+//注意，如果用作render to texture的渲染目标，则wrapS和wrapT均应取GL_CLAMP_TO_EDGE
+{
     assert(m_texture==0);
     m_width=width;
     m_height=height;
@@ -40,7 +43,7 @@ bool Cc3dTexture::initColorTexture(int width,int height,int wrapS,int wrapT,GLin
     //GL_NEAREST或GL_LINEAR
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, minFilter);
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, magFilter);
-    //使用GL_CLAMP_TO_EDGE
+    //
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, wrapS);
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, wrapT);
     glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, m_width, m_height, 0,
