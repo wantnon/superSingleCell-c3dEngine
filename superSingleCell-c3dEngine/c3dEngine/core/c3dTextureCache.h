@@ -97,7 +97,11 @@ public:
         int n=(int)m_textureList.size();
         for(int i=0;i<n;i++){
             Cc3dTexture*texture=m_textureList[i];
-            cout<<texture->getFilePath()<<" ";
+            if(texture->getFilePath().empty()){
+                cout<<"EMPTY_PATH"<<" ";
+            }else{
+                cout<<texture->getFilePath()<<" ";
+            }
         }cout<<endl;
         cout<<"total texture:"<<(int)m_textureList.size()<<endl;
         cout<<"--------------------"<<endl;
