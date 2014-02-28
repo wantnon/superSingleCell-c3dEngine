@@ -17,7 +17,7 @@ bool Cc3dTexture::initDepthTexture(int width,int height,GLint minFilter,GLint ma
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, minFilter);
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, magFilter);
     //      // Remove artifact on the edges of the shadowmap
-    //      //禁止纹理重复，似乎不光是禁止了重复，去掉下面两句效果完全混乱
+    //      //使用GL_CLAMP_TO_EDGE, 去掉下面两句效果完全混乱
     glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S,GL_CLAMP_TO_EDGE);
     glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T,GL_CLAMP_TO_EDGE);
     //注意：深度纹理特殊
@@ -40,7 +40,7 @@ bool Cc3dTexture::initColorTexture(int width,int height,GLint minFilter,GLint ma
     //GL_NEAREST或GL_LINEAR
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, minFilter);
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, magFilter);
-    //禁止纹理重复
+    //使用GL_CLAMP_TO_EDGE
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE);
     glTexImage2D(GL_TEXTURE_2D, 0, internalformat, m_width, m_height, 0,
