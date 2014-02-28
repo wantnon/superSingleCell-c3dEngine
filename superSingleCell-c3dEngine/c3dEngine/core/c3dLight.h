@@ -16,7 +16,6 @@
 class Cc3dLight:public Cc3dObject
 {
 protected:
-    Cc3dVector4 m_dir;
     Cc3dVector4 m_pos;
     Cc3dVector4 m_diffuse;
     Cc3dVector4 m_ambient;
@@ -24,7 +23,6 @@ protected:
     vector<Cc3dCamera*> m_lightViewCameraList;
 public:
     Cc3dLight(){
-        m_dir.init(0,0,0,0);
         m_pos.init(0,0,0,1);
         m_diffuse.init(1,1,1,1);
         m_ambient.init(0,0,0,1);
@@ -54,7 +52,7 @@ public:
         }
     }
     Cc3dVector4 getPos()const{return m_pos;}
-    Cc3dVector4 getDir()const{return m_dir;}
+
     Cc3dVector4 getDiffuse()const{return m_diffuse;}
     Cc3dVector4 getAmbient()const{return m_ambient;}
     Cc3dVector4 getSpecular()const{return m_specular;}
@@ -63,11 +61,6 @@ public:
         m_pos.sety(y);
         m_pos.setz(z);
      
-    }
-    void setDir(float x,float y,float z){
-        m_dir.setx(x);
-        m_dir.sety(y);
-        m_dir.setz(z);
     }
     void setSpecular(float r,float g,float b){
         m_specular.setr(r);

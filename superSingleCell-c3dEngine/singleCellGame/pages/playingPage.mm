@@ -714,10 +714,6 @@ bool  CplayingPage::init(int level){
     //----light
     {
         loadInfo_light(&light0,rootPath+"/modelInfo/lightInfo/lightInfo.txt");
-        Cc3dVector4 dir;
-        dir=Cc3dVector4(0,0,0,1)-light0.getPos();
-        dir=normalize(dir);
-        light0.setDir(dir.x(), dir.y(), dir.z());
         light0.setDiffuse(1, 1, 1);
         light0.setAmbient(1, 1, 1);
         light0.setSpecular(1, 1, 1);
