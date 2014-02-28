@@ -30,7 +30,7 @@ bool CsettingPage::init(){
         //
         string imagePathShort="data/global/tex/pageTexs/settingPageTex/backGround_";
         imagePathShort+=resoStr+".png";
-        Cc3dTexture* ptex=Cc3dTextureCache::sharedTextureCache()->addImage(imagePathShort);
+        Cc3dTexture* ptex=Cc3dTextureCache::sharedTextureCache()->addImage(imagePathShort,GL_CLAMP_TO_EDGE,GL_CLAMP_TO_EDGE);
         const float texW=ptex->getWidth();
         const float texH=ptex->getHeight();
         float bx=0;
