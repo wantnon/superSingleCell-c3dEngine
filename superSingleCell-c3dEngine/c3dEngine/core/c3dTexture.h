@@ -20,7 +20,7 @@ class Cc3dTexture:public Cc3dObject
 protected:
     GLuint m_texture;
     float m_width,m_height;
-    string m_filePath;
+    string m_filePath;//for the textures not load from file (created by program), m_filePath is ""
 public:
     Cc3dTexture(){
         m_texture=0;
@@ -48,9 +48,9 @@ public:
     string getFilePath()const{
         return m_filePath;
     }
-    bool init( const string&filePath,int wrapS=GL_REPEAT,int wrapT=GL_REPEAT);
-    bool initDepthTexture(int width,int height,GLint minFilter,GLint magFilter);
-    bool initColorTexture(int width,int height,GLint minFilter,GLint magFilter, GLint internalformat=GL_RGBA);
+    bool init( const string&filePath,int wrapS=GL_REPEAT,int wrapT=GL_REPEAT,GLint minFilter=GL_LINEAR,GLint magFilter=GL_LINEAR);
+    bool initDepthTexture(int width,int height,int wrapS,int wrapT,GLint minFilter,GLint magFilter);
+    bool initColorTexture(int width,int height,int wrapS,int wrapT,GLint minFilter,GLint magFilter);
 
 };
 

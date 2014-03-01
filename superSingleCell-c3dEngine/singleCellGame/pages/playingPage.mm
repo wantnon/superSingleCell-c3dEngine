@@ -714,10 +714,6 @@ bool  CplayingPage::init(int level){
     //----light
     {
         loadInfo_light(&light0,rootPath+"/modelInfo/lightInfo/lightInfo.txt");
-        Cc3dVector4 dir;
-        dir=Cc3dVector4(0,0,0,1)-light0.getPos();
-        dir=normalize(dir);
-        light0.setDir(dir.x(), dir.y(), dir.z());
         light0.setDiffuse(1, 1, 1);
         light0.setAmbient(1, 1, 1);
         light0.setSpecular(1, 1, 1);
@@ -735,7 +731,7 @@ bool  CplayingPage::init(int level){
         m_depthTex->autorelease();
         m_depthTex->retain();
         int shadowMapSize=minf(4096,Cc3dDeviceAndOSInfo::sharedDeviceAndOSInfo()->getSupportedMaxTextureSize());
-        m_depthTex->initDepthTexture(shadowMapSize,shadowMapSize,GL_NEAREST,GL_NEAREST);
+        m_depthTex->initDepthTexture(shadowMapSize,shadowMapSize,GL_CLAMP_TO_EDGE,GL_CLAMP_TO_EDGE,GL_NEAREST,GL_NEAREST);
         m_fbo->attachDepthTex(m_depthTex);
         m_fbo2=new Cc3dFbo();
         m_fbo2->autorelease();
@@ -745,7 +741,7 @@ bool  CplayingPage::init(int level){
         m_depthTex2->autorelease();
         m_depthTex2->retain();
         int shadowMapSize2=shadowMapSize/4;//(shadowMapSize==4096?512:256);
-        m_depthTex2->initDepthTexture(shadowMapSize2,shadowMapSize2,GL_NEAREST,GL_NEAREST);
+        m_depthTex2->initDepthTexture(shadowMapSize2,shadowMapSize2,GL_CLAMP_TO_EDGE,GL_CLAMP_TO_EDGE,GL_NEAREST,GL_NEAREST);
         m_fbo2->attachDepthTex(m_depthTex2);
         
         //----shadowMapInfo
