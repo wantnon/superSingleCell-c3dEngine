@@ -10,13 +10,18 @@
 #define __HelloOpenGL__c3dALBuffer__
 
 #include <iostream>
-#import <OpenAL/al.h>
-#import <OpenAL/alc.h>
-#import <AudioToolbox/AudioToolbox.h>
+using namespace std;
+
+
 #include "c3dALdebug.h"
 #include "c3dObject.h"
 #include "c3dFileUtils.h"
-typedef ALvoid	AL_APIENTRY	(*alBufferDataStaticProcPtr) (const ALint bid, ALenum format, ALvoid* data, ALsizei size, ALsizei freq);
+
+
+extern "C" {
+    #include "MyOpenALSupport.h"
+};
+
 class Cc3dALBuffer:public Cc3dObject
 {
 public:
@@ -49,8 +54,6 @@ public:
     }
 protected:
     void initBuffer(const string&fileNameFull,void*&_data,ALuint&_buffer);
-    ALvoid  alBufferDataStaticProc(const ALint bid, ALenum format, ALvoid* data, ALsizei size, ALsizei freq);
-    void* MyGetOpenALAudioData(CFURLRef inFileURL, ALsizei *outDataSize, ALenum *outDataFormat, ALsizei*	outSampleRate);
 protected:
     ALuint m_buffer;
     void* m_data;

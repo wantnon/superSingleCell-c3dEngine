@@ -35,6 +35,7 @@ Cc3dALBuffer* Cc3dAudioCache::CreateBuffer(const string&_filePathShort)
     pBuffer=new Cc3dALBuffer();
     pBuffer->autorelease();
     pBuffer->retain();
+    cout<<"_filePathShort:"<<_filePathShort<<endl;
     pBuffer->initBuffer(_filePathShort);
     //将pBuffer加入pBufferList
     pBufferList.push_back(pBuffer);

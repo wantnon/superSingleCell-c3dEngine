@@ -114,16 +114,7 @@ using namespace std;
 
 }
 - (void)cleanUpOpenAL {
-    ALCcontext	*context = NULL;
-    ALCdevice	*device = NULL;
-	//Get active context (there can only be one)
-    context = alcGetCurrentContext();
-    //Get device for active context
-    device = alcGetContextsDevice(context);
-    //Release context
-    alcDestroyContext(context);
-    //Close device
-    alcCloseDevice(device);
+    TeardownOpenAL();
 
 }
 - (void)render:(CADisplayLink*)displayLink {

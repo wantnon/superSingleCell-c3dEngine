@@ -144,6 +144,9 @@
 		180A83F418BA1AAF0079E6C9 /* shader_water.vert in Resources */ = {isa = PBXBuildFile; fileRef = 180A83BA18BA1A4C0079E6C9 /* shader_water.vert */; };
 		180A83F518BA1AAF0079E6C9 /* shaderNoLight.frag in Resources */ = {isa = PBXBuildFile; fileRef = 180A83BB18BA1A4C0079E6C9 /* shaderNoLight.frag */; };
 		180A83F618BA1AAF0079E6C9 /* shaderNoLight.vert in Resources */ = {isa = PBXBuildFile; fileRef = 180A83BC18BA1A4C0079E6C9 /* shaderNoLight.vert */; };
+		181FD39618C2147100F2C204 /* CoreAudio.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 181FD39518C2147100F2C204 /* CoreAudio.framework */; };
+		181FD39818C2147A00F2C204 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 181FD39718C2147A00F2C204 /* AVFoundation.framework */; };
+		181FD3A518C2353A00F2C204 /* MyOpenALSupport.c in Sources */ = {isa = PBXBuildFile; fileRef = 181FD3A318C2353A00F2C204 /* MyOpenALSupport.c */; };
 		1870661616C4662A00CDA573 /* OpenAL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1870661516C4662A00CDA573 /* OpenAL.framework */; };
 		1870661816C466F100CDA573 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1870661716C466F100CDA573 /* AudioToolbox.framework */; };
 		18E73E5F1893F4A20002DEBA /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 18E73E561893F4A20002DEBA /* Default-568h@2x.png */; };
@@ -412,6 +415,11 @@
 		180A83BB18BA1A4C0079E6C9 /* shaderNoLight.frag */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = shaderNoLight.frag; sourceTree = "<group>"; };
 		180A83BC18BA1A4C0079E6C9 /* shaderNoLight.vert */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = shaderNoLight.vert; sourceTree = "<group>"; };
 		180A83D918BA1A780079E6C9 /* data */ = {isa = PBXFileReference; lastKnownFileType = folder; path = data; sourceTree = "<group>"; };
+		181FD39518C2147100F2C204 /* CoreAudio.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreAudio.framework; path = System/Library/Frameworks/CoreAudio.framework; sourceTree = SDKROOT; };
+		181FD39718C2147A00F2C204 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
+		181FD3A118C22DD200F2C204 /* openALSupport_readme.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = openALSupport_readme.h; sourceTree = "<group>"; };
+		181FD3A218C233EC00F2C204 /* MyOpenALSupport.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MyOpenALSupport.h; sourceTree = "<group>"; };
+		181FD3A318C2353A00F2C204 /* MyOpenALSupport.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = MyOpenALSupport.c; sourceTree = "<group>"; };
 		1870661516C4662A00CDA573 /* OpenAL.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenAL.framework; path = System/Library/Frameworks/OpenAL.framework; sourceTree = SDKROOT; };
 		1870661716C466F100CDA573 /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
 		18E73E561893F4A20002DEBA /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
@@ -447,6 +455,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				181FD39818C2147A00F2C204 /* AVFoundation.framework in Frameworks */,
+				181FD39618C2147100F2C204 /* CoreAudio.framework in Frameworks */,
 				1870661816C466F100CDA573 /* AudioToolbox.framework in Frameworks */,
 				1870661616C4662A00CDA573 /* OpenAL.framework in Frameworks */,
 				35DF6460138C427E00FF9459 /* OpenGLES.framework in Frameworks */,
@@ -463,6 +473,7 @@
 		180A820418BA162E0079E6C9 /* c3dEngine */ = {
 			isa = PBXGroup;
 			children = (
+				181FD39D18C2291900F2C204 /* openALSupport */,
 				180A820C18BA162F0079E6C9 /* common */,
 				180A821118BA162F0079E6C9 /* core */,
 				180A820518BA162F0079E6C9 /* appFrame */,
@@ -848,6 +859,16 @@
 			path = notUsedYet;
 			sourceTree = "<group>";
 		};
+		181FD39D18C2291900F2C204 /* openALSupport */ = {
+			isa = PBXGroup;
+			children = (
+				181FD3A218C233EC00F2C204 /* MyOpenALSupport.h */,
+				181FD3A318C2353A00F2C204 /* MyOpenALSupport.c */,
+				181FD3A118C22DD200F2C204 /* openALSupport_readme.h */,
+			);
+			path = openALSupport;
+			sourceTree = "<group>";
+		};
 		18E73E551893F4A20002DEBA /* resource */ = {
 			isa = PBXGroup;
 			children = (
@@ -897,6 +918,8 @@
 		35DF643F138C40D500FF9459 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				181FD39718C2147A00F2C204 /* AVFoundation.framework */,
+				181FD39518C2147100F2C204 /* CoreAudio.framework */,
 				1870661716C466F100CDA573 /* AudioToolbox.framework */,
 				1870661516C4662A00CDA573 /* OpenAL.framework */,
 				35DF645F138C427E00FF9459 /* OpenGLES.framework */,
@@ -1072,6 +1095,7 @@
 				180A827B18BA162F0079E6C9 /* c3dViewController.mm in Sources */,
 				180A837018BA165B0079E6C9 /* endPage.mm in Sources */,
 				5742830E18BDE35700D050D1 /* c3dPlane.cpp in Sources */,
+				181FD3A518C2353A00F2C204 /* MyOpenALSupport.c in Sources */,
 				180A836F18BA165B0079E6C9 /* descPage3.mm in Sources */,
 				180A837518BA165B0079E6C9 /* pausePage.mm in Sources */,
 				180A82AE18BA162F0079E6C9 /* triangleWithNorm.cpp in Sources */,
