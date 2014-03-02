@@ -163,9 +163,9 @@ public:
     }*/
     
 
-    Cc3dALSource *createBufferAndSource(const string&filePath,const string&name,bool isReuse=true){
+    Cc3dALSource *createBufferAndSource(const string&filePath,const string&name,bool isReuseSource=true){
         Cc3dALBuffer*pBuffer=createBuffer(filePath);
-        return createSource(pBuffer,name,isReuse);
+        return createSource(pBuffer,name,isReuseSource);
     }
     void stopAllPlayingSource(){
         int nSource=(int)m_sourceList.size();
