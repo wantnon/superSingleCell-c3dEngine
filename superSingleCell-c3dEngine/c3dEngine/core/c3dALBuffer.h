@@ -56,7 +56,7 @@ protected:
     void initBuffer(const string&fileNameFull,void*&_data,ALuint&_buffer);
 protected:
     ALuint m_buffer;
-    void* m_data;
+    void* m_data;//this member is copy from MusicCube sample on apple developer web site
     string m_filePath;
     
 };
