@@ -25,8 +25,6 @@ protected:
     ALuint m_source;
     string m_name;
     Cc3dALBuffer*m_buffer;
-    bool m_isStopedByStopFunc;//是否通过调用stop函数停止了
-    bool m_isPausedByPauseFunc;//是否通过调用pause函数停止了
 public:
     
     Cc3dALSource(){
@@ -68,14 +66,12 @@ public:
     }
     void play(){//对于已停止或正在播放的source重新开始播放，对于暂停的source继续播放
         if(m_source==0)return;
-        m_isStopedByStopFunc=false;
-        m_isPausedByPauseFunc=false;
         alSourcePlay(m_source);
     }
     ALint getState()const {
         if(m_source==0){
             cout<<"source==0,不能获得状态!"<<endl;
-            exit(0);
+            assert(false);
         };
         ALint sourceState;
         alGetSourcei(m_source, AL_SOURCE_STATE, &sourceState);
@@ -113,8 +109,6 @@ public:
     //如果没在play，则play
     {
         if(m_source==0)return;
-        m_isStopedByStopFunc=false;
-        m_isPausedByPauseFunc=false;
         ALint sourceState;
         alGetSourcei(m_source, AL_SOURCE_STATE, &sourceState);
         if(sourceState!=AL_PLAYING){
@@ -132,12 +126,7 @@ public:
     
     void stop(){
         if(m_source==0)return;
-        if(m_isStopedByStopFunc)return;
-        if(this->getIsPlaying()){
-            alSourceStop(m_source);
-            
-        }
-        m_isStopedByStopFunc=true;
+        alSourceStop(m_source);
     }
     float getGain(){
         if(m_source==0)return 0;
@@ -147,7 +136,6 @@ public:
     }
     void gainDec(float dGain){//减小音量
         if(m_source==0)return;
-        if(m_isStopedByStopFunc)return;
         float gain;
         alGetSourcef(m_source, AL_GAIN, &gain);
         float newGain=maxf(0,gain-dGain);//音量不小于0
@@ -156,9 +144,7 @@ public:
     }
     void pause(){
         if(m_source==0)return;
-        if(m_isPausedByPauseFunc)return;
         alSourcePause(m_source);
-        m_isPausedByPauseFunc=true;
         
     }
     void initSource(Cc3dALBuffer*pBuffer);
