@@ -34,7 +34,7 @@ public:
     void save(const CbossCell &_cell){
         isEmpty=false;
         m_transform=_cell.getTransform();
-        playingALSourcePtrList=Cc3dAudioCache::sharedAudioCache()->get_playingSourcePtrList();
+        playingALSourcePtrList=Cc3dAudioCache::sharedAudioCache()->getPlayingSourceList();
     }
     void recover(CbossCell &_cell)const {
         _cell.setTransform(m_transform);

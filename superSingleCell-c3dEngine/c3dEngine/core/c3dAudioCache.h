@@ -144,7 +144,7 @@ public:
 
     
     }
-    void removeBuffer(Cc3dALBuffer*buffer)
+ /*   void removeBuffer(Cc3dALBuffer*buffer)
     {
         int index=getBufferIndex(buffer);
         assert(index!=-1);
@@ -160,10 +160,9 @@ public:
         m_sourceList.erase(m_sourceList.begin()+index);
         
         
-    }
+    }*/
     
-    Cc3dALBuffer *CreateBuffer(const string&_filePathShort);
-    Cc3dALSource *CreateSource(Cc3dALBuffer*pBuffer,const string&name,bool isReuse=true);
+
     Cc3dALSource *CreateBufferAndSource(const string&_filePathShort,const string&name,bool isReuse=true){
         Cc3dALBuffer*pBuffer=CreateBuffer(_filePathShort);
         return CreateSource(pBuffer,name,isReuse);
@@ -184,15 +183,15 @@ public:
             }
         }
     }
-    vector<Cc3dALSource*> get_playingSourcePtrList()const {
-        vector<Cc3dALSource*> playingSourcePtrList;
+    vector<Cc3dALSource*> getPlayingSourceList()const {
+        vector<Cc3dALSource*> playingSourceList;
         int nSource=(int)m_sourceList.size();
         for(int i=0;i<nSource;i++){
             if(m_sourceList[i]->getIsPlaying()){
-                playingSourcePtrList.push_back(m_sourceList[i]);
+                playingSourceList.push_back(m_sourceList[i]);
             }
         }
-        return playingSourcePtrList;
+        return playingSourceList;
     }
     void continuePausedSource(){//继续播放所有暂停的source
         int nSource=(int)m_sourceList.size();
@@ -224,6 +223,9 @@ public:
         cout<<"-----------------------------------"<<endl;
         
     }
+protected:
+    Cc3dALBuffer *CreateBuffer(const string&_filePathShort);
+    Cc3dALSource *CreateSource(Cc3dALBuffer*pBuffer,const string&name,bool isReuse=true);
     
     
     
