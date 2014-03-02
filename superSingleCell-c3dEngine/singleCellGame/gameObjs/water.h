@@ -30,7 +30,7 @@ public:
     Cc3dALSource *pALSource_water_gulu;
 	float Horizon;//高度
     float flow_s,flow_t;//实现流动贴图
-    float maxAlpha;//reflectSquare的最大
+//    float maxAlpha;//reflectSquare的最大
     
     
 
@@ -43,7 +43,7 @@ public:
         hurtValue=0;//默认无伤害
         sRepeat_reflect=tRepeat_reflect=1;
         isExist=true;
-        maxAlpha=1.0;
+    //    maxAlpha=1.0;
         m_reflectSquare=NULL;
         m_centerSquare=NULL;
         m_arabesquiticSquare=NULL;

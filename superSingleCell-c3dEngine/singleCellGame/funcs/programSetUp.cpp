@@ -166,7 +166,6 @@ void programSetUp(){
         Cc3dProgram*program=Cc3dProgramCache::sharedProgramCache()->createProgram(programName+".vert", programName+".frag", programName);
         program->attachUniform("projectionModelview");
         program->attachUniform("Texture");
-        program->attachUniform("alphaMap");
         program->attachUniform("maxAlpha");
     }
 

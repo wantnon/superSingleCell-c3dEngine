@@ -134,7 +134,6 @@ void passUnifoCallback_water(Cc3dNode*node, Cc3dProgram*program){
     Cc3dMatrix4 PVMmat=projMat*viewMat*modelMat;
     program->passUnifoValue1i("Texture", 0);//texture attach point 0
     program->passUnifoValueMatrixNfv("projectionModelview", PVMmat.getArray(), PVMmat.getArrayLen());
-    program->passUnifoValue1i("alphaMap", 3);
     program->passUnifoValue1f("maxAlpha",0.5);//0.6);
 }
 void passUnifoCallback_texOnly_useTexAsAlpha(Cc3dNode*node, Cc3dProgram*program){

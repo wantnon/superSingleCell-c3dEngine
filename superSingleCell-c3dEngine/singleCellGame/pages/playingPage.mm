@@ -806,13 +806,6 @@ bool  CplayingPage::init(int level){
     //--water
     
     {
- /*       //设置菲涅耳alpha纹理
-        glActiveTexture(GL_TEXTURE3);
-        Cc3dTexture* texture_Fresnel_alpha=Cc3dTextureCache::sharedTextureCache()->addImage(rootPath+"/water/Fresnel_alpha.png");
-        assert(texture_Fresnel_alpha);
-        glBindTexture(GL_TEXTURE_2D, texture_Fresnel_alpha->getID());
-        glActiveTexture(GL_TEXTURE0);//回到texture0
-        */
         bool haveWater=Cc3dFileUtils::sharedFileUtils()->getIsFileOrClipExist(rootPath+"/water");
         if(haveWater){
             m_water=new Cwater();
@@ -916,12 +909,6 @@ bool  CplayingPage::init(int level){
             //water停止水波动画，即将水波动画播到最后
             m_water->getCenterSquare()->useLastTex();
             
-    /*        //设置菲涅耳alpha纹理
-            glActiveTexture(GL_TEXTURE3);
-            GLuint texture_Fresnel_alpha=Cc3dTextureCache::sharedTextureCache()->addImage(rootPath+"/water/Fresnel_alpha.png")->getID();
-            glBindTexture(GL_TEXTURE_2D, texture_Fresnel_alpha);
-            glActiveTexture(GL_TEXTURE0);//回到texture0
-       */
             m_water->setCamera(camera);
         }else{
             m_water->set_isExist(false) ;

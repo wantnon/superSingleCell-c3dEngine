@@ -1036,8 +1036,8 @@ void  CplayingPage::logic(){
         //reflectSquare
         m_water->update_reflectSquare(cellpos);
         m_water->submitStream_reflectSquare();
-        //设置water.maxAlpha
-        m_water->maxAlpha=max(0.45,0.68-(cellpos.y()-m_water->Horizon)*0.0005);
+//        //设置water.maxAlpha
+//        m_water->maxAlpha=max(0.45,0.68-(cellpos.y()-m_water->Horizon)*0.0005);
     }
     
     //更新ground
