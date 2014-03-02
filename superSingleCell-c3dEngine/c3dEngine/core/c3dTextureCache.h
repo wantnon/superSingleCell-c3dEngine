@@ -30,7 +30,7 @@ public:
     
     void removeUnusedTextures(){
         int n=(int)m_textureList.size();
-        for(int i=n;i<n;i++){
+        for(int i=0;i<n;i++){
             Cc3dTexture*texture=m_textureList[i];
             if(texture->getRetainCount()==1){
                 m_textureList.erase(m_textureList.begin()+i);
