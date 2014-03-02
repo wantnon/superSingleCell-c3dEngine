@@ -806,6 +806,13 @@ bool  CplayingPage::init(int level){
     //--water
     
     {
+ /*       //设置菲涅耳alpha纹理
+        glActiveTexture(GL_TEXTURE3);
+        Cc3dTexture* texture_Fresnel_alpha=Cc3dTextureCache::sharedTextureCache()->addImage(rootPath+"/water/Fresnel_alpha.png");
+        assert(texture_Fresnel_alpha);
+        glBindTexture(GL_TEXTURE_2D, texture_Fresnel_alpha->getID());
+        glActiveTexture(GL_TEXTURE0);//回到texture0
+        */
         bool haveWater=Cc3dFileUtils::sharedFileUtils()->getIsFileOrClipExist(rootPath+"/water");
         if(haveWater){
             m_water=new Cwater();
@@ -829,6 +836,7 @@ bool  CplayingPage::init(int level){
                     preflectSquare->setPos(pos);
                 };
                 preflectSquare->getModel()->getMeshByIndex(0)->getIndexVBO()->genBuffers();
+        //        cout<<"reflect map path:"<<rootPath+"/water/reflect.png"<<endl;
                 Cc3dTexture* ptexture_reflect=Cc3dTextureCache::sharedTextureCache()->addImage(rootPath+"/water/reflect.png");
                 preflectSquare->getModel()->getMeshByIndex(0)->setTexture(ptexture_reflect);
                 preflectSquare->getModel()->getMeshByIndex(0)->submitIndex(GL_STATIC_DRAW);
@@ -839,6 +847,8 @@ bool  CplayingPage::init(int level){
                 preflectSquare->setCamera(camera);
                 preflectSquare->getModel()->setIsWriteDepthBuffer(false);
                 m_water->setReflectSquare(preflectSquare);
+                
+      //          preflectSquare->setIsVisible(true);
             }
             //ptexSquare
             {
@@ -863,6 +873,8 @@ bool  CplayingPage::init(int level){
                 pArabesquiticSquare->setCamera(camera);
                 pArabesquiticSquare->getModel()->setIsWriteDepthBuffer(false);
                 m_water->setArabesquiticSquare(pArabesquiticSquare);
+                
+         //       pArabesquiticSquare->setIsVisible(true);
             }
             
             //pcenterSquare
@@ -892,6 +904,8 @@ bool  CplayingPage::init(int level){
                 m_water->setCenterSquare(pcenterSquare);
                 m_water->setVisitDrawOrder(999);
                 
+            //    pcenterSquare->setIsVisible(false);
+                
             }
             //声音
             m_water->pALSource_water_gulu=Cc3dAudioCache::sharedAudioCache()->CreateBufferAndSource("data/global/audio/water_gulu.wav","water_gulu");
@@ -901,12 +915,13 @@ bool  CplayingPage::init(int level){
 
             //water停止水波动画，即将水波动画播到最后
             m_water->getCenterSquare()->useLastTex();
-            //设置菲涅耳alpha纹理
+            
+    /*        //设置菲涅耳alpha纹理
             glActiveTexture(GL_TEXTURE3);
             GLuint texture_Fresnel_alpha=Cc3dTextureCache::sharedTextureCache()->addImage(rootPath+"/water/Fresnel_alpha.png")->getID();
             glBindTexture(GL_TEXTURE_2D, texture_Fresnel_alpha);
             glActiveTexture(GL_TEXTURE0);//回到texture0
-       
+       */
             m_water->setCamera(camera);
         }else{
             m_water->set_isExist(false) ;
@@ -968,6 +983,8 @@ bool  CplayingPage::init(int level){
             m_seabed->setCamera(camera);
             //制作和提交seabed
             m_seabed->getModelList()[0]->submit(GL_STATIC_DRAW);
+            
+    //        m_seabed->setIsVisible(false);
         }
         
     }
