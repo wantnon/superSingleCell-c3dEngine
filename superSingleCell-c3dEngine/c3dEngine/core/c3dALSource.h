@@ -40,17 +40,7 @@ public:
         C3DCHECK_AL_ERROR_DEBUG();
     }
     Cc3dALBuffer*getBuffer()const{return m_buffer;}
-    void setBuffer(Cc3dALBuffer*buffer){
-        assert(buffer);
-        if(m_buffer==NULL){
-            m_buffer=buffer;
-            buffer->retain();
-        }else{
-            m_buffer->release();
-            m_buffer=buffer;
-            m_buffer->retain();
-        }
-    }
+    
     
     bool getIsValidSource()const{
         bool isValid=(m_source!=0&&alIsSource(m_source));
@@ -60,10 +50,7 @@ public:
         if(m_source==0)return;
         alSourcefv(m_source, AL_POSITION,pos.getArray());
     }
-    void setGain(float gain){
-        if(m_source==0)return;
-        alSourcef(m_source, AL_GAIN, gain);
-    }
+
     void play(){//对于已停止或正在播放的source重新开始播放，对于暂停的source继续播放
         if(m_source==0)return;
         alSourcePlay(m_source);
@@ -128,6 +115,11 @@ public:
         if(m_source==0)return;
         alSourceStop(m_source);
     }
+    void setGain(float gain){
+        if(m_source==0)return;
+        gain=maxf(0,gain);//gain不小于0
+        alSourcef(m_source, AL_GAIN, gain);
+    }
     float getGain(){
         if(m_source==0)return 0;
         float gain;
@@ -140,7 +132,6 @@ public:
         alGetSourcef(m_source, AL_GAIN, &gain);
         float newGain=maxf(0,gain-dGain);//音量不小于0
         alSourcef(m_source, AL_GAIN, newGain);
-        if(newGain==0)stop();//如果音量等于0，则结束播放
     }
     void pause(){
         if(m_source==0)return;
@@ -150,6 +141,18 @@ public:
     void initSource(Cc3dALBuffer*pBuffer);
     string getName()const {return m_name;}
     void setName(const string&name){m_name=name;}
+protected:
+    void setBuffer(Cc3dALBuffer*buffer){
+        assert(buffer);
+        if(m_buffer==NULL){
+            m_buffer=buffer;
+            buffer->retain();
+        }else{
+            m_buffer->release();
+            m_buffer=buffer;
+            m_buffer->retain();
+        }
+    }
 };
 
 
