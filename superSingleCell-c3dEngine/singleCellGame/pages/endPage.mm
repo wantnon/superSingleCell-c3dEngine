@@ -99,11 +99,11 @@ bool CendPage::init(){
         addChild(m_homeKey);
     }
     //----switchPage
-    Cc3dALSource*pALSource_switchPage=Cc3dAudioCache::sharedAudioCache()->CreateBufferAndSource("data/global/audio/switchPage.wav","switchPage");
+    Cc3dALSource*pALSource_switchPage=Cc3dAudioCache::sharedAudioCache()->createBufferAndSource("data/global/audio/switchPage.wav","switchPage");
     this->addALSource(pALSource_switchPage);
     //----endMusic
     {
-        Cc3dALSource*pALSource_endMusic=Cc3dAudioCache::sharedAudioCache()->CreateBufferAndSource("data/global/audio/endMusic.wav","endMusic");
+        Cc3dALSource*pALSource_endMusic=Cc3dAudioCache::sharedAudioCache()->createBufferAndSource("data/global/audio/endMusic.wav","endMusic");
         this->addALSource(pALSource_endMusic);
         //重设声音源位置和听者位姿
         //听者放在(0,0,0)，声源放在(0,0,-1)

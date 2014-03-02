@@ -47,11 +47,11 @@ bool CstartPage::init(){
         addChild(m_quad_startPage_backGround);
     }
     //----startMusic
-    Cc3dALSource*pALSource_startMusic=Cc3dAudioCache::sharedAudioCache()->CreateBufferAndSource("data/global/audio/startMusic.wav","startMusic");
+    Cc3dALSource*pALSource_startMusic=Cc3dAudioCache::sharedAudioCache()->createBufferAndSource("data/global/audio/startMusic.wav","startMusic");
     this->addALSource(pALSource_startMusic);
     pALSource_startMusic->setIsLooping(true);
     //----switchPage
-    Cc3dALSource*pALSource_switchPage=Cc3dAudioCache::sharedAudioCache()->CreateBufferAndSource("data/global/audio/switchPage.wav","switchPage");
+    Cc3dALSource*pALSource_switchPage=Cc3dAudioCache::sharedAudioCache()->createBufferAndSource("data/global/audio/switchPage.wav","switchPage");
     this->addALSource(pALSource_switchPage);
     
     

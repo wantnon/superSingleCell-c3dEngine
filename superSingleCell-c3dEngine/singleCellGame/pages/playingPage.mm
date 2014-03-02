@@ -584,24 +584,24 @@ bool  CplayingPage::init(int level){
     
     //声音
     {
-     //   m_cell->pALSource_ya=Cc3dAudioCache::sharedAudioCache()->CreateBufferAndSource("data/global/audio/ya.wav");
-     //   m_cell->pALSsource_fall_in_water=Cc3dAudioCache::sharedAudioCache()->CreateBufferAndSource("data/global/audio/fall_in_water.wav");
-     //   m_cell->pALSource_water_puddle=Cc3dAudioCache::sharedAudioCache()->CreateBufferAndSource("data/global/audio/water_puddle.wav");
-     //   m_cell->pALSource_move_shasha=Cc3dAudioCache::sharedAudioCache()->CreateBufferAndSource("data/global/audio/move_shasha.wav");
-     //   m_cell->pALSource_alert_out_of_fuel=Cc3dAudioCache::sharedAudioCache()->CreateBufferAndSource("data/global/audio/alert_out_of_fuel.wav");
-     //   m_cell->pALSource_oops=Cc3dAudioCache::sharedAudioCache()->CreateBufferAndSource("data/global/audio/oops.wav");
-     //   m_cell->pALSource_fallFlat_paa_oops=Cc3dAudioCache::sharedAudioCache()->CreateBufferAndSource("data/global/audio/paa_oops.wav");
-     //   m_cell->pALSource_onFire=Cc3dAudioCache::sharedAudioCache()->CreateBufferAndSource("data/global/audio/onFire.wav");
+     //   m_cell->pALSource_ya=Cc3dAudioCache::sharedAudioCache()->createBufferAndSource("data/global/audio/ya.wav");
+     //   m_cell->pALSsource_fall_in_water=Cc3dAudioCache::sharedAudioCache()->createBufferAndSource("data/global/audio/fall_in_water.wav");
+     //   m_cell->pALSource_water_puddle=Cc3dAudioCache::sharedAudioCache()->createBufferAndSource("data/global/audio/water_puddle.wav");
+     //   m_cell->pALSource_move_shasha=Cc3dAudioCache::sharedAudioCache()->createBufferAndSource("data/global/audio/move_shasha.wav");
+     //   m_cell->pALSource_alert_out_of_fuel=Cc3dAudioCache::sharedAudioCache()->createBufferAndSource("data/global/audio/alert_out_of_fuel.wav");
+     //   m_cell->pALSource_oops=Cc3dAudioCache::sharedAudioCache()->createBufferAndSource("data/global/audio/oops.wav");
+     //   m_cell->pALSource_fallFlat_paa_oops=Cc3dAudioCache::sharedAudioCache()->createBufferAndSource("data/global/audio/paa_oops.wav");
+     //   m_cell->pALSource_onFire=Cc3dAudioCache::sharedAudioCache()->createBufferAndSource("data/global/audio/onFire.wav");
      //   m_cell->pALSource_onFire->setIsLooping(true);
         
-        Cc3dALSource*pALSource_ya=Cc3dAudioCache::sharedAudioCache()->CreateBufferAndSource("data/global/audio/ya.wav","ya");
-        Cc3dALSource*pALSsource_fall_in_water=Cc3dAudioCache::sharedAudioCache()->CreateBufferAndSource("data/global/audio/fall_in_water.wav","fall_in_water");
-        Cc3dALSource*pALSource_water_puddle=Cc3dAudioCache::sharedAudioCache()->CreateBufferAndSource("data/global/audio/water_puddle.wav","water_puddle");
-        Cc3dALSource*pALSource_move_shasha=Cc3dAudioCache::sharedAudioCache()->CreateBufferAndSource("data/global/audio/move_shasha.wav","move_shasha");
-        Cc3dALSource*pALSource_alert_out_of_fuel=Cc3dAudioCache::sharedAudioCache()->CreateBufferAndSource("data/global/audio/alert_out_of_fuel.wav","alert_out_of_fuel");
-        Cc3dALSource*pALSource_oops=Cc3dAudioCache::sharedAudioCache()->CreateBufferAndSource("data/global/audio/oops.wav","oops");
-        Cc3dALSource*pALSource_fallFlat_paa_oops=Cc3dAudioCache::sharedAudioCache()->CreateBufferAndSource("data/global/audio/paa_oops.wav","fallFlat_paa_oops");
-        Cc3dALSource*pALSource_onFire=Cc3dAudioCache::sharedAudioCache()->CreateBufferAndSource("data/global/audio/onFire.wav","onFire");
+        Cc3dALSource*pALSource_ya=Cc3dAudioCache::sharedAudioCache()->createBufferAndSource("data/global/audio/ya.wav","ya");
+        Cc3dALSource*pALSsource_fall_in_water=Cc3dAudioCache::sharedAudioCache()->createBufferAndSource("data/global/audio/fall_in_water.wav","fall_in_water");
+        Cc3dALSource*pALSource_water_puddle=Cc3dAudioCache::sharedAudioCache()->createBufferAndSource("data/global/audio/water_puddle.wav","water_puddle");
+        Cc3dALSource*pALSource_move_shasha=Cc3dAudioCache::sharedAudioCache()->createBufferAndSource("data/global/audio/move_shasha.wav","move_shasha");
+        Cc3dALSource*pALSource_alert_out_of_fuel=Cc3dAudioCache::sharedAudioCache()->createBufferAndSource("data/global/audio/alert_out_of_fuel.wav","alert_out_of_fuel");
+        Cc3dALSource*pALSource_oops=Cc3dAudioCache::sharedAudioCache()->createBufferAndSource("data/global/audio/oops.wav","oops");
+        Cc3dALSource*pALSource_fallFlat_paa_oops=Cc3dAudioCache::sharedAudioCache()->createBufferAndSource("data/global/audio/paa_oops.wav","fallFlat_paa_oops");
+        Cc3dALSource*pALSource_onFire=Cc3dAudioCache::sharedAudioCache()->createBufferAndSource("data/global/audio/onFire.wav","onFire");
         
         m_cell->addALSource(pALSource_ya);
         m_cell->addALSource(pALSsource_fall_in_water);
@@ -901,7 +901,7 @@ bool  CplayingPage::init(int level){
                 
             }
             //声音
-            m_water->pALSource_water_gulu=Cc3dAudioCache::sharedAudioCache()->CreateBufferAndSource("data/global/audio/water_gulu.wav","water_gulu");
+            m_water->pALSource_water_gulu=Cc3dAudioCache::sharedAudioCache()->createBufferAndSource("data/global/audio/water_gulu.wav","water_gulu");
             //----
             m_water->set_isExist(true);
             m_water->loadConfig(rootPath+"/water/config.txt");
@@ -996,7 +996,7 @@ bool  CplayingPage::init(int level){
     
     //----shotBlastSet
     {
-        Cc3dALSource *pALSource_bigBlast=Cc3dAudioCache::sharedAudioCache()->CreateBufferAndSource("data/global/audio/bigBlast.wav","bigBlast");
+        Cc3dALSource *pALSource_bigBlast=Cc3dAudioCache::sharedAudioCache()->createBufferAndSource("data/global/audio/bigBlast.wav","bigBlast");
         int nBlast=40;
         int nBlast_big=10;
         vector<string> texClipPathShortList;
@@ -1102,8 +1102,8 @@ bool  CplayingPage::init(int level){
     
     //--mobilePlatformSet
     {
-        Cc3dALSource*pALSource_woodBreak=Cc3dAudioCache::sharedAudioCache()->CreateBufferAndSource("data/global/audio/woodBreak.wav","destroySound");
-        Cc3dALSource*pALSource_plat_bouncing=Cc3dAudioCache::sharedAudioCache()->CreateBufferAndSource("data/global/audio/bouncing.wav","plat_bouncing");
+        Cc3dALSource*pALSource_woodBreak=Cc3dAudioCache::sharedAudioCache()->createBufferAndSource("data/global/audio/woodBreak.wav","destroySound");
+        Cc3dALSource*pALSource_plat_bouncing=Cc3dAudioCache::sharedAudioCache()->createBufferAndSource("data/global/audio/bouncing.wav","plat_bouncing");
         m_mobilePlatformSet.loadConfig(rootPath+"/modelInfo/mobilePlatformInfo/mobilePlatformInfo.txt");
         int nPlat=(int)m_mobilePlatformSet.getActorCount();
         for(int i=0;i<nPlat;i++){
@@ -1169,11 +1169,11 @@ bool  CplayingPage::init(int level){
             }else{
                 string audioFilePathShort="data/global/audio/";
                 audioFilePathShort+=pmobilePlatform->fileName_motionSoundAfterTrigger;
-                Cc3dALSource*source=Cc3dAudioCache::sharedAudioCache()->CreateBufferAndSource(audioFilePathShort,"plat_motion",false);
+                Cc3dALSource*source=Cc3dAudioCache::sharedAudioCache()->createBufferAndSource(audioFilePathShort,"plat_motion",false);
                 source->setIsLooping(pmobilePlatform->motionSoundAfterTrigger_looping);
                 pmobilePlatform->addALSource(source);
                 
-                //    pmobilePlatform->pALSource_plat_motion=Cc3dAudioCache::sharedAudioCache()->CreateBufferAndSource(audioFilePathShort);
+                //    pmobilePlatform->pALSource_plat_motion=Cc3dAudioCache::sharedAudioCache()->createBufferAndSource(audioFilePathShort);
                 //    pmobilePlatform->pALSource_plat_motion->setIsLooping(pmobilePlatform->motionSoundAfterTrigger_looping);
                 
             }
@@ -1251,8 +1251,8 @@ bool  CplayingPage::init(int level){
             if(pbubble->fileName_sound_eaten!="null"){
                 string filePathShort_bubble_eaten="data/global/audio/bubble_eaten/";
                 filePathShort_bubble_eaten+=pbubble->fileName_sound_eaten;
-             //   pbubble->pALSource_eaten=Cc3dAudioCache::sharedAudioCache()->CreateBufferAndSource(filePathShort_bubble_eaten);
-                Cc3dALSource*pALSource_eaten=Cc3dAudioCache::sharedAudioCache()->CreateBufferAndSource(filePathShort_bubble_eaten,"eaten");
+             //   pbubble->pALSource_eaten=Cc3dAudioCache::sharedAudioCache()->createBufferAndSource(filePathShort_bubble_eaten);
+                Cc3dALSource*pALSource_eaten=Cc3dAudioCache::sharedAudioCache()->createBufferAndSource(filePathShort_bubble_eaten,"eaten");
                 pbubble->addALSource(pALSource_eaten);
             }
             //----pbubble->pmolecule
@@ -1495,11 +1495,11 @@ bool  CplayingPage::init(int level){
             string audioFilePathShort="data/global/audio/backGroundMusic/";
             audioFilePathShort+=m_levelBackGroundMusicCube->audioFileName;
           //  assert(levelBackGroundMusicCube.pALSource->getIsValidSource()==false);
-          //  m_levelBackGroundMusicCube->pALSource=Cc3dAudioCache::sharedAudioCache()->CreateBufferAndSource(audioFilePathShort);
+          //  m_levelBackGroundMusicCube->pALSource=Cc3dAudioCache::sharedAudioCache()->createBufferAndSource(audioFilePathShort);
           //  m_levelBackGroundMusicCube->pALSource->setIsLooping(true);
           //  m_levelBackGroundMusicCube->pALSource->setGain(1.0);
           //  m_levelBackGroundMusicCube->pALSource->updatePosition(m_levelBackGroundMusicCube->sourcePos);
-            Cc3dALSource*source=Cc3dAudioCache::sharedAudioCache()->CreateBufferAndSource(audioFilePathShort,"levelbackGroundMusic");
+            Cc3dALSource*source=Cc3dAudioCache::sharedAudioCache()->createBufferAndSource(audioFilePathShort,"levelbackGroundMusic");
             m_levelBackGroundMusicCube->addALSource(source);
             m_levelBackGroundMusicCube->getALSourceByName("levelbackGroundMusic")->setIsLooping(true);
             m_levelBackGroundMusicCube->getALSourceByName("levelbackGroundMusic")->setGain(1.0);
@@ -2223,13 +2223,13 @@ bool  CplayingPage::init(int level){
     
     //-----------music
     //----levelDone
-    Cc3dALSource*pALSource_levelDone=Cc3dAudioCache::sharedAudioCache()->CreateBufferAndSource("data/global/audio/level_done.wav","levelDone");
+    Cc3dALSource*pALSource_levelDone=Cc3dAudioCache::sharedAudioCache()->createBufferAndSource("data/global/audio/level_done.wav","levelDone");
     this->addALSource(pALSource_levelDone);
     //----gameOver
-    Cc3dALSource*pALSource_gameOver=Cc3dAudioCache::sharedAudioCache()->CreateBufferAndSource("data/global/audio/gameOver.wav","gameOver");
+    Cc3dALSource*pALSource_gameOver=Cc3dAudioCache::sharedAudioCache()->createBufferAndSource("data/global/audio/gameOver.wav","gameOver");
     this->addALSource(pALSource_gameOver);
     //----switchPage
-    Cc3dALSource*pALSource_switchPage=Cc3dAudioCache::sharedAudioCache()->CreateBufferAndSource("data/global/audio/switchPage.wav","switchPage");
+    Cc3dALSource*pALSource_switchPage=Cc3dAudioCache::sharedAudioCache()->createBufferAndSource("data/global/audio/switchPage.wav","switchPage");
     this->addALSource(pALSource_switchPage);
     //---backGroundMusic
     m_levelBackGroundMusicCube->getALSourceByName("levelbackGroundMusic")->play();

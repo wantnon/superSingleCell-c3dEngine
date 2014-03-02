@@ -163,9 +163,9 @@ public:
     }*/
     
 
-    Cc3dALSource *CreateBufferAndSource(const string&_filePathShort,const string&name,bool isReuse=true){
-        Cc3dALBuffer*pBuffer=CreateBuffer(_filePathShort);
-        return CreateSource(pBuffer,name,isReuse);
+    Cc3dALSource *createBufferAndSource(const string&filePath,const string&name,bool isReuse=true){
+        Cc3dALBuffer*pBuffer=createBuffer(filePath);
+        return createSource(pBuffer,name,isReuse);
     }
     void stopAllPlayingSource(){
         int nSource=(int)m_sourceList.size();
@@ -224,8 +224,8 @@ public:
         
     }
 protected:
-    Cc3dALBuffer *CreateBuffer(const string&_filePathShort);
-    Cc3dALSource *CreateSource(Cc3dALBuffer*pBuffer,const string&name,bool isReuse=true);
+    Cc3dALBuffer *createBuffer(const string&_filePathShort);
+    Cc3dALSource *createSource(Cc3dALBuffer*pBuffer,const string&name,bool isReuse=true);
     
     
     

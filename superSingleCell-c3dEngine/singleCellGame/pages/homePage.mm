@@ -283,7 +283,7 @@ bool ChomePage::init(){
         
     }
     //----switchPage
-    Cc3dALSource*pALSource_switchPage=Cc3dAudioCache::sharedAudioCache()->CreateBufferAndSource("data/global/audio/switchPage.wav","switchPage");
+    Cc3dALSource*pALSource_switchPage=Cc3dAudioCache::sharedAudioCache()->createBufferAndSource("data/global/audio/switchPage.wav","switchPage");
     this->addALSource(pALSource_switchPage);
     return true;
 

@@ -20,7 +20,7 @@ Cc3dAudioCache*Cc3dAudioCache::sharedAudioCache(){
     
 }
 
-Cc3dALBuffer* Cc3dAudioCache::CreateBuffer(const string&_filePathShort)
+Cc3dALBuffer* Cc3dAudioCache::createBuffer(const string&_filePathShort)
 //根据文件名创建buffer
 {
  //   cout<<"buffer count:"<<(int)pBufferList.size()<<endl;
@@ -42,7 +42,7 @@ Cc3dALBuffer* Cc3dAudioCache::CreateBuffer(const string&_filePathShort)
     //返回pBuffer
     return pBuffer;
 }
-Cc3dALSource* Cc3dAudioCache::CreateSource( Cc3dALBuffer*buffer,const string&name,bool isReuse)
+Cc3dALSource* Cc3dAudioCache::createSource( Cc3dALBuffer*buffer,const string&name,bool isReuse)
 //根据buffer创建source
 {
  //   cout<<"source count: "<<(int)pSourceList.size()<<endl;
