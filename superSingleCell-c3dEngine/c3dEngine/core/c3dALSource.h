@@ -12,12 +12,13 @@
 #include <iostream>
 #include "c3dALBuffer.h"
 #include "c3dMath.h"
+/*
 //the max number of source play at the same time (maxSimultaneouslyPlay) have limit
 //http://stackoverflow.com/questions/2871905/openal-determine-maximum-sources
 //though it may allowed that to create more source than maxSimultaneouslyPlay,
 //we'd better limit the number of source to maxSimultaneouslyPlay
 const int maxSimultaneouslyPlay=32;//16
-
+*/
 
 class Cc3dALSource:public Cc3dObject
 {//多个source可以共用buffer
@@ -138,7 +139,7 @@ public:
         alSourcePause(m_source);
         
     }
-    void initSource(Cc3dALBuffer*pBuffer);
+    void initSource(Cc3dALBuffer*buffer);
     string getName()const {return m_name;}
     void setName(const string&name){m_name=name;}
 protected:

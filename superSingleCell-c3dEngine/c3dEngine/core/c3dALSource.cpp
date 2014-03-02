@@ -7,10 +7,10 @@
 //
 
 #include "c3dALSource.h"
-void Cc3dALSource::initSource(Cc3dALBuffer*pBuffer){
+void Cc3dALSource::initSource(Cc3dALBuffer*buffer){
     
-    assert(pBuffer);
-    setBuffer(pBuffer);
+    assert(buffer);
+    setBuffer(buffer);
     //  //记录buffer和isPermanent
     //  m_buffer=(Cc3dALBuffer*)pBuffer;
     //创建source
@@ -22,7 +22,7 @@ void Cc3dALSource::initSource(Cc3dALBuffer*pBuffer){
         exit(1);
     }
     //初始化source
-    alSourcei(m_source, AL_BUFFER, pBuffer->getBuffer());
+    alSourcei(m_source, AL_BUFFER, buffer->getBuffer());
     alSourcef(m_source, AL_PITCH, 1.0f);
     alSourcef(m_source, AL_GAIN, 1.0f);
     alSourcei(m_source, AL_LOOPING, AL_FALSE);
