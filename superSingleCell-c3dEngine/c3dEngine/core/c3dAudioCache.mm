@@ -38,7 +38,7 @@ Cc3dALBuffer* Cc3dAudioCache::CreateBuffer(const string&_filePathShort)
     cout<<"_filePathShort:"<<_filePathShort<<endl;
     pBuffer->initBuffer(_filePathShort);
     //将pBuffer加入pBufferList
-    pBufferList.push_back(pBuffer);
+    m_bufferList.push_back(pBuffer);
     //返回pBuffer
     return pBuffer;
 }
@@ -69,7 +69,7 @@ Cc3dALSource* Cc3dAudioCache::CreateSource( Cc3dALBuffer*buffer,const string&nam
     source->setName(name);
     source->initSource(buffer);
     //将pSource加入pSourceList
-    pSourceList.push_back(source);
+    m_sourceList.push_back(source);
     //返回pSource
     return source;
     

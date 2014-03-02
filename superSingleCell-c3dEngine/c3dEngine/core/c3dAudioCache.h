@@ -24,95 +24,95 @@ using namespace std;
 class Cc3dAudioCache
 {
 protected:
-    vector<Cc3dALSource*> pSourceList;
-    vector<Cc3dALBuffer*> pBufferList;
-    bool isRemoveUnusedBuffersAndSourcesOnNextFrame;
+    vector<Cc3dALSource*> m_sourceList;
+    vector<Cc3dALBuffer*> m_bufferList;
+    bool m_isRemoveUnusedBuffersAndSourcesOnNextFrame;
 public:
     static Cc3dAudioCache*sharedAudioCache();
     Cc3dAudioCache(){
-        isRemoveUnusedBuffersAndSourcesOnNextFrame=false;
+        m_isRemoveUnusedBuffersAndSourcesOnNextFrame=false;
     }
     virtual ~Cc3dAudioCache(){
         //----注意，一定要先释放source再释放buffer，否则出现al_invalid_operation错误
         //销毁source
-        int nSource=(int)pSourceList.size();
+        int nSource=(int)m_sourceList.size();
         for(int i=0;i<nSource;i++){
-            pSourceList[i]->release();
+            m_sourceList[i]->release();
         }
         //销毁buffer
-        int nBuffer=(int)pBufferList.size();
+        int nBuffer=(int)m_bufferList.size();
         for(int i=0;i<nBuffer;i++){
-            pBufferList[i]->release();
+            m_bufferList[i]->release();
         }
-        pSourceList.clear();
-        pBufferList.clear();
+        m_sourceList.clear();
+        m_bufferList.clear();
     }
     void removeUnusedBuffersAndSources(){
     //    stopAllPlayingSource();
         int sourceRemovedCount=0;
         //must release sources first and then release buffers
-        int nSource=(int)pSourceList.size();
+        int nSource=(int)m_sourceList.size();
         for(int i=0;i<nSource;i++){
-            Cc3dALSource*source=pSourceList[i];
+            Cc3dALSource*source=m_sourceList[i];
             if(source->getRetainCount()==1){
                 source->release();
-                pSourceList.erase(pSourceList.begin()+i);
+                m_sourceList.erase(m_sourceList.begin()+i);
                 i--;
                 nSource--;
                 sourceRemovedCount++;
             }
         }
     //    cout<<"source remove count:"<<sourceRemovedCount<<endl;
-        int nBuffer=(int)pBufferList.size();
+        int nBuffer=(int)m_bufferList.size();
         for(int i=0;i<nBuffer;i++){
-            Cc3dALBuffer*buffer=pBufferList[i];
+            Cc3dALBuffer*buffer=m_bufferList[i];
             if(buffer->getRetainCount()==1){
                 buffer->release();
-                pBufferList.erase(pBufferList.begin()+i);
+                m_bufferList.erase(m_bufferList.begin()+i);
                 i--;
                 nBuffer--;
             }
         }
     }
     void removeUnusedBuffersAndSourcesOnNextFrame(){
-        isRemoveUnusedBuffersAndSourcesOnNextFrame=true;
+        m_isRemoveUnusedBuffersAndSourcesOnNextFrame=true;
     }
     void performDelayRemoveUnusedBuffersAndSources(){
-        if(isRemoveUnusedBuffersAndSourcesOnNextFrame){
+        if(m_isRemoveUnusedBuffersAndSourcesOnNextFrame){
             removeUnusedBuffersAndSources();
-            isRemoveUnusedBuffersAndSourcesOnNextFrame=false;
+            m_isRemoveUnusedBuffersAndSourcesOnNextFrame=false;
         }
     }
     Cc3dALBuffer* getBufferByKey(const string&key)
     //看_filePathShort对应的buffer是否已经存在，如果存在返回指针，否则返回NULL
     {
-        int nBuffer=(int)pBufferList.size();
+        int nBuffer=(int)m_bufferList.size();
         for(int i=0;i<nBuffer;i++){
-            assert(pBufferList[i]);
-            if(pBufferList[i]->getFilePath()==key){
-                return pBufferList[i];
+            assert(m_bufferList[i]);
+            if(m_bufferList[i]->getFilePath()==key){
+                return m_bufferList[i];
             }
         }
         return NULL;
     }
     int getBufferIndex(const Cc3dALBuffer*buffer)const{//return -1 if failed
         assert(buffer);
-        int n=(int)pBufferList.size();
+        int n=(int)m_bufferList.size();
         for(int i=0;i<n;i++){
-            if(pBufferList[i]==buffer){
+            if(m_bufferList[i]==buffer){
                 return i;
             }
         }
         return -1;
         
     }
-    int getSourceCount()const{return (int)pSourceList.size();}
-    int getBufferCount()const{return (int)pBufferList.size();}
+    int getSourceCount()const{return (int)m_sourceList.size();}
+    int getBufferCount()const{return (int)m_bufferList.size();}
     int getSourceIndex(const Cc3dALSource*source)const{//return -1 if failed
         assert(source);
-        int n=(int)pSourceList.size();
+        int n=(int)m_sourceList.size();
         for(int i=0;i<n;i++){
-            if(pSourceList[i]==source){
+            if(m_sourceList[i]==source){
                 return i;
             }
         }
@@ -124,18 +124,18 @@ public:
         assert(buffer);
         assert(getBufferIndex(buffer)!=-1);
         vector<Cc3dALSource*> sourceList;
-        int nSource=(int)pSourceList.size();
+        int nSource=(int)sourceList.size();
         for(int i=0;i<nSource;i++){
-            if(pSourceList[i]->getBuffer()==buffer){
-                sourceList.push_back(pSourceList[i]);
+            if(sourceList[i]->getBuffer()==buffer){
+                sourceList.push_back(sourceList[i]);
             }
         }
         return sourceList;
     }
     Cc3dALSource*getSourceByName(const string&name){
-        int nSource=(int)pSourceList.size();
+        int nSource=(int)m_sourceList.size();
         for(int i=0;i<nSource;i++){
-            Cc3dALSource*source=pSourceList[i];
+            Cc3dALSource*source=m_sourceList[i];
             if(source->getName()==name){
                 return source;
             }
@@ -149,7 +149,7 @@ public:
         int index=getBufferIndex(buffer);
         assert(index!=-1);
         buffer->release();
-        pBufferList.erase(pBufferList.begin()+index);
+        m_bufferList.erase(m_bufferList.begin()+index);
 
     }
     void removeSource(Cc3dALSource*source)
@@ -157,7 +157,7 @@ public:
         int index=getSourceIndex(source);
         assert(index!=-1);
         source->release();
-        pSourceList.erase(pSourceList.begin()+index);
+        m_sourceList.erase(m_sourceList.begin()+index);
         
         
     }
@@ -169,36 +169,36 @@ public:
         return CreateSource(pBuffer,name,isReuse);
     }
     void stopAllPlayingSource(){
-        int nSource=(int)pSourceList.size();
+        int nSource=(int)m_sourceList.size();
         for(int i=0;i<nSource;i++){
-            if(pSourceList[i]->getIsPlaying()){
-                pSourceList[i]->stop();
+            if(m_sourceList[i]->getIsPlaying()){
+                m_sourceList[i]->stop();
             }
         }
     }
     void pauseAllPlayingSource(){
-        int nSource=(int)pSourceList.size();
+        int nSource=(int)m_sourceList.size();
         for(int i=0;i<nSource;i++){
-            if(pSourceList[i]->getIsPlaying()){
-                pSourceList[i]->pause();
+            if(m_sourceList[i]->getIsPlaying()){
+                m_sourceList[i]->pause();
             }
         }
     }
     vector<Cc3dALSource*> get_playingSourcePtrList()const {
         vector<Cc3dALSource*> playingSourcePtrList;
-        int nSource=(int)pSourceList.size();
+        int nSource=(int)m_sourceList.size();
         for(int i=0;i<nSource;i++){
-            if(pSourceList[i]->getIsPlaying()){
-                playingSourcePtrList.push_back(pSourceList[i]);
+            if(m_sourceList[i]->getIsPlaying()){
+                playingSourcePtrList.push_back(m_sourceList[i]);
             }
         }
         return playingSourcePtrList;
     }
     void continuePausedSource(){//继续播放所有暂停的source
-        int nSource=(int)pSourceList.size();
+        int nSource=(int)m_sourceList.size();
         for(int i=0;i<nSource;i++){
-            if(pSourceList[i]->getIsPaused()){
-                pSourceList[i]->play();
+            if(m_sourceList[i]->getIsPaused()){
+                m_sourceList[i]->play();
             }
         }
     }
@@ -206,21 +206,21 @@ public:
         //print all buffers and related sources
         cout<<"-----------------------------------"<<endl;
         
-        int nBuffer=(int)pBufferList.size();
+        int nBuffer=(int)m_bufferList.size();
         for(int i=0;i<nBuffer;i++){
-            Cc3dALBuffer*buffer=pBufferList[i];
+            Cc3dALBuffer*buffer=m_bufferList[i];
             cout<<"buffer:"<<buffer->getFilePath()<<endl;
             cout<<"related sources: ";
-            int nSource=(int)pSourceList.size();
+            int nSource=(int)m_sourceList.size();
             for(int j=0;j<nSource;j++){
-                Cc3dALSource*source=pSourceList[j];
+                Cc3dALSource*source=m_sourceList[j];
                 if(source->getBuffer()==buffer){
                     cout<<source->getName()<<" ";
                 }
             }cout<<endl;
         }
-        cout<<"total buffer:"<<(int)pBufferList.size()<<endl;
-        cout<<"total source:"<<(int)pSourceList.size()<<endl;
+        cout<<"total buffer:"<<(int)m_bufferList.size()<<endl;
+        cout<<"total source:"<<(int)m_sourceList.size()<<endl;
         cout<<"-----------------------------------"<<endl;
         
     }
