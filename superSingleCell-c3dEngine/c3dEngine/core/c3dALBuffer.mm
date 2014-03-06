@@ -47,7 +47,7 @@ void Cc3dALBuffer::initBuffer(const string&fileNameFull,void*&data,ALuint&buffer
     else
     {
         printf("Could not find file!\n");
-        m_data = NULL;
+        data=NULL;
         assert(false);
     }
 }
