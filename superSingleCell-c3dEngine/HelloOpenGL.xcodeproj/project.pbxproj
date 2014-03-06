@@ -14,7 +14,7 @@
 		180A827D18BA162F0079E6C9 /* c3dPathFunc.mm in Sources */ = {isa = PBXBuildFile; fileRef = 180A821018BA162F0079E6C9 /* c3dPathFunc.mm */; };
 		180A827E18BA162F0079E6C9 /* c3dActor.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 180A821218BA162F0079E6C9 /* c3dActor.cpp */; };
 		180A827F18BA162F0079E6C9 /* c3dActorSet.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 180A821418BA162F0079E6C9 /* c3dActorSet.cpp */; };
-		180A828018BA162F0079E6C9 /* c3dALBuffer.mm in Sources */ = {isa = PBXBuildFile; fileRef = 180A821718BA162F0079E6C9 /* c3dALBuffer.mm */; };
+		180A828018BA162F0079E6C9 /* c3dALBuffer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 180A821718BA162F0079E6C9 /* c3dALBuffer.cpp */; };
 		180A828118BA162F0079E6C9 /* c3dALdebug.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 180A821818BA162F0079E6C9 /* c3dALdebug.cpp */; };
 		180A828218BA162F0079E6C9 /* c3dALSource.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 180A821A18BA162F0079E6C9 /* c3dALSource.cpp */; };
 		180A828318BA162F0079E6C9 /* c3dAppState.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 180A821C18BA162F0079E6C9 /* c3dAppState.cpp */; };
@@ -167,6 +167,7 @@
 		35DF6454138C40D500FF9459 /* MainWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 35DF6452138C40D500FF9459 /* MainWindow.xib */; };
 		35DF645E138C427700FF9459 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 35DF645D138C427700FF9459 /* QuartzCore.framework */; };
 		35DF6460138C427E00FF9459 /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 35DF645F138C427E00FF9459 /* OpenGLES.framework */; };
+		571B336418C86C6600873087 /* c3dALPlatformDepend.mm in Sources */ = {isa = PBXBuildFile; fileRef = 571B336218C86C6600873087 /* c3dALPlatformDepend.mm */; };
 		5742830B18BDDECE00D050D1 /* c3dGeoMath.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5742830918BDDECE00D050D1 /* c3dGeoMath.cpp */; };
 		5742830E18BDE35700D050D1 /* c3dPlane.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5742830C18BDE35700D050D1 /* c3dPlane.cpp */; };
 /* End PBXBuildFile section */
@@ -187,7 +188,7 @@
 		180A821418BA162F0079E6C9 /* c3dActorSet.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = c3dActorSet.cpp; sourceTree = "<group>"; };
 		180A821518BA162F0079E6C9 /* c3dActorSet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = c3dActorSet.h; sourceTree = "<group>"; };
 		180A821618BA162F0079E6C9 /* c3dALBuffer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = c3dALBuffer.h; sourceTree = "<group>"; };
-		180A821718BA162F0079E6C9 /* c3dALBuffer.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = c3dALBuffer.mm; sourceTree = "<group>"; };
+		180A821718BA162F0079E6C9 /* c3dALBuffer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = c3dALBuffer.cpp; sourceTree = "<group>"; };
 		180A821818BA162F0079E6C9 /* c3dALdebug.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = c3dALdebug.cpp; sourceTree = "<group>"; };
 		180A821918BA162F0079E6C9 /* c3dALdebug.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = c3dALdebug.h; sourceTree = "<group>"; };
 		180A821A18BA162F0079E6C9 /* c3dALSource.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = c3dALSource.cpp; sourceTree = "<group>"; };
@@ -443,6 +444,8 @@
 		35DF6453138C40D500FF9459 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/MainWindow.xib; sourceTree = "<group>"; };
 		35DF645D138C427700FF9459 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		35DF645F138C427E00FF9459 /* OpenGLES.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGLES.framework; path = System/Library/Frameworks/OpenGLES.framework; sourceTree = SDKROOT; };
+		571B336218C86C6600873087 /* c3dALPlatformDepend.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = c3dALPlatformDepend.mm; sourceTree = "<group>"; };
+		571B336318C86C6600873087 /* c3dALPlatformDepend.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = c3dALPlatformDepend.h; sourceTree = "<group>"; };
 		5742830918BDDECE00D050D1 /* c3dGeoMath.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = c3dGeoMath.cpp; sourceTree = "<group>"; };
 		5742830A18BDDECE00D050D1 /* c3dGeoMath.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = c3dGeoMath.h; sourceTree = "<group>"; };
 		5742830C18BDE35700D050D1 /* c3dPlane.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = c3dPlane.cpp; sourceTree = "<group>"; };
@@ -473,6 +476,7 @@
 		180A820418BA162E0079E6C9 /* c3dEngine */ = {
 			isa = PBXGroup;
 			children = (
+				571B336118C86B1600873087 /* platformDepend */,
 				181FD39D18C2291900F2C204 /* openALSupport */,
 				180A820C18BA162F0079E6C9 /* common */,
 				180A821118BA162F0079E6C9 /* core */,
@@ -514,7 +518,7 @@
 				180A821418BA162F0079E6C9 /* c3dActorSet.cpp */,
 				180A821518BA162F0079E6C9 /* c3dActorSet.h */,
 				180A821618BA162F0079E6C9 /* c3dALBuffer.h */,
-				180A821718BA162F0079E6C9 /* c3dALBuffer.mm */,
+				180A821718BA162F0079E6C9 /* c3dALBuffer.cpp */,
 				180A821818BA162F0079E6C9 /* c3dALdebug.cpp */,
 				180A821918BA162F0079E6C9 /* c3dALdebug.h */,
 				180A821A18BA162F0079E6C9 /* c3dALSource.cpp */,
@@ -952,6 +956,15 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
+		571B336118C86B1600873087 /* platformDepend */ = {
+			isa = PBXGroup;
+			children = (
+				571B336218C86C6600873087 /* c3dALPlatformDepend.mm */,
+				571B336318C86C6600873087 /* c3dALPlatformDepend.h */,
+			);
+			path = platformDepend;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -1061,7 +1074,7 @@
 				180A835718BA165B0079E6C9 /* meteor.cpp in Sources */,
 				180A836B18BA165B0079E6C9 /* userConfig.mm in Sources */,
 				180A829B18BA162F0079E6C9 /* c3dObject.cpp in Sources */,
-				180A828018BA162F0079E6C9 /* c3dALBuffer.mm in Sources */,
+				180A828018BA162F0079E6C9 /* c3dALBuffer.cpp in Sources */,
 				180A836118BA165B0079E6C9 /* define.cpp in Sources */,
 				180A836C18BA165B0079E6C9 /* aboutPage.mm in Sources */,
 				180A834C18BA165B0079E6C9 /* passUnifoCallBack.cpp in Sources */,
@@ -1134,6 +1147,7 @@
 				180A829D18BA162F0079E6C9 /* c3dProgramCache.cpp in Sources */,
 				180A836218BA165B0079E6C9 /* gameSettings.cpp in Sources */,
 				180A829A18BA162F0079E6C9 /* c3dNode.cpp in Sources */,
+				571B336418C86C6600873087 /* c3dALPlatformDepend.mm in Sources */,
 				180A82A418BA162F0079E6C9 /* c3dTimeCounter.cpp in Sources */,
 				180A835218BA165B0079E6C9 /* bubble.cpp in Sources */,
 				180A829618BA162F0079E6C9 /* c3dMesh.mm in Sources */,

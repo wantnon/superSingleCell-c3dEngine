@@ -17,10 +17,7 @@ using namespace std;
 #include "c3dObject.h"
 #include "c3dFileUtils.h"
 
-
-extern "C" {
-    #include "MyOpenALSupport.h"
-};
+#include "c3dALPlatformDepend.h"
 
 class Cc3dALBuffer:public Cc3dObject
 {

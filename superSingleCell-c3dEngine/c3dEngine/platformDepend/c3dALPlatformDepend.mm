@@ -1,22 +1,13 @@
 //
-//  c3dALBuffer.cpp
+//  c3dALPlatformDepend.cpp
 //  HelloOpenGL
 //
-//  Created by apple on 14-2-23.
+//  Created by ck02-084 on 14-3-6.
 //
 //
 
-#include "c3dALBuffer.h"
-
-void Cc3dALBuffer::initBuffer(const string&filePath){
-    m_filePath=filePath;
-    string fileNameFull=Cc3dFileUtils::sharedFileUtils()->getFullPath(m_filePath);
-    assert(m_buffer==0);
-    alGenBuffers(1, &m_buffer);
-    C3DCHECK_AL_ERROR_DEBUG();
-    initBuffer(fileNameFull,m_data,m_buffer);
-}
-void Cc3dALBuffer::initBuffer(const string&fileNameFull,void*&data,ALuint&buffer)
+#include "c3dALPlatformDepend.h"
+void initBuffer_iOS(const string&fileNameFull,void*&data,ALuint&buffer)
 {
     ALenum  error = AL_NO_ERROR;
     ALenum  format=0;
@@ -51,4 +42,3 @@ void Cc3dALBuffer::initBuffer(const string&fileNameFull,void*&data,ALuint&buffer
         assert(false);
     }
 }
-
