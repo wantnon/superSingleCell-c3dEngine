@@ -1,28 +1,20 @@
 //
-//  c3dDeviceAndOSInfo.cpp
+//  c3dDeviceAndOSInfoPlatformDepend.cpp
 //  HelloOpenGL
 //
-//  Created by wantnon (yang chao) on 13-4-18.
+//  Created by ck02-084 on 14-3-6.
 //
 //
 
-#include "c3dDeviceAndOSInfo.h"
-static Cc3dDeviceAndOSInfo*s_deviceAndOSInfo=NULL;
-Cc3dDeviceAndOSInfo*Cc3dDeviceAndOSInfo::sharedDeviceAndOSInfo(){
-    if(s_deviceAndOSInfo==NULL){
-        s_deviceAndOSInfo=new Cc3dDeviceAndOSInfo();
-    }
-    return s_deviceAndOSInfo;
-}
-
-Cc3dVector2 Cc3dDeviceAndOSInfo::getScreenSize(){
+#include "c3dDeviceAndOSInfoPlatformDepend.h"
+Cc3dVector2 getScreenSize_iOS(){
     CGRect rect=[[UIScreen mainScreen] bounds];
     CGSize size=rect.size;
     CGFloat width=size.width;
     CGFloat height=size.height;
     return Cc3dVector2(width,height);
 }
-Cc3dVector2 Cc3dDeviceAndOSInfo::getResolutionSize(){
+Cc3dVector2 getResolutionSize_iOS(){
     CGRect rect=[[UIScreen mainScreen] bounds];
     CGSize size=rect.size;
     CGFloat width=size.width;
@@ -32,7 +24,7 @@ Cc3dVector2 Cc3dDeviceAndOSInfo::getResolutionSize(){
     CGFloat heightReso=height*scale_screen;
     return Cc3dVector2(widthReso,heightReso);
 }
-void Cc3dDeviceAndOSInfo::getMemStatistics(int&memUsed,int&memFree,int&memTotal){//获得内存统计数据
+void getMemStatistics_iOS(int&memUsed,int&memFree,int&memTotal){//获得内存统计数据
     //引自：http://stackoverflow.com/questions/5012886/knowing-available-ram-on-an-ios-device
     mach_port_t host_port;
     mach_msg_type_number_t host_size;
@@ -55,9 +47,4 @@ void Cc3dDeviceAndOSInfo::getMemStatistics(int&memUsed,int&memFree,int&memTotal)
     memFree=mem_free;
     memTotal=mem_total;
     
-}
-int Cc3dDeviceAndOSInfo::getSupportedMaxTextureSize(){
-    GLint maxTextureSize;
-    glGetIntegerv(GL_MAX_TEXTURE_SIZE, &maxTextureSize);
-    return maxTextureSize;
 }

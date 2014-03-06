@@ -14,6 +14,7 @@
 #import <mach/mach_host.h>
 #include "c3dVector.h"
 #include "c3dRect.h"
+#include "c3dDeviceAndOSInfoPlatformDepend.h"
 class Cc3dDeviceAndOSInfo
 {
 public:
