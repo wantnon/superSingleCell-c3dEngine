@@ -18,7 +18,7 @@
 		180A828118BA162F0079E6C9 /* c3dALdebug.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 180A821818BA162F0079E6C9 /* c3dALdebug.cpp */; };
 		180A828218BA162F0079E6C9 /* c3dALSource.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 180A821A18BA162F0079E6C9 /* c3dALSource.cpp */; };
 		180A828318BA162F0079E6C9 /* c3dAppState.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 180A821C18BA162F0079E6C9 /* c3dAppState.cpp */; };
-		180A828418BA162F0079E6C9 /* c3dAudioCache.mm in Sources */ = {isa = PBXBuildFile; fileRef = 180A821F18BA162F0079E6C9 /* c3dAudioCache.mm */; };
+		180A828418BA162F0079E6C9 /* c3dAudioCache.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 180A821F18BA162F0079E6C9 /* c3dAudioCache.cpp */; };
 		180A828518BA162F0079E6C9 /* c3dAutoreleasePool.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 180A822018BA162F0079E6C9 /* c3dAutoreleasePool.cpp */; };
 		180A828618BA162F0079E6C9 /* c3dCamera.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 180A822218BA162F0079E6C9 /* c3dCamera.cpp */; };
 		180A828718BA162F0079E6C9 /* c3dDefine.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 180A822418BA162F0079E6C9 /* c3dDefine.cpp */; };
@@ -196,7 +196,7 @@
 		180A821C18BA162F0079E6C9 /* c3dAppState.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = c3dAppState.cpp; sourceTree = "<group>"; };
 		180A821D18BA162F0079E6C9 /* c3dAppState.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = c3dAppState.h; sourceTree = "<group>"; };
 		180A821E18BA162F0079E6C9 /* c3dAudioCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = c3dAudioCache.h; sourceTree = "<group>"; };
-		180A821F18BA162F0079E6C9 /* c3dAudioCache.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = c3dAudioCache.mm; sourceTree = "<group>"; };
+		180A821F18BA162F0079E6C9 /* c3dAudioCache.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = c3dAudioCache.cpp; sourceTree = "<group>"; };
 		180A822018BA162F0079E6C9 /* c3dAutoreleasePool.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = c3dAutoreleasePool.cpp; sourceTree = "<group>"; };
 		180A822118BA162F0079E6C9 /* c3dAutoreleasePool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = c3dAutoreleasePool.h; sourceTree = "<group>"; };
 		180A822218BA162F0079E6C9 /* c3dCamera.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = c3dCamera.cpp; sourceTree = "<group>"; };
@@ -526,7 +526,7 @@
 				180A821C18BA162F0079E6C9 /* c3dAppState.cpp */,
 				180A821D18BA162F0079E6C9 /* c3dAppState.h */,
 				180A821E18BA162F0079E6C9 /* c3dAudioCache.h */,
-				180A821F18BA162F0079E6C9 /* c3dAudioCache.mm */,
+				180A821F18BA162F0079E6C9 /* c3dAudioCache.cpp */,
 				180A822018BA162F0079E6C9 /* c3dAutoreleasePool.cpp */,
 				180A822118BA162F0079E6C9 /* c3dAutoreleasePool.h */,
 				180A822218BA162F0079E6C9 /* c3dCamera.cpp */,
@@ -1175,7 +1175,7 @@
 				180A829F18BA162F0079E6C9 /* c3dRect.cpp in Sources */,
 				180A827D18BA162F0079E6C9 /* c3dPathFunc.mm in Sources */,
 				180A835818BA165B0079E6C9 /* mobilePlatform.cpp in Sources */,
-				180A828418BA162F0079E6C9 /* c3dAudioCache.mm in Sources */,
+				180A828418BA162F0079E6C9 /* c3dAudioCache.cpp in Sources */,
 				180A834718BA165B0079E6C9 /* collisionWithModelAtTriLevel.cpp in Sources */,
 				180A836818BA165B0079E6C9 /* life.cpp in Sources */,
 				180A827F18BA162F0079E6C9 /* c3dActorSet.cpp in Sources */,
