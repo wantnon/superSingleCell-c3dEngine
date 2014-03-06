@@ -2356,10 +2356,10 @@ void  CplayingPage::visitDraw(){
     //---------------------切换回屏幕fbo---------------------------------
     glBindFramebuffer(GL_FRAMEBUFFER, oldFrameBuffer);
     glClear(GL_COLOR_BUFFER_BIT| GL_DEPTH_BUFFER_BIT);//tile-base architecture要求bind之后立即clear更快些
-    glViewport(Cc3dDeviceAndOSInfo::sharedDeviceAndOSInfo()->getViewport().getMinX(),
-               Cc3dDeviceAndOSInfo::sharedDeviceAndOSInfo()->getViewport().getMinY(),
-               Cc3dDeviceAndOSInfo::sharedDeviceAndOSInfo()->getViewport().getWidth() ,
-               Cc3dDeviceAndOSInfo::sharedDeviceAndOSInfo()->getViewport().getHeight());//屏幕窗口
+    glViewport(Cc3dDeviceAndOSInfo::sharedDeviceAndOSInfo()->getScreenRect().getMinX(),
+               Cc3dDeviceAndOSInfo::sharedDeviceAndOSInfo()->getScreenRect().getMinY(),
+               Cc3dDeviceAndOSInfo::sharedDeviceAndOSInfo()->getScreenRect().getWidth() ,
+               Cc3dDeviceAndOSInfo::sharedDeviceAndOSInfo()->getScreenRect().getHeight());//屏幕窗口
 
 
     

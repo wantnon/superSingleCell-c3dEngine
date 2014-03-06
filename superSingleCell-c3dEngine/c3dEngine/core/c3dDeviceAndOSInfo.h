@@ -29,10 +29,10 @@ public:
         return getResolutionSize().x()/getScreenSize().x();
     }
     int getSupportedMaxTextureSize();
-    Cc3dRect getViewport(){
+    Cc3dRect getScreenRect(){
         Cc3dVector2 screenSize=this->getScreenSize();
-        Cc3dRect viewport(0, 0, screenSize.x(), screenSize.y());
-        return viewport;
+        Cc3dRect screenRect(0, 0, screenSize.x(), screenSize.y());
+        return screenRect;
     }
 };
 #endif /* defined(__HelloOpenGL__c3dDeviceAndOSInfo__) */

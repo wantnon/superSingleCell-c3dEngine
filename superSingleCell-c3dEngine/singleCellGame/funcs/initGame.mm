@@ -55,8 +55,8 @@ bool initGame(){
     //----camera2D
     {
         float left=0;
-        float right=Cc3dDeviceAndOSInfo::sharedDeviceAndOSInfo()->getViewport().getWidth();
-        float top=Cc3dDeviceAndOSInfo::sharedDeviceAndOSInfo()->getViewport().getHeight();
+        float right=Cc3dDeviceAndOSInfo::sharedDeviceAndOSInfo()->getScreenRect().getWidth();
+        float top=Cc3dDeviceAndOSInfo::sharedDeviceAndOSInfo()->getScreenRect().getHeight();
         float bottom=0;
         float near=-1;
         float far=1;
@@ -75,7 +75,7 @@ bool initGame(){
         camera->autorelease();
         camera->retain();//must retain
         camera->setFovy(70);
-        camera->setAspect((float)Cc3dDeviceAndOSInfo::sharedDeviceAndOSInfo()->getViewport().getWidth()/Cc3dDeviceAndOSInfo::sharedDeviceAndOSInfo()->getViewport().getHeight());
+        camera->setAspect((float)Cc3dDeviceAndOSInfo::sharedDeviceAndOSInfo()->getScreenRect().getWidth()/Cc3dDeviceAndOSInfo::sharedDeviceAndOSInfo()->getScreenRect().getHeight());
         camera->setzNear(2);
         camera->setzFar(10000);
         float eyePos[3]={0,0,0};
