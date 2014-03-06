@@ -23,7 +23,7 @@
 		180A828618BA162F0079E6C9 /* c3dCamera.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 180A822218BA162F0079E6C9 /* c3dCamera.cpp */; };
 		180A828718BA162F0079E6C9 /* c3dDefine.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 180A822418BA162F0079E6C9 /* c3dDefine.cpp */; };
 		180A828818BA162F0079E6C9 /* c3dDeviceAndOSInfo.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 180A822718BA162F0079E6C9 /* c3dDeviceAndOSInfo.cpp */; };
-		180A828918BA162F0079E6C9 /* c3dDocuments.mm in Sources */ = {isa = PBXBuildFile; fileRef = 180A822918BA162F0079E6C9 /* c3dDocuments.mm */; };
+		180A828918BA162F0079E6C9 /* c3dDocuments.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 180A822918BA162F0079E6C9 /* c3dDocuments.cpp */; };
 		180A828A18BA162F0079E6C9 /* c3dFbo.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 180A822A18BA162F0079E6C9 /* c3dFbo.cpp */; };
 		180A828B18BA162F0079E6C9 /* c3dFileUtils.mm in Sources */ = {isa = PBXBuildFile; fileRef = 180A822D18BA162F0079E6C9 /* c3dFileUtils.mm */; };
 		180A828C18BA162F0079E6C9 /* c3dGestureAnalyzer.mm in Sources */ = {isa = PBXBuildFile; fileRef = 180A822F18BA162F0079E6C9 /* c3dGestureAnalyzer.mm */; };
@@ -169,6 +169,7 @@
 		35DF6460138C427E00FF9459 /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 35DF645F138C427E00FF9459 /* OpenGLES.framework */; };
 		571B336418C86C6600873087 /* c3dALPlatformDepend.mm in Sources */ = {isa = PBXBuildFile; fileRef = 571B336218C86C6600873087 /* c3dALPlatformDepend.mm */; };
 		571B336718C8778700873087 /* c3dDeviceAndOSInfoPlatformDepend.mm in Sources */ = {isa = PBXBuildFile; fileRef = 571B336518C8778700873087 /* c3dDeviceAndOSInfoPlatformDepend.mm */; };
+		571B336A18C87B9C00873087 /* c3dDocumentsPlatformDepend.mm in Sources */ = {isa = PBXBuildFile; fileRef = 571B336818C87B9C00873087 /* c3dDocumentsPlatformDepend.mm */; };
 		5742830B18BDDECE00D050D1 /* c3dGeoMath.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5742830918BDDECE00D050D1 /* c3dGeoMath.cpp */; };
 		5742830E18BDE35700D050D1 /* c3dPlane.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5742830C18BDE35700D050D1 /* c3dPlane.cpp */; };
 /* End PBXBuildFile section */
@@ -207,7 +208,7 @@
 		180A822618BA162F0079E6C9 /* c3dDeviceAndOSInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = c3dDeviceAndOSInfo.h; sourceTree = "<group>"; };
 		180A822718BA162F0079E6C9 /* c3dDeviceAndOSInfo.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = c3dDeviceAndOSInfo.cpp; sourceTree = "<group>"; };
 		180A822818BA162F0079E6C9 /* c3dDocuments.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = c3dDocuments.h; sourceTree = "<group>"; };
-		180A822918BA162F0079E6C9 /* c3dDocuments.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = c3dDocuments.mm; sourceTree = "<group>"; };
+		180A822918BA162F0079E6C9 /* c3dDocuments.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = c3dDocuments.cpp; sourceTree = "<group>"; };
 		180A822A18BA162F0079E6C9 /* c3dFbo.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = c3dFbo.cpp; sourceTree = "<group>"; };
 		180A822B18BA162F0079E6C9 /* c3dFbo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = c3dFbo.h; sourceTree = "<group>"; };
 		180A822C18BA162F0079E6C9 /* c3dFileUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = c3dFileUtils.h; sourceTree = "<group>"; };
@@ -449,6 +450,8 @@
 		571B336318C86C6600873087 /* c3dALPlatformDepend.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = c3dALPlatformDepend.h; sourceTree = "<group>"; };
 		571B336518C8778700873087 /* c3dDeviceAndOSInfoPlatformDepend.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = c3dDeviceAndOSInfoPlatformDepend.mm; sourceTree = "<group>"; };
 		571B336618C8778700873087 /* c3dDeviceAndOSInfoPlatformDepend.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = c3dDeviceAndOSInfoPlatformDepend.h; sourceTree = "<group>"; };
+		571B336818C87B9C00873087 /* c3dDocumentsPlatformDepend.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = c3dDocumentsPlatformDepend.mm; sourceTree = "<group>"; };
+		571B336918C87B9C00873087 /* c3dDocumentsPlatformDepend.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = c3dDocumentsPlatformDepend.h; sourceTree = "<group>"; };
 		5742830918BDDECE00D050D1 /* c3dGeoMath.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = c3dGeoMath.cpp; sourceTree = "<group>"; };
 		5742830A18BDDECE00D050D1 /* c3dGeoMath.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = c3dGeoMath.h; sourceTree = "<group>"; };
 		5742830C18BDE35700D050D1 /* c3dPlane.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = c3dPlane.cpp; sourceTree = "<group>"; };
@@ -539,7 +542,7 @@
 				180A822618BA162F0079E6C9 /* c3dDeviceAndOSInfo.h */,
 				180A822718BA162F0079E6C9 /* c3dDeviceAndOSInfo.cpp */,
 				180A822818BA162F0079E6C9 /* c3dDocuments.h */,
-				180A822918BA162F0079E6C9 /* c3dDocuments.mm */,
+				180A822918BA162F0079E6C9 /* c3dDocuments.cpp */,
 				180A822A18BA162F0079E6C9 /* c3dFbo.cpp */,
 				180A822B18BA162F0079E6C9 /* c3dFbo.h */,
 				180A822C18BA162F0079E6C9 /* c3dFileUtils.h */,
@@ -966,6 +969,8 @@
 				571B336318C86C6600873087 /* c3dALPlatformDepend.h */,
 				571B336518C8778700873087 /* c3dDeviceAndOSInfoPlatformDepend.mm */,
 				571B336618C8778700873087 /* c3dDeviceAndOSInfoPlatformDepend.h */,
+				571B336818C87B9C00873087 /* c3dDocumentsPlatformDepend.mm */,
+				571B336918C87B9C00873087 /* c3dDocumentsPlatformDepend.h */,
 			);
 			path = platformDepend;
 			sourceTree = "<group>";
@@ -1075,7 +1080,7 @@
 			files = (
 				180A827C18BA162F0079E6C9 /* c3dCommonFunc.cpp in Sources */,
 				180A829718BA162F0079E6C9 /* c3dMeshData.cpp in Sources */,
-				180A828918BA162F0079E6C9 /* c3dDocuments.mm in Sources */,
+				180A828918BA162F0079E6C9 /* c3dDocuments.cpp in Sources */,
 				180A835718BA165B0079E6C9 /* meteor.cpp in Sources */,
 				180A836B18BA165B0079E6C9 /* userConfig.mm in Sources */,
 				180A829B18BA162F0079E6C9 /* c3dObject.cpp in Sources */,
@@ -1119,6 +1124,7 @@
 				180A837518BA165B0079E6C9 /* pausePage.mm in Sources */,
 				180A82AE18BA162F0079E6C9 /* triangleWithNorm.cpp in Sources */,
 				180A836E18BA165B0079E6C9 /* descPage2.mm in Sources */,
+				571B336A18C87B9C00873087 /* c3dDocumentsPlatformDepend.mm in Sources */,
 				180A829318BA162F0079E6C9 /* c3dMaterial.cpp in Sources */,
 				180A837718BA165B0079E6C9 /* playingPageLogic.cpp in Sources */,
 				180A82A318BA162F0079E6C9 /* c3dTextureCache.mm in Sources */,

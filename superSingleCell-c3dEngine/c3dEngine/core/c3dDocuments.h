@@ -12,6 +12,7 @@
 #include <iostream>
 #include <string>
 using namespace std;
+#include "c3dDocumentsPlatformDepend.h"
 class Cc3dDocuments{
 public:
     static Cc3dDocuments*sharedDocuments();

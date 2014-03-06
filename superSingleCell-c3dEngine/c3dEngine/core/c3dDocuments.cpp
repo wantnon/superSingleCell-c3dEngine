@@ -15,8 +15,5 @@ Cc3dDocuments*Cc3dDocuments::sharedDocuments(){
     return s_documents;
 }
 string Cc3dDocuments::getDocumentsPath(){
-    NSArray*paths=NSSearchPathForDirectoriesInDomains(NSDocumentDirectory,NSUserDomainMask,YES);
-    NSString*docs_dir=[paths objectAtIndex:0];
-    string pathName=[docs_dir cStringUsingEncoding:NSASCIIStringEncoding];
-    return pathName;
+    return getDocumentsPath_iOS();
 }
