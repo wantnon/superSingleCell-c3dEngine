@@ -2,7 +2,7 @@
 //  MyOpenALSupport.c
 //  HelloOpenGL
 //
-//  Created by apple on 14-3-1.
+//  Created by wantnon (yang chao) on 14-3-1.
 //
 //
 

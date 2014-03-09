@@ -2,7 +2,7 @@
 //  gameState.h
 //  HelloOpenGL
 //
-//  Created by apple on 14-2-22.
+//  Created by wantnon (yang chao) on 14-2-22.
 //
 //
 

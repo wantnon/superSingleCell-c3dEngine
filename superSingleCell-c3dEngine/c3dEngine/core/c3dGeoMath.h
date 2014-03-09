@@ -2,7 +2,7 @@
 //  c3dGeoMath.h
 //  HelloOpenGL
 //
-//  Created by ck02-084 on 14-2-26.
+//  Created by wantnon (yang chao) on 14-2-26.
 //
 //
 

@@ -10,7 +10,6 @@
 #define HelloOpenGL_NEED_TO_DO_h
 /*
  
- 将所有与路径有关的功能封装到c3dFileUtils中，则所有.mm可改成.cpp，实现平台无关
  
  解决model和Actor的setXXX函数易误用的问题（在meshList或modelList未成型之前调用会不起作用）
 

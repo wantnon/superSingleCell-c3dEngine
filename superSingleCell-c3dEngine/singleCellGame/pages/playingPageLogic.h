@@ -2,7 +2,7 @@
 //  playingPageLogic.h
 //  HelloOpenGL
 //
-//  Created by apple on 14-2-23.
+//  Created by wantnon (yang chao) on 14-2-23.
 //
 //
 

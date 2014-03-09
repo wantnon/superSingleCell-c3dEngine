@@ -63,7 +63,7 @@ public:
         return m_fragShaderFilePath;
     }
 protected:
-    GLuint createShader(const char*_shaderName,const char*_ext);
+    GLuint createShader(const char*shaderName,const char*ext);
 protected:
     map<string,GLint> m_unifoMap;
     string m_vertShaderFilePath;

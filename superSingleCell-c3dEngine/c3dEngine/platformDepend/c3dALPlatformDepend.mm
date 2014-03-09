@@ -2,7 +2,7 @@
 //  c3dALPlatformDepend.cpp
 //  HelloOpenGL
 //
-//  Created by ck02-084 on 14-3-6.
+//  Created by wantnon (yang chao) on 14-3-6.
 //
 //
 
