@@ -4,7 +4,7 @@ by wantnon (yang chao) 2014-2-23
   
 c3dEngine is a 3d engine imitating cocos2d-x. The game Super Single Cell based on it.
 
-support platform: iOS, win32
+support platform: iOS, win32  
 language: c++  
     
 document：https://github.com/wantnon2/superSingleCell-c3dEngine/wiki  
