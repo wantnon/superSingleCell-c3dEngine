@@ -1,7 +1,7 @@
 
 
 #include "c3dModel.h"
-#include "loadInfo.h"
+//#include "loadInfo.h"
  
 Cc3dRange Cc3dModel::getRange()const {
     float xmin=c3d_INF;

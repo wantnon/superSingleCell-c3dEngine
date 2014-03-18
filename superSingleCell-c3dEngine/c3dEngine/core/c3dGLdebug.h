@@ -12,7 +12,8 @@
 #include <iostream>
 using namespace std;
 #include "c3dLog.h"
-#ifdef DEBUG
+#include "c3dGL.h"
+#if DEBUG == 1
 #define C3DCHECK_GL_ERROR_DEBUG() \
     do { \
         GLenum __error = glGetError(); \

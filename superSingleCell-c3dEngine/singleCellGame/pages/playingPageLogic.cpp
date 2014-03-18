@@ -1105,7 +1105,7 @@ void  CplayingPage::logic(){
                 Cship*pship= pbossCell->get_ship();
                 if(pship==NULL){
                     cout<<"error:pship==NULL!"<<endl;
-                    exit(0);
+                    assert(false);
                 }
                 //更新ship环境信息
                 pship->environmentInfo.updateInfo(pship->getTransform().getPos(), pship->getRc(), pship->Rc_small_value_normal, m_ground, m_water, m_archScene,&m_mobilePlatformSet);

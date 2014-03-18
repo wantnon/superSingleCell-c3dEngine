@@ -28,7 +28,7 @@ bool CgameOverPage::init(){
         float h=55;
         m_quad_gameover->genAndInit(bx, bx+w, by, by+h,0,1,0,1);
         m_quad_gameover->getModelList()[0]->getMeshByIndex(0)->getIndexVBO()->genBuffers();
-        m_quad_gameover->getModelList()[0]->getMeshByIndex(0)->setTexture(Cc3dTextureCache::sharedTextureCache()->addImage("data/global/tex/quads/quad_gameover.png"));
+        m_quad_gameover->getModelList()[0]->getMeshByIndex(0)->setTexture(Cc3dTextureCache::sharedTextureCache()->addImage("singleCellGameResource/data/global/tex/quads/quad_gameover.png"));
         m_quad_gameover->setKeyUpColor(1, 1, 1, 1);
         m_quad_gameover->useKeyUpColor();
         m_quad_gameover->setCamera(camera2D);
@@ -55,7 +55,7 @@ bool CgameOverPage::init(){
         m_restartKey->setKeyDownColor(0.7, 0.7, 0.7, 1);
         m_restartKey->setKeyUpColor(1, 1, 1, 1);
         m_restartKey->useKeyUpColor();
-        m_restartKey->getModelList()[0]->getMeshByIndex(0)->setTexture(Cc3dTextureCache::sharedTextureCache()->addImage("data/global/tex/keys/key_restart.png"));
+        m_restartKey->getModelList()[0]->getMeshByIndex(0)->setTexture(Cc3dTextureCache::sharedTextureCache()->addImage("singleCellGameResource/data/global/tex/keys/key_restart.png"));
         m_restartKey->setCamera(camera2D);
         m_restartKey->getModelList()[0]->setIsWriteDepthBuffer(false);
         m_restartKey->setProgram(Cc3dProgramCache::sharedProgramCache()->getProgramByName("shaderNoLight"));
@@ -81,7 +81,7 @@ bool CgameOverPage::init(){
         m_rebirthKey=new Ckey();
         m_rebirthKey->autorelease();
         //
-        Cc3dTexture* ptex_rebirthKey=Cc3dTextureCache::sharedTextureCache()->addImage("data/global/tex/keys/key_rebirth.png");
+        Cc3dTexture* ptex_rebirthKey=Cc3dTextureCache::sharedTextureCache()->addImage("singleCellGameResource/data/global/tex/keys/key_rebirth.png");
         float c[2]={0,0};
         m_rebirthKey->genAndInit(c[0]-r_key,c[0]+r_key,c[1]-r_key,c[1]+r_key, 0,1,0,1);
         m_rebirthKey->getModelList()[0]->getMeshByIndex(0)->getIndexVBO()->genBuffers();

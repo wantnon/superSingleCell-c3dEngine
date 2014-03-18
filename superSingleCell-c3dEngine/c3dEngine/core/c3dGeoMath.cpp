@@ -1,4 +1,4 @@
-//
+﻿//
 //  c3dGeoMath.cpp
 //  HelloOpenGL
 //
@@ -7,7 +7,7 @@
 //
 
 #include "c3dGeoMath.h"
-float directedDistanceFromPointToPlane(const Cc3dPlane&plane,const Cc3dVector4&point){//点到平面的有向距离
+float directedDistanceFromPointToPlane(const Cc3dPlane&plane,const Cc3dVector4&point){
     Cc3dVector4 planePointToPoint=point-plane.getPoint();
     return dot(planePointToPoint, plane.getNorm());
 }

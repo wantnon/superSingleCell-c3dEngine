@@ -194,7 +194,7 @@ static inline vector<float> collisionTestWithWall_multiPoint_common(const vector
     int nSP=max(intended_nSP,3);//但sample point数量不能少于3，且必须是奇数
     if(nSP%2==0)nSP++;//nSP必须是奇数
     vector<Cc3dVector4> SPlist(nSP);//采样点列表
-    float SPRlist[nSP];//采样点半径列表
+    vector<float> SPRlist(nSP);//采样点半径列表     //[change] float SPRlist[nSP];//采样点半径列表
     //填充SPRlist，使中心采样点半径为Rc_small，向两边递减
     int imid=nSP/2;
     int d=Rc_small/imid;//公差
@@ -211,7 +211,7 @@ static inline vector<float> collisionTestWithWall_multiPoint_common(const vector
     const float endPercent=0.8;//终点百分比
     //在[startPercent,endPercent]中等距插入nSP个点，其中包含这两个端点
     const float d_percent=(startPercent-endPercent)/(nSP-1);
-    float percentList[nSP];
+    vector<float> percentList(nSP);//[change] float percentList[nSP];
     percentList[0]=startPercent;
     for(int j=1;j<nSP;j++){//从1开始
         percentList[j]=percentList[j-1]+d_percent;
@@ -383,7 +383,7 @@ static inline float collisionTestWithWall_singlePoint_common(const vector<Ctrian
     int nSP=max(intended_nSP,3);//但sample point数量不能少于3，且必须是奇数
     if(nSP%2==0)nSP++;//nSP必须是奇数
     vector<Cc3dVector4> SPlist(nSP);//采样点列表
-    float SPRlist[nSP];//采样点半径列表
+    vector<float> SPRlist(nSP);//采样点半径列表 //[change] float SPRlist[nSP];//采样点半径列表
     //填充SPRlist，使中心采样点半径为Rc_small，向两边递减
     int imid=nSP/2;
     int d=Rc_small/imid;//公差
@@ -400,7 +400,7 @@ static inline float collisionTestWithWall_singlePoint_common(const vector<Ctrian
     const float endPercent=0.8;//终点百分比
     //在[startPercent,endPercent]中等距插入nSP个点，其中包含这两个端点
     const float d_percent=(startPercent-endPercent)/(nSP-1);
-    float percentList[nSP];
+    vector<float> percentList(nSP);//[change] float percentList[nSP];
     percentList[0]=startPercent;
     for(int j=1;j<nSP;j++){//从1开始
         percentList[j]=percentList[j-1]+d_percent;

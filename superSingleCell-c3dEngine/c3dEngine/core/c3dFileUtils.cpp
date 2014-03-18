@@ -18,7 +18,7 @@ Cc3dFileUtils*Cc3dFileUtils::sharedFileUtils(){
     return s_fileUtils;
 }
 string Cc3dFileUtils::getFullPath(const string&filePath){
-    return getFullPath_iOS(filePath);
+    return getFullPath_plat(filePath);
 }
 
 
@@ -28,7 +28,7 @@ bool Cc3dFileUtils::getIsFileOrClipExistUnderPath(const string&path,const string
         assert(fileOrClipName.empty()==false);
         assert(fileOrClipName[(int)fileOrClipName.size()-1]!='/');
         string fileOrClipFullPath=getFullPath(path);
-        bool isExist=isFileExistsAtPath_iOS(fileOrClipFullPath);
+        bool isExist=isFileExistsAtPath_plat(fileOrClipFullPath);
         return isExist;
     }else{
         assert(path.empty()==false);
@@ -36,7 +36,8 @@ bool Cc3dFileUtils::getIsFileOrClipExistUnderPath(const string&path,const string
         assert(fileOrClipName.empty()==false);
         assert(fileOrClipName[(int)fileOrClipName.size()-1]!='/');
         string fileOrClipFullPath=getFullPath(path)+"/"+fileOrClipName;
-        bool isExist=isFileExistsAtPath_iOS(fileOrClipFullPath);
+		//cout<<"full path:"<<fileOrClipFullPath.c_str()<<endl;
+        bool isExist=isFileExistsAtPath_plat(fileOrClipFullPath);
         return isExist;
     }
 }
@@ -50,4 +51,34 @@ bool Cc3dFileUtils::getIsFileOrClipExist(const string&fileOrClipPath)
     fileOrClipName=rs[1];
     return getIsFileOrClipExistUnderPath(path, fileOrClipName);
     
+}
+
+unsigned char* Cc3dFileUtils::getFileData(const char* pszFileName, const char* pszMode, unsigned long * pSize)
+{
+    unsigned char * pBuffer = NULL;
+    C3DASSERT(pszFileName != NULL && pSize != NULL && pszMode != NULL, "Invalid parameters.");
+    *pSize = 0;
+    do
+    {
+        // read the file from hardware
+        std::string fullPath = getFullPath(pszFileName);
+        FILE *fp = fopen(fullPath.c_str(), pszMode);
+        if(!fp)break;
+        
+        fseek(fp,0,SEEK_END);
+        *pSize = ftell(fp);
+        fseek(fp,0,SEEK_SET);
+        pBuffer = new unsigned char[*pSize];
+        *pSize = fread(pBuffer,sizeof(unsigned char), *pSize,fp);
+        fclose(fp);
+    } while (0);
+    
+    if (! pBuffer)
+    {
+        std::string msg = "Get data from file(";
+        msg.append(pszFileName).append(") failed!");
+        
+        C3DLOG("%s", msg.c_str());
+    }
+    return pBuffer;
 }

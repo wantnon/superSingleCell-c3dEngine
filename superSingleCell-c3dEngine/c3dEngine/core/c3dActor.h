@@ -27,7 +27,7 @@ public:
         for(int i=0;i<nSource;i++){
             Cc3dALSource*source=m_alSourceList[i];
             source->release();
-            cout<<"release source name:"<<source->getName()<<endl;
+            //cout<<"release source name:"<<source->getName()<<endl;
         }
     }
     int getModelCount()const{return (int)m_modelList.size();}

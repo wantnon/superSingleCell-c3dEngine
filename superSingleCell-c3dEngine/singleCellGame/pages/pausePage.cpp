@@ -26,7 +26,7 @@ bool CpausePage::init(){
         float h=50;
         m_quad_pause->genAndInit(bx, bx+w, by, by+h,0,1,0,1);
         m_quad_pause->getModelList()[0]->getMeshByIndex(0)->getIndexVBO()->genBuffers();
-        m_quad_pause->getModelList()[0]->getMeshByIndex(0)->setTexture(Cc3dTextureCache::sharedTextureCache()->addImage("data/global/tex/quads/quad_pause.png"));
+        m_quad_pause->getModelList()[0]->getMeshByIndex(0)->setTexture(Cc3dTextureCache::sharedTextureCache()->addImage("singleCellGameResource/data/global/tex/quads/quad_pause.png"));
         m_quad_pause->setKeyUpColor(1, 1, 1, 1);
         m_quad_pause->useKeyUpColor();
         m_quad_pause->setCamera(camera2D);
@@ -54,7 +54,7 @@ bool CpausePage::init(){
         m_continueKey->setKeyDownColor(0.7, 0.7, 0.7, 1);
         m_continueKey->setKeyUpColor(1, 1, 1, 1);
         m_continueKey->useKeyUpColor();
-        m_continueKey->getModelList()[0]->getMeshByIndex(0)->setTexture(Cc3dTextureCache::sharedTextureCache()->addImage("data/global/tex/keys/key_continue.png"));
+        m_continueKey->getModelList()[0]->getMeshByIndex(0)->setTexture(Cc3dTextureCache::sharedTextureCache()->addImage("singleCellGameResource/data/global/tex/keys/key_continue.png"));
         m_continueKey->setCamera(camera2D);
         m_continueKey->getModelList()[0]->setIsWriteDepthBuffer(false);
         m_continueKey->setProgram(Cc3dProgramCache::sharedProgramCache()->getProgramByName("shaderNoLight"));
@@ -79,7 +79,7 @@ bool CpausePage::init(){
         m_homeKey->setKeyDownColor(0.7, 0.7, 0.7, 1);
         m_homeKey->setKeyUpColor(1, 1, 1, 1);
         m_homeKey->useKeyUpColor();
-        m_homeKey->getModelList()[0]->getMeshByIndex(0)->setTexture(Cc3dTextureCache::sharedTextureCache()->addImage("data/global/tex/keys/key_home.png"));
+        m_homeKey->getModelList()[0]->getMeshByIndex(0)->setTexture(Cc3dTextureCache::sharedTextureCache()->addImage("singleCellGameResource/data/global/tex/keys/key_home.png"));
         m_homeKey->setCamera(camera2D);
         m_homeKey->getModelList()[0]->setIsWriteDepthBuffer(false);
         m_homeKey->setProgram(Cc3dProgramCache::sharedProgramCache()->getProgramByName("shaderNoLight"));
@@ -103,7 +103,7 @@ bool CpausePage::init(){
         m_restartKey->setKeyDownColor(0.7, 0.7, 0.7, 1);
         m_restartKey->setKeyUpColor(1, 1, 1, 1);
         m_restartKey->useKeyUpColor();
-        m_restartKey->getModelList()[0]->getMeshByIndex(0)->setTexture(Cc3dTextureCache::sharedTextureCache()->addImage("data/global/tex/keys/key_restart.png"));
+        m_restartKey->getModelList()[0]->getMeshByIndex(0)->setTexture(Cc3dTextureCache::sharedTextureCache()->addImage("singleCellGameResource/data/global/tex/keys/key_restart.png"));
         m_restartKey->setCamera(camera2D);
         m_restartKey->getModelList()[0]->setIsWriteDepthBuffer(false);
         m_restartKey->setProgram(Cc3dProgramCache::sharedProgramCache()->getProgramByName("shaderNoLight"));
@@ -117,7 +117,7 @@ bool CpausePage::init(){
         addChild(m_restartKey);
     }
     //----switchPage
-    Cc3dALSource*pALSource_switchPage=Cc3dAudioCache::sharedAudioCache()->createBufferAndSource("data/global/audio/switchPage.wav","switchPage");
+    Cc3dALSource*pALSource_switchPage=Cc3dAudioCache::sharedAudioCache()->createBufferAndSource("singleCellGameResource/data/global/audio/switchPage.wav","switchPage");
     this->addALSource(pALSource_switchPage);
     return true;
 }

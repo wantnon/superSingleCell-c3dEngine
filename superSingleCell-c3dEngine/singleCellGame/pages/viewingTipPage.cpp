@@ -15,7 +15,7 @@
 bool CviewingTipPage::init(){
     int level=(( CplayingPage*)Cc3dSceneManager::sharedSceneManager()->getRoot()->getChildByName("playingPage"))->getLevel();
     string levelStr=numberToStr(level);
-    string rootPath="data/levels/level_"+levelStr+"/";
+    string rootPath="singleCellGameResource/data/levels/level_"+levelStr+"/";
     //
     const float width=Cc3dDeviceAndOSInfo::sharedDeviceAndOSInfo()->getScreenSize().x();
     const float height=Cc3dDeviceAndOSInfo::sharedDeviceAndOSInfo()->getScreenSize().y();
@@ -46,7 +46,7 @@ bool CviewingTipPage::init(){
         addChild(m_quad_tipTex);
     }
     //----switchPage
-    Cc3dALSource*pALSource_switchPage=Cc3dAudioCache::sharedAudioCache()->createBufferAndSource("data/global/audio/switchPage.wav","switchPage");
+    Cc3dALSource*pALSource_switchPage=Cc3dAudioCache::sharedAudioCache()->createBufferAndSource("singleCellGameResource/data/global/audio/switchPage.wav","switchPage");
     this->addALSource(pALSource_switchPage);
     return true;
 }

@@ -10,6 +10,7 @@
 #define __HelloOpenGL__c3dNode__
 
 #include <iostream>
+#include <algorithm>
 using namespace std;
 #include "c3dObject.h"
 #include "c3dModelMatStack.h"

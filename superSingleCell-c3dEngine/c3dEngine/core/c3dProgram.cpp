@@ -29,13 +29,16 @@ bool Cc3dProgram::initWithFile(const string&vertShaderFilePath,const string&frag
         glBindAttribLocation(programHandle, ATTRIB_LOC_texCoord, "texCoordIn");
         glBindAttribLocation(programHandle, ATTRIB_LOC_normal_local, "normal_local");
     }
-    glLinkProgram(programHandle);//link过以后，通过glGet**Location得到的索引就是固定的了
+    glLinkProgram(programHandle);//after link, the index get by glGet**Location became fixed
     //check and see if there were any link errors
     GLint linkSuccess;
     glGetProgramiv(programHandle, GL_LINK_STATUS, &linkSuccess);
     if (linkSuccess == GL_FALSE) {
         GLchar messages[1024];
         glGetProgramInfoLog(programHandle, sizeof(messages), 0, &messages[0]);
+		cout<<"vertShaderFilePath:"<<vertShaderFilePath<<endl;
+		cout<<"fragShaderFilePath:"<<fragShaderFilePath<<endl;
+		cout<<messages<<endl;
         C3DASSERT(false,messages);
     }
     m_program=programHandle;
@@ -43,7 +46,7 @@ bool Cc3dProgram::initWithFile(const string&vertShaderFilePath,const string&frag
 }
 GLuint Cc3dProgram::createShader(const char*shaderName,const char*ext)
 {
-    return createShader_iOS(shaderName,ext);
+    return createShader_plat(shaderName,ext);
 }
 
 void Cc3dProgram::passUnifoValue1f(string unifoName,GLfloat v){

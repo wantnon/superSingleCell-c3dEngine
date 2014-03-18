@@ -182,7 +182,7 @@ public:
     void gen_pIDtriExList(){//生成pIDtriExList，要放在pmeshList全部形成后调用
         if((int)pIDtriExList.size()!=0){
             cout<<"error: pIDtriExList非空!"<<endl;
-            exit(0);
+            assert(false);
         }
         int nMesh=(int)getModelByIndex(0)->getMeshCount();
         for(int i=0;i<nMesh;i++){
@@ -650,7 +650,7 @@ public:
         if(fp==NULL)
         {
             cout<<"Open "<<pathName<<" failed!"<<endl;
-            exit(0);
+            assert(false);
         }
         //------------------提取文件信息，并建立列模型列表
         {
@@ -672,7 +672,7 @@ public:
                 //检查ID是否恰好比ID_foe大1
                 if(ID-ID_foe!=1){
                     cout<<"error:ID不连续!"<<endl;
-                    exit(0);
+                    assert(false);
                 }else{
                     ID_foe=ID;//更新ID_foe
                 }
@@ -693,7 +693,7 @@ public:
                         pmobilePlatform->triggerType_mov=triggerType_TOUCHWALL;
                     }else{
                         cout<<"error: 未知的触发类型!"<<endl;
-                        exit(0);
+                        assert(false);
                     }
              
                 }
@@ -714,7 +714,7 @@ public:
                         pmobilePlatform->triggerType_rot=triggerType_TOUCHWALL;
                     }else{
                         cout<<"error: 未知的触发类型!"<<endl;
-                        exit(0);
+                        assert(false);
                     }
                 }
                 //----isShotTrigger
@@ -833,7 +833,7 @@ public:
             fscanf(fp, "%s",buffer);
             if(buffer[0]!='#'){
                 cout<<"error:缺少#或实际条目数比n值大!"<<endl;
-                exit(0);
+                assert(false);
             }
         }
         //关闭文件

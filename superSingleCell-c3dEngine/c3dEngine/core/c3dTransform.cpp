@@ -40,7 +40,7 @@ void Cc3dTransform::setPos(const Cc3dVector4&pos){
     setPos(pos.x(),pos.y(),pos.z());
 }
 void Cc3dTransform::setRot(float nx,float ny,float nz,float cosa,float sina){
-    //n必须是单位向量
+    //n must be normalized vector
     float _cosa=1-cosa;
     float nx_cosa=nx*_cosa;
     float nz_cosa=nz*_cosa;
@@ -54,10 +54,10 @@ void Cc3dTransform::setRot(float nx,float ny,float nz,float cosa,float sina){
     float nzsina=nz*sina;
     float nysina=ny*sina;
     float rotmat[16]={
-        nxnx_cosa+cosa,nxny_cosa+nzsina,nxnz_cosa-nysina,0,//第一列
-        nxny_cosa-nzsina,nyny_cosa+cosa,nynz_cosa+nxsina,0,//第二列
-        nxnz_cosa+nysina,nynz_cosa-nxsina,nznz_cosa+cosa,0,//第三列
-        0,0,0,1//第四列
+        nxnx_cosa+cosa,nxny_cosa+nzsina,nxnz_cosa-nysina,0,//col 1
+        nxny_cosa-nzsina,nyny_cosa+cosa,nynz_cosa+nxsina,0,//col 2
+        nxnz_cosa+nysina,nynz_cosa-nxsina,nznz_cosa+cosa,0,//col 3
+        0,0,0,1//col 4
     };
     setRmat(rotmat);
 }
@@ -82,7 +82,7 @@ void Cc3dTransform::scale(float scaleX,float scaleY,float scaleZ){
     
 }
 Cc3dMatrix4 Cc3dTransform::getRTSmat()const{
-    //将RTmat加上放缩作为最终传入的RTmat
+    //apply scale to RTmat
     Cc3dMatrix4 RTSmat;
     RTSmat=m_RTmat;
     RTSmat.setAt(0, RTSmat.getAt(0)*m_scaleX);
@@ -101,7 +101,7 @@ Cc3dMatrix4 Cc3dTransform::getRTSmat()const{
 }
 
 void Cc3dTransform::rotate(float nx,float ny,float nz,float cosa,float sina)
-//n必须是单位向量
+//n must be normalized vector
 {
     Cc3dMatrix4 rotmat=calculateRotationMatrix(Cc3dVector4(nx,ny,nz,0),cosa,sina); //calculateRotationMatrix(nx, ny, nz, cosa, sina);
     m_RTmat=m_RTmat*rotmat;
@@ -109,9 +109,8 @@ void Cc3dTransform::rotate(float nx,float ny,float nz,float cosa,float sina)
 
 
  void Cc3dTransform::rotateRelativeToFather(float nx,float ny,float nz,float cosa,float sina)
-//n必须是单位向量
+//n must be normalized vector
 {
-    //n必须是单位向量
     float _cosa=1-cosa;
     float nx_cosa=nx*_cosa;
     float nz_cosa=nz*_cosa;
@@ -125,14 +124,14 @@ void Cc3dTransform::rotate(float nx,float ny,float nz,float cosa,float sina)
     float nzsina=nz*sina;
     float nysina=ny*sina;
     float rotmat[16]={
-        nxnx_cosa+cosa,nxny_cosa+nzsina,nxnz_cosa-nysina,0,//第一列
-        nxny_cosa-nzsina,nyny_cosa+cosa,nynz_cosa+nxsina,0,//第二列
-        nxnz_cosa+nysina,nynz_cosa-nxsina,nznz_cosa+cosa,0,//第三列
-        0,0,0,1//第四列
+        nxnx_cosa+cosa,nxny_cosa+nzsina,nxnz_cosa-nysina,0,//col 1
+        nxny_cosa-nzsina,nyny_cosa+cosa,nynz_cosa+nxsina,0,//col 2
+        nxnz_cosa+nysina,nynz_cosa-nxsina,nznz_cosa+cosa,0,//col 3
+        0,0,0,1//col 4
     };
     m_RTmat=Cc3dMatrix4(rotmat)*m_RTmat;
 }
-void Cc3dTransform::move(float dx,float dy,float dz){//相对于局部坐标系移动局部坐标（即dx,dy,dz为局部坐标系中的量）
+void Cc3dTransform::move(float dx,float dy,float dz){//����ھֲ�����ϵ�ƶ��ֲ����꣨��dx,dy,dzΪ�ֲ�����ϵ�е�����
     // RTmat    *   Tmat     =    RTmat'
     // a d g x     1 0 0 dx     a d g x+adx+ddy+gdz
     // b e h y  *  0 1 0 dy  =  b e h y+bdx+edy+hdz
@@ -148,14 +147,14 @@ void Cc3dTransform::move(float dx,float dy,float dz){//相对于局部坐标系�
 void Cc3dTransform::moveX(float dx){
     move(dx,0,0);
 }
-void Cc3dTransform::moveY(float dy){//相对于局部坐标系移动局部坐标（即dx=0,dy,dz=0为局部坐标系中的量）
+void Cc3dTransform::moveY(float dy){//����ھֲ�����ϵ�ƶ��ֲ����꣨��dx=0,dy,dz=0Ϊ�ֲ�����ϵ�е�����
     move(0, dy, 0);
 }
-void Cc3dTransform::moveZ(float dz){//相对于局部坐标系移动局部坐标（即dx=0,dy=0,dz为局部坐标系中的量）
+void Cc3dTransform::moveZ(float dz){//����ھֲ�����ϵ�ƶ��ֲ����꣨��dx=0,dy=0,dzΪ�ֲ�����ϵ�е�����
     move(0, 0, dz);
 }
 
-void Cc3dTransform::moveRelativeToFather(float dx,float dy,float dz){//在父坐标系中移动局部坐标系(即dx,dy,dz为父坐标系中的量)
+void Cc3dTransform::moveRelativeToFather(float dx,float dy,float dz){//�ڸ�����ϵ���ƶ��ֲ�����ϵ(��dx,dy,dzΪ������ϵ�е���)
     //  Tmat    *   RTmat   =   RTmat'
     // 1 0 0 dx    a d g x     a d g x+dx
     // 0 1 0 dy *  b e h y  =  b e h y+dy

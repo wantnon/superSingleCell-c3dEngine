@@ -9,10 +9,11 @@
 #include "c3dNode.h"
 string c3dDefaultProgramName="shader_texColorOnly";
 void c3dDefaultShadersSetup(){
+	string programFolder = "c3dEngineResource/shader";
     //
     {
         string programName="shader_texColorOnly";
-        Cc3dProgram*program=Cc3dProgramCache::sharedProgramCache()->createProgram(programName+".vert", programName+".frag", programName);
+        Cc3dProgram*program=Cc3dProgramCache::sharedProgramCache()->createProgram(programFolder+"/"+programName+".vert", programFolder+"/"+programName+".frag", programName);
         program->attachUniform("projectionModelview");
         program->attachUniform("Texture");
     }

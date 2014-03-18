@@ -13,11 +13,10 @@
 #include <string>
 using namespace std;
 #include "c3dLog.h"
-#import <OpenAL/al.h>
-#import <OpenAL/alc.h>
-#import <AudioToolbox/AudioToolbox.h>
+#include "c3dAL.h"
+
 string errorTranslate(ALenum error);
-#ifdef DEBUG
+#if DEBUG == 1
 #define C3DCHECK_AL_ERROR_DEBUG() \
 do { \
 ALenum __error = alGetError(); \

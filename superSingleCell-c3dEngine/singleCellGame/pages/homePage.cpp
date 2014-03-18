@@ -48,7 +48,7 @@ bool ChomePage::init(){
         m_quad_homePage_backGround=new Ckey();
         m_quad_homePage_backGround->autorelease();
         
-        string imagePathShort="data/global/tex/pageTexs/homePageTex/backGround_";
+        string imagePathShort="singleCellGameResource/data/global/tex/pageTexs/homePageTex/backGround_";
         imagePathShort+=resoStr+".png";
         Cc3dTexture* ptex=Cc3dTextureCache::sharedTextureCache()->addImage(imagePathShort,GL_CLAMP_TO_EDGE,GL_CLAMP_TO_EDGE);
         const float texW=ptex->getWidth();
@@ -80,7 +80,7 @@ bool ChomePage::init(){
         m_debugKey->setKeyDownColor(0.7, 0.7, 0.7, 1);
         m_debugKey->setKeyUpColor(1, 1, 1, 1);
         m_debugKey->useKeyUpColor();
-        m_debugKey->getModelList()[0]->getMeshByIndex(0)->setTexture(Cc3dTextureCache::sharedTextureCache()->addImage("data/global/tex/keys/key_debug.png"));
+        m_debugKey->getModelList()[0]->getMeshByIndex(0)->setTexture(Cc3dTextureCache::sharedTextureCache()->addImage("singleCellGameResource/data/global/tex/keys/key_debug.png"));
         m_debugKey->setCamera(camera2D);
         m_debugKey->getModelList()[0]->setIsWriteDepthBuffer(false);
         m_debugKey->setProgram(Cc3dProgramCache::sharedProgramCache()->getProgramByName("shaderNoLight"));
@@ -98,7 +98,7 @@ bool ChomePage::init(){
         m_backKey=new Ckey();
         m_backKey->autorelease();
         
-        Cc3dTexture* ptexture=Cc3dTextureCache::sharedTextureCache()->addImage("data/global/tex/keys/key_back.png");
+        Cc3dTexture* ptexture=Cc3dTextureCache::sharedTextureCache()->addImage("singleCellGameResource/data/global/tex/keys/key_back.png");
         float c[2]={0,0};
         m_backKey->genAndInit(c[0]-r_key,c[0]+r_key,c[1]-r_key,c[1]+r_key, 0,1,0,1);
         m_backKey->getModelList()[0]->getMeshByIndex(0)->getIndexVBO()->genBuffers();
@@ -123,7 +123,7 @@ bool ChomePage::init(){
         {
             //生成gameKeyTexClip
             Cmolecule gameKeyTexClip;//临时对象
-            gameKeyTexClip.loadFrameTexList("data/global/tex/pageTexs/homePageTex/gameKey/");
+            gameKeyTexClip.loadFrameTexList("singleCellGameResource/data/global/tex/pageTexs/homePageTex/gameKey/");
             
             //制作各texture的相应按钮
             int nGameKey=(int)gameKeyTexClip.getFrameTexList().size();
@@ -154,7 +154,7 @@ bool ChomePage::init(){
                 int level=i+1;//关卡号
                 string curLevelClip="level_";
                 curLevelClip+=numberToStr(level);//注：直接写"level_"+numberToStr(level)不报错，但得到错误结果
-                bool rootPathExists=Cc3dFileUtils::sharedFileUtils()->getIsFileOrClipExist(string("data/levels/")+curLevelClip);
+                bool rootPathExists=Cc3dFileUtils::sharedFileUtils()->getIsFileOrClipExist(string("singleCellGameResource/data/levels/")+curLevelClip);
                 if(rootPathExists==false){
                     key->set_isGrey(true);
                     key->useKeyDownColor();
@@ -182,7 +182,7 @@ bool ChomePage::init(){
         }
         //gameKeyList_lock
         {
-            Cc3dTexture* ptexture_lockKey=Cc3dTextureCache::sharedTextureCache()->addImage("data/global/tex/pageTexs/homePageTex/lockKey.png");
+            Cc3dTexture* ptexture_lockKey=Cc3dTextureCache::sharedTextureCache()->addImage("singleCellGameResource/data/global/tex/pageTexs/homePageTex/lockKey.png");
             int nKey=(int)m_gameKeyList.size();//与gameKeyList元素数保持一致
             for(int i=0;i<nKey;i++){
                 Ckey*key=new Ckey();
@@ -229,13 +229,13 @@ bool ChomePage::init(){
         }
         //gameKeyList_star
         {
-            m_tex_quad_starList.push_back(Cc3dTextureCache::sharedTextureCache()->addImage("data/global/tex/quads/quad_star0.png"));
+            m_tex_quad_starList.push_back(Cc3dTextureCache::sharedTextureCache()->addImage("singleCellGameResource/data/global/tex/quads/quad_star0.png"));
             m_tex_quad_starList[(int)m_tex_quad_starList.size()-1]->retain();
-            m_tex_quad_starList.push_back(Cc3dTextureCache::sharedTextureCache()->addImage("data/global/tex/quads/quad_star1.png"));
+            m_tex_quad_starList.push_back(Cc3dTextureCache::sharedTextureCache()->addImage("singleCellGameResource/data/global/tex/quads/quad_star1.png"));
             m_tex_quad_starList[(int)m_tex_quad_starList.size()-1]->retain();
-            m_tex_quad_starList.push_back(Cc3dTextureCache::sharedTextureCache()->addImage("data/global/tex/quads/quad_star2.png"));
+            m_tex_quad_starList.push_back(Cc3dTextureCache::sharedTextureCache()->addImage("singleCellGameResource/data/global/tex/quads/quad_star2.png"));
             m_tex_quad_starList[(int)m_tex_quad_starList.size()-1]->retain();
-            m_tex_quad_starList.push_back(Cc3dTextureCache::sharedTextureCache()->addImage("data/global/tex/quads/quad_star3.png"));
+            m_tex_quad_starList.push_back(Cc3dTextureCache::sharedTextureCache()->addImage("singleCellGameResource/data/global/tex/quads/quad_star3.png"));
             m_tex_quad_starList[(int)m_tex_quad_starList.size()-1]->retain();
             int nKey=(int)m_gameKeyList.size();//与gameKeyList元素数保持一致
             for(int i=0;i<nKey;i++){
@@ -283,7 +283,7 @@ bool ChomePage::init(){
         
     }
     //----switchPage
-    Cc3dALSource*pALSource_switchPage=Cc3dAudioCache::sharedAudioCache()->createBufferAndSource("data/global/audio/switchPage.wav","switchPage");
+    Cc3dALSource*pALSource_switchPage=Cc3dAudioCache::sharedAudioCache()->createBufferAndSource("singleCellGameResource/data/global/audio/switchPage.wav","switchPage");
     this->addALSource(pALSource_switchPage);
     return true;
 

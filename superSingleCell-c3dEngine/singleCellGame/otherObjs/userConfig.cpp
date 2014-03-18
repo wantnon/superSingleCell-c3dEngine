@@ -11,6 +11,7 @@
 #include "c3dPathFunc.h"
 #include "c3dDocuments.h"
 #include "c3dPathPlatformDepend.h"
+#include "c3dAssert.h"
 static CuserConfig*s_userConfig=NULL;
 CuserConfig*CuserConfig::sharedUserConfig(){
     if(s_userConfig==NULL){
@@ -20,7 +21,7 @@ CuserConfig*CuserConfig::sharedUserConfig(){
 }
 bool CuserConfig::getIsConfigFileExistInDocuments(const string&filePath){
     string fileFullPath=Cc3dDocuments::sharedDocuments()->getDocumentsPath()+"/"+filePath;
-    bool isExist=isFileExistsAtPath_iOS(fileFullPath);
+    bool isExist=isFileExistsAtPath_plat(fileFullPath);
     return isExist;
 
 }
@@ -35,7 +36,7 @@ void CuserConfig::writeToConfigFileInDocuments(const string&filePath)
     if(fp==NULL){
         cout<<"Open "<<filePathFull<<" with w+ failed!"<<endl;
         perror("error");
-        exit(0);
+        assert(false);
     }else{
         cout<<"Open "<<filePathFull<<" with w+ succ"<<endl;
     }
@@ -68,7 +69,7 @@ void CuserConfig::loadConfigFileFromDocuments(const string&fileNameWithExt){
     if(fp==NULL)
     {
         cout<<"Open "<<pathName<<" failed!"<<endl;
-        exit(0);
+        assert(false);
     }
     //------------------提取文件信息，并建立列模型列表
     {
@@ -106,7 +107,7 @@ void CuserConfig::copyConfigFileToDocuments(const string&configFilePathShort){
     if(fp==NULL)
     {
         cout<<"Open "<<pathName<<" failed!"<<endl;
-        exit(0);
+        assert(false);
     }
     //----提取文件信息到临时变量
     vector<int> t_unLockList;
@@ -150,7 +151,7 @@ void CuserConfig::copyConfigFileToDocuments(const string&configFilePathShort){
         if(fp==NULL){
             cout<<"Open "<<pathName<<" with w+ failed!"<<endl;
             perror("error");
-            exit(0);
+            assert(false);
         }else{
             cout<<"Open "<<pathName<<" with w+ succ"<<endl;
         }

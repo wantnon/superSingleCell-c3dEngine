@@ -428,7 +428,7 @@ void Coctree::makeOctree()
     ymax=c[1]+dmax;
     zmin=c[2]-dmax;
     zmax=c[2]+dmax;//得到正方体
-    cout<<"八叉树空间范围"<<xmin<<" "<<xmax<<" "<<ymin<<" "<<ymax<<" "<<zmin<<" "<<zmax<<endl;
+    cout<<"octree range:"<<xmin<<" "<<xmax<<" "<<ymin<<" "<<ymax<<" "<<zmin<<" "<<zmax<<endl;
     m_range.init(xmin, xmax, ymin, ymax, zmin, zmax);
     //------------------建立根节点
     m_pRoot->setRange(Cc3dRange(xmin,xmax,ymin,ymax,zmin,zmax));

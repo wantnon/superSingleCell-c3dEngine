@@ -11,8 +11,8 @@
 
 #include <iostream>
 using namespace std;
-#include <OpenGLES/ES2/gl.h>
-#include <OpenGLES/ES2/glext.h>
+
+#include "c3dGL.h"
 #include "c3dObject.h"
 #include "c3dGLdebug.h"
 class Cc3dTexture:public Cc3dObject

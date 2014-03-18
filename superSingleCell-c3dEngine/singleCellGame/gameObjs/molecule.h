@@ -84,7 +84,7 @@ public:
             funcID=MOLECULE_FUNC_checkPointUpdate;
         }else{
             cout<<"error:不识别的funcName:"<<funcName<<endl;
-            exit(0);
+            assert(false);
         }
     
     }
@@ -160,7 +160,7 @@ public:
     void loadFrameTexList(const string&clipName){//clipName最后一个字符必须是"/"
         if(clipName[(int)clipName.size()-1]!='/'){
             cout<<"error:clipName最后一个字符必须是'/' !";
-            exit(0);
+            assert(false);
         }
         //获得config文件的路径
         string configFileNameWithExt=clipName+"config.txt";
@@ -172,7 +172,7 @@ public:
         if(fp==NULL)
         {
             cout<<"Open "<<configPathName<<" failed!"<<endl;
-            exit(0);
+            assert(false);
         }
         //------------------提取文件信息
         char buffer[1024]={0};
@@ -201,7 +201,7 @@ public:
             effectType=MOLECULEEFFECTTYPE_normal;
         }else{
             cout<<"error:未知的effect类型:"<<effectStr<<endl;
-            exit(0);
+            assert(false);
         }
         //提取timeCountBetweenFrame
         fscanf(fp, "%s",buffer);

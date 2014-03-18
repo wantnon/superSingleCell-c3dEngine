@@ -16,13 +16,13 @@ Cc3dDeviceAndOSInfo*Cc3dDeviceAndOSInfo::sharedDeviceAndOSInfo(){
 }
 
 Cc3dVector2 Cc3dDeviceAndOSInfo::getScreenSize(){
-    return getScreenSize_iOS();
+    return getScreenSize_plat();
 }
 Cc3dVector2 Cc3dDeviceAndOSInfo::getResolutionSize(){
-    return getResolutionSize_iOS();
+    return getResolutionSize_plat();
 }
 void Cc3dDeviceAndOSInfo::getMemStatistics(int&memUsed,int&memFree,int&memTotal){//获得内存统计数据
-    getMemStatistics_iOS(memUsed, memFree, memTotal);
+    getMemStatistics_plat(memUsed, memFree, memTotal);
     
 }
 int Cc3dDeviceAndOSInfo::getSupportedMaxTextureSize(){

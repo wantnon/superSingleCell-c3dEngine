@@ -53,7 +53,7 @@ public:
         if(fp==NULL)
         {
             cout<<"Open "<<pathName<<" failed!"<<endl;
-            exit(0);
+            assert(false);
         }
         //------------------提取文件信息，并建立模型列表
         {
@@ -80,7 +80,7 @@ public:
                 cout<<"error:pmeshList.size()!=nMesh!"<<endl;
                 cout<<"pmeshList.size():"<<(int)model->getMeshCount()<<endl;
                 cout<<"nMesh:"<<nMesh<<endl;
-                exit(0);
+                assert(false);
             }
             //提取各mesh所属cellPart，并将mesh填充到相应model
             for(int i=0;i<nMesh;i++){
@@ -171,7 +171,7 @@ public:
             fscanf(fp, "%f",&H_sinkInWater);
             if(H_sinkInWater==0){
                 cout<<"error:为了使判断是否接触水面更准确鲁棒，要求H_sinkInWater>0，可以取得很小，但不能为0!"<<endl;
-                exit(0);
+                assert(false);
             }
             float v_legsRot;
             fscanf(fp, "%s",buffer);
@@ -244,7 +244,7 @@ public:
             return CELLPART_wingR;
         }else{
             cout<<"error:未知的cellPartName!"<<endl;
-            exit(0);
+            assert(false);
         }
     
     }
@@ -305,7 +305,7 @@ public:
                 break;
             default:
                 cout<<"error:未定义的funcID!"<<endl;
-                exit(0);
+                assert(false);
                 break;
         }
     }

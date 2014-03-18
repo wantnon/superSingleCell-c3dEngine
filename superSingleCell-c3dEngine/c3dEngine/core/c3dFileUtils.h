@@ -17,6 +17,7 @@ public:
     static Cc3dFileUtils*sharedFileUtils();
     string getFullPath(const string&filePath);
     bool getIsFileOrClipExist(const string&fileOrClipPath);
+	unsigned char* getFileData(const char* pszFileName, const char* pszMode, unsigned long * pSize);
 protected:
     bool getIsFileOrClipExistUnderPath(const string&path,const string&fileOrClipName);
     

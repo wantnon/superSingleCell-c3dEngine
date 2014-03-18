@@ -27,7 +27,7 @@ bool CendPage::init(){
         m_quad_endPage_backGround=new Ckey();
         m_quad_endPage_backGround->autorelease();
         //
-        string imagePathShort="data/global/tex/pageTexs/endPageTex/backGround_";
+        string imagePathShort="singleCellGameResource/data/global/tex/pageTexs/endPageTex/backGround_";
         imagePathShort+=resoStr+".png";
         Cc3dTexture* ptex=Cc3dTextureCache::sharedTextureCache()->addImage(imagePathShort,GL_CLAMP_TO_EDGE,GL_CLAMP_TO_EDGE);
         const float texW=ptex->getWidth();
@@ -60,7 +60,7 @@ bool CendPage::init(){
         float h=50;
         m_quad_waitingForMusicToStop->genAndInit(bx, bx+w, by, by+h,0,1,0,1);
         m_quad_waitingForMusicToStop->getModelList()[0]->getMeshByIndex(0)->getIndexVBO()->genBuffers();
-        m_quad_waitingForMusicToStop->getModelList()[0]->getMeshByIndex(0)->setTexture(Cc3dTextureCache::sharedTextureCache()->addImage("data/global/tex/quads/quad_waiting_for_music_to_stop.png"));
+        m_quad_waitingForMusicToStop->getModelList()[0]->getMeshByIndex(0)->setTexture(Cc3dTextureCache::sharedTextureCache()->addImage("singleCellGameResource/data/global/tex/quads/quad_waiting_for_music_to_stop.png"));
         m_quad_waitingForMusicToStop->setKeyUpColor(1, 1, 1, 1);
         m_quad_waitingForMusicToStop->useKeyUpColor();
         m_quad_waitingForMusicToStop->setCamera(camera2D);
@@ -86,7 +86,7 @@ bool CendPage::init(){
         m_homeKey->setKeyDownColor(0.7, 0.7, 0.7, 1);
         m_homeKey->setKeyUpColor(1, 1, 1, 1);
         m_homeKey->useKeyUpColor();
-        m_homeKey->getModelList()[0]->getMeshByIndex(0)->setTexture(Cc3dTextureCache::sharedTextureCache()->addImage("data/global/tex/keys/key_home.png"));
+        m_homeKey->getModelList()[0]->getMeshByIndex(0)->setTexture(Cc3dTextureCache::sharedTextureCache()->addImage("singleCellGameResource/data/global/tex/keys/key_home.png"));
         m_homeKey->setCamera(camera2D);
         m_homeKey->getModelList()[0]->setIsWriteDepthBuffer(false);
         m_homeKey->setProgram(Cc3dProgramCache::sharedProgramCache()->getProgramByName("shaderNoLight"));
@@ -99,11 +99,11 @@ bool CendPage::init(){
         addChild(m_homeKey);
     }
     //----switchPage
-    Cc3dALSource*pALSource_switchPage=Cc3dAudioCache::sharedAudioCache()->createBufferAndSource("data/global/audio/switchPage.wav","switchPage");
+    Cc3dALSource*pALSource_switchPage=Cc3dAudioCache::sharedAudioCache()->createBufferAndSource("singleCellGameResource/data/global/audio/switchPage.wav","switchPage");
     this->addALSource(pALSource_switchPage);
     //----endMusic
     {
-        Cc3dALSource*pALSource_endMusic=Cc3dAudioCache::sharedAudioCache()->createBufferAndSource("data/global/audio/endMusic.wav","endMusic");
+        Cc3dALSource*pALSource_endMusic=Cc3dAudioCache::sharedAudioCache()->createBufferAndSource("singleCellGameResource/data/global/audio/endMusic.wav","endMusic");
         this->addALSource(pALSource_endMusic);
         //重设声音源位置和听者位姿
         //听者放在(0,0,0)，声源放在(0,0,-1)

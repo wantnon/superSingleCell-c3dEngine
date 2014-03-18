@@ -1,0 +1,28 @@
+﻿Build started 2014/3/18 17:42:55.
+     1>Project "C:\Users\Administrator\Desktop\supersinglecell-c3dengine-win\superSingleCell-c3dEngine-win32\superSingleCell-c3dEngine\win32Project\c3d+singleCell.vcxproj" on node 2 (build target(s)).
+     1>InitializeBuildStatus:
+         Creating ".\Release\c3d+singleCell.unsuccessfulbuild" because "AlwaysCreate" was specified.
+       ClCompile:
+         All outputs are up-to-date.
+       ResourceCompile:
+         All outputs are up-to-date.
+       PreLinkEvent:
+         if not exist ".\Release\" mkdir ".\Release\"
+         xcopy /Y /Q "C:\Users\Administrator\Desktop\supersinglecell-c3dengine-win\superSingleCell-c3dEngine-win32\superSingleCell-c3dEngine\win32Project\..\c3dEngine\platform\win32\libraries\*.*" ".\Release\"
+         
+         
+         :VCEnd
+         复制了 22 个文件
+       Link:
+         All outputs are up-to-date.
+         c3d+singleCell.vcxproj -> C:\Users\Administrator\Desktop\supersinglecell-c3dengine-win\superSingleCell-c3dEngine-win32\superSingleCell-c3dEngine\win32Project\.\Release\c3d+singleCell.exe
+       BscMake:
+         All outputs are up-to-date.
+       FinalizeBuildStatus:
+         Deleting file ".\Release\c3d+singleCell.unsuccessfulbuild".
+         Touching ".\Release\c3d+singleCell.lastbuildstate".
+     1>Done Building Project "C:\Users\Administrator\Desktop\supersinglecell-c3dengine-win\superSingleCell-c3dEngine-win32\superSingleCell-c3dEngine\win32Project\c3d+singleCell.vcxproj" (build target(s)).
+
+Build succeeded.
+
+Time Elapsed 00:00:00.40

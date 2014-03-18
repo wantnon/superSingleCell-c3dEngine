@@ -26,7 +26,7 @@ public:
         
     }
     static Cc3dGestureAnalyzer* sharedGestureAnalyzer();
-    Cc3dVector2 getPoint()const{//数学坐标系坐标(原点在左下角)
+    Cc3dVector2 getPoint()const{//math coordinate (origin at left down corner)
         Cc3dTouch touch=Cc3dTouchSequence::sharedTouchSequence()->getLatestTouches()[0];
         Cc3dVector2 point=Cc3dVector2(touch.getPoint().x(),
                            Cc3dDeviceAndOSInfo::sharedDeviceAndOSInfo()->getScreenSize().y()-touch.getPoint().y());
@@ -54,10 +54,11 @@ public:
 
 
     bool getIsTapOnce(){
-        //如果当前是抬起，且最近的一次按下距当前的时间较短，则判断为TapOnce
+		//if current is up, and the latest down is not too long from crrent time, then juged as TapOnce
         if(Cc3dTouchSequence::sharedTouchSequence()->getTouchesAtTimeWithType(Cc3dTimeCounter::sharedTimeCounter()->getCount(), e_c3dTouchEnd).empty()==false){
             long latestTouchBeganTime=Cc3dTouchSequence::sharedTouchSequence()->getLatestTouchTypeTime(e_c3dTouchBegan);
-            if(Cc3dTimeCounter::sharedTimeCounter()->getCount()-latestTouchBeganTime<10){
+            if(Cc3dTimeCounter::sharedTimeCounter()->getCount()-latestTouchBeganTime<10){//10
+				//cout<<"isTapOnce"<<endl;
                 return true;
             }
         }
@@ -73,12 +74,14 @@ public:
         }
     }
     bool getIsDown()const {
-        //通过比较最近的touchBegan和touchEnd的时间先后来判断是否为按下状态
+		//by compare the order of latest touchBegan and touchend to judge whether in press down state
         Cc3dTouch touchBegan=Cc3dTouchSequence::sharedTouchSequence()->getLatestTouchesWithType(e_c3dTouchBegan)[0];
         Cc3dTouch touchEnd=Cc3dTouchSequence::sharedTouchSequence()->getLatestTouchesWithType(e_c3dTouchEnd)[0];
         if(touchBegan.getTime()<touchEnd.getTime()){
+
             return false;
         }else{
+			//cout<<"isDown"<<endl;
             return true;
         }
     }

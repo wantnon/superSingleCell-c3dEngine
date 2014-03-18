@@ -60,18 +60,18 @@ public:
         
     }
     void addTouch(const Cc3dTouch&touch){
-        //限制touchList的长度不超过touchSequenceMaxLength
+        //limit the length of touchList not exceed touchSequenceMaxLength
         int n=(int)m_touchList.size();
-        if(n<touchSequenceMaxLength){//可以直接添加
+        if(n<touchSequenceMaxLength){//add directly
             m_touchList.push_back(touch);
         }else{
-            //前移
+            //move left
             for(int i=0;i<n-1;i++){
                 m_touchList[i]=m_touchList[i+1];
             }
-            //将touch填充到腾出的最后一个元素
+            //fill touch to tail element
             m_touchList[n-1]=touch;
-            //将前三个元素置为哨兵
+			//the first three element set as guard
             m_touchList[0]=Cc3dTouch(0,0,e_c3dTouchBegan,timeLongLongAgo);
             m_touchList[1]=Cc3dTouch(0,0,e_c3dTouchMove,timeLongLongAgo+1);
             m_touchList[2]=Cc3dTouch(0,0,e_c3dTouchEnd,timeLongLongAgo+2);

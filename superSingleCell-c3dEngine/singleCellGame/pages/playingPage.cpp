@@ -521,7 +521,7 @@ bool  CplayingPage::init(int level){
     const float height=Cc3dDeviceAndOSInfo::sharedDeviceAndOSInfo()->getScreenSize().y();
     string resoStr=numberToStr(wReso)+"x"+numberToStr(hReso);
     m_level=level;
-    cout<<"加载关卡..."<<endl;
+    cout<<"load level..."<<endl;
     cout<<"level"<<level<<endl;
    
     //----重新渲染shadow map
@@ -532,16 +532,16 @@ bool  CplayingPage::init(int level){
     //将level转成字符串
     string levelStr=numberToStr(level);
     //制作根路径
-    string rootPath="data/levels/level_"+levelStr;
+    string rootPath="singleCellGameResource/data/levels/level_"+levelStr;
     //----创建数字纹理和符号纹理
     {
         for(int i=0;i<10;i++){
-            string texPath="data/global/tex/numberAndSymbolTex/"+numberToStr(i)+".png";
+            string texPath="singleCellGameResource/data/global/tex/numberAndSymbolTex/"+numberToStr(i)+".png";
             Cc3dTexture* ptex=Cc3dTextureCache::sharedTextureCache()->addImage(texPath);
             m_numberTexList.push_back(ptex);
             ptex->retain();
         }
-        m_dotTex=Cc3dTextureCache::sharedTextureCache()->addImage("data/global/tex/numberAndSymbolTex/dot.png");
+        m_dotTex=Cc3dTextureCache::sharedTextureCache()->addImage("singleCellGameResource/data/global/tex/numberAndSymbolTex/dot.png");
         m_dotTex->retain();
     }
 
@@ -584,24 +584,24 @@ bool  CplayingPage::init(int level){
     
     //声音
     {
-     //   m_cell->pALSource_ya=Cc3dAudioCache::sharedAudioCache()->createBufferAndSource("data/global/audio/ya.wav");
-     //   m_cell->pALSsource_fall_in_water=Cc3dAudioCache::sharedAudioCache()->createBufferAndSource("data/global/audio/fall_in_water.wav");
-     //   m_cell->pALSource_water_puddle=Cc3dAudioCache::sharedAudioCache()->createBufferAndSource("data/global/audio/water_puddle.wav");
-     //   m_cell->pALSource_move_shasha=Cc3dAudioCache::sharedAudioCache()->createBufferAndSource("data/global/audio/move_shasha.wav");
-     //   m_cell->pALSource_alert_out_of_fuel=Cc3dAudioCache::sharedAudioCache()->createBufferAndSource("data/global/audio/alert_out_of_fuel.wav");
-     //   m_cell->pALSource_oops=Cc3dAudioCache::sharedAudioCache()->createBufferAndSource("data/global/audio/oops.wav");
-     //   m_cell->pALSource_fallFlat_paa_oops=Cc3dAudioCache::sharedAudioCache()->createBufferAndSource("data/global/audio/paa_oops.wav");
-     //   m_cell->pALSource_onFire=Cc3dAudioCache::sharedAudioCache()->createBufferAndSource("data/global/audio/onFire.wav");
+     //   m_cell->pALSource_ya=Cc3dAudioCache::sharedAudioCache()->createBufferAndSource("singleCellGameResource/data/global/audio/ya.wav");
+     //   m_cell->pALSsource_fall_in_water=Cc3dAudioCache::sharedAudioCache()->createBufferAndSource("singleCellGameResource/data/global/audio/fall_in_water.wav");
+     //   m_cell->pALSource_water_puddle=Cc3dAudioCache::sharedAudioCache()->createBufferAndSource("singleCellGameResource/data/global/audio/water_puddle.wav");
+     //   m_cell->pALSource_move_shasha=Cc3dAudioCache::sharedAudioCache()->createBufferAndSource("singleCellGameResource/data/global/audio/move_shasha.wav");
+     //   m_cell->pALSource_alert_out_of_fuel=Cc3dAudioCache::sharedAudioCache()->createBufferAndSource("singleCellGameResource/data/global/audio/alert_out_of_fuel.wav");
+     //   m_cell->pALSource_oops=Cc3dAudioCache::sharedAudioCache()->createBufferAndSource("singleCellGameResource/data/global/audio/oops.wav");
+     //   m_cell->pALSource_fallFlat_paa_oops=Cc3dAudioCache::sharedAudioCache()->createBufferAndSource("singleCellGameResource/data/global/audio/paa_oops.wav");
+     //   m_cell->pALSource_onFire=Cc3dAudioCache::sharedAudioCache()->createBufferAndSource("singleCellGameResource/data/global/audio/onFire.wav");
      //   m_cell->pALSource_onFire->setIsLooping(true);
         
-        Cc3dALSource*pALSource_ya=Cc3dAudioCache::sharedAudioCache()->createBufferAndSource("data/global/audio/ya.wav","ya");
-        Cc3dALSource*pALSsource_fall_in_water=Cc3dAudioCache::sharedAudioCache()->createBufferAndSource("data/global/audio/fall_in_water.wav","fall_in_water");
-        Cc3dALSource*pALSource_water_puddle=Cc3dAudioCache::sharedAudioCache()->createBufferAndSource("data/global/audio/water_puddle.wav","water_puddle");
-        Cc3dALSource*pALSource_move_shasha=Cc3dAudioCache::sharedAudioCache()->createBufferAndSource("data/global/audio/move_shasha.wav","move_shasha");
-        Cc3dALSource*pALSource_alert_out_of_fuel=Cc3dAudioCache::sharedAudioCache()->createBufferAndSource("data/global/audio/alert_out_of_fuel.wav","alert_out_of_fuel");
-        Cc3dALSource*pALSource_oops=Cc3dAudioCache::sharedAudioCache()->createBufferAndSource("data/global/audio/oops.wav","oops");
-        Cc3dALSource*pALSource_fallFlat_paa_oops=Cc3dAudioCache::sharedAudioCache()->createBufferAndSource("data/global/audio/paa_oops.wav","fallFlat_paa_oops");
-        Cc3dALSource*pALSource_onFire=Cc3dAudioCache::sharedAudioCache()->createBufferAndSource("data/global/audio/onFire.wav","onFire");
+        Cc3dALSource*pALSource_ya=Cc3dAudioCache::sharedAudioCache()->createBufferAndSource("singleCellGameResource/data/global/audio/ya.wav","ya");
+        Cc3dALSource*pALSsource_fall_in_water=Cc3dAudioCache::sharedAudioCache()->createBufferAndSource("singleCellGameResource/data/global/audio/fall_in_water.wav","fall_in_water");
+        Cc3dALSource*pALSource_water_puddle=Cc3dAudioCache::sharedAudioCache()->createBufferAndSource("singleCellGameResource/data/global/audio/water_puddle.wav","water_puddle");
+        Cc3dALSource*pALSource_move_shasha=Cc3dAudioCache::sharedAudioCache()->createBufferAndSource("singleCellGameResource/data/global/audio/move_shasha.wav","move_shasha");
+        Cc3dALSource*pALSource_alert_out_of_fuel=Cc3dAudioCache::sharedAudioCache()->createBufferAndSource("singleCellGameResource/data/global/audio/alert_out_of_fuel.wav","alert_out_of_fuel");
+        Cc3dALSource*pALSource_oops=Cc3dAudioCache::sharedAudioCache()->createBufferAndSource("singleCellGameResource/data/global/audio/oops.wav","oops");
+        Cc3dALSource*pALSource_fallFlat_paa_oops=Cc3dAudioCache::sharedAudioCache()->createBufferAndSource("singleCellGameResource/data/global/audio/paa_oops.wav","fallFlat_paa_oops");
+        Cc3dALSource*pALSource_onFire=Cc3dAudioCache::sharedAudioCache()->createBufferAndSource("singleCellGameResource/data/global/audio/onFire.wav","onFire");
         
         m_cell->addALSource(pALSource_ya);
         m_cell->addALSource(pALSsource_fall_in_water);
@@ -700,7 +700,7 @@ bool  CplayingPage::init(int level){
             pmolecule->setVisitDrawOrder(1001);
             pmolecule->setRc(0);
             pmolecule->getModel()->getMeshByIndex(0)->getIndexVBO()->genBuffers();
-            string texClipName="data/global/tex/moleculeLibrary/fire3/";
+            string texClipName="singleCellGameResource/data/global/tex/moleculeLibrary/fire3/";
             pmolecule->loadFrameTexList(texClipName);
             pmolecule->useTex(0);
             pmolecule->getModel()->getMeshByIndex(0)->submitIndex(GL_STATIC_DRAW);
@@ -783,7 +783,7 @@ bool  CplayingPage::init(int level){
             m_sky=new CskySemiBall();
             m_sky->init();
             m_sky->autorelease();
-            loadInfo_model(m_sky->getModel(), "data/global/model/sky");
+            loadInfo_model(m_sky->getModel(), "singleCellGameResource/data/global/model/sky");
             m_sky->scaleToFitR(r_sky);
             m_sky->getModel()->genVBOBuffers();
             m_sky->getModel()->submit(GL_STATIC_DRAW);
@@ -793,7 +793,7 @@ bool  CplayingPage::init(int level){
             //         sky->set_isExist(true);
             m_sky->loadConfig(rootPath+"/sky/config.txt");
             //更换纹理
-            string skyTexPathShort="data/global/tex/skyTexLibrary/sky";
+            string skyTexPathShort="singleCellGameResource/data/global/tex/skyTexLibrary/sky";
             skyTexPathShort+=numberToStr(m_sky->get_skyTexID())+".png";
             Cc3dTexture* pskyTex=Cc3dTextureCache::sharedTextureCache()->addImage(skyTexPathShort);
             m_sky->getModel()->getMeshByIndex(0)->setTexture(pskyTex);
@@ -858,7 +858,7 @@ bool  CplayingPage::init(int level){
                     pArabesquiticSquare->setPos(pos);
                 };
                 pArabesquiticSquare->getModel()->getMeshByIndex(0)->getIndexVBO()->genBuffers();
-                pArabesquiticSquare->getModel()->getMeshByIndex(0)->setTexture(Cc3dTextureCache::sharedTextureCache()->addImage("data/global/tex/water_alpha.png"));
+                pArabesquiticSquare->getModel()->getMeshByIndex(0)->setTexture(Cc3dTextureCache::sharedTextureCache()->addImage("singleCellGameResource/data/global/tex/water_alpha.png"));
                 pArabesquiticSquare->getModel()->getMeshByIndex(0)->submitIndex(GL_STATIC_DRAW);
                 pArabesquiticSquare->getModel()->getMeshByIndex(0)->submitVertex(GL_STATIC_DRAW);
                 pArabesquiticSquare->setProgram(Cc3dProgramCache::sharedProgramCache()->getProgramByName("shader_texOnly_useTexAsAlpha"));
@@ -885,7 +885,7 @@ bool  CplayingPage::init(int level){
                     pcenterSquare->setPos(pos);
                 };
                 pcenterSquare->getModel()->getMeshByIndex(0)->getIndexVBO()->genBuffers();
-                pcenterSquare->loadFrameTexList("data/global/tex/moleculeLibrary/ripple/");
+                pcenterSquare->loadFrameTexList("singleCellGameResource/data/global/tex/moleculeLibrary/ripple/");
                 pcenterSquare->useTex(0);
                 pcenterSquare->getModel()->getMeshByIndex(0)->submitIndex(GL_STATIC_DRAW);
                 pcenterSquare->getModel()->getMeshByIndex(0)->submitVertex(GL_STATIC_DRAW);
@@ -901,7 +901,7 @@ bool  CplayingPage::init(int level){
                 
             }
             //声音
-            m_water->pALSource_water_gulu=Cc3dAudioCache::sharedAudioCache()->createBufferAndSource("data/global/audio/water_gulu.wav","water_gulu");
+            m_water->pALSource_water_gulu=Cc3dAudioCache::sharedAudioCache()->createBufferAndSource("singleCellGameResource/data/global/audio/water_gulu.wav","water_gulu");
             //----
             m_water->set_isExist(true);
             m_water->loadConfig(rootPath+"/water/config.txt");
@@ -996,7 +996,7 @@ bool  CplayingPage::init(int level){
     
     //----shotBlastSet
     {
-        Cc3dALSource *pALSource_bigBlast=Cc3dAudioCache::sharedAudioCache()->createBufferAndSource("data/global/audio/bigBlast.wav","bigBlast");
+        Cc3dALSource *pALSource_bigBlast=Cc3dAudioCache::sharedAudioCache()->createBufferAndSource("singleCellGameResource/data/global/audio/bigBlast.wav","bigBlast");
         int nBlast=40;
         int nBlast_big=10;
         vector<string> texClipPathShortList;
@@ -1005,14 +1005,14 @@ bool  CplayingPage::init(int level){
         vector<float> rList;
         for(int i=0;i<nBlast;i++){
             string blastClipName="blast_small";
-            texClipPathShortList.push_back("data/global/tex/moleculeLibrary/"+blastClipName+"/");
+            texClipPathShortList.push_back("singleCellGameResource/data/global/tex/moleculeLibrary/"+blastClipName+"/");
             blastClipNameList.push_back(blastClipName);
             rList.push_back(6);
             pALSourceList.push_back(NULL);
         }
         for(int i=0;i<nBlast_big;i++){
             string blastClipName="blast_big0";
-            texClipPathShortList.push_back("data/global/tex/moleculeLibrary/"+blastClipName+"/");
+            texClipPathShortList.push_back("singleCellGameResource/data/global/tex/moleculeLibrary/"+blastClipName+"/");
             blastClipNameList.push_back(blastClipName);
             rList.push_back(20);
             pALSourceList.push_back(pALSource_bigBlast);
@@ -1073,7 +1073,7 @@ bool  CplayingPage::init(int level){
             this->addChild(pblast);
             pblast->setDied(true);
             pblast->setIsVisible(false);
-            string texClipName="data/global/tex/moleculeLibrary/"+blastClipName+"/";
+            string texClipName="singleCellGameResource/data/global/tex/moleculeLibrary/"+blastClipName+"/";
             pblast->loadFrameTexList(texClipName);
             pblast->set_blastType(blastClipName);
             float r_molecule=20;
@@ -1102,8 +1102,8 @@ bool  CplayingPage::init(int level){
     
     //--mobilePlatformSet
     {
-        Cc3dALSource*pALSource_woodBreak=Cc3dAudioCache::sharedAudioCache()->createBufferAndSource("data/global/audio/woodBreak.wav","destroySound");
-        Cc3dALSource*pALSource_plat_bouncing=Cc3dAudioCache::sharedAudioCache()->createBufferAndSource("data/global/audio/bouncing.wav","plat_bouncing");
+        Cc3dALSource*pALSource_woodBreak=Cc3dAudioCache::sharedAudioCache()->createBufferAndSource("singleCellGameResource/data/global/audio/woodBreak.wav","destroySound");
+        Cc3dALSource*pALSource_plat_bouncing=Cc3dAudioCache::sharedAudioCache()->createBufferAndSource("singleCellGameResource/data/global/audio/bouncing.wav","plat_bouncing");
         m_mobilePlatformSet.loadConfig(rootPath+"/modelInfo/mobilePlatformInfo/mobilePlatformInfo.txt");
         int nPlat=(int)m_mobilePlatformSet.getActorCount();
         for(int i=0;i<nPlat;i++){
@@ -1120,7 +1120,7 @@ bool  CplayingPage::init(int level){
                                                          0.01,0.01,cubUVMode_UNIFORM);
                 pmesh->setMeshData(meshData);
             }else{//导入模型
-                string modelClipPathShort="data/global/model/platformModelLibrary/";
+                string modelClipPathShort="singleCellGameResource/data/global/model/platformModelLibrary/";
                 modelClipPathShort+=pmobilePlatform->geoTypeName;
                 loadInfo_model(pmobilePlatform->getModel(), modelClipPathShort);
                 //对模型以模型坐标系原点为中心进行放缩，使其包围盒尺寸等于2*pmobilePlatform->rx,2*pmobilePlatform->ry, 2*pmobilePlatform->rz
@@ -1133,7 +1133,7 @@ bool  CplayingPage::init(int level){
             if(pmobilePlatform->texImageName=="null"){//用自带贴图
                 //不用做任何事
             }else{//用platformTexLibrary中的贴图
-                Cc3dTexture *ptex=Cc3dTextureCache::sharedTextureCache()->addImage("data/global/tex/platformTexLibrary/"+pmobilePlatform->texImageName);
+                Cc3dTexture *ptex=Cc3dTextureCache::sharedTextureCache()->addImage("singleCellGameResource/data/global/tex/platformTexLibrary/"+pmobilePlatform->texImageName);
                 int nMesh=(int)pmobilePlatform->getModel()->getMeshCount();
                 for(int i=0;i<nMesh;i++){
                     Cc3dMesh*pmesh=pmobilePlatform->getModel()->getMeshByIndex(i);
@@ -1167,7 +1167,7 @@ bool  CplayingPage::init(int level){
                 //     pmobilePlatform->removeALSourceByName("plat_motion");
                 //pmobilePlatform->pALSource_plat_motion=&nullSource;
             }else{
-                string audioFilePathShort="data/global/audio/";
+                string audioFilePathShort="singleCellGameResource/data/global/audio/";
                 audioFilePathShort+=pmobilePlatform->fileName_motionSoundAfterTrigger;
                 Cc3dALSource*source=Cc3dAudioCache::sharedAudioCache()->createBufferAndSource(audioFilePathShort,"plat_motion",false);
                 source->setIsLooping(pmobilePlatform->motionSoundAfterTrigger_looping);
@@ -1243,13 +1243,13 @@ bool  CplayingPage::init(int level){
             pbubble->getModel()->setIsWriteDepthBuffer(false);
             pbubble->setVisitDrawOrder(1001);
             pbubble->getModel()->getMeshByIndex(0)->getIndexVBO()->genBuffers();
-            string bubbleTexPath="data/global/tex/sprites/"+pbubble->name+".png";
+            string bubbleTexPath="singleCellGameResource/data/global/tex/sprites/"+pbubble->name+".png";
             pbubble->getModel()->getMeshByIndex(0)->setTexture(Cc3dTextureCache::sharedTextureCache()->addImage(bubbleTexPath));
             pbubble->getModel()->getMeshByIndex(0)->submitIndex(GL_STATIC_DRAW);
             pbubble->getModel()->getMeshByIndex(0)->submitVertex(GL_STATIC_DRAW);
             //----声音
             if(pbubble->fileName_sound_eaten!="null"){
-                string filePathShort_bubble_eaten="data/global/audio/bubble_eaten/";
+                string filePathShort_bubble_eaten="singleCellGameResource/data/global/audio/bubble_eaten/";
                 filePathShort_bubble_eaten+=pbubble->fileName_sound_eaten;
              //   pbubble->pALSource_eaten=Cc3dAudioCache::sharedAudioCache()->createBufferAndSource(filePathShort_bubble_eaten);
                 Cc3dALSource*pALSource_eaten=Cc3dAudioCache::sharedAudioCache()->createBufferAndSource(filePathShort_bubble_eaten,"eaten");
@@ -1259,7 +1259,7 @@ bool  CplayingPage::init(int level){
             Cmolecule*pmolecule=pbubble->getMolecule();
             pmolecule->setDied(false);
             pmolecule->setIsVisible(true);
-            string texClipName="data/global/tex/moleculeLibrary/"+pmolecule->name+"/";
+            string texClipName="singleCellGameResource/data/global/tex/moleculeLibrary/"+pmolecule->name+"/";
             pmolecule->loadFrameTexList(texClipName);
             float r_bubble=(pbubble->getRx()+pbubble->getRy())/2;
             float r_molecule=r_bubble*0.7;
@@ -1297,7 +1297,7 @@ bool  CplayingPage::init(int level){
                 int ID=pbubble->ID;
                 if(ID>99){
                     cout<<"error:ID>99，目前无法在屏幕上显示三位数!"<<endl;
-                    exit(0);
+                    assert(false);
                 }
                 //IDboard0
                 Csprite*IDboard0=new Csprite();
@@ -1369,7 +1369,7 @@ bool  CplayingPage::init(int level){
             pfakeLight->setVisitDrawOrder(1001);
             this->addChild(pfakeLight);
             pfakeLight->getModel()->getMeshByIndex(0)->getIndexVBO()->genBuffers();
-            pfakeLight->getModel()->getMeshByIndex(0)->setTexture(Cc3dTextureCache::sharedTextureCache()->addImage("data/global/tex/sprites/glow_sprite_big.png"));
+            pfakeLight->getModel()->getMeshByIndex(0)->setTexture(Cc3dTextureCache::sharedTextureCache()->addImage("singleCellGameResource/data/global/tex/sprites/glow_sprite_big.png"));
             pfakeLight->getModel()->getMeshByIndex(0)->submitIndex(GL_STATIC_DRAW);
             pfakeLight->getModel()->getMeshByIndex(0)->submitVertex(GL_STATIC_DRAW);
         }
@@ -1465,7 +1465,7 @@ bool  CplayingPage::init(int level){
             pmeteor->setPassUnifoCallback(passUnifoCallback_texOnly_useTexAsAlpha);
             pmeteor->setCamera(camera);
             pmeteor->getModel()->getMeshByIndex(0)->getIndexVBO()->genBuffers();
-            pmeteor->getModel()->getMeshByIndex(0)->setTexture(Cc3dTextureCache::sharedTextureCache()->addImage("data/global/tex/sprites/meteor.png"));
+            pmeteor->getModel()->getMeshByIndex(0)->setTexture(Cc3dTextureCache::sharedTextureCache()->addImage("singleCellGameResource/data/global/tex/sprites/meteor.png"));
             pmeteor->getModel()->getMeshByIndex(0)->submitIndex(GL_STATIC_DRAW);
             pmeteor->getModel()->getMeshByIndex(0)->submitVertex(GL_STATIC_DRAW);
             m_meteorSet.addActor(pmeteor);
@@ -1480,7 +1480,7 @@ bool  CplayingPage::init(int level){
         //
         Cc3dModel*model=new Cc3dModel();
         model->autorelease();
-        loadInfo_model(model, "data/global/model/musicCube");
+        loadInfo_model(model, "singleCellGameResource/data/global/model/musicCube");
         model->scale_modifyVertexDirectly(0.1, 0.1, 0.1);
         model->genVBOBuffers();
         model->submit(GL_STATIC_DRAW);
@@ -1492,7 +1492,7 @@ bool  CplayingPage::init(int level){
         //
         m_levelBackGroundMusicCube->loadConfig(rootPath+"/backGroundMusic/config.txt");
         if(m_levelBackGroundMusicCube->audioFileName!="null"){
-            string audioFilePathShort="data/global/audio/backGroundMusic/";
+            string audioFilePathShort="singleCellGameResource/data/global/audio/backGroundMusic/";
             audioFilePathShort+=m_levelBackGroundMusicCube->audioFileName;
           //  assert(levelBackGroundMusicCube.pALSource->getIsValidSource()==false);
           //  m_levelBackGroundMusicCube->pALSource=Cc3dAudioCache::sharedAudioCache()->createBufferAndSource(audioFilePathShort);
@@ -1574,7 +1574,7 @@ bool  CplayingPage::init(int level){
                     cout<<"tempID:"<<pbossCell->templateID<<endl;
                     cout<<"pos:";
                     pbossCell->getTransform().getPos().print();
-                    exit(0);
+                    assert(false);
                 }
             }
             
@@ -1652,7 +1652,7 @@ bool  CplayingPage::init(int level){
     
     
     
-    cout<<"关卡加载完成!"<<endl;
+    cout<<"level load finish !"<<endl;
 //------------------------------------------------------------------------------------------------------------------------------------
     //--quad_oops
     {
@@ -1663,7 +1663,7 @@ bool  CplayingPage::init(int level){
         float by=0;
         float w=120;
         float h=60;
-        Cc3dTexture* ptex=Cc3dTextureCache::sharedTextureCache()->addImage("data/global/tex/quads/quad_oops.png");
+        Cc3dTexture* ptex=Cc3dTextureCache::sharedTextureCache()->addImage("singleCellGameResource/data/global/tex/quads/quad_oops.png");
         m_quad_oops->genAndInit(bx, bx+w, by, by+h,0,1,0,1);
         m_quad_oops->getModelList()[0]->getMeshByIndex(0)->getIndexVBO()->genBuffers();
         m_quad_oops->getModelList()[0]->getMeshByIndex(0)->setTexture(ptex);
@@ -1693,7 +1693,7 @@ bool  CplayingPage::init(int level){
         float by=0;
         float w=200;
         float h=50;
-        Cc3dTexture* ptex=Cc3dTextureCache::sharedTextureCache()->addImage("data/global/tex/quads/quad_out_of_fuel.png");
+        Cc3dTexture* ptex=Cc3dTextureCache::sharedTextureCache()->addImage("singleCellGameResource/data/global/tex/quads/quad_out_of_fuel.png");
         m_quad_out_of_fuel->genAndInit(bx, bx+w, by, by+h,0,1,0,1);
         m_quad_out_of_fuel->getModelList()[0]->getMeshByIndex(0)->getIndexVBO()->genBuffers();
         m_quad_out_of_fuel->getModelList()[0]->getMeshByIndex(0)->setTexture(ptex);
@@ -1722,7 +1722,7 @@ bool  CplayingPage::init(int level){
         float by=0;
         float w=200;
         float h=50;
-        Cc3dTexture* ptex=Cc3dTextureCache::sharedTextureCache()->addImage("data/global/tex/quads/quad_halfFuelHaveBeenUsed.png");
+        Cc3dTexture* ptex=Cc3dTextureCache::sharedTextureCache()->addImage("singleCellGameResource/data/global/tex/quads/quad_halfFuelHaveBeenUsed.png");
         m_quad_halfFuelHaveBeenUsed->genAndInit(bx, bx+w, by, by+h,0,1,0,1);
         m_quad_halfFuelHaveBeenUsed->getModelList()[0]->getMeshByIndex(0)->getIndexVBO()->genBuffers();
         m_quad_halfFuelHaveBeenUsed->getModelList()[0]->getMeshByIndex(0)->setTexture(ptex);
@@ -1818,7 +1818,7 @@ bool  CplayingPage::init(int level){
         m_debugKey->setKeyDownColor(0.7, 0.7, 0.7, 1);
         m_debugKey->setKeyUpColor(1, 1, 1, 1);
         m_debugKey->useKeyUpColor();
-        m_debugKey->getModelList()[0]->getMeshByIndex(0)->setTexture(Cc3dTextureCache::sharedTextureCache()->addImage("data/global/tex/keys/key_debug.png"));
+        m_debugKey->getModelList()[0]->getMeshByIndex(0)->setTexture(Cc3dTextureCache::sharedTextureCache()->addImage("singleCellGameResource/data/global/tex/keys/key_debug.png"));
         m_debugKey->setCamera(camera2D);
         m_debugKey->getModelList()[0]->setIsWriteDepthBuffer(false);
         m_debugKey->setProgram(Cc3dProgramCache::sharedProgramCache()->getProgramByName("shaderNoLight"));
@@ -1842,7 +1842,7 @@ bool  CplayingPage::init(int level){
         m_tipKey->setKeyDownColor(0.7, 0.7, 0.7, 0.5);
         m_tipKey->setKeyUpColor(1, 1, 1, 0.5);
         m_tipKey->useKeyUpColor();
-        m_tipKey->getModelList()[0]->getMeshByIndex(0)->setTexture(Cc3dTextureCache::sharedTextureCache()->addImage("data/global/tex/keys/key_tip.png"));
+        m_tipKey->getModelList()[0]->getMeshByIndex(0)->setTexture(Cc3dTextureCache::sharedTextureCache()->addImage("singleCellGameResource/data/global/tex/keys/key_tip.png"));
         m_tipKey->setCamera(camera2D);
         m_tipKey->getModelList()[0]->setIsWriteDepthBuffer(false);
         m_tipKey->setProgram(Cc3dProgramCache::sharedProgramCache()->getProgramByName("shaderNoLight"));
@@ -1866,7 +1866,7 @@ bool  CplayingPage::init(int level){
         m_pauseKey->setKeyDownColor(0.7, 0.7, 0.7, 0.5);
         m_pauseKey->setKeyUpColor(1, 1, 1, 0.5);
         m_pauseKey->useKeyUpColor();
-        m_pauseKey->getModelList()[0]->getMeshByIndex(0)->setTexture(Cc3dTextureCache::sharedTextureCache()->addImage("data/global/tex/keys/key_pause.png"));
+        m_pauseKey->getModelList()[0]->getMeshByIndex(0)->setTexture(Cc3dTextureCache::sharedTextureCache()->addImage("singleCellGameResource/data/global/tex/keys/key_pause.png"));
         m_pauseKey->setCamera(camera2D);
         m_pauseKey->getModelList()[0]->setIsWriteDepthBuffer(false);
         m_pauseKey->setProgram(Cc3dProgramCache::sharedProgramCache()->getProgramByName("shaderNoLight"));
@@ -1884,7 +1884,7 @@ bool  CplayingPage::init(int level){
         m_zoomOutKey=new Ckey();
         m_zoomOutKey->autorelease();
         //
-        Cc3dTexture* ptex_zoomOut=Cc3dTextureCache::sharedTextureCache()->addImage("data/global/tex/keys/key_zoomOut.png");
+        Cc3dTexture* ptex_zoomOut=Cc3dTextureCache::sharedTextureCache()->addImage("singleCellGameResource/data/global/tex/keys/key_zoomOut.png");
         float c[2]={0,0};
         m_zoomOutKey->genAndInit(c[0]-r_key,c[0]+r_key,c[1]-r_key,c[1]+r_key, 0,1,0,1);
         m_zoomOutKey->getModelList()[0]->getMeshByIndex(0)->getIndexVBO()->genBuffers();
@@ -1912,8 +1912,8 @@ bool  CplayingPage::init(int level){
         m_shotBigKey=new Ckey();
         m_shotBigKey->autorelease();
         //
-  //      ptex_shotBigKey_adjusting=Cc3dTextureCache::sharedTextureCache()->addImage("data/global/tex/keys/key_shot_big_adjusting.png");
-        Cc3dTexture*ptex_shotBigKey=Cc3dTextureCache::sharedTextureCache()->addImage("data/global/tex/keys/key_shot_big.png");
+  //      ptex_shotBigKey_adjusting=Cc3dTextureCache::sharedTextureCache()->addImage("singleCellGameResource/data/global/tex/keys/key_shot_big_adjusting.png");
+        Cc3dTexture*ptex_shotBigKey=Cc3dTextureCache::sharedTextureCache()->addImage("singleCellGameResource/data/global/tex/keys/key_shot_big.png");
         float c[2]={0,0};
         m_shotBigKey->genAndInit(c[0]-r_key,c[0]+r_key,c[1]-r_key,c[1]+r_key, 0,1,0,1);
         m_shotBigKey->getModelList()[0]->getMeshByIndex(0)->getIndexVBO()->genBuffers();
@@ -1938,8 +1938,8 @@ bool  CplayingPage::init(int level){
         m_shotKey=new Ckey();
         m_shotKey->autorelease();
         //
-        //ptex_shotKey_adjusting=Cc3dTextureCache::sharedTextureCache()->addImage("data/global/tex/keys/key_shot_adjusting.png");
-        Cc3dTexture*ptex_shotKey=Cc3dTextureCache::sharedTextureCache()->addImage("data/global/tex/keys/key_shot.png");
+        //ptex_shotKey_adjusting=Cc3dTextureCache::sharedTextureCache()->addImage("singleCellGameResource/data/global/tex/keys/key_shot_adjusting.png");
+        Cc3dTexture*ptex_shotKey=Cc3dTextureCache::sharedTextureCache()->addImage("singleCellGameResource/data/global/tex/keys/key_shot.png");
         float c[2]={0,0};
         m_shotKey->genAndInit(c[0]-r_key,c[0]+r_key,c[1]-r_key,c[1]+r_key, 0,1,0,1);
         m_shotKey->getModelList()[0]->getMeshByIndex(0)->getIndexVBO()->genBuffers();
@@ -1965,7 +1965,7 @@ bool  CplayingPage::init(int level){
         m_goDownShipKey=new Ckey();
         m_goDownShipKey->autorelease();
         //
-        Cc3dTexture*ptexture_goDownShipKey=Cc3dTextureCache::sharedTextureCache()->addImage("data/global/tex/keys/key_goDownShip.png");
+        Cc3dTexture*ptexture_goDownShipKey=Cc3dTextureCache::sharedTextureCache()->addImage("singleCellGameResource/data/global/tex/keys/key_goDownShip.png");
         float c[2]={0,0};
         m_goDownShipKey->genAndInit(c[0]-r_key,c[0]+r_key,c[1]-r_key,c[1]+r_key, 0,1,0,1);
         m_goDownShipKey->getModelList()[0]->getMeshByIndex(0)->getIndexVBO()->genBuffers();
@@ -1998,7 +1998,7 @@ bool  CplayingPage::init(int level){
         m_lifeBar->genAndInit(0, 0, 123, 15);
         //quad_back
         m_lifeBar->getQuadBack()->getModelList()[0]->getMeshByIndex(0)->getIndexVBO()->genBuffers();
-        m_lifeBar->getQuadBack()->getModelList()[0]->getMeshByIndex(0)->setTexture(Cc3dTextureCache::sharedTextureCache()->addImage("data/global/tex/white.png"));
+        m_lifeBar->getQuadBack()->getModelList()[0]->getMeshByIndex(0)->setTexture(Cc3dTextureCache::sharedTextureCache()->addImage("singleCellGameResource/data/global/tex/white.png"));
         m_lifeBar->getQuadBack()->setKeyUpColor(1, 0.7, 0.7, 0.7);
         m_lifeBar->getQuadBack()->useKeyUpColor();
         m_lifeBar->getQuadBack()->setCamera(camera2D);
@@ -2008,7 +2008,7 @@ bool  CplayingPage::init(int level){
         m_lifeBar->getQuadBack()->setVisitDrawOrder(10000);
         //quad_front
         m_lifeBar->getQuadFront()->getModelList()[0]->getMeshByIndex(0)->getIndexVBO()->genBuffers();
-        m_lifeBar->getQuadFront()->getModelList()[0]->getMeshByIndex(0)->setTexture(Cc3dTextureCache::sharedTextureCache()->addImage("data/global/tex/white.png"));
+        m_lifeBar->getQuadFront()->getModelList()[0]->getMeshByIndex(0)->setTexture(Cc3dTextureCache::sharedTextureCache()->addImage("singleCellGameResource/data/global/tex/white.png"));
         m_lifeBar->getQuadFront()->setKeyUpColor(1, 0, 0, 0.5);
         m_lifeBar->getQuadFront()->useKeyUpColor();
         m_lifeBar->getQuadFront()->setCamera(camera2D);
@@ -2027,9 +2027,9 @@ bool  CplayingPage::init(int level){
     //----quad_keyList
     {
         int nKey=10;
-        m_tex_quad_key_blackWhite=Cc3dTextureCache::sharedTextureCache()->addImage("data/global/tex/quads/quad_geneCube_blackWhite.png");
+        m_tex_quad_key_blackWhite=Cc3dTextureCache::sharedTextureCache()->addImage("singleCellGameResource/data/global/tex/quads/quad_geneCube_blackWhite.png");
         m_tex_quad_key_blackWhite->retain();
-        m_tex_quad_key_colored=Cc3dTextureCache::sharedTextureCache()->addImage("data/global/tex/quads/quad_geneCube.png");
+        m_tex_quad_key_colored=Cc3dTextureCache::sharedTextureCache()->addImage("singleCellGameResource/data/global/tex/quads/quad_geneCube.png");
         m_tex_quad_key_colored->retain();
         for(int i=0;i<nKey;i++){
             Ckey*quad_key=new Ckey();
@@ -2078,7 +2078,7 @@ bool  CplayingPage::init(int level){
         m_quad_coin=new Ckey();
         m_quad_coin->autorelease();
         //
-        Cc3dTexture* ptex_quad_coin=Cc3dTextureCache::sharedTextureCache()->addImage("data/global/tex/quads/quad_coin.png");
+        Cc3dTexture* ptex_quad_coin=Cc3dTextureCache::sharedTextureCache()->addImage("singleCellGameResource/data/global/tex/quads/quad_coin.png");
         m_quad_coin->genAndInit(0, 30, 0, 30,0,1,0,1);
         m_quad_coin->getModelList()[0]->getMeshByIndex(0)->getIndexVBO()->genBuffers();
         m_quad_coin->getModelList()[0]->getMeshByIndex(0)->setTexture(ptex_quad_coin);
@@ -2132,7 +2132,7 @@ bool  CplayingPage::init(int level){
         m_quad_killEnemy=new Ckey();
         m_quad_killEnemy->autorelease();
         //
-        Cc3dTexture* ptex_quad_killEnemy=Cc3dTextureCache::sharedTextureCache()->addImage("data/global/tex/quads/quad_killEnemy.png");
+        Cc3dTexture* ptex_quad_killEnemy=Cc3dTextureCache::sharedTextureCache()->addImage("singleCellGameResource/data/global/tex/quads/quad_killEnemy.png");
         m_quad_killEnemy->genAndInit(0, 30, 0, 30,0,1,0,1);
         m_quad_killEnemy->getModelList()[0]->getMeshByIndex(0)->getIndexVBO()->genBuffers();
         m_quad_killEnemy->getModelList()[0]->getMeshByIndex(0)->setTexture(ptex_quad_killEnemy);
@@ -2189,7 +2189,7 @@ bool  CplayingPage::init(int level){
         m_fuelBar->genAndInit(0, 0, 123, 15);
         //quad_back
         m_fuelBar->getQuadBack()->getModelList()[0]->getMeshByIndex(0)->getIndexVBO()->genBuffers();
-        m_fuelBar->getQuadBack()->getModelList()[0]->getMeshByIndex(0)->setTexture(Cc3dTextureCache::sharedTextureCache()->addImage("data/global/tex/white.png"));
+        m_fuelBar->getQuadBack()->getModelList()[0]->getMeshByIndex(0)->setTexture(Cc3dTextureCache::sharedTextureCache()->addImage("singleCellGameResource/data/global/tex/white.png"));
         m_fuelBar->getQuadBack()->setKeyUpColor(0.7, 1, 0.7, 0.7);
         m_fuelBar->getQuadBack()->useKeyUpColor();
         m_fuelBar->getQuadBack()->setCamera(camera2D);
@@ -2199,7 +2199,7 @@ bool  CplayingPage::init(int level){
         m_fuelBar->getQuadBack()->setVisitDrawOrder(10000);
         //quad_front
         m_fuelBar->getQuadFront()->getModelList()[0]->getMeshByIndex(0)->getIndexVBO()->genBuffers();
-        m_fuelBar->getQuadFront()->getModelList()[0]->getMeshByIndex(0)->setTexture(Cc3dTextureCache::sharedTextureCache()->addImage("data/global/tex/white.png"));
+        m_fuelBar->getQuadFront()->getModelList()[0]->getMeshByIndex(0)->setTexture(Cc3dTextureCache::sharedTextureCache()->addImage("singleCellGameResource/data/global/tex/white.png"));
         m_fuelBar->getQuadFront()->setKeyUpColor(0, 0.6, 0, 0.5);
         m_fuelBar->getQuadFront()->useKeyUpColor();
         m_fuelBar->getQuadFront()->setCamera(camera2D);
@@ -2223,13 +2223,13 @@ bool  CplayingPage::init(int level){
     
     //-----------music
     //----levelDone
-    Cc3dALSource*pALSource_levelDone=Cc3dAudioCache::sharedAudioCache()->createBufferAndSource("data/global/audio/level_done.wav","levelDone");
+    Cc3dALSource*pALSource_levelDone=Cc3dAudioCache::sharedAudioCache()->createBufferAndSource("singleCellGameResource/data/global/audio/level_done.wav","levelDone");
     this->addALSource(pALSource_levelDone);
     //----gameOver
-    Cc3dALSource*pALSource_gameOver=Cc3dAudioCache::sharedAudioCache()->createBufferAndSource("data/global/audio/gameOver.wav","gameOver");
+    Cc3dALSource*pALSource_gameOver=Cc3dAudioCache::sharedAudioCache()->createBufferAndSource("singleCellGameResource/data/global/audio/gameOver.wav","gameOver");
     this->addALSource(pALSource_gameOver);
     //----switchPage
-    Cc3dALSource*pALSource_switchPage=Cc3dAudioCache::sharedAudioCache()->createBufferAndSource("data/global/audio/switchPage.wav","switchPage");
+    Cc3dALSource*pALSource_switchPage=Cc3dAudioCache::sharedAudioCache()->createBufferAndSource("singleCellGameResource/data/global/audio/switchPage.wav","switchPage");
     this->addALSource(pALSource_switchPage);
     //---backGroundMusic
     m_levelBackGroundMusicCube->getALSourceByName("levelbackGroundMusic")->play();
@@ -2249,7 +2249,7 @@ void  CplayingPage::visitDraw(){
     {
         //---渲染静态shadow map
         if(m_depthTex_got==false){
-            cout<<"渲染depthTex..."<<endl;
+            cout<<"render depthTex..."<<endl;
             //change program, passUnifoCallback, light for all nodes of scene
             map<Cc3dNode*,Cc3dProgram*> nodeProgramMap=changeProgramRecursively(this, Cc3dProgramCache::sharedProgramCache()->getProgramByName("shader_renderDepth"));
             map<Cc3dNode*,c3dPassUnifoCallbackPtr> nodeCallbackMap=changePassUnifoCallbackRecursively(this, passUnifoCallback_renderDepth);
@@ -2285,7 +2285,7 @@ void  CplayingPage::visitDraw(){
             
             m_depthTex_got=true;
             
-            cout<<"depthTex渲染完成!"<<endl;
+            cout<<"render depthTex done!"<<endl;
             //recover
             setPrograms(nodeProgramMap);
             setPassUnifoCallbacks(nodeCallbackMap);

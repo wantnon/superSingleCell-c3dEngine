@@ -11,7 +11,7 @@
 
 #include <iostream>
 using namespace std;
-#import <OpenAL/al.h>
+//#import <OpenAL/al.h> [change]
 #include "c3dMath.h"
 #include "c3dModel.h"
 #include "shotBall.h"
@@ -781,7 +781,7 @@ public:
                 break;
             default:
                 cout<<"error:未定义的adjustSoftness类型!"<<endl;
-                exit(0);
+                assert(false);
                 break;
         }
         //--------------------
@@ -839,7 +839,7 @@ public:
                 break;
             default:
                 cout<<"error:未定义的adjustSoftness类型!"<<endl;
-                exit(0);
+                assert(false);
                 break;
         }
         Cc3dVector4 pos=this->m_transform.getPos();
@@ -977,7 +977,7 @@ public:
         if(fp==NULL)
         {
             cout<<"Open "<<pathName<<" failed!"<<endl;
-            exit(0);
+            assert(false);
         }
         //------------------提取文件信息，并建立列模型列表
         {

@@ -44,51 +44,52 @@ public:
    void submitVertex(const vector<Cc3dVertex> &vlist,GLenum usage)
     {
         int vertexCount=(int)vlist.size();
-        //----提交到显卡
+		m_vertexCount=vertexCount;
+		if(m_vertexCount==0)return;
         glBindBuffer(GL_ARRAY_BUFFER, vertexbuffer);
-        glBufferData(GL_ARRAY_BUFFER, sizeof(float)*vertexCount*(3+2+3+2), &vlist[0], usage);
-        glBindBuffer(GL_ARRAY_BUFFER, 0);//解绑定
-        m_vertexCount=vertexCount;
+        glBufferData(GL_ARRAY_BUFFER, sizeof(float)*m_vertexCount*(3+2+3+2), &vlist[0], usage);
+        glBindBuffer(GL_ARRAY_BUFFER, 0);
+        
         
     }
     void submitVertex(int vertexCount,const float vertexArray[],GLenum usage)
     {
-        //----提交到显卡
+		m_vertexCount=vertexCount;
+		if(m_vertexCount==0)return;
         glBindBuffer(GL_ARRAY_BUFFER, vertexbuffer);
-        glBufferData(GL_ARRAY_BUFFER, vertexCount*sizeof(float)*(3+2+3+2), vertexArray, usage);
-        glBindBuffer(GL_ARRAY_BUFFER, 0);//解绑定
-        m_vertexCount=vertexCount;
+        glBufferData(GL_ARRAY_BUFFER, m_vertexCount*sizeof(float)*(3+2+3+2), vertexArray, usage);
+        glBindBuffer(GL_ARRAY_BUFFER, 0);
+        
         
     }
 
     
     void submitIndex(const vector<Cc3dIDTriangle> &IDtriList,GLenum usage)
     {
-        //填充indexCount
         int nIDtri=(int)IDtriList.size();
         int indexCount=3*nIDtri;
-        //----由索引数组生成索引缓存
+		m_indexCount=indexCount;
+		if(m_indexCount==0)return;
+        
         glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, indexbuffer);
-        glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(int)*indexCount, &IDtriList[0], usage);
-        glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, 0);//解绑定
-        m_indexCount=indexCount;
+        glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(int)*m_indexCount, &IDtriList[0], usage);
+        glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, 0);
+        
     }
     void bindVertexBuffer(){
-        //指定要绘制的顶点缓存
   
         glBindBuffer(GL_ARRAY_BUFFER, vertexbuffer);
     }
     void unbindVertexBuffer(){
-        //指定要绘制的顶点缓存
+   
         
         glBindBuffer(GL_ARRAY_BUFFER, 0);
     }
    
 
         
-    static void setPointers()//new
-    //指定program中各属性在顶点缓存中的分布
-    //必须放在bindVertexBuffer之后
+    static void setPointers()
+	//specify each attribute's format, must put after bindVertexBuffer
     {
         const int posStep=3;
         const int texCoordStep=2;
@@ -104,7 +105,6 @@ public:
 
 
     void bindIndexBuffer(){
-        //指定要绘制的索引缓存
         glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, indexbuffer);
     }
     void unbindIndexBuffer(){
@@ -114,19 +114,19 @@ public:
 
     void drawIndexBuffer(GLenum mode=GL_TRIANGLES)
     {
-        //绘制索引缓存
+        //draw index buffer
         if(m_indexCount!=0){
             assert(m_vertexCount!=0);
-            //如果m_indexCount!=0而m_vertexCount==0，则说明忘记了提交顶点数据就开始画了
+            //if m_indexCount!=0 but m_vertexCount==0, may means forget to submit before draw
         }
         glDrawElements(mode,m_indexCount,GL_UNSIGNED_INT, 0);
-        //最后一个参数Must be one of GL_UNSIGNED_BYTE, GL_UNSIGNED_SHORT, or GL_UNSIGNED_INT.
-        //即使用的索引数据是int型，也要用GL_UNSIGNED_INT
-        //第一个参数Symbolic constants GL_POINTS, GL_LINE_STRIP, GL_LINE_LOOP, GL_LINES,
+        //the last parameter must be one of GL_UNSIGNED_BYTE, GL_UNSIGNED_SHORT, or GL_UNSIGNED_INT.
+		//even the index type is int, we should use GL_UNSIGNED_INT
+        //the first parameter is a symbolic constants GL_POINTS, GL_LINE_STRIP, GL_LINE_LOOP, GL_LINES,
         //GL_LINE_STRIP_ADJACENCY, GL_LINES_ADJACENCY, GL_TRIANGLE_STRIP, GL_TRIANGLE_FAN,
         //GL_TRIANGLES, GL_TRIANGLE_STRIP_ADJACENCY, GL_TRIANGLES_ADJACENCY
         //and GL_PATCHES are accepted.
-        //注意其中没有GL_QUADS，但是多了个GL_PATCHES，这个还不会用。
+        //note there is no GL_QUADS, but have a GL_PATCHES
 
     }
 

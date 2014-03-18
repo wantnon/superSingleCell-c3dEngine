@@ -240,7 +240,7 @@ public:
     void adjustFaceAndSubmitVertex(const Cc3dVector4&eyePos,const vector<bool>&maskList){
         if((int)maskList.size()!=(int)actorList.size()){
             cout<<"error:maskList元素数不正确!"<<endl;
-            exit(0);
+            assert(false);
         }
         int n=(int)actorList.size();
         for(int i=0;i<n;i++){

@@ -9,7 +9,7 @@
 #include "terrain.h"
 #include "c3dFileUtils.h"
 inline void Cterrain::readLandMat(){
-    int bmpSideLength=pow(2,m_quadtreeDepth-1);
+    int bmpSideLength=pow(2.0,(int)(m_quadtreeDepth-1));//do not use 2, should use 2.0, see: http://www.360doc.com/content/11/0826/15/7566064_143451209.shtml
     //landMat开辟空间
     landMat.resize(bmpSideLength);
     for(int i=0;i<(int)landMat.size();i++){
@@ -41,13 +41,13 @@ inline void Cterrain::readLandMat(){
         cout<<"bmpWidth:"<<bmpWidth<<endl;
         cout<<"bmpHeight:"<<bmpHeight<<endl;
         cout<<"bmpSideLength:"<<bmpSideLength<<endl;
-        cout<<"配置不匹配!"<<endl;
-        exit(0);
+        cout<<"not match!"<<endl;
+		assert(false);
     }
     int makeup=(4-(bmpWidth*3)%4)%4;
     if(makeup!=MAKEUP){
-        cout<<"配置不匹配!"<<endl;
-        exit(0);
+        cout<<"nt match!"<<endl;
+		assert(false);
     }
     //提取数据
     
@@ -147,7 +147,7 @@ bool Cterrain::init(const string&heightMapFileName,const Cc3dRect&rect,float hei
     //设置m_range
     m_range.init(rect.getMinX(), rect.getMaxX(), Hmin, Hmax, rect.getMinY(), rect.getMaxY());
     //计算步长
-    int markMatSideLength=pow(2,m_quadtreeDepth-1)+1;
+    int markMatSideLength=pow(2.0,m_quadtreeDepth-1)+1;//do not use 2, should use 2.0, see: http://www.360doc.com/content/11/0826/15/7566064_143451209.shtml
     gridSize=m_range.getSpanX()/(markMatSideLength-1);
     //填充法向数据
     fillNormalMat();

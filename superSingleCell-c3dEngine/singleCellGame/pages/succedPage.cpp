@@ -29,12 +29,12 @@ bool CsuccedPage::init(int nStar,int nEnemyKilled,int nCoinEaten){
     //----创建数字纹理和符号纹理
     {
         for(int i=0;i<10;i++){
-            string texPath="data/global/tex/numberAndSymbolTex/"+numberToStr(i)+".png";
+            string texPath="singleCellGameResource/data/global/tex/numberAndSymbolTex/"+numberToStr(i)+".png";
             Cc3dTexture* ptex=Cc3dTextureCache::sharedTextureCache()->addImage(texPath);
             m_numberTexList.push_back(ptex);
             ptex->retain();
         }
-        m_dotTex=Cc3dTextureCache::sharedTextureCache()->addImage("data/global/tex/numberAndSymbolTex/dot.png");
+        m_dotTex=Cc3dTextureCache::sharedTextureCache()->addImage("singleCellGameResource/data/global/tex/numberAndSymbolTex/dot.png");
         m_dotTex->retain();
     }
     //--quad_succeed
@@ -42,7 +42,7 @@ bool CsuccedPage::init(int nStar,int nEnemyKilled,int nCoinEaten){
         m_quad_succeed=new Ckey();
         m_quad_succeed->autorelease();
         //
-        Cc3dTexture* ptexture_quad_succeed=Cc3dTextureCache::sharedTextureCache()->addImage("data/global/tex/quads/quad_succeed.png");
+        Cc3dTexture* ptexture_quad_succeed=Cc3dTextureCache::sharedTextureCache()->addImage("singleCellGameResource/data/global/tex/quads/quad_succeed.png");
         float bx=0;
         float by=0;
         float w=220;
@@ -77,7 +77,7 @@ bool CsuccedPage::init(int nStar,int nEnemyKilled,int nCoinEaten){
         float h=50;
         m_quad_star->genAndInit(bx, bx+w, by, by+h,0,1,0,1);
         m_quad_star->getModelList()[0]->getMeshByIndex(0)->getIndexVBO()->genBuffers();
-        m_quad_star->getModelList()[0]->getMeshByIndex(0)->setTexture(Cc3dTextureCache::sharedTextureCache()->addImage(string("data/global/tex/quads/quad_star")+numberToStr(nStar)+".png"));
+        m_quad_star->getModelList()[0]->getMeshByIndex(0)->setTexture(Cc3dTextureCache::sharedTextureCache()->addImage(string("singleCellGameResource/data/global/tex/quads/quad_star")+numberToStr(nStar)+".png"));
         m_quad_star->setKeyUpColor(1, 1, 1, 1);
         m_quad_star->useKeyUpColor();
         m_quad_star->setCamera(camera2D);
@@ -99,7 +99,7 @@ bool CsuccedPage::init(int nStar,int nEnemyKilled,int nCoinEaten){
         m_nextLevelKey=new Ckey();
         m_nextLevelKey->autorelease();
         //
-        Cc3dTexture* ptexture=Cc3dTextureCache::sharedTextureCache()->addImage("data/global/tex/keys/key_nextLevel.png");
+        Cc3dTexture* ptexture=Cc3dTextureCache::sharedTextureCache()->addImage("singleCellGameResource/data/global/tex/keys/key_nextLevel.png");
         float c[2]={0,0};
         m_nextLevelKey->genAndInit(c[0]-r_key,c[0]+r_key,c[1]-r_key,c[1]+r_key, 0,1,0,1);
         m_nextLevelKey->getModelList()[0]->getMeshByIndex(0)->getIndexVBO()->genBuffers();
@@ -135,7 +135,7 @@ bool CsuccedPage::init(int nStar,int nEnemyKilled,int nCoinEaten){
         m_homeKey->setKeyDownColor(0.7, 0.7, 0.7, 1);
         m_homeKey->setKeyUpColor(1, 1, 1, 1);
         m_homeKey->useKeyUpColor();
-        m_homeKey->getModelList()[0]->getMeshByIndex(0)->setTexture(Cc3dTextureCache::sharedTextureCache()->addImage("data/global/tex/keys/key_home.png"));
+        m_homeKey->getModelList()[0]->getMeshByIndex(0)->setTexture(Cc3dTextureCache::sharedTextureCache()->addImage("singleCellGameResource/data/global/tex/keys/key_home.png"));
         m_homeKey->setCamera(camera2D);
         m_homeKey->getModelList()[0]->setIsWriteDepthBuffer(false);
         m_homeKey->setProgram(Cc3dProgramCache::sharedProgramCache()->getProgramByName("shaderNoLight"));
@@ -160,7 +160,7 @@ bool CsuccedPage::init(int nStar,int nEnemyKilled,int nCoinEaten){
         m_restartKey->setKeyDownColor(0.7, 0.7, 0.7, 1);
         m_restartKey->setKeyUpColor(1, 1, 1, 1);
         m_restartKey->useKeyUpColor();
-        m_restartKey->getModelList()[0]->getMeshByIndex(0)->setTexture(Cc3dTextureCache::sharedTextureCache()->addImage("data/global/tex/keys/key_restart.png"));
+        m_restartKey->getModelList()[0]->getMeshByIndex(0)->setTexture(Cc3dTextureCache::sharedTextureCache()->addImage("singleCellGameResource/data/global/tex/keys/key_restart.png"));
         m_restartKey->setCamera(camera2D);
         m_restartKey->getModelList()[0]->setIsWriteDepthBuffer(false);
         m_restartKey->setProgram(Cc3dProgramCache::sharedProgramCache()->getProgramByName("shaderNoLight"));
@@ -179,7 +179,7 @@ bool CsuccedPage::init(int nStar,int nEnemyKilled,int nCoinEaten){
         m_quad_coin=new Ckey();
         m_quad_coin->autorelease();
         //
-        Cc3dTexture* ptex_quad_coin=Cc3dTextureCache::sharedTextureCache()->addImage("data/global/tex/quads/quad_coin.png");
+        Cc3dTexture* ptex_quad_coin=Cc3dTextureCache::sharedTextureCache()->addImage("singleCellGameResource/data/global/tex/quads/quad_coin.png");
         m_quad_coin->genAndInit(0, 30, 0, 30,0,1,0,1);
         m_quad_coin->getModelList()[0]->getMeshByIndex(0)->getIndexVBO()->genBuffers();
         m_quad_coin->getModelList()[0]->getMeshByIndex(0)->setTexture(ptex_quad_coin);
@@ -250,7 +250,7 @@ bool CsuccedPage::init(int nStar,int nEnemyKilled,int nCoinEaten){
         m_quad_killEnemy=new Ckey();
         m_quad_killEnemy->autorelease();
         //
-        Cc3dTexture* ptex_quad_killEnemy=Cc3dTextureCache::sharedTextureCache()->addImage("data/global/tex/quads/quad_killEnemy.png");
+        Cc3dTexture* ptex_quad_killEnemy=Cc3dTextureCache::sharedTextureCache()->addImage("singleCellGameResource/data/global/tex/quads/quad_killEnemy.png");
         m_quad_killEnemy->genAndInit(0, 30, 0, 30,0,1,0,1);
         m_quad_killEnemy->getModelList()[0]->getMeshByIndex(0)->getIndexVBO()->genBuffers();
         m_quad_killEnemy->getModelList()[0]->getMeshByIndex(0)->setTexture(ptex_quad_killEnemy);
@@ -317,9 +317,9 @@ bool CsuccedPage::init(int nStar,int nEnemyKilled,int nCoinEaten){
     
     //----quad_keyList
     {
-        m_tex_quad_key_blackWhite=Cc3dTextureCache::sharedTextureCache()->addImage("data/global/tex/quads/quad_geneCube_blackWhite.png");
+        m_tex_quad_key_blackWhite=Cc3dTextureCache::sharedTextureCache()->addImage("singleCellGameResource/data/global/tex/quads/quad_geneCube_blackWhite.png");
         m_tex_quad_key_blackWhite->retain();
-        m_tex_quad_key_colored=Cc3dTextureCache::sharedTextureCache()->addImage("data/global/tex/quads/quad_geneCube.png");
+        m_tex_quad_key_colored=Cc3dTextureCache::sharedTextureCache()->addImage("singleCellGameResource/data/global/tex/quads/quad_geneCube.png");
         m_tex_quad_key_colored->retain();
         int nKey=1;
         for(int i=0;i<nKey;i++){
@@ -370,7 +370,7 @@ bool CsuccedPage::init(int nStar,int nEnemyKilled,int nCoinEaten){
         
     }
     //----switchPage
-    Cc3dALSource*pALSource_switchPage=Cc3dAudioCache::sharedAudioCache()->createBufferAndSource("data/global/audio/switchPage.wav","switchPage");
+    Cc3dALSource*pALSource_switchPage=Cc3dAudioCache::sharedAudioCache()->createBufferAndSource("singleCellGameResource/data/global/audio/switchPage.wav","switchPage");
     this->addALSource(pALSource_switchPage);
     return true;
 }

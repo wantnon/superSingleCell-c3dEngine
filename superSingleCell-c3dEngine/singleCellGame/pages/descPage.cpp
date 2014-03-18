@@ -28,7 +28,7 @@ bool CdescPage::init(){
         m_quad_descPage_backGround=new Ckey();
         m_quad_descPage_backGround->autorelease();
         //
-        string imagePathShort="data/global/tex/pageTexs/descPageTex/backGround_";
+        string imagePathShort="singleCellGameResource/data/global/tex/pageTexs/descPageTex/backGround_";
         imagePathShort+=resoStr+".png";
         Cc3dTexture* ptex=Cc3dTextureCache::sharedTextureCache()->addImage(imagePathShort,GL_CLAMP_TO_EDGE,GL_CLAMP_TO_EDGE);
         const float texW=ptex->getWidth();
@@ -56,7 +56,7 @@ bool CdescPage::init(){
         m_foeKey=new Ckey();
         m_foeKey->autorelease();
         //
-        Cc3dTexture* ptexture=Cc3dTextureCache::sharedTextureCache()->addImage("data/global/tex/keys/key_foe.png");
+        Cc3dTexture* ptexture=Cc3dTextureCache::sharedTextureCache()->addImage("singleCellGameResource/data/global/tex/keys/key_foe.png");
         float c[2]={0,0};
         m_foeKey->genAndInit(c[0]-r_key,c[0]+r_key,c[1]-r_key/2,c[1]+r_key/2, 0,1,0,1);
         m_foeKey->getModelList()[0]->getMeshByIndex(0)->getIndexVBO()->genBuffers();
@@ -80,7 +80,7 @@ bool CdescPage::init(){
         m_nextKey=new Ckey();
         m_nextKey->autorelease();
         //
-        Cc3dTexture* ptexture_nextKey=Cc3dTextureCache::sharedTextureCache()->addImage("data/global/tex/keys/key_next.png");
+        Cc3dTexture* ptexture_nextKey=Cc3dTextureCache::sharedTextureCache()->addImage("singleCellGameResource/data/global/tex/keys/key_next.png");
         float c[2]={0,0};
         m_nextKey->genAndInit(c[0]-r_key,c[0]+r_key,c[1]-r_key/2,c[1]+r_key/2, 0,1,0,1);
         m_nextKey->getModelList()[0]->getMeshByIndex(0)->getIndexVBO()->genBuffers();
@@ -100,7 +100,7 @@ bool CdescPage::init(){
         addChild(m_nextKey);
     }
     //----switchPage
-    Cc3dALSource*pALSource_switchPage=Cc3dAudioCache::sharedAudioCache()->createBufferAndSource("data/global/audio/switchPage.wav","switchPage");
+    Cc3dALSource*pALSource_switchPage=Cc3dAudioCache::sharedAudioCache()->createBufferAndSource("singleCellGameResource/data/global/audio/switchPage.wav","switchPage");
     this->addALSource(pALSource_switchPage);
     return true;
 }

@@ -74,15 +74,15 @@ public:
         }
     }
     Cc3dTexture* addImage( const string&filePath,int wrapS=GL_REPEAT,int wrapT=GL_REPEAT,GLint minFilter=GL_LINEAR,GLint magFilter=GL_LINEAR)
-    //如果纹理已存在，则不重复创建
+	//if exist , do not create again
     {
-        //先查找是否已经存在，如果存在，直接返回句柄
+		//if found, return texture directly
         Cc3dTexture* texture=getTextureByKey(filePath);
-        if(texture!=NULL){//找到
+        if(texture!=NULL){//found
             
             return texture;
         }
-        //新建texture
+        //create texture
         texture=new Cc3dTexture();
         texture->autorelease();
         texture->init(filePath,wrapS,wrapT,minFilter,magFilter);
@@ -93,6 +93,7 @@ public:
     }
     void print(){
         cout<<"--------------------"<<endl;
+#if DEBUG == 1
         cout<<"texture:"<<endl;
         int n=(int)m_textureList.size();
         for(int i=0;i<n;i++){
@@ -103,6 +104,7 @@ public:
                 cout<<texture->getFilePath()<<" ";
             }
         }cout<<endl;
+#endif
         cout<<"total texture:"<<(int)m_textureList.size()<<endl;
         cout<<"--------------------"<<endl;
     }

@@ -13,6 +13,7 @@
 #include <string>
 using namespace std;
 #include "c3dFileUtils.h"
+#include "c3dAssert.h"
 class CshadowMapInfo
 {
 public:
@@ -29,7 +30,7 @@ public:
         if(fp==NULL)
         {
             cout<<"Open "<<pathName<<" failed!"<<endl;
-            exit(0);
+            assert(false);
         }
         //------------------提取文件信息，并建立列模型列表
         {

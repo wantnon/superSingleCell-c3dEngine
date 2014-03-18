@@ -32,7 +32,7 @@ public:
             _blastType=BLASTTYPE_small;
         }else{
             cout<<"error:未知的blastClipName!"<<endl;
-            exit(0);
+			assert(false);
         }
         return _blastType;
 

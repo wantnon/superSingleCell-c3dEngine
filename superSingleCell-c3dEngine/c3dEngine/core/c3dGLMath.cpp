@@ -123,7 +123,7 @@ Cc3dMatrix4 calculatePerspectiveProjectionMatrix(float fovy,float aspect,float z
 //if calculation failed, return zero matrix
 {
     double sine, cotangent, deltaZ;
-    double radians = (fovy/2) * M_PI/180;
+    double radians = (fovy/2) * c3d_PI/180;
     deltaZ = zFar - zNear;
     sine = sinf(radians);
     if ((deltaZ == 0) || (sine == 0) || (aspect == 0)) {
@@ -160,16 +160,16 @@ Cc3dVector4 convertFromViewportSpaceToWorldSpace(const Cc3dVector4&winPos,
     t_winPos.setx((t_winPos.x()-viewport.getMinX())/viewport.getWidth());
     t_winPos.sety((t_winPos.y()-viewport.getMinY())/viewport.getHeight());
     /* Map to range -1 to 1 */
-    //即由屏幕空间变换到剪裁空间
+    //??????????��???????
     t_winPos.setx(t_winPos.x()*2-1);
     t_winPos.sety(t_winPos.y()*2-1);
     t_winPos.setz(t_winPos.z()*2-1);
-    //由剪裁空间转到世界空间
+    //???????????????
     Cc3dVector4 worldPos=projectionViewInverse*t_winPos;
     if (worldPos.w() == 0.0){
         return false;
     }
-    //透视除法
+    //??????
     worldPos.setx(worldPos.x()/worldPos.w());
     worldPos.sety(worldPos.y()/worldPos.w());
     worldPos.setz(worldPos.z()/worldPos.w());
@@ -180,32 +180,32 @@ Cc3dVector4 convertFromViewportSpaceToWorldSpace(const Cc3dVector4&winPos,
 Cc3dMatrix4 calculateWorldToViewportMatrix(const Cc3dMatrix4&viewMat,
                                            const Cc3dMatrix4&projection,
                                            const Cc3dRect&viewport)
-//要注意的是，得到mat_worldToViewport后，
-//并不是用一个世界空间点直接乘以mat_worldToViewport就能转化到视口空间
-//还要进行透视除法才行
+//???????????mat_worldToViewport??
+//????????????????????????mat_worldToViewport??????????????
+//?????????????????
 {
-    //根据viewport生成视口变换矩阵
+    //????viewport???????��????
     float vx=viewport.getMinX();
     float vy=viewport.getMinY();
     float width=viewport.getWidth();
     float height=viewport.getHeight();
     Cc3dMatrix4 viewportMat(
-                            width/2,0,0,0,//第一列
-                            0,height/2,0,0,//第二列
-                            0,0,0.5,0,//第三列
-                            vx+width/2,vy+height/2,0.5,1//第四列
+                            width/2,0,0,0,//?????
+                            0,height/2,0,0,//?????
+                            0,0,0.5,0,//??????
+                            vx+width/2,vy+height/2,0.5,1//??????
                             );
-    //求projectionModelView
+    //??projectionModelView
     Cc3dMatrix4 worldToViewportMat=viewportMat*projection*viewMat;
     return worldToViewportMat;
 }
 Cc3dMatrix4 calculateWorldToViewportTexCoordMatrix(const Cc3dMatrix4&viewMat,
                                                    const Cc3dMatrix4&projection)
-//要注意的是，得到mat_worldToViewportTexCoord后，
-//并不是用一个世界空间点直接乘以mat_worldToViewportTexCoord就能转化到视口纹理空间
-//还要进行透视除法才行
+//???????????mat_worldToViewportTexCoord??
+//????????????????????????mat_worldToViewportTexCoord??????????????????
+//?????????????????
 {
-    const Cc3dRect viewport(0,0,1,1);//直接将视口设成这样，与得到屏幕坐标后再除以width和height获得纹理坐标效果一样
+    const Cc3dRect viewport(0,0,1,1);//?????????????????????????????????width??height???????????��?????
     return calculateWorldToViewportMatrix(viewMat,projection,viewport);
 }
 

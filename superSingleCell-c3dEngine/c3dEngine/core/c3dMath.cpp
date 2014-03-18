@@ -245,20 +245,20 @@ float getLength(const Cc3dVector4&v){
 }
 
 Cc3dMatrix4 orthogonalization3x3(const Cc3dMatrix4&mat)
-//对mat的3*3部分进行规范正交化
-//*****除了计算误差外，软旋转的近似插值也会使矩阵变得非正交*****
+//??mat??3*3??????�ۜZ??????
+//*****?????????????????????????????????��?????*****
 {
-	//（以<,>表内积）
+	//????<,>???????
 	//
 	//b1=a1                      u1=b1/|b1|
 	//b2=a2-<a2,u1>u1            u2=b2/|b2|
 	//b3=a3-<a3,u1>u1-<a3,u2>u2  u3=b3/|b3|
-	//则b1,b2,b3为正交基，u1,u2,u3为标准正交基
+	//??b1,b2,b3?????????u1,u2,u3??????????
 	//
     float x=mat.getAt(12);
     float y=mat.getAt(13);
     float z=mat.getAt(14);
-	//进行规范正交化
+	//???�ۜZ??????
     Cc3dVector4 a1(mat.getAt(0),mat.getAt(1),mat.getAt(2),0);
     Cc3dVector4 a2(mat.getAt(4),mat.getAt(5),mat.getAt(6),0);
     Cc3dVector4 a3(mat.getAt(8),mat.getAt(9),mat.getAt(10),0);
@@ -266,13 +266,13 @@ Cc3dMatrix4 orthogonalization3x3(const Cc3dMatrix4&mat)
 	Cc3dVector4 u1,u2,u3;
 	{
 		Cc3dVector4 b1,b2,b3;
-		//计算b1,u1
+		//????b1,u1
 		{
             b1=a1;
             u1=b1;
             u1=normalize(u1);
 		}
-		//计算b2,u2
+		//????b2,u2
 		{
 			float k=dot(a2,u1);
 			Cc3dVector4 ku1=u1*k;
@@ -280,7 +280,7 @@ Cc3dMatrix4 orthogonalization3x3(const Cc3dMatrix4&mat)
             u2=b2;
             u2=normalize(u2);
 		}
-		//计算b3,u3
+		//????b3,u3
 		{
 			float k=dot(a3,u1);
 			float _k=dot(a3,u2);
@@ -294,8 +294,8 @@ Cc3dMatrix4 orthogonalization3x3(const Cc3dMatrix4&mat)
             u3=normalize(u3);
 		}
 	}
-	//得到u1,u2,u3
-	//将u1~3拷贝到rsmat
+	//???u1,u2,u3
+	//??u1~3??????rsmat
     Cc3dMatrix4 rsmat;
     rsmat.init(u1.x(),u1.y(),u1.z(),0,//col 1
                u2.x(),u2.y(),u2.z(),0,

@@ -10,8 +10,13 @@
 #define __HelloOpenGL__c3dDeviceAndOSInfo__
 
 #include <iostream>
-#import <mach/mach.h>
-#import <mach/mach_host.h>
+#if (C3D_TARGET_PLATFORM == C3D_PLATFORM_WIN32) 
+	
+#else
+    #include <mach/mach.h>
+	#include <mach/mach_host.h>
+#endif
+
 #include "c3dVector.h"
 #include "c3dRect.h"
 #include "c3dDeviceAndOSInfoPlatformDepend.h"

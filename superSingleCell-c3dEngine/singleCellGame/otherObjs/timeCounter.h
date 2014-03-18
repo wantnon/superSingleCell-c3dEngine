@@ -10,7 +10,15 @@
 #define __HelloOpenGL__timeCounter__
 
 #include <iostream>
-const long _maxCount=0.5*std::numeric_limits<long>::max();;
+#include <limits>
+using namespace std;
+#if (C3D_TARGET_PLATFORM == C3D_PLATFORM_WIN32) 
+	const long _maxCount=0.5*(numeric_limits<long>::max)();
+#else
+    const long _maxCount=0.5*numeric_limits<long>::max();
+#endif
+
+
 class CtimeCounter
 {
 public:

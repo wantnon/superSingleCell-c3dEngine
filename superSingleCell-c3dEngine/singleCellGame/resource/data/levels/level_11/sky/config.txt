@@ -1,3 +1,0 @@
-skyTexID 0
-centerY -20
-initRotAngle 0

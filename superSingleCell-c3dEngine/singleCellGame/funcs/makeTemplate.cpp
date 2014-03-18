@@ -12,7 +12,7 @@ Cship*makeShipTemplate(int shipID){//必须加static
     //判断文件是否存在
     string clipName="ship";
     clipName+=numberToStr(shipID);
-    bool pathExists=Cc3dFileUtils::sharedFileUtils()->getIsFileOrClipExist(string("data/global/model/shipModelLibrary/")+clipName);
+    bool pathExists=Cc3dFileUtils::sharedFileUtils()->getIsFileOrClipExist(string("singleCellGameResource/data/global/model/shipModelLibrary/")+clipName);
     if(pathExists==false)return NULL;
     //制作模板
     Cship*pship=new Cship();
@@ -23,8 +23,8 @@ Cship*makeShipTemplate(int shipID){//必须加static
     //必须先load config再load model
     string shipClipName="ship";
     shipClipName+=numberToStr(shipID);
-    pship->loadConfig("data/global/model/shipModelLibrary/"+shipClipName+"/config.txt");
-    loadInfo_model(pmodel, "data/global/model/shipModelLibrary/"+shipClipName,pship->modelScale);
+    pship->loadConfig("singleCellGameResource/data/global/model/shipModelLibrary/"+shipClipName+"/config.txt");
+    loadInfo_model(pmodel, "singleCellGameResource/data/global/model/shipModelLibrary/"+shipClipName,pship->modelScale);
     int nMesh=(int)pmodel->getMeshCount();
     for(int j=0;j<nMesh;j++){
         Cc3dMesh*pmesh=pmodel->getMeshByIndex(j);
@@ -35,7 +35,7 @@ Cship*makeShipTemplate(int shipID){//必须加static
     pmodel->setAmbient(0.5, 0.5, 0.5);
     //alSource
     if(pship->fileName_engineSound!="null"){
-        string filePathShort_engineSound="data/global/audio/shipEngineSound/";
+        string filePathShort_engineSound="singleCellGameResource/data/global/audio/shipEngineSound/";
         filePathShort_engineSound+=pship->fileName_engineSound;
      //   pship->pALSource_shipEngineSound=Cc3dAudioCache::sharedAudioCache()->createBufferAndSource(filePathShort_engineSound);//模板是永久的
      //   pship->pALSource_shipEngineSound->setIsLooping(true);
@@ -46,7 +46,7 @@ Cship*makeShipTemplate(int shipID){//必须加static
         
     }
     if(pship->fileName_collisionSound!="null"){
-        string filePathShort_collisionSound="data/global/audio/shipCollisionSound/";
+        string filePathShort_collisionSound="singleCellGameResource/data/global/audio/shipCollisionSound/";
         filePathShort_collisionSound+=pship->fileName_collisionSound;
      //   pship->pALSource_ship_collision=Cc3dAudioCache::sharedAudioCache()->createBufferAndSource(filePathShort_collisionSound);
         Cc3dALSource*source=Cc3dAudioCache::sharedAudioCache()->createBufferAndSource(filePathShort_collisionSound,"ship_collision");
@@ -58,7 +58,7 @@ CbossCell*makeCellTemplate(int cellID){//必须加static
     //判断文件是否存在
     string clipName="cell";
     clipName+=numberToStr(cellID);
-    bool pathExists=Cc3dFileUtils::sharedFileUtils()->getIsFileOrClipExist("data/global/model/cellModelLibrary/"+clipName);
+    bool pathExists=Cc3dFileUtils::sharedFileUtils()->getIsFileOrClipExist("singleCellGameResource/data/global/model/cellModelLibrary/"+clipName);
     if(pathExists==false)return NULL;
     //制作模板
     CbossCell*pcellTemp=new CbossCell();
@@ -70,7 +70,7 @@ CbossCell*makeCellTemplate(int cellID){//必须加static
         pcellTemp->addModel(pmodel);
     }
     
-    string modelClipPath="data/global/model/cellModelLibrary/";
+    string modelClipPath="singleCellGameResource/data/global/model/cellModelLibrary/";
     modelClipPath+="cell";
     modelClipPath+=numberToStr(cellID);
     pcellTemp->loadConfigAndMeshes(modelClipPath+"/config.txt",modelClipPath);
@@ -98,10 +98,10 @@ CbossCell*makeCellTemplate(int cellID){//必须加static
         pship->a_vPushForwardDec/=3;
     }
     //声音
- //   pcellTemp->pALSource_boss_scream=Cc3dAudioCache::sharedAudioCache()->createBufferAndSource("data/global/audio/boss_scream.wav");
- //   pcellTemp->pALSource_boss_och=Cc3dAudioCache::sharedAudioCache()->createBufferAndSource("data/global/audio/boss_och.wav");
-    Cc3dALSource*pALSource_boss_scream=Cc3dAudioCache::sharedAudioCache()->createBufferAndSource("data/global/audio/boss_scream.wav","boss_scream");
-    Cc3dALSource*pALSource_boss_och=Cc3dAudioCache::sharedAudioCache()->createBufferAndSource("data/global/audio/boss_och.wav","boss_och");
+ //   pcellTemp->pALSource_boss_scream=Cc3dAudioCache::sharedAudioCache()->createBufferAndSource("singleCellGameResource/data/global/audio/boss_scream.wav");
+ //   pcellTemp->pALSource_boss_och=Cc3dAudioCache::sharedAudioCache()->createBufferAndSource("singleCellGameResource/data/global/audio/boss_och.wav");
+    Cc3dALSource*pALSource_boss_scream=Cc3dAudioCache::sharedAudioCache()->createBufferAndSource("singleCellGameResource/data/global/audio/boss_scream.wav","boss_scream");
+    Cc3dALSource*pALSource_boss_och=Cc3dAudioCache::sharedAudioCache()->createBufferAndSource("singleCellGameResource/data/global/audio/boss_och.wav","boss_och");
     pcellTemp->addALSource(pALSource_boss_scream);
     pcellTemp->addALSource(pALSource_boss_och);
     return pcellTemp;
@@ -110,27 +110,27 @@ CshotBall*makeShotBallTemplate(int shotBallID,bool isReuseALSource){//必须加s
     //判断文件是否存在
     string clipName="shotBall";
     clipName+=numberToStr(shotBallID);
-    bool pathExists=Cc3dFileUtils::sharedFileUtils()->getIsFileOrClipExist("data/global/model/shotBallLibrary/"+clipName);
+    bool pathExists=Cc3dFileUtils::sharedFileUtils()->getIsFileOrClipExist("singleCellGameResource/data/global/model/shotBallLibrary/"+clipName);
     if(pathExists==false)return NULL;
     //制作模板
     CshotBall*pballTemp=new CshotBall();
     pballTemp->autorelease();
     pballTemp->init();
     {
-        string clipPathShort="data/global/model/shotBallLibrary/shotBall";
+        string clipPathShort="singleCellGameResource/data/global/model/shotBallLibrary/shotBall";
         clipPathShort+=numberToStr(shotBallID);
         pballTemp->loadConfig(clipPathShort+"/config.txt");//先读config再loadModel
         //加载模型
         loadInfo_model(pballTemp->getModel(), clipPathShort,pballTemp->modelScale);
         //加载音效
         if(pballTemp->fileName_launchSound!="null"){
-            string audioClipPath="data/global/audio/shotBallLaunchSound/";
+            string audioClipPath="singleCellGameResource/data/global/audio/shotBallLaunchSound/";
             //pballTemp->pALSource_launchSound=Cc3dAudioCache::sharedAudioCache()->createBufferAndSource(audioClipPath+pballTemp->fileName_launchSound);//模板是永久的
             Cc3dALSource*pALSource_launchSound=Cc3dAudioCache::sharedAudioCache()->createBufferAndSource(audioClipPath+pballTemp->fileName_launchSound,"launchSound",isReuseALSource);//模板是永久的
             pballTemp->addALSource(pALSource_launchSound);
         }
         if(pballTemp->fileName_collisionWithSolidSound!="null"){
-            string audioClipPath="data/global/audio/shotBallCollisionWithSolidSound/";
+            string audioClipPath="singleCellGameResource/data/global/audio/shotBallCollisionWithSolidSound/";
             //pballTemp->pALSource_collisionWithSolidSound=Cc3dAudioCache::sharedAudioCache()->createBufferAndSource(audioClipPath+pballTemp->fileName_collisionWithSolidSound);
             Cc3dALSource*pALSource_collisionWithSolidSound=Cc3dAudioCache::sharedAudioCache()->createBufferAndSource(audioClipPath+pballTemp->fileName_collisionWithSolidSound,"collisionWithSolidSound",isReuseALSource);
             assert(pALSource_collisionWithSolidSound);

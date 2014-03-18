@@ -11,8 +11,8 @@
 
 #include <iostream>
 using namespace std;
-
-class Cc3dIDTriangle final
+#include "c3dDefine.h"
+class Cc3dIDTriangle USED_FOR_SUBMIT_TO_VBO
 {
 public:
     int vID[3];

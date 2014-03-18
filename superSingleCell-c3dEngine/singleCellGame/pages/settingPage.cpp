@@ -28,7 +28,7 @@ bool CsettingPage::init(){
         m_quad_settingPage_backGround=new Ckey();
         m_quad_settingPage_backGround->autorelease();
         //
-        string imagePathShort="data/global/tex/pageTexs/settingPageTex/backGround_";
+        string imagePathShort="singleCellGameResource/data/global/tex/pageTexs/settingPageTex/backGround_";
         imagePathShort+=resoStr+".png";
         Cc3dTexture* ptex=Cc3dTextureCache::sharedTextureCache()->addImage(imagePathShort,GL_CLAMP_TO_EDGE,GL_CLAMP_TO_EDGE);
         const float texW=ptex->getWidth();
@@ -55,7 +55,7 @@ bool CsettingPage::init(){
         m_backKey=new Ckey();
         m_backKey->autorelease();
         //
-        Cc3dTexture* ptexture=Cc3dTextureCache::sharedTextureCache()->addImage("data/global/tex/keys/key_back.png");
+        Cc3dTexture* ptexture=Cc3dTextureCache::sharedTextureCache()->addImage("singleCellGameResource/data/global/tex/keys/key_back.png");
         float c[2]={0,0};
         m_backKey->genAndInit(c[0]-r_key,c[0]+r_key,c[1]-r_key,c[1]+r_key, 0,1,0,1);
         m_backKey->getModelList()[0]->getMeshByIndex(0)->getIndexVBO()->genBuffers();
@@ -80,7 +80,7 @@ bool CsettingPage::init(){
         m_turnOnAudioKey=new Ckey();
         m_turnOnAudioKey->autorelease();
         //
-        Cc3dTexture* ptex=Cc3dTextureCache::sharedTextureCache()->addImage("data/global/tex/keys/key_audioOn.png");
+        Cc3dTexture* ptex=Cc3dTextureCache::sharedTextureCache()->addImage("singleCellGameResource/data/global/tex/keys/key_audioOn.png");
         float c[2]={0,0};
         m_turnOnAudioKey->genAndInit(c[0]-r_key,c[0]+r_key,c[1]-r_key,c[1]+r_key, 0,1,0,1);
         m_turnOnAudioKey->getModelList()[0]->getMeshByIndex(0)->getIndexVBO()->genBuffers();
@@ -107,7 +107,7 @@ bool CsettingPage::init(){
         m_turnOffAudioKey=new Ckey();
         m_turnOffAudioKey->autorelease();
         //
-        Cc3dTexture* ptex=Cc3dTextureCache::sharedTextureCache()->addImage("data/global/tex/keys/key_audioOff.png");
+        Cc3dTexture* ptex=Cc3dTextureCache::sharedTextureCache()->addImage("singleCellGameResource/data/global/tex/keys/key_audioOff.png");
         float c[2]={0,0};
         m_turnOffAudioKey->genAndInit(c[0]-r_key,c[0]+r_key,c[1]-r_key,c[1]+r_key, 0,1,0,1);
         m_turnOffAudioKey->getModelList()[0]->getMeshByIndex(0)->getIndexVBO()->genBuffers();
@@ -132,7 +132,7 @@ bool CsettingPage::init(){
     }
     
     //----switchPage
-    Cc3dALSource*pALSource_switchPage=Cc3dAudioCache::sharedAudioCache()->createBufferAndSource("data/global/audio/switchPage.wav","switchPage");
+    Cc3dALSource*pALSource_switchPage=Cc3dAudioCache::sharedAudioCache()->createBufferAndSource("singleCellGameResource/data/global/audio/switchPage.wav","switchPage");
     this->addALSource(pALSource_switchPage);
     return true;
 }

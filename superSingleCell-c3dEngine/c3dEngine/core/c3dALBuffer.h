@@ -27,12 +27,12 @@ public:
         m_buffer=0;
     }
     virtual~Cc3dALBuffer(){
+		
         if(m_buffer!=0){
             alDeleteBuffers(1, &m_buffer);
         }
-        if(m_data!=NULL){
-            free(m_data);
-        }
+		if(m_data)free(m_data);
+        
         C3DCHECK_AL_ERROR_DEBUG();
     }
     bool getIsValidBuffer()const{

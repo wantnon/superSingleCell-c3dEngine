@@ -21,29 +21,29 @@ Cc3dAudioCache*Cc3dAudioCache::sharedAudioCache(){
 }
 
 Cc3dALBuffer* Cc3dAudioCache::createBuffer(const string&_filePathShort)
-//根据文件名创建buffer
+//?????????????buffer
 {
  //   cout<<"buffer count:"<<(int)pBufferList.size()<<endl;
-    //先查找相同文件名建立的buffer是否已经存在，如果存在，更新永久性并返回指针
+    //???????????????????buffer?????????????????????????????????????
     Cc3dALBuffer*pBuffer=getBufferByKey(_filePathShort);
-    if(pBuffer!=NULL){//已存在
+    if(pBuffer!=NULL){//?????
    //     cout<<"hi"<<endl;
-        //返回指针
+        //???????
         return pBuffer;
-    }//不存在
-    //新建buffer
+    }//??????
+    //???buffer
     pBuffer=new Cc3dALBuffer();
     pBuffer->autorelease();
     pBuffer->retain();
-    cout<<"_filePathShort:"<<_filePathShort<<endl;
+    //cout<<"_filePathShort:"<<_filePathShort<<endl;
     pBuffer->initBuffer(_filePathShort);
-    //将pBuffer加入pBufferList
+    //??pBuffer????pBufferList
     m_bufferList.push_back(pBuffer);
-    //返回pBuffer
+    //????pBuffer
     return pBuffer;
 }
 Cc3dALSource* Cc3dAudioCache::createSource( Cc3dALBuffer*buffer,const string&name,bool isReuse)
-//根据buffer创建source
+//????buffer????source
 {
  //   cout<<"source count: "<<(int)pSourceList.size()<<endl;
 //    assert((int)pSourceList.size()<=maxSimultaneouslyPlay);
@@ -62,15 +62,15 @@ Cc3dALSource* Cc3dAudioCache::createSource( Cc3dALBuffer*buffer,const string&nam
             }
         }
     }
-    //新建source
+    //???source
     Cc3dALSource*source=new Cc3dALSource();
     source->autorelease();
     source->retain();
     source->setName(name);
     source->initSource(buffer);
-    //将pSource加入pSourceList
+    //??pSource????pSourceList
     m_sourceList.push_back(source);
-    //返回pSource
+    //????pSource
     return source;
     
 }

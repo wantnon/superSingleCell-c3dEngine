@@ -19,9 +19,9 @@ protected:
     Cc3dVector4 m_diffuse;
     Cc3dVector4 m_ambient;
     Cc3dVector4 m_specular;
-    Cc3dVector4 m_color;//用于2d对对象
+    Cc3dVector4 m_color;//only used by 2d element
     float m_shininess;
-    bool m_isHighlightUntransp;//是否高光不透明
+    bool m_isHighlightUntransp;//whether highlight is untransparent
 public:
     Cc3dMaterial(){
         m_isHighlightUntransp=false;

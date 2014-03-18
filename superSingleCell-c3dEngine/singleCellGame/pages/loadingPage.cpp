@@ -23,7 +23,7 @@ bool CloadingPage::init(){
         m_quad_loadingPage_backGround=new Ckey();
         m_quad_loadingPage_backGround->autorelease();
         //
-        string imagePathShort="data/global/tex/pageTexs/loadingPageTex/backGround_";
+        string imagePathShort="singleCellGameResource/data/global/tex/pageTexs/loadingPageTex/backGround_";
         imagePathShort+=resoStr+".png";
         Cc3dTexture* ptex=Cc3dTextureCache::sharedTextureCache()->addImage(imagePathShort,GL_CLAMP_TO_EDGE,GL_CLAMP_TO_EDGE);
         const float texW=ptex->getWidth();
@@ -51,7 +51,7 @@ bool CloadingPage::init(){
         m_quad_loading=new Ckey();
         m_quad_loading->autorelease();
         //
-        Cc3dTexture* ptexture_quad_loading=Cc3dTextureCache::sharedTextureCache()->addImage("data/global/tex/pageTexs/loadingPageTex/quad_loading.png");
+        Cc3dTexture* ptexture_quad_loading=Cc3dTextureCache::sharedTextureCache()->addImage("singleCellGameResource/data/global/tex/pageTexs/loadingPageTex/quad_loading.png");
         float bx=0;
         float by=0;
         float w=200;

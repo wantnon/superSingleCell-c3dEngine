@@ -17,7 +17,7 @@ void Cground::loadConfig(const string&fileNameWithExt){
     if(fp==NULL)
     {
         cout<<"Open "<<pathName<<" failed!"<<endl;
-        exit(0);
+        assert(false);
     }
     //------------------提取文件信息
     {
@@ -39,7 +39,7 @@ void Cground::loadConfig_texBlend(const string&fileNameWithExt){
     if(fp==NULL)
     {
         cout<<"Open "<<pathName<<" failed!"<<endl;
-        exit(0);
+        assert(false);
     }
     //------------------提取文件信息
     {

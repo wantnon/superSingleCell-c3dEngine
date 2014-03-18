@@ -21,7 +21,7 @@ const int maxSimultaneouslyPlay=32;//16
 */
 
 class Cc3dALSource:public Cc3dObject
-{//多个source可以共用buffer
+{//???source???????buffer
 protected:
     ALuint m_source;
     string m_name;
@@ -52,20 +52,20 @@ public:
         alSourcefv(m_source, AL_POSITION,pos.getArray());
     }
 
-    void play(){//对于已停止或正在播放的source重新开始播放，对于暂停的source继续播放
+    void play(){//??????????????????source????????????????????source????????
         if(m_source==0)return;
         alSourcePlay(m_source);
     }
     ALint getState()const {
         if(m_source==0){
-            cout<<"source==0,不能获得状态!"<<endl;
+            cout<<"source==0,????????!"<<endl;
             assert(false);
         };
         ALint sourceState;
         alGetSourcei(m_source, AL_SOURCE_STATE, &sourceState);
         return sourceState;
     }
-    bool getIsPlaying()const {//是否在播放中
+    bool getIsPlaying()const {//??????????
         if(m_source==0)return false;
         ALint sourceState=getState();
         if(sourceState==AL_PLAYING){
@@ -74,7 +74,7 @@ public:
             return false;
         }
     }
-    bool getIsStoped()const {//是否已停止
+    bool getIsStoped()const {//???????
         if(m_source==0)return false;
         ALint sourceState=getState();
         if(sourceState==AL_STOPPED){
@@ -94,7 +94,7 @@ public:
         }
     }
     void playIfNotPlaying()
-    //如果没在play，则play
+    //??????play????play
     {
         if(m_source==0)return;
         ALint sourceState;
@@ -118,7 +118,7 @@ public:
     }
     void setGain(float gain){
         if(m_source==0)return;
-        gain=maxf(0,gain);//gain不小于0
+        gain=maxf(0,gain);//gain??��??0
         alSourcef(m_source, AL_GAIN, gain);
     }
     float getGain(){
@@ -127,11 +127,11 @@ public:
         alGetSourcef(m_source, AL_GAIN, &gain);
         return gain;
     }
-    void gainDec(float dGain){//减小音量
+    void gainDec(float dGain){//??��????
         if(m_source==0)return;
         float gain;
         alGetSourcef(m_source, AL_GAIN, &gain);
-        float newGain=maxf(0,gain-dGain);//音量不小于0
+        float newGain=maxf(0,gain-dGain);//??????��??0
         alSourcef(m_source, AL_GAIN, newGain);
     }
     void pause(){

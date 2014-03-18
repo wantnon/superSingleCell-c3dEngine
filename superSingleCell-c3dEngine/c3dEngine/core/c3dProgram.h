@@ -14,8 +14,8 @@
 #include <string>
 #include <vector>
 using namespace std;
-#include <OpenGLES/ES2/gl.h>
-#include <OpenGLES/ES2/glext.h>
+#include "c3dGL.h"
+
 #include "c3dObject.h"
 #include "c3dFileUtils.h"
 #include "c3dDefine.h"
@@ -50,7 +50,7 @@ public:
     void passUnifoValueNiv(string unifoName,const vector<GLint>&valueList);
     void printUnifoMap(){
         cout<<"unifoMap: ";
-        typename map<string,GLint>::iterator iter;
+      /*  typename*/ map<string,GLint>::iterator iter;
         for ( iter = m_unifoMap.begin(); iter != m_unifoMap.end(); iter++ ){
             cout<<iter->first<<":"<<iter->second<<" ";
         }

@@ -19,7 +19,7 @@ void loadInfo_light(Cc3dLight*light,const string&fileNameWithExt){
     if(fp==NULL)
     {
         cout<<"Open "<<pathName<<" failed!"<<endl;
-        exit(0);
+        assert(false);
     }
     //------------------提取文件信息，并建立列模型列表
     {
@@ -58,7 +58,7 @@ void loadInfo_mesh(Cc3dMesh*mesh,const string&meshFilePathShort,const string&tex
     if(fp==NULL)
     {
         cout<<"Open "<<pathName<<" failed!"<<endl;
-        exit(0);
+       assert(false);
     }
     
     //------------------提取文件信息到mesh

@@ -94,7 +94,7 @@ public:
     {
         if((int)maskList.size()!=(int)pModelBaseList.size()){
             cout<<"error:maskList元素数不正确!"<<endl;
-            exit(0);
+            assert(false);
         }
         //----清空pdirtyList，因为此时已没有boss相关的脏格子了
         for(int i=0;i<(int)grid.size();i++){

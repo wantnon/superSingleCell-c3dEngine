@@ -208,7 +208,7 @@ Cc3dMeshData*genSampleCubeWithCode(float cx,float cy,float cz,float dx,float dy,
             }break;
             default:
                 cout<<"error:未知的cubUV映射类型!"<<endl;
-                exit(0);
+                assert(false);
                 break;
         }
         

@@ -17,12 +17,12 @@ string getFileNameFromFilePath(string filePath){
     
 }
 vector<string> splitStrInTwoByLastDot(const string&str)
-//用最后一个.将str划分为两部，part1和prat2，part1和part2都不含有用于切割的.
-//如果str中不含.，则part1=str,part2=""
+//part1 and part2 do not contain the split-dot
+//if there is no dot in str, then part1=str and part2=""
 {
     string part1="";
     string part2="";
-    //找最后一个"/"的位置
+	//find the last "/" location
     int i_lastDot=-1;
     int len=(int)str.size();
     for(int i=len-1;i>=0;i--){
@@ -31,7 +31,7 @@ vector<string> splitStrInTwoByLastDot(const string&str)
             break;
         }
     }
-    if(i_lastDot==-1){//未找到
+    if(i_lastDot==-1){//not found
         part1=str;
         part2="";
         vector<string> rs;
@@ -39,15 +39,15 @@ vector<string> splitStrInTwoByLastDot(const string&str)
         rs.push_back(part2);
         return rs;
     }
-    //找到
-    //用i_lastDot切割str
+    //found
+    //use i_lastDot to split str
     for(int i=0;i<len;i++){
         if(i<i_lastDot){
             part1+=str[i];
         }else if(i>i_lastDot){
             part2+=str[i];
-        }//i==i_lastDot无动作
-    }//得到part1,part2
+        }//i==i_lastDot no action
+    }//got part1 and part2
     vector<string> rs;
     rs.push_back(part1);
     rs.push_back(part2);
@@ -57,12 +57,12 @@ vector<string> splitStrInTwoByLastDot(const string&str)
 }
 
 vector<string> splitStrInTwoByLastBar(const string&str)
-//用最后一个/将str划分为两部，part1和prat2，part1和part2都不含有用于切割的/
-//如果str中不含/，则part1=str,part2=""
+//part1 and prat2 do not contain the spliat-"/"
+//if there is no "/" in str, then part1=str and part2=""
 {
     string part1="";
     string part2="";
-    //找最后一个"/"的位置
+    //find the last "/" location
     int i_lastBar=-1;
     int len=(int)str.size();
     for(int i=len-1;i>=0;i--){
@@ -71,7 +71,7 @@ vector<string> splitStrInTwoByLastBar(const string&str)
             break;
         }
     }
-    if(i_lastBar==-1){//未找到
+    if(i_lastBar==-1){//not found
         part1=str;
         part2="";
         vector<string> rs;
@@ -79,15 +79,15 @@ vector<string> splitStrInTwoByLastBar(const string&str)
         rs.push_back(part2);
         return rs;
     }
-    //找到
-    //用i_lastBar切割str
+    //found 
+    //use i_lastBar to split str
     for(int i=0;i<len;i++){
         if(i<i_lastBar){
             part1+=str[i];
         }else if(i>i_lastBar){
             part2+=str[i];
-        }//i==i_lastBar无动作
-    }//得到part1,part2
+        }//i==i_lastBar, no action
+    }//got part1 and part2
     vector<string> rs;
     rs.push_back(part1);
     rs.push_back(part2);

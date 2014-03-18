@@ -18,7 +18,7 @@ void CshipSet::loadConfig(const string&fileNameWithExt){
     if(fp==NULL)
     {
         cout<<"Open "<<pathName<<" failed!"<<endl;
-        exit(0);
+        assert(false);
     }
     //------------------提取文件信息，并建立模型列表
     {
@@ -34,7 +34,7 @@ void CshipSet::loadConfig(const string&fileNameWithExt){
             fscanf(fp,"%s",buffer);
             if(buffer[0]=='#'){
                 cout<<"error:提前遇到#!"<<endl;
-                exit(0);
+                assert(false);
             }
             
             fscanf(fp, "%f",&initPos[0]);
@@ -64,7 +64,7 @@ void CshipSet::loadConfig(const string&fileNameWithExt){
         fscanf(fp, "%s",buffer);
         if(buffer[0]!='#'){
             cout<<"error:缺少#或实际条目数比n值大!"<<endl;
-            exit(0);
+            assert(false);
         }
     }
     //关闭文件

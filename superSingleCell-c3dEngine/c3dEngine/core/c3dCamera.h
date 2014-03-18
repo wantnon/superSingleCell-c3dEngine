@@ -17,7 +17,7 @@
 class Cc3dFrustum
 {
 protected:
-    Cc3dPlane planeList[6];//视锥表示为六个平面（第一个为近平面，最后一个为远平面，中间四个为侧面）
+    Cc3dPlane planeList[6];//?????????????��??????????��??????????��?��????????��
 public:
     bool ballIsPotentiallyVisible(const Cc3dVector4&c,float R);
     void updateFrustum(const Cc3dMatrix4&projectionMatrix,const Cc3dMatrix4&viewMatrix/*,const  Cc3dRect&viewport*/);
@@ -89,7 +89,7 @@ protected:
     Cc3dVector4 m_up;
     Cc3dVector4 m_center;
 protected:
-    Cc3dFrustum m_frustum;//视截体
+    Cc3dFrustum m_frustum;//?????
     
     
 };

@@ -53,14 +53,15 @@ bool initGame(){
      }
      */
     //----camera2D
+	if(1)
     {
         float left=0;
         float right=Cc3dDeviceAndOSInfo::sharedDeviceAndOSInfo()->getScreenRect().getWidth();
         float top=Cc3dDeviceAndOSInfo::sharedDeviceAndOSInfo()->getScreenRect().getHeight();
-        float bottom=0;
-        float near=-1;
-        float far=1;
-        Cc3dRange range(left,right,bottom,top,near,far);
+        float bottom = 0;
+        float _near = -1;//
+        float _far = 1;
+        Cc3dRange range(left,right,bottom,top,_near,_far);
         camera2D=new Cc3dCamera();
         camera2D->init();
         camera2D->autorelease();
@@ -96,7 +97,7 @@ bool initGame(){
     Cc3dSceneManager::sharedSceneManager()->getRoot()->addChild(startPage);
     //----加载用户设置
     if(CuserConfig::sharedUserConfig()->getIsConfigFileExistInDocuments("userConfig.txt")==false){
-        CuserConfig::sharedUserConfig()->copyConfigFileToDocuments("data/userConfig/userConfig.txt");
+        CuserConfig::sharedUserConfig()->copyConfigFileToDocuments("singleCellGameResource/data/userConfig/userConfig.txt");
     }
     CuserConfig::sharedUserConfig()->loadConfigFileFromDocuments("userConfig.txt");
     

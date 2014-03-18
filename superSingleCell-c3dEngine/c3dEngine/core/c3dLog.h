@@ -15,7 +15,7 @@
 static const int maxC3dLogLen = 16*1024;// The max length of c3dLog message.
 void c3dLog(const char * pszFormat, ...);
 //ref to CCPlatformMacros.h
-#ifdef DEBUG
+#if DEBUG == 1
 #define C3DLOG(format, ...)      c3dLog(format, ##__VA_ARGS__)
 #else
 #define C3DLOG(format, ...)  void(0)

@@ -19,7 +19,7 @@ void Cc3dALSource::initSource(Cc3dALBuffer*buffer){
     if(alGetError() != AL_NO_ERROR)
     {
         printf("Error generating sources! %x\n", error);
-        exit(1);
+		C3DCHECK_AL_ERROR_DEBUG();
     }
     //初始化source
     alSourcei(m_source, AL_BUFFER, buffer->getBuffer());

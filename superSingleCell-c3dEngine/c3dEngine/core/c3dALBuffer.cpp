@@ -18,6 +18,6 @@ void Cc3dALBuffer::initBuffer(const string&filePath){
 }
 void Cc3dALBuffer::initBuffer(const string&fileNameFull,void*&data,ALuint&buffer)
 {
-    initBuffer_iOS(fileNameFull, data, buffer);
+    initBuffer_plat(fileNameFull,data,buffer);
 }
 

@@ -204,7 +204,7 @@ public:
     void print(){
         //print all buffers and related sources
         cout<<"-----------------------------------"<<endl;
-        
+#if DEBUG == 1
         int nBuffer=(int)m_bufferList.size();
         for(int i=0;i<nBuffer;i++){
             Cc3dALBuffer*buffer=m_bufferList[i];
@@ -218,6 +218,7 @@ public:
                 }
             }cout<<endl;
         }
+#endif
         cout<<"total buffer:"<<(int)m_bufferList.size()<<endl;
         cout<<"total source:"<<(int)m_sourceList.size()<<endl;
         cout<<"-----------------------------------"<<endl;

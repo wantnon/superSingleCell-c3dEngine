@@ -10,7 +10,15 @@
 #define __HelloOpenGL__c3dTimeCounter__
 
 #include <iostream>
-const long maxCount=0.5*std::numeric_limits<long>::max();
+#include <limits>
+using namespace std;
+
+#if (C3D_TARGET_PLATFORM == C3D_PLATFORM_WIN32) 
+    const long maxCount=0.5*(numeric_limits<long>::max)();//see:http://blog.chinaunix.net/uid-17102734-id-2830143.html
+#else
+    const long maxCount=0.5*(numeric_limits<long>::max());
+#endif
+
 class Cc3dTimeCounter
 {
 protected:
@@ -24,9 +32,9 @@ public:
     long getCount()const{
         return m_count;
     }
-    void doCount(){//进行计数，增加
+    void doCount(){
         m_count++;
-        if(m_count>maxCount)m_count=0;//绕回
+        if(m_count>maxCount)m_count=0;//wrap
     }
 };
 #endif /* defined(__HelloOpenGL__timeCounter__) */

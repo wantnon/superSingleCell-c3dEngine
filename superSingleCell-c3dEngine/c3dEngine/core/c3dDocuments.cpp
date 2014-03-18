@@ -15,5 +15,5 @@ Cc3dDocuments*Cc3dDocuments::sharedDocuments(){
     return s_documents;
 }
 string Cc3dDocuments::getDocumentsPath(){
-    return getDocumentsPath_iOS();
+    return getDocumentsPath_plat();
 }

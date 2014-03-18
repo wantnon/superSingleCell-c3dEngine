@@ -13,7 +13,7 @@ bool matchPrefix(const string&str,const string&strPrefix)
 {
     if(strPrefix.empty()){
         cout<<"error:prefix is empty!"<<endl;
-        exit(0);
+		assert(false);
     }
     int strLen=(int)str.size();
     int prefixLen=(int)strPrefix.size();

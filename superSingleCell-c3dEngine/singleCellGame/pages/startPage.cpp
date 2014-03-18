@@ -19,12 +19,13 @@ bool CstartPage::init(){
     const float width=Cc3dDeviceAndOSInfo::sharedDeviceAndOSInfo()->getScreenSize().x();
     const float height=Cc3dDeviceAndOSInfo::sharedDeviceAndOSInfo()->getScreenSize().y();
     string resoStr=numberToStr(wReso)+"x"+numberToStr(hReso);
+	//cout<<"resoStr:"<<resoStr<<endl;
     //--quad_startPage_backGround
     {
         m_quad_startPage_backGround=new Ckey();
         m_quad_startPage_backGround->autorelease();
         //
-        string imagePathShort="data/global/tex/pageTexs/startPageTex/backGround_";
+        string imagePathShort="singleCellGameResource/data/global/tex/pageTexs/startPageTex/backGround_";
         imagePathShort+=resoStr+".png";
         Cc3dTexture* ptex=Cc3dTextureCache::sharedTextureCache()->addImage(imagePathShort,GL_CLAMP_TO_EDGE,GL_CLAMP_TO_EDGE);
         const float texW=ptex->getWidth();
@@ -47,11 +48,11 @@ bool CstartPage::init(){
         addChild(m_quad_startPage_backGround);
     }
     //----startMusic
-    Cc3dALSource*pALSource_startMusic=Cc3dAudioCache::sharedAudioCache()->createBufferAndSource("data/global/audio/startMusic.wav","startMusic");
+    Cc3dALSource*pALSource_startMusic=Cc3dAudioCache::sharedAudioCache()->createBufferAndSource("singleCellGameResource/data/global/audio/startMusic.wav","startMusic");
     this->addALSource(pALSource_startMusic);
     pALSource_startMusic->setIsLooping(true);
     //----switchPage
-    Cc3dALSource*pALSource_switchPage=Cc3dAudioCache::sharedAudioCache()->createBufferAndSource("data/global/audio/switchPage.wav","switchPage");
+    Cc3dALSource*pALSource_switchPage=Cc3dAudioCache::sharedAudioCache()->createBufferAndSource("singleCellGameResource/data/global/audio/switchPage.wav","switchPage");
     this->addALSource(pALSource_switchPage);
     
     
@@ -67,7 +68,7 @@ void CstartPage::update(){
     touch.print();
     cout<<"timeCount: "<<timeCounter.getCount()<<endl;
     */
-    if(Cc3dGestureAnalyzer::sharedGestureAnalyzer()->getIsTapOnce())cout<<"hi"<<endl;
+    //if(Cc3dGestureAnalyzer::sharedGestureAnalyzer()->getIsTapOnce())cout<<"hi"<<endl;
     if(m_quad_startPage_backGround->isContainPoint(Cc3dGestureAnalyzer::sharedGestureAnalyzer()->getPoint())&&Cc3dGestureAnalyzer::sharedGestureAnalyzer()->getIsTapOnce()){
         this->getALSourceByName("switchPage")->play();
         CmenuPage*menuPage=new CmenuPage();

@@ -55,7 +55,7 @@ public:
         Cc3dVector4 center((m_xmin+m_xmax)/2,(m_ymin+m_ymax)/2,(m_zmin+m_zmax)/2,1);
         return center;
     }
-    bool containPoint(const Cc3dVector4&point){//判断point是否在range内
+    bool containPoint(const Cc3dVector4&point){
         float x=point.x();
         float y=point.y();
         float z=point.z();
@@ -84,7 +84,7 @@ public:
     void mov(const Cc3dVector4&d){
         mov(d.x(),d.y(),d.z());
     }
-    void add(const Cc3dRange&range){//range作和
+    void add(const Cc3dRange&range){
         m_xmin=min(m_xmin, range.getMinX());
         m_xmax=max(m_xmax, range.getMaxX());
         m_ymin=min(m_ymin, range.getMinY());

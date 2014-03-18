@@ -33,7 +33,7 @@ public:
         if(fp==NULL)
         {
             cout<<"Open "<<pathName<<" failed!"<<endl;
-            exit(0);
+            assert(false);
         }
         //------------------提取文件信息，并建立列模型列表
         {
