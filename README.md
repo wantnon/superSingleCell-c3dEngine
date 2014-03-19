@@ -15,10 +15,18 @@ for win32 project, open c3d+singleCell.sln with vs2010 and run. （note: suggest
     
 after entered the level selecting page, press the debug button at the right down corner, all the levels will be unlocked.   
 进入选关页面后点右下角debug按钮可以解锁所有关卡。  
-
-
+  
+游戏操纵方法(game control):  
+run forward:        press screen and hold.  
+run back:           drag down.  
+turn left/right:    drag left/right.  
+jump:               drag up.  
+jump forward:       drag up and hold.  
+  
+  
 ![screenshot](https://raw.github.com/wantnon2/superSingleCell-c3dEngine/master/screenshot/screenshot.png)  
-![screenshot](https://raw.github.com/wantnon2/superSingleCell-c3dEngine/master/screenshot/screenshot_win32.png)
+
+![screenshot](https://raw.github.com/wantnon2/superSingleCell-c3dEngine/master/screenshot/screenshot_win32.png)  
   
   
 qq group:  338565878  
