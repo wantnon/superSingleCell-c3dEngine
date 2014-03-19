@@ -1,4 +1,4 @@
-﻿Super Single Cell + c3dEngine
+Super Single Cell + c3dEngine
 ==========
 by wantnon (yang chao) 2014-2-23  
   
@@ -14,7 +14,7 @@ How to run the project:
 for iOS project, open c3d_singleCell.xcodeproj with Xcode and run.   
 
 for win32 project:  
-1, install OpenAL: run OpenAL11CoreSDK under OpenAL_install folder.  
+1, install OpenAL: run OpenAL11CoreSDK.exe under OpenAL_install folder.  
 2, open c3d+singleCell.sln with vs2010 and run（suggest to run under release mode）.    
     
 after entered the level selecting page, press the debug button at the right down corner, all the levels will be unlocked.   
