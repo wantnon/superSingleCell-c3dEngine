@@ -17,11 +17,11 @@ after entered the level selecting page, press the debug button at the right down
 进入选关页面后点右下角debug按钮可以解锁所有关卡。  
   
 游戏操纵方法(game control):  
-run forward:        press screen and hold.  
-run back:           drag down.  
-turn left/right:    drag left/right.  
-jump:               drag up.  
-jump forward:       drag up and hold.  
+run forward:        press screen.  
+run back:           sweep down.  
+turn left/right:    sweep left/right.  
+jump:               sweep up.  
+jump forward:       drag up.  
   
   
 ![screenshot](https://raw.github.com/wantnon2/superSingleCell-c3dEngine/master/screenshot/screenshot.png)  
