@@ -11,7 +11,7 @@ document：https://github.com/wantnon2/superSingleCell-c3dEngine/wiki
   
 How to run the project:   
 for iOS project, open c3d_singleCell.xcodeproj with Xcode and run.   
-for win32 project, open c3d+singleCell.sln with vs2010 and run. （note: suggested to run under release mode）  
+for win32 project, open c3d+singleCell.sln with vs2010 and run. （note: suggest to run under release mode）  
     
 after entered the level selecting page, press the debug button at the right down corner, all the levels will be unlocked.   
 进入选关页面后点右下角debug按钮可以解锁所有关卡。  
