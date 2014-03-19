@@ -20,4 +20,7 @@ after entered the level selecting page, press the debug button at the right down
 ![screenshot](https://raw.github.com/wantnon2/superSingleCell-c3dEngine/master/screenshot/screenshot.png)  
 ![screenshot](https://raw.github.com/wantnon2/superSingleCell-c3dEngine/master/screenshot/screenshot_win32.png)
   
+  
+qq group:  338565878  
+  
 blog: http://user.qzone.qq.com/350479720/blog/1393165837  
