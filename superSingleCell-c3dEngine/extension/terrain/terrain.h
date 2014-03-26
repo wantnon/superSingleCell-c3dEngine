@@ -12,7 +12,7 @@
 #include <iostream>
 using namespace std;
 #include <math.h>
-#include "c3dModel.h"
+#include "c3dMesh.h"
 #include "c3dActor.h"
 
 
@@ -67,9 +67,9 @@ public:
         m_heightScale=1;
 	}
     bool init(const string&fileNameWithExt,const Cc3dRect&rect,float heightScale,int depth,Cc3dTexture*texture);
-    Cc3dModel*getModel(){
-        assert((int)m_modelList.size()==1);
-        return m_modelList[0];
+    Cc3dMesh*getMesh(){
+        assert((int)getModel()->getMeshCount()==1);
+        return getModel()->getMeshByIndex(0);
     }
     void setUVScale(float value){m_uvScale=value;}
     float getUVScale()const{return m_uvScale;}

@@ -15,7 +15,7 @@ using namespace std;
 #include "c3dIDtriangle.h"
 #include "c3dVertex.h"
 #include "c3dObject.h"
-class Cc3dMeshData:public Cc3dObject{
+class Cc3dSubMeshData:public Cc3dObject{
 public:
     vector<Cc3dVertex> vlist;
     vector<Cc3dIDTriangle> IDtriList;

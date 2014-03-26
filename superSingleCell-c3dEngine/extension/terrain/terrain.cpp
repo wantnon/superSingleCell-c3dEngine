@@ -124,11 +124,11 @@ bool Cterrain::init(const string&heightMapFileName,const Cc3dRect&rect,float hei
     m_heightScale=heightScale;
     m_quadtreeDepth=quadtreeDepth;
     m_heightMapFileName=heightMapFileName;
-    //生成model
-    Cc3dModel*model=new Cc3dModel();
-    model->init();
-    model->autorelease();
-    addModel(model);
+    //生成mesh
+    Cc3dMesh*mesh=new Cc3dMesh();
+    mesh->init();
+    mesh->autorelease();
+    addMesh(mesh);
     //读取高程数据
     readLandMat();
     //求高度范围
@@ -159,14 +159,14 @@ bool Cterrain::init(const string&heightMapFileName,const Cc3dRect&rect,float hei
             markmat[i][j]=0;
         }
     }
-    //制作ground mesh
-    Cc3dMesh*mesh=new Cc3dMesh();
-    mesh->autorelease();
-    mesh->init();
-    mesh->setTexture(texture);
-    mesh->getIndexVBO()->genBuffers();
-    this->getModel()->addMesh(mesh);
-    //make mesh
+    //制作ground submesh
+    Cc3dSubMesh*submesh=new Cc3dSubMesh();
+    submesh->autorelease();
+    submesh->init();
+    submesh->setTexture(texture);
+    submesh->getIndexVBO()->genBuffers();
+    this->getMesh()->addMesh(submesh);
+    //make submesh
     makeMesh();
     
     //xxxx下面要去掉
@@ -175,11 +175,11 @@ bool Cterrain::init(const string&heightMapFileName,const Cc3dRect&rect,float hei
     //另外注意一个矩形要拆成两个三角形，所以是六个顶点（而非四个）
     //矩形最大数量：BMPHEIGHT*BMPWIDTH
     //矩形分裂出的最大三角形数量：BMPHEIGHT*BMPWIDTH*2
-    //补洞三角形最大数量：等于mesh网格的非边缘边个数，等于BMPHEIGHT*(BMPWIDTH-1)+BMPWIDTH*(BMPHEIGHT-1)
+    //补洞三角形最大数量：等于submesh网格的非边缘边个数，等于BMPHEIGHT*(BMPWIDTH-1)+BMPWIDTH*(BMPHEIGHT-1)
     //所以总共有BMPHEIGHT*BMPWIDTH*2+(BMPHEIGHT*(BMPWIDTH-1)+BMPWIDTH*(BMPHEIGHT-1))个三角形
     int bmpHeight=(int)landMat.size();
     int bmpWidth=(int)landMat[0].size();
-    this->getModel()->getMeshByIndex(0)->getMeshData()->IDtriList.reserve(bmpHeight*bmpWidth*2+(bmpHeight*(bmpWidth-1)+bmpWidth*(bmpHeight-1)));
+    this->getMesh()->getSubMeshByIndex(0)->getSubMeshData()->IDtriList.reserve(bmpHeight*bmpWidth*2+(bmpHeight*(bmpWidth-1)+bmpWidth*(bmpHeight-1)));
     return true;
     
 }
@@ -206,14 +206,14 @@ void Cterrain::makeMesh(){
             *(vertexArray+i*(int)markmat[0].size()*(3+2+3+2)+j*(3+2+3+2)+9)=(z-m_range.getMinZ())/m_range.getSpanZ();//alpha map texCoord t
         }
     }
-    this->getModel()->getMeshByIndex(0)->getMeshData()->vlist.clear();
+    this->getMesh()->getSubMeshByIndex(0)->getSubMeshData()->vlist.clear();
     for(int i=0;i<nVertex;i++){
         Cc3dVertex vertex;
         vertex.setPos(vertexArray+i*nStep);
         vertex.setTexCoord(vertexArray+i*nStep+3);
         vertex.setNorm(vertexArray+i*nStep+3+2);
         vertex.setTexCoord2(vertexArray+i*nStep+3+2+3);
-        this->getModel()->getMeshByIndex(0)->getMeshData()->vlist.push_back(vertex);
+        this->getMesh()->getSubMeshByIndex(0)->getSubMeshData()->vlist.push_back(vertex);
     }
     //释放vertexArray
     delete []vertexArray;
@@ -250,8 +250,8 @@ void Cterrain::makeUp(int jmin,int jmax,int imin,int imax)
                     //    /   \
                     //  p[0]--p[1]
                     
-                    //添加到mesh
-                    this->getModel()->getMeshByIndex(0)->addIDtri(imin*(int)markmat[0].size()+jmin,
+                    //添加到submesh
+                    this->getMesh()->getSubMeshByIndex(0)->addIDtri(imin*(int)markmat[0].size()+jmin,
                                                  imin*(int)markmat[0].size()+jmax,
                                                  imin*(int)markmat[0].size()+jmid);
                 }
@@ -266,7 +266,7 @@ void Cterrain::makeUp(int jmin,int jmax,int imin,int imax)
                     //  p[0]--p[2]
                     //    \    /
                     //     p[1]
-                    this->getModel()->getMeshByIndex(0)->addIDtri(imax*(int)markmat[0].size()+jmin,
+                    this->getMesh()->getSubMeshByIndex(0)->addIDtri(imax*(int)markmat[0].size()+jmin,
                                                  imax*(int)markmat[0].size()+jmid,
                                                  imax*(int)markmat[0].size()+jmax);
                     
@@ -284,7 +284,7 @@ void Cterrain::makeUp(int jmin,int jmax,int imin,int imax)
                     //  p[1]   |
                     //      \  |
                     //        p[2]
-                    this->getModel()->getMeshByIndex(0)->addIDtri(imin*(int)markmat[0].size()+jmin,
+                    this->getMesh()->getSubMeshByIndex(0)->addIDtri(imin*(int)markmat[0].size()+jmin,
                                                  imid*(int)markmat[0].size()+jmin,
                                                  imax*(int)markmat[0].size()+jmin);
                 }
@@ -301,7 +301,7 @@ void Cterrain::makeUp(int jmin,int jmax,int imin,int imax)
                     //         |   p[2]
                     //         |  /
                     //        p[1]
-                    this->getModel()->getMeshByIndex(0)->addIDtri(imin*(int)markmat[0].size()+jmax,
+                    this->getMesh()->getSubMeshByIndex(0)->addIDtri(imin*(int)markmat[0].size()+jmax,
                                                  imax*(int)markmat[0].size()+jmax,
                                                  imid*(int)markmat[0].size()+jmax);
                 }
@@ -335,7 +335,7 @@ void Cterrain::showAndMark(int jmin,int jmax,int imin,int imax,int curDepth)
     //看球体(c,r)是否都在planeList中某个面的反面，如果是则可剔除
     bool visible=true;
     for(int i=0;i<5;i++){//不考虑远平面
-        const Cc3dPlane&plane=this->getModel()->getMeshByIndex(0)->getCamera()->getFrustum().getPlaneByIndex(i);
+        const Cc3dPlane&plane=this->getMesh()->getSubMeshByIndex(0)->getCamera()->getFrustum().getPlaneByIndex(i);
         //看球体(c,r)是否在plane的背面
         float PND=directedDistanceFromPointToPlane(plane, c);
         if(PND<-r){//如果在背面
@@ -352,9 +352,9 @@ void Cterrain::showAndMark(int jmin,int jmax,int imin,int imax,int curDepth)
         }else{//进一步判断
             //求c到视点的距离
             //指数值越大，LOD效应越明显
-            float d=square(this->getModel()->getMeshByIndex(0)->getCamera()->getEyePos().x()-c[0])
-            +square(minf(0.6*(this->getModel()->getMeshByIndex(0)->getCamera()->getEyePos().y()-c[1]),700))//Y乘以一个比1小的系数是为了让LOD对高度变化不敏感
-            +square(this->getModel()->getMeshByIndex(0)->getCamera()->getEyePos().z()-c[2]);
+            float d=square(this->getMesh()->getSubMeshByIndex(0)->getCamera()->getEyePos().x()-c[0])
+            +square(minf(0.6*(this->getMesh()->getSubMeshByIndex(0)->getCamera()->getEyePos().y()-c[1]),700))//Y乘以一个比1小的系数是为了让LOD对高度变化不敏感
+            +square(this->getMesh()->getSubMeshByIndex(0)->getCamera()->getEyePos().z()-c[2]);
             float e=xmax-xmin;//边长
             if(d<e*reso)needDiv=true;
         }//得到needDiv
@@ -375,8 +375,8 @@ void Cterrain::showAndMark(int jmin,int jmax,int imin,int imax,int curDepth)
             const int ID1=vIDMat_imax+jmin;
             const int ID2=vIDMat_imax+jmax;
             const int ID3=vIDMat_imin+jmax;
-            this->getModel()->getMeshByIndex(0)->addIDtri(ID0, ID1, ID2);
-            this->getModel()->getMeshByIndex(0)->addIDtri(ID0, ID2, ID3);
+            this->getMesh()->getSubMeshByIndex(0)->addIDtri(ID0, ID1, ID2);
+            this->getMesh()->getSubMeshByIndex(0)->addIDtri(ID0, ID2, ID3);
         }
     }
 }
@@ -393,7 +393,7 @@ void Cterrain::update(const Cc3dCamera&camera){
     //清空markedElementIndexList
     markedElementIndexList.clear();
     //清空model_ground的indexList
-    this->getModel()->getMeshByIndex(0)->getMeshData()->IDtriList.clear();
+    this->getMesh()->getSubMeshByIndex(0)->getSubMeshData()->IDtriList.clear();
     //渲染四叉树并对节点的分割情况作标记
     showAndMark(0,(int)markmat.size()-1,0,(int)markmat[0].size()-1,1);//进入第一层（根节点规定为第一层）
     //修补缝隙

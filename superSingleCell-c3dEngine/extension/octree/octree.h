@@ -11,33 +11,33 @@
 
 #include <iostream>
 #include <vector>
-#include "c3dMesh.h"
+#include "c3dSubMesh.h"
 #include "geoMath.h"
 #include "triangleWithNorm.h"
-#include "c3dModel.h"
+#include "c3dMesh.h"
 #include "c3dCommonFunc.h"
 #include "c3dActor.h"
 class CIDTriForOctree
 {
 protected:
     Cc3dIDTriangle m_IDtri;
-    int m_meshID;//指明此三角形属于哪个mesh
+    int m_subMeshID;//指明此三角形属于哪个subMesh
     bool m_isAdded;//避免三角面重复
     Cc3dVector4 m_norm;
 public:
    
     
     CIDTriForOctree(){
-        m_meshID=-1;
+        m_subMeshID=-1;
         m_isAdded=false;
     }
     virtual ~CIDTriForOctree(){}
     Cc3dVector4 getNorm()const{return m_norm;}
     void setNorm(Cc3dVector4 norm){m_norm=norm;}
-    void setMeshID(int meshID){
-        m_meshID=meshID;
+    void setSubMeshID(int subMeshID){
+        m_subMeshID=subMeshID;
     }
-    int getMeshID()const{return m_meshID;};
+    int getSubMeshID()const{return m_subMeshID;};
     void setIsAdded(bool value){
         m_isAdded=value;
     }
@@ -97,15 +97,15 @@ public:
         destory();
     }
     bool init(){
-        Cc3dModel*model=new Cc3dModel();
-        model->autorelease();
-        model->init();
-        addModel(model);
+        Cc3dMesh*mesh=new Cc3dMesh();
+        mesh->autorelease();
+        mesh->init();
+        addMesh(mesh);
         return true;
     }
-    Cc3dModel*getModel()const{
-        assert(getModelCount()==1);
-        return m_modelList[0];
+    Cc3dMesh*getMesh()const{
+        assert(getModel()->getMeshCount()==1);
+        return getModel()->getMeshByIndex(0);
     }
     void makeOctree();
     Cc3dRange getRangeOfIDtris()const;
@@ -125,7 +125,7 @@ protected:
     void getpCollisionLeafList_inn(CocNode*pNode,const Cc3dVector4&c,float R, vector<CocNode*>&pCollisionLeafList);
     void updateVisibleNodeList_inn(CocNode*pNode);
     vector<CIDTriForOctree*> getIDtrisWithTags(const vector<int>&tagList)const;
-    void makeOctree_inn(CocNode*&pNode,const vector<Cc3dMesh*>&pmeshList);
+    void makeOctree_inn(CocNode*&pNode,const vector<Cc3dSubMesh*>&pmeshList);
     void deletepIDtriExListForEachNONLeafNode(CocNode*pNode);
     void initMembers();
     void destoryAllNode();

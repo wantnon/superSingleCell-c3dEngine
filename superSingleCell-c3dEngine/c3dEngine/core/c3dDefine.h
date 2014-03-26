@@ -8,6 +8,13 @@
 
 #ifndef __HelloCpp__c3dDefine__
 #define __HelloCpp__c3dDefine__
+//mask some warning
+#pragma warning (disable:4996)
+#pragma warning (disable:4819)
+#pragma warning (disable:4183)
+#pragma warning (disable:4786)
+#pragma warning (disable:4804)
+#pragma warning (disable:4800)
 
 #include <iostream>
 #include <string>

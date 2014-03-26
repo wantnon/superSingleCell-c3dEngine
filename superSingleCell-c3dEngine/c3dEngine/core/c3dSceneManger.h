@@ -18,6 +18,7 @@ public:
     Cc3dSceneManager(){
         m_root=new Cc3dNode();
         m_root->autorelease();
+		m_root->init();
         m_root->retain();
     }
     virtual~Cc3dSceneManager(){

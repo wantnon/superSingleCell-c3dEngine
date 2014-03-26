@@ -26,6 +26,7 @@ public:
         }
         Cc3dProgram*program=new Cc3dProgram();
         program->autorelease();
+		program->init();
         program->initWithFile(vertShaderFilePath, fragShaderFilePath);
         program->setName(name);
         m_programList.push_back(program);

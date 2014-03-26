@@ -15,13 +15,19 @@
 class Cc3dActor:public Cc3dNode
 {
 protected:
-    vector<Cc3dModel*> m_modelList;
+    Cc3dModel* m_model;
     vector<Cc3dALSource*> m_alSourceList;
 public:
     Cc3dActor(){
-        
-    }
-    virtual~Cc3dActor(){
+        m_model=NULL;
+		assert(m_model==NULL);
+		Cc3dNode::init();
+		m_model = new Cc3dModel();
+		m_model->autorelease();
+		m_model->init();
+		addChild(m_model);
+    } 
+    virtual~Cc3dActor(){ 
       
         int nSource=(int)m_alSourceList.size();
         for(int i=0;i<nSource;i++){
@@ -30,11 +36,7 @@ public:
             //cout<<"release source name:"<<source->getName()<<endl;
         }
     }
-    int getModelCount()const{return (int)m_modelList.size();}
-    Cc3dModel*getModelByIndex(int index){
-        assert(index>=0&&index<(int)m_modelList.size());
-        return m_modelList[index];
-    }
+	Cc3dModel*getModel()const {return m_model;}
     void addALSource(Cc3dALSource*source){
         assert(source);
         assert(getALSourceByName(source->getName())==NULL);
@@ -57,83 +59,46 @@ public:
         return NULL;
     }
     void setLight(Cc3dLight*light){
-        this->Cc3dNode::setLight(light);
-        int nModel=(int)m_modelList.size();
-        for(int i=0;i<nModel;i++){
-            if(m_modelList[i]==NULL)continue;
-            m_modelList[i]->setLight(light);
-        }
+		assert(light);
+		this->Cc3dNode::setLight(light);
+        m_model->setLight(light);
     }
     
     void setProgram(Cc3dProgram *program){
         assert(program);
-        this->Cc3dNode::setProgram(program);
-        
-        int n=(int)m_modelList.size();
-        for(int i=0;i<n;i++){
-            Cc3dModel*p=m_modelList[i];
-            if(p==NULL)continue;
-            p->setProgram(program);
-        }
+		this->Cc3dNode::setProgram(program);
+		m_model->setProgram(program);
     }
     void setPassUnifoCallback(c3dPassUnifoCallbackPtr callback){
         assert(callback);
-        this->Cc3dNode::setPassUnifoCallback(callback);
-        
-        int n=(int)m_modelList.size();
-        for(int i=0;i<n;i++){
-            Cc3dModel*p=m_modelList[i];
-            if(p==NULL)continue;
-            p->setPassUnifoCallback(callback);
-        }
+		this->Cc3dNode::setPassUnifoCallback(callback);
+        m_model->setPassUnifoCallback(callback);
         
     }
     void setIsDoUpdate(bool value){
-        this->Cc3dNode::setIsDoUpdate(value);
-        int nModel=(int)m_modelList.size();
-        for(int i=0;i<nModel;i++){
-            if(m_modelList[i]==NULL)continue;
-            m_modelList[i]->setIsDoUpdate(value);
-        }
+		this->Cc3dNode::setIsDoUpdate(value);
+        m_model->setIsDoUpdate(value);
     }
     void setIsDoUpdateRecursively(bool value){
         this->Cc3dNode::setIsDoUpdateRecursively(value);
-        int nModel=(int)m_modelList.size();
-        for(int i=0;i<nModel;i++){
-            if(m_modelList[i]==NULL)continue;
-            m_modelList[i]->setIsDoUpdateRecursively(value);
-        }
+        m_model->setIsDoUpdateRecursively(value);
     }
     void setIsVisible(bool value){
         this->Cc3dNode::setIsVisible(value);
-        int nModel=(int)m_modelList.size();
-        for(int i=0;i<nModel;i++){
-            if(m_modelList[i]==NULL)continue;
-            m_modelList[i]->setIsVisible(value);
-        }
+        m_model->setIsVisible(value);
     }
     void setIsVisibleRecursively(bool value){
         this->Cc3dNode::setIsVisibleRecursively(value);
-        int nModel=(int)m_modelList.size();
-        for(int i=0;i<nModel;i++){
-            if(m_modelList[i]==NULL)continue;
-            m_modelList[i]->setIsVisibleRecursively(value);
-        }
+		m_model->setIsVisibleRecursively(value);
     }
     void setCamera(Cc3dCamera*camera){
         
         this->Cc3dNode::setCamera(camera);
         
-        int n=(int)m_modelList.size();
-        for(int i=0;i<n;i++){
-            Cc3dModel*p=m_modelList[i];
-            if(p==NULL)continue;
-            p->setCamera(camera);
-        }
+        m_model->setCamera(camera);
         
     }
-    vector<Cc3dModel*> getModelList()const{return m_modelList;}
-    void addModel(Cc3dModel*pModel);
+    void addMesh(Cc3dMesh*mesh);
     void submitVertex(GLenum usage);
     void submitIndex(GLenum usage);
 

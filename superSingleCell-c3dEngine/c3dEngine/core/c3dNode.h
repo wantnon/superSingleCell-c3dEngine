@@ -57,6 +57,7 @@ public:
         }
     }
     bool init(){
+		Cc3dObject::init();
         //default camera
         Cc3dCamera*camera=new Cc3dCamera();
         camera->init();
