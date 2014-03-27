@@ -128,7 +128,7 @@ void Cc3dMesh::submitIndex(GLenum usage){
         if(psubMesh)psubMesh->submitIndex(usage);
     }
 }
-void Cc3dMesh::addMesh(Cc3dSubMesh*submesh){
+void Cc3dMesh::addSubMesh(Cc3dSubMesh*submesh){
     assert(submesh);
     m_subMeshList.push_back(submesh);
     //submesh->setName("?");

@@ -100,7 +100,7 @@ public:
                 subMesh->retain();
                 subMesh->removeFromParent();
                 //将subMesh添加到this
-                getModel()->getMeshByIndex(cellPartID)->addMesh(subMesh);
+                getModel()->getMeshByIndex(cellPartID)->addSubMesh(subMesh);
             }
             //为各模型genVBOBuffers
             {

@@ -166,11 +166,11 @@ public:
         Cc3dMesh*mesh=new Cc3dMesh();
                    mesh->autorelease();
                    mesh->init();
-        this->addMesh(mesh);
+        this->addSubMesh(mesh);
         Cc3dSubMesh*subMesh=new Cc3dSubMesh();
                    subMesh->autorelease();
                    subMesh->init();
-        this->getModel()->getMeshByIndex(0)->addMesh(subMesh);
+        this->getModel()->getMeshByIndex(0)->addSubMesh(subMesh);
         float vertexArray[4][3+2+3+2]={
             //顶点z值取1，落在正交投影的近剪裁面，这样可以防止UI元素被场景物体裁切
             //当然，还有一个办法就是在绘制UI元素的时候禁用深度测试（当UI元素较多时值得这样做）

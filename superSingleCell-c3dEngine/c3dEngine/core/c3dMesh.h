@@ -167,7 +167,7 @@ public:
     void submit(GLenum usage);
     void submitVertex(GLenum usage);
     void submitIndex(GLenum usage);
-    void addMesh(Cc3dSubMesh*submesh);
+    void addSubMesh(Cc3dSubMesh*submesh);
     void releaseIDtriList();
     void releasevList();
 

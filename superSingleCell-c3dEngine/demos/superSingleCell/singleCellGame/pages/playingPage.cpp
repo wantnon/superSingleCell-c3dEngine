@@ -1115,7 +1115,7 @@ bool  CplayingPage::init(int level){
                 Cc3dSubMesh*subMesh=new Cc3dSubMesh();
                 subMesh->init();
                 subMesh->autorelease();
-                pmobilePlatform->getMesh()->addMesh(subMesh);
+                pmobilePlatform->getMesh()->addSubMesh(subMesh);
                 Cc3dSubMeshData*meshData=genSampleCubeWithCode(0, 0, 0, pmobilePlatform->rx,pmobilePlatform->ry, pmobilePlatform->rz,
                                                          0.01,0.01,cubUVMode_UNIFORM);
                 subMesh->setMeshData(meshData);
@@ -1485,7 +1485,7 @@ bool  CplayingPage::init(int level){
         mesh->scale_modifyVertexDirectly(0.1, 0.1, 0.1);
         mesh->genVBOBuffers();
         mesh->submit(GL_STATIC_DRAW);
-        m_levelBackGroundMusicCube->addMesh(mesh);
+        m_levelBackGroundMusicCube->addSubMesh(mesh);
         m_levelBackGroundMusicCube->setProgram(Cc3dProgramCache::sharedProgramCache()->getProgramByName("shaderNoLight"));
         m_levelBackGroundMusicCube->setPassUnifoCallback(passUnifoCallback_noLight);
         m_levelBackGroundMusicCube->setCamera(camera);//如果物体显示不出来，可能是忘记了设置相机

@@ -27,7 +27,7 @@ public:
         Cc3dMesh*mesh=new Cc3dMesh();
         mesh->autorelease();
         mesh->init();
-        addMesh(mesh);
+        addSubMesh(mesh);
         Cc3dSubMesh*submesh=new Cc3dSubMesh();
         submesh->init();
         submesh->autorelease();
@@ -53,7 +53,7 @@ public:
         submesh->addIDtri(0, 1, 2);
         submesh->addIDtri(0, 2, 3);
         
-        this->getModel()->getMeshByIndex(0)->addMesh(submesh);
+        this->getModel()->getMeshByIndex(0)->addSubMesh(submesh);
         return true;
     }
 

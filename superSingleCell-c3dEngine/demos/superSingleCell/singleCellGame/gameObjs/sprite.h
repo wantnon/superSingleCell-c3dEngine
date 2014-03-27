@@ -70,7 +70,7 @@ public:
         Cc3dMesh*mesh=new Cc3dMesh();
         mesh->autorelease();
         mesh->init();
-        addMesh(mesh);
+        addSubMesh(mesh);
         //生成submesh
         int nPoint=4;
         Cc3dSubMesh *subMesh=new Cc3dSubMesh();
@@ -96,7 +96,7 @@ public:
         v2.setTexCoord(u2);
         v3.setTexCoord(u3);
         //加入到模型
-        this->getMesh()->addMesh(subMesh);
+        this->getMesh()->addSubMesh(subMesh);
 		return true;
     }
     Cc3dMesh* getMesh()const {

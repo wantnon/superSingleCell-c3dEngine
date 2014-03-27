@@ -100,7 +100,7 @@ public:
         Cc3dMesh*mesh=new Cc3dMesh();
         mesh->autorelease();
         mesh->init();
-        addMesh(mesh);
+        addSubMesh(mesh);
         return true;
     }
     Cc3dMesh*getMesh()const{

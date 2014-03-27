@@ -21,7 +21,7 @@ Cship*makeShipTemplate(int shipID){//必须加static
     Cc3dMesh*mesh=new Cc3dMesh();
     mesh->autorelease();
 	mesh->init();
-    pship->addMesh(mesh);
+    pship->addSubMesh(mesh);
     //必须先load config再load model
     string shipClipName="ship";
     shipClipName+=numberToStr(shipID);
@@ -71,7 +71,7 @@ CbossCell*makeCellTemplate(int cellID){//必须加static
         Cc3dMesh*mesh=new Cc3dMesh();
         mesh->autorelease();
 		mesh->init();
-        pcellTemp->addMesh(mesh);
+        pcellTemp->addSubMesh(mesh);
     }
     
     string modelClipPath="singleCellGameResource/data/global/model/cellModelLibrary/";

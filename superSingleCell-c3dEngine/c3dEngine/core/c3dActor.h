@@ -98,7 +98,7 @@ public:
         m_model->setCamera(camera);
         
     }
-    void addMesh(Cc3dMesh*mesh);
+    void addSubMesh(Cc3dMesh*mesh);
     void submitVertex(GLenum usage);
     void submitIndex(GLenum usage);
 

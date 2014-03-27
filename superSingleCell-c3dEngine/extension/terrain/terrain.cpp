@@ -128,7 +128,7 @@ bool Cterrain::init(const string&heightMapFileName,const Cc3dRect&rect,float hei
     Cc3dMesh*mesh=new Cc3dMesh();
     mesh->init();
     mesh->autorelease();
-    addMesh(mesh);
+    addSubMesh(mesh);
     //读取高程数据
     readLandMat();
     //求高度范围
@@ -165,7 +165,7 @@ bool Cterrain::init(const string&heightMapFileName,const Cc3dRect&rect,float hei
     submesh->init();
     submesh->setTexture(texture);
     submesh->getIndexVBO()->genBuffers();
-    this->getMesh()->addMesh(submesh);
+    this->getMesh()->addSubMesh(submesh);
     //make submesh
     makeMesh();
     

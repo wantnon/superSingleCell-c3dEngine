@@ -159,7 +159,7 @@ void loadInfo_mesh(Cc3dMesh*mesh,const string&modelClipPathShort,float scale,Cc3
             string meshFilePathShort=modelClipPathShort+"/mesh/mesh"+numberToStr(i)+".ysm";
             string texClipPathShort=modelClipPathShort+"/tex";
             loadInfo_subMesh(subMesh,meshFilePathShort,texClipPathShort,scale,offsetVec);
-            mesh->addMesh(subMesh);
+            mesh->addSubMesh(subMesh);
             i++;
         }
         
@@ -176,7 +176,7 @@ void loadInfo_mesh(Cc3dMesh*mesh,const string&modelClipPathShort,float scale,Cc3
             string meshFilePathShort=modelClipPathShort+"/mesh_normByVertex/mesh"+numberToStr(i)+"_normByVertex.ysm";
             string texClipPathShort=modelClipPathShort+"/tex";
             loadInfo_subMesh(subMesh, meshFilePathShort,texClipPathShort,scale,offsetVec );
-            mesh->addMesh(subMesh);
+            mesh->addSubMesh(subMesh);
             reCalNorms_precise_normByVertex(subMesh->getSubMeshData());
             i++;
         }
@@ -193,7 +193,7 @@ void loadInfo_mesh(Cc3dMesh*mesh,const string&modelClipPathShort,float scale,Cc3
             string meshFilePathShort=modelClipPathShort+"/mesh_bossAndCBLoc/mesh"+numberToStr(i)+"_bossAndCBLoc.ysm";
             string texClipPathShort=modelClipPathShort+"/tex";
             loadInfo_subMesh(subMesh, meshFilePathShort,texClipPathShort,scale,offsetVec);
-            mesh->addMesh(subMesh);
+            mesh->addSubMesh(subMesh);
             reCalNorms_precise_normByVertex(subMesh->getSubMeshData());
             i++;
         }
