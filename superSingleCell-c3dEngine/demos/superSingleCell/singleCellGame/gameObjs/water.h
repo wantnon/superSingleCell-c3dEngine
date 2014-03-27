@@ -57,7 +57,7 @@ public:
         Cc3dMesh*mesh=new Cc3dMesh();
         mesh->init();
         mesh->autorelease();
-        addSubMesh(mesh);
+        addMesh(mesh);
         return true;
     }
     Cc3dMesh*getMesh(){

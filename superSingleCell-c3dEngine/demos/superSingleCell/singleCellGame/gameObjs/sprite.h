@@ -70,7 +70,7 @@ public:
         Cc3dMesh*mesh=new Cc3dMesh();
         mesh->autorelease();
         mesh->init();
-        addSubMesh(mesh);
+        addMesh(mesh);
         //生成submesh
         int nPoint=4;
         Cc3dSubMesh *subMesh=new Cc3dSubMesh();

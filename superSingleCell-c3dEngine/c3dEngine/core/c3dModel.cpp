@@ -7,7 +7,7 @@
 //
 
 #include "c3dModel.h"
-void Cc3dModel::addSubMesh(Cc3dMesh*mesh){
+void Cc3dModel::addMesh(Cc3dMesh*mesh){
     assert(mesh);
     m_meshList.push_back(mesh);
   //  mesh->setName("?");

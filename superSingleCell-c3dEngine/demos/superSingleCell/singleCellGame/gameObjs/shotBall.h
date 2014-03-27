@@ -66,7 +66,7 @@ public:
         Cc3dMesh*mesh=new Cc3dMesh();
         mesh->autorelease();
         mesh->init();
-        addSubMesh(mesh);
+        addMesh(mesh);
         
         return true;
     }

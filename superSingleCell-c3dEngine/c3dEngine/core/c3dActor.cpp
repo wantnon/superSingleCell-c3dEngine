@@ -7,9 +7,9 @@
 //
 
 #include "c3dActor.h"
-void Cc3dActor::addSubMesh(Cc3dMesh*mesh){
+void Cc3dActor::addMesh(Cc3dMesh*mesh){
     assert(mesh);
-	m_model->addSubMesh(mesh);
+	m_model->addMesh(mesh);
     
 }
 

@@ -166,7 +166,7 @@ public:
         Cc3dMesh*mesh=new Cc3dMesh();
                    mesh->autorelease();
                    mesh->init();
-        this->addSubMesh(mesh);
+        this->addMesh(mesh);
         Cc3dSubMesh*subMesh=new Cc3dSubMesh();
                    subMesh->autorelease();
                    subMesh->init();

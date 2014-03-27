@@ -106,7 +106,7 @@ public:
         
     }
     vector<Cc3dMesh*> getMeshList()const{return m_meshList;}
-    void addSubMesh(Cc3dMesh*mesh);
+    void addMesh(Cc3dMesh*mesh);
     void submitVertex(GLenum usage);
     void submitIndex(GLenum usage);
 
