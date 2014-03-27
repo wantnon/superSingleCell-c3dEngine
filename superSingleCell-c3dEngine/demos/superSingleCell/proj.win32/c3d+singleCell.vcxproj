@@ -126,7 +126,7 @@ xcopy /Y /Q "$(ProjectDir)..\..\..\c3dEngine\platform\win32\libraries\*.*" "$(Ou
       <ObjectFileName>.\Debug\</ObjectFileName>
       <ProgramDataBaseFileName>.\Debug\</ProgramDataBaseFileName>
       <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
-      <AdditionalIncludeDirectories>$(ProjectDir)..\c3dEngine;$(ProjectDir)..\c3dEngine\core;$(ProjectDir)..\c3dEngine\common;$(ProjectDir)..\c3dEngine\platform\win32;$(ProjectDir)..\c3dEngine\platform\win32\OGLES;$(ProjectDir);$(ProjectDir)..\extension;$(ProjectDir)..\extension\geometry;$(ProjectDir)..\extension\octree;$(ProjectDir)..\extension\terrain;$(ProjectDir)..\singleCellGame;$(ProjectDir)..\singleCellGame\funcs;$(ProjectDir)..\singleCellGame\gameObjs;$(ProjectDir)..\singleCellGame\global;$(ProjectDir)..\singleCellGame\otherObjs;$(ProjectDir)..\singleCellGame\pages;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(ProjectDir)..\..\..\c3dEngine;$(ProjectDir)..\..\..\c3dEngine\core;$(ProjectDir)..\..\..\c3dEngine\common;$(ProjectDir)..\..\..\c3dEngine\platform\win32;$(ProjectDir)..\..\..\c3dEngine\platform\win32\OGLES;$(ProjectDir);$(ProjectDir)..\..\..\extension;$(ProjectDir)..\..\..\extension\geometry;$(ProjectDir)..\..\..\extension\octree;$(ProjectDir)..\..\..\extension\terrain;$(ProjectDir)..\singleCellGame;$(ProjectDir)..\singleCellGame\funcs;$(ProjectDir)..\singleCellGame\gameObjs;$(ProjectDir)..\singleCellGame\global;$(ProjectDir)..\singleCellGame\otherObjs;$(ProjectDir)..\singleCellGame\pages;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <FavorSizeOrSpeed>Neither</FavorSizeOrSpeed>
     </ClCompile>
     <Midl>
@@ -150,11 +150,11 @@ xcopy /Y /Q "$(ProjectDir)..\..\..\c3dEngine\platform\win32\libraries\*.*" "$(Ou
       <SubSystem>Windows</SubSystem>
       <OutputFile>.\Debug\c3d+singleCell.exe</OutputFile>
       <AdditionalDependencies>wininet.lib;opengl32.lib;glu32.lib;glew32.lib;odbc32.lib;odbccp32.lib;openal32.lib;alut.lib;libzlib.lib;libpng.lib;%(AdditionalDependencies)</AdditionalDependencies>
-      <AdditionalLibraryDirectories>$(ProjectDir)..\c3dEngine\platform\win32\libraries;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>$(ProjectDir)..\..\..\c3dEngine\platform\win32\libraries;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
     </Link>
     <PreLinkEvent>
       <Command>if not exist "$(OutDir)" mkdir "$(OutDir)"
-xcopy /Y /Q "$(ProjectDir)..\c3dEngine\platform\win32\libraries\*.*" "$(OutDir)"
+xcopy /Y /Q "$(ProjectDir)..\..\..\c3dEngine\platform\win32\libraries\*.*" "$(OutDir)"
 
 </Command>
     </PreLinkEvent>
