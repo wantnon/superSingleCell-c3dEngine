@@ -35,10 +35,12 @@ jump forward:       drag up.
   
 here is a exe built for win32 platform: http://pan.baidu.com/s/1sjnnFo5  
   
-----    
+----  
+    
 qq group:  338565878  
   
 blog: http://user.qzone.qq.com/350479720/blog/1393165837  
+  
 ----  
   
 if you want small samples, see here: c3dEngine2: https://github.com/wantnon2/c3dEngine2  
