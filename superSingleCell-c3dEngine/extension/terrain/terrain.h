@@ -40,6 +40,33 @@ protected:
         m_j=0;
     }
 };
+
+class CterrainBlock{
+public:
+	CterrainBlock(){
+		initMembers();
+	}
+	CterrainBlock(int imin,int imax,int jmin,int jmax){
+		initMembers();
+		init(imin,imax,jmin,jmax);
+	}
+	virtual~CterrainBlock(){
+	
+	}
+	void init(int imin,int imax,int jmin,int jmax){
+		m_imin=imin;m_imax=imax;
+		m_jmin=jmin;m_jmax=jmax;
+	}
+	int getImin()const{return m_imin;}
+	int getImax()const{return m_imax;}
+	int getJmin()const{return m_jmin;}
+	int getJmax()const{return m_jmax;}
+protected:
+	int m_imin,m_imax,m_jmin,m_jmax;
+	void initMembers(){
+		m_imin=m_imax=m_jmin=m_jmax=0;
+	}
+};
 typedef unsigned char       BYTE;
 //bmp每个像素对应一个grid，每个grid有四个顶点
 //markmat每个元素对应一个顶点
@@ -58,6 +85,7 @@ protected:
 	float m_uvScale;//纹理缩放系数，u和v的放缩系数相等，都为kuv
     vector<vector<float> > landMat;//高程数组
     vector<vector<Cc3dVector4> > normalMat;//法向数组
+	vector<CterrainBlock> m_blockList;
 public:
 	Cterrain(){
         m_quadtreeDepth=9;
@@ -80,8 +108,8 @@ public:
     float getHAndNormal(float x,float z,Cc3dVector4&norm)const;
     float getH(float x,float z)const ;
 protected:
-    void makeUp(int jmin,int jmax,int imin,int imax);
-    void showAndMark(int jmin,int jmax,int imin,int imax,int curDepth);
+	void blocksToIDtris();
+    void getBlocks(int jmin,int jmax,int imin,int imax,int curDepth);
     void readLandMat();
     void fillNormalMat();
     void makeMesh();

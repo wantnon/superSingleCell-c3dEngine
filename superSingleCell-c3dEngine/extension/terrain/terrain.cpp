@@ -218,101 +218,8 @@ void Cterrain::makeMesh(){
     //释放vertexArray
     delete []vertexArray;
 }
-void Cterrain::makeUp(int jmin,int jmax,int imin,int imax)
-{
-    if(imin+1==imax){//是原子格，不用修补
-        return;
-    }else{
-        
-        //本区域中心
-        int imid=(imin+imax)>>1;//除2
-        int jmid=(jmin+jmax)>>1;
-        
-        if(markmat[imid][jmid]){//如果区域中心mark，即本区域要细分
-            
-            //向下走
-            //对四个孩子继续递归
-            makeUp(jmin,jmid,imin,imid);
-            makeUp(jmin,jmid,imid,imax);
-            makeUp(jmid,jmax,imid,imax);
-            makeUp(jmid,jmax,imin,imid);
-            
-        }else{
-            
-            //看上方同尺寸区域中心是否mark
-            {
-                int _imid=imid-(imax-imin);
-                int _jmid=jmid;
-                if(_imid>=0&&markmat[_imid][_jmid]){//上方同尺寸区域中心mark
-                    
-                    //用对三角面补漏
-                    //     p[2]
-                    //    /   \
-                    //  p[0]--p[1]
-                    
-                    //添加到submesh
-                    this->getMesh()->getSubMeshByIndex(0)->addIDtri(imin*(int)markmat[0].size()+jmin,
-                                                 imin*(int)markmat[0].size()+jmax,
-                                                 imin*(int)markmat[0].size()+jmid);
-                }
-            }
-            //看下方同尺寸区域中心是否mark
-            {
-                int _imid=imid+(imax-imin);
-                int _jmid=jmid;
-                if(_imid<(int)markmat.size()&&markmat[_imid][_jmid]){//下方同尺寸区域中心mark
-                    
-                    //用对三角面补漏
-                    //  p[0]--p[2]
-                    //    \    /
-                    //     p[1]
-                    this->getMesh()->getSubMeshByIndex(0)->addIDtri(imax*(int)markmat[0].size()+jmin,
-                                                 imax*(int)markmat[0].size()+jmid,
-                                                 imax*(int)markmat[0].size()+jmax);
-                    
-                }
-            }
-            //看左方同尺寸区域中心是否mark
-            {
-                int _imid=imid;
-                int _jmid=jmid-(jmax-jmin);
-                if(_jmid>=0&&markmat[_imid][_jmid]){//左方同尺寸区域中心mark
-                    
-                    //用对三角面补漏
-                    //        p[0]
-                    //      /  |
-                    //  p[1]   |
-                    //      \  |
-                    //        p[2]
-                    this->getMesh()->getSubMeshByIndex(0)->addIDtri(imin*(int)markmat[0].size()+jmin,
-                                                 imid*(int)markmat[0].size()+jmin,
-                                                 imax*(int)markmat[0].size()+jmin);
-                }
-            }
-            //看右方同尺寸区域中心是否mark
-            {
-                int _imid=imid;
-                int _jmid=jmid+(jmax-jmin);
-                if(_jmid<(int)markmat[0].size()&&markmat[_imid][_jmid]){//右方同尺寸区域中心mark
-                    
-                    //用对三角面补漏
-                    //        p[0]
-                    //         |  \
-                    //         |   p[2]
-                    //         |  /
-                    //        p[1]
-                    this->getMesh()->getSubMeshByIndex(0)->addIDtri(imin*(int)markmat[0].size()+jmax,
-                                                 imax*(int)markmat[0].size()+jmax,
-                                                 imid*(int)markmat[0].size()+jmax);
-                }
-            }
-            
-        }
-    }
-    
-}
 
-void Cterrain::showAndMark(int jmin,int jmax,int imin,int imax,int curDepth)
+void Cterrain::getBlocks(int jmin,int jmax,int imin,int imax,int curDepth)
 {
     //检查当前节点是否与视截体相交
     //求节点p所表示区域的保守包围盒
@@ -364,23 +271,108 @@ void Cterrain::showAndMark(int jmin,int jmax,int imin,int imax,int curDepth)
             markmat[imid][jmid]=true;
             markedElementIndexList.push_back(Cij(imid,jmid));
             //对四个孩子继续递归
-            showAndMark(jmin,jmid,imin,imid,curDepth+1);
-            showAndMark(jmin,jmid,imid,imax,curDepth+1);
-            showAndMark(jmid,jmax,imid,imax,curDepth+1);
-            showAndMark(jmid,jmax,imin,imid,curDepth+1);
+            getBlocks(jmin,jmid,imin,imid,curDepth+1);
+            getBlocks(jmin,jmid,imid,imax,curDepth+1);
+            getBlocks(jmid,jmax,imid,imax,curDepth+1);
+            getBlocks(jmid,jmax,imin,imid,curDepth+1);
         }else{//不分
-            const int vIDMat_imin=(int)markmat[0].size()*imin;//vIDMat[imin];
-            const int vIDMat_imax=(int)markmat[0].size()*imax;//vIDMat[imax];
-            const int ID0=vIDMat_imin+jmin;
-            const int ID1=vIDMat_imax+jmin;
-            const int ID2=vIDMat_imax+jmax;
-            const int ID3=vIDMat_imin+jmax;
-            this->getMesh()->getSubMeshByIndex(0)->addIDtri(ID0, ID1, ID2);
-            this->getMesh()->getSubMeshByIndex(0)->addIDtri(ID0, ID2, ID3);
+            CterrainBlock block(imin,imax,jmin,jmax);
+			m_blockList.push_back(block);
         }
     }
 }
 
+void Cterrain::blocksToIDtris(){
+	
+	//
+	int markmatW=(int)markmat[0].size();
+	int markmatH=(int)markmat.size();
+	//
+	int nBlock=(int)m_blockList.size();
+	for(int i=-0;i<nBlock;i++){
+		const CterrainBlock&block=m_blockList[i];
+		int imin=block.getImin();
+		int imax=block.getImax();
+		int jmin=block.getJmin();
+		int jmax=block.getJmax();
+		//本block四周等面积区域分割情况
+		//本区域中心
+        int imid=(imin+imax)>>1;//除2
+        int jmid=(jmin+jmax)>>1;
+		//上方等面积区域是否分割
+		bool upDivided=false;
+		{
+			int imid_up=imid-(imax-imin);
+			int jmid_up=jmid;
+			upDivided=(imid_up>=0&&markmat[imid_up][jmid_up]);
+		}
+		//下方等面积区域是否分割
+		bool dnDivided=false;
+		{
+			int imid_dn=imid+(imax-imin);
+            int jmid_dn=jmid;
+			dnDivided=(imid_dn<markmatH&&markmat[imid_dn][jmid_dn]);
+		}
+		//左方等面积区域是否分割
+		bool leftDivided=false;
+		{
+			 int imid_left=imid;
+             int jmid_left=jmid-(jmax-jmin);
+			 leftDivided=(jmid_left>=0&&markmat[imid_left][jmid_left]);
+		}
+		//右方等面积区域是否分割
+		bool rightDivided=false;
+		{
+			int imid_right=imid;
+            int jmid_right=jmid+(jmax-jmin);
+			rightDivided=(jmid_right<markmatW&&markmat[imid_right][jmid_right]);
+		}
+		//block划分
+		//   ID0-ID1-ID2
+		//    | \ | / |
+		//   ID3-ID4-ID5
+		//    | / | \ |
+		//   ID6-ID7-ID8
+		int ID0=markmatW*imin+jmin;
+		int ID1=markmatW*imin+jmid;
+		int ID2=markmatW*imin+jmax;
+		int ID3=markmatW*imid+jmin;
+		int ID4=markmatW*imid+jmid;
+		int ID5=markmatW*imid+jmax;
+		int ID6=markmatW*imax+jmin;
+		int ID7=markmatW*imax+jmid;
+		int ID8=markmatW*imax+jmax;
+		//block上四分之一生成IDtri
+		if(upDivided){
+			this->getMesh()->getSubMeshByIndex(0)->addIDtri(Cc3dIDTriangle(ID0, ID4, ID1));
+			this->getMesh()->getSubMeshByIndex(0)->addIDtri(Cc3dIDTriangle(ID1, ID4, ID2));
+		}else{
+			this->getMesh()->getSubMeshByIndex(0)->addIDtri(Cc3dIDTriangle(ID0, ID4, ID2));
+		}
+		//block下四分之一生成IDtri
+		if(dnDivided){
+			this->getMesh()->getSubMeshByIndex(0)->addIDtri(Cc3dIDTriangle(ID4, ID6, ID7));
+			this->getMesh()->getSubMeshByIndex(0)->addIDtri(Cc3dIDTriangle(ID4, ID7, ID8));
+		}else{
+			this->getMesh()->getSubMeshByIndex(0)->addIDtri(Cc3dIDTriangle(ID4, ID6, ID8));
+		}
+		//block左四分之一生成IDtri
+		if(leftDivided){
+			this->getMesh()->getSubMeshByIndex(0)->addIDtri(Cc3dIDTriangle(ID4, ID0, ID3));
+			this->getMesh()->getSubMeshByIndex(0)->addIDtri(Cc3dIDTriangle(ID4, ID3, ID6));
+		}else{
+			this->getMesh()->getSubMeshByIndex(0)->addIDtri(Cc3dIDTriangle(ID4, ID0, ID6));
+		}
+		//block右四分之一生成IDtri
+		if(rightDivided){
+			this->getMesh()->getSubMeshByIndex(0)->addIDtri(Cc3dIDTriangle(ID4, ID5, ID2));
+			this->getMesh()->getSubMeshByIndex(0)->addIDtri(Cc3dIDTriangle(ID4, ID8, ID5));
+		}else{
+			this->getMesh()->getSubMeshByIndex(0)->addIDtri(Cc3dIDTriangle(ID4, ID8, ID2));
+		}
+
+	}
+}
 
 void Cterrain::update(const Cc3dCamera&camera){
 
@@ -394,10 +386,12 @@ void Cterrain::update(const Cc3dCamera&camera){
     markedElementIndexList.clear();
     //清空model_ground的indexList
     this->getMesh()->getSubMeshByIndex(0)->getSubMeshData()->IDtriList.clear();
-    //渲染四叉树并对节点的分割情况作标记
-    showAndMark(0,(int)markmat.size()-1,0,(int)markmat[0].size()-1,1);//进入第一层（根节点规定为第一层）
-    //修补缝隙
-    makeUp(0,(int)markmat.size()-1,0,(int)markmat[0].size()-1);
+	//清空m_blockList
+	m_blockList.clear();
+    //获得所有block并填充markmat
+    getBlocks(0,(int)markmat.size()-1,0,(int)markmat[0].size()-1,1);//进入第一层（根节点规定为第一层）
+	//将blocks转化为IDtris
+    blocksToIDtris();
 }
 float Cterrain::getHAndNormal(float x,float z,Cc3dVector4&norm)const{
     int j=(x-m_range.getMinX())/gridSize+0.5;//加0.5为实现四舍五入

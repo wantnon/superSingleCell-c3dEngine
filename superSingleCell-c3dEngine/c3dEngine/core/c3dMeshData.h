@@ -21,6 +21,7 @@ public:
     vector<Cc3dIDTriangle> IDtriList;
     void addVertex(const float pos[3],const float texCoord[2],const float norm[3]);
     void addIDtri(int ID0,int ID1,int ID2);
+	void addIDtri(const Cc3dIDTriangle&IDtri){IDtriList.push_back(IDtri);}
     void clear(){
         vlist.clear();
         IDtriList.clear();
