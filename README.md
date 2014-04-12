@@ -30,7 +30,7 @@ jump forward:       drag up.
   
 ![screenshot](https://raw.github.com/wantnon2/superSingleCell-c3dEngine/master/screenshot/screenshot.png)  
 
-![screenshot](http://raw.git.oschina.net/wantnon2/superSingleCell-c3dEngine/master/screenshot/screenshot_win32.png)  
+![screenshot](http://git.oschina.net/wantnon2/superSingleCell-c3dEngine/master/screenshot/screenshot_win32.png)  
   
   
 here is a exe built for win32 platform: http://pan.baidu.com/s/1sjnnFo5  
