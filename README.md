@@ -28,7 +28,7 @@ jump:               sweep up.
 jump forward:       drag up.  
   
   
-![screenshot](https://git.oschina.net/wantnon2/superSingleCell-c3dEngine/blob/master/screenshot/screenshot.png)  
+![screenshot](http://git.oschina.net/wantnon2/superSingleCell-c3dEngine/blob/master/screenshot/screenshot.png)  
 
 ![screenshot](http://git.oschina.net/wantnon2/superSingleCell-c3dEngine/blob/master/screenshot/screenshot_win32.png)  
   
