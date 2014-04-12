@@ -169,17 +169,7 @@ bool Cterrain::init(const string&heightMapFileName,const Cc3dRect&rect,float hei
     //make submesh
     makeMesh();
     
-    //xxxx下面要去掉--abc
-    
-    //申请空间不光要考虑矩形，还要考虑三角形--abc
-    //另外注意一个矩形要拆成两个三角形，所以是六个顶点（而非四个)
-    //矩形最大数量：BMPHEIGHT*BMPWIDTH
-    //矩形分裂出的最大三角形数量：BMPHEIGHT*BMPWIDTH*2
-    //补洞三角形最大数量：等于submesh网格的非边缘边个数，等于BMPHEIGHT*(BMPWIDTH-1)+BMPWIDTH*(BMPHEIGHT-1)
-    //所以总共有BMPHEIGHT*BMPWIDTH*2+(BMPHEIGHT*(BMPWIDTH-1)+BMPWIDTH*(BMPHEIGHT-1))个三角形--abc
-    int bmpHeight=(int)landMat.size();
-    int bmpWidth=(int)landMat[0].size();
-    this->getMesh()->getSubMeshByIndex(0)->getSubMeshData()->IDtriList.reserve(bmpHeight*bmpWidth*2+(bmpHeight*(bmpWidth-1)+bmpWidth*(bmpHeight-1)));
+ 
     return true;
     
 }
