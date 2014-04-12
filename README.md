@@ -43,4 +43,4 @@ blog: http://user.qzone.qq.com/350479720/blog/1393165837
   
 ----  
   
-if you want small samples, see here: c3dEngine2: https://github.com/wantnon2/c3dEngine2  
+if you want small samples, see here: c3dEngine2: http://git.oschina.net/wantnon2/c3dEngine2  
