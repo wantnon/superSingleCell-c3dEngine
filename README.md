@@ -17,6 +17,9 @@ for win32 project:
 1, install OpenAL: run OpenAL11CoreSDK.exe under OpenAL_install folder.  
 2, open c3d+singleCell.sln with vs2010 and run（suggest to run under release mode）.    
     
+possible issues and solution:  
+assert failure on windows xp: http://git.oschina.net/wantnon2/c3dEngine2/issues/1  
+  
 after entered the level selecting page, press the debug button at the right down corner, all the levels will be unlocked.   
 进入选关页面后点右下角debug按钮可以解锁所有关卡。  
   
