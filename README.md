@@ -32,6 +32,8 @@ jump forward:       drag up.
   
 i will update code to http://git.oschina.net/wantnon2/c3dEngine-superSingleCell and https://github.com/wantnon2/superSingleCell-c3dEngine, the former is the main site.     
   
+screenshots:
+  
 ![screenshot](http://git.oschina.net/wantnon2/c3dEngine-superSingleCell/raw/master/screenshot/screenshot.png)  
 
 ![screenshot](http://git.oschina.net/wantnon2/c3dEngine-superSingleCell/raw/master/screenshot/screenshot_win32.png)  
@@ -47,5 +49,4 @@ blog: http://user.qzone.qq.com/350479720/blog/1393165837
   
 ----  
   
-if you want small samples, see here: c3dEngine2: http://git.oschina.net/wantnon2/c3dEngine2 or https://github.com/wantnon2/c3dEngine2  
-  
+if you want small samples, see here: c3dEngine2: http://git.oschina.net/wantnon2/c3dEngine2 or https://github.com/wantnon2/c3dEngine2
