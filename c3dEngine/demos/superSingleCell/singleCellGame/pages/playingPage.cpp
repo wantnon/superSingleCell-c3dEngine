@@ -984,9 +984,9 @@ bool  CplayingPage::init(int level){
         m_archScene->setName("archScene");
         this->addChild(m_archScene);
         m_archScene->init(rootPath+"/scene/config.txt",rootPath+"/scene");
-        m_archScene->getMesh()->setDiffuseRGB(0.8, 0.8, 0.8);
-        m_archScene->getMesh()->setAmbient(0.5, 0.5, 0.5);
-        m_archScene->getMesh()->setColor(1, 1, 1, 0.7);//设置透明度，但在show_solid时不开启混合，在show_transp时开启混合--abc
+        m_archScene->getModel()->getMeshByIndex(0)->setDiffuseRGB(0.8, 0.8, 0.8);
+        m_archScene->getModel()->getMeshByIndex(0)->setAmbient(0.5, 0.5, 0.5);
+        m_archScene->getModel()->getMeshByIndex(0)->setColor(1, 1, 1, 0.7);//设置透明度，但在show_solid时不开启混合，在show_transp时开启混合--abc
         m_archScene->setLight(&light0);
         m_archScene->setProgram(Cc3dProgramCache::sharedProgramCache()->getProgramByName("shader_diffuse_ambient_noTransf_shadowMap"));
         m_archScene->setPassUnifoCallback(passUnifoCallback_diffuse_ambient_noTransf_shadowMap);
@@ -2275,7 +2275,7 @@ void  CplayingPage::visitDraw(){
             map<Cc3dNode*,c3dPassUnifoCallbackPtr> nodeCallbackMap=changePassUnifoCallbackRecursively(this, passUnifoCallback_renderDepth);
             map<Cc3dNode*,Cc3dCamera*> nodeCameraMap=changeCameraRecursively(this,light0.getLightViewCameraByIndex(0));
             //设置光源视角--abc
-            Cc3dRange sceneRange=m_archScene->getMesh()->getRange();
+            Cc3dRange sceneRange=m_archScene->getModel()->getMeshByIndex(0)->getRange();
             float cx=(sceneRange.getMinX()+sceneRange.getMaxX())/2;
             float cy=(sceneRange.getMinY()+sceneRange.getMaxY())/2;
             float cz=(sceneRange.getMinZ()+sceneRange.getMaxZ())/2;
@@ -2399,15 +2399,15 @@ void  CplayingPage::visitDraw(){
             Cc3dNode::visitDraw();
             
             //相机在墙内时看到的透明面--abc
-            if((int)m_archScene->getMesh()->getSubMeshCount()>=1){
-                float oldDiffuseAlpha=m_archScene->getMesh()->getSubMeshByIndex(0)->getMaterial()->getDiffuse().a();
-                Ec3dCullFace oldCullFace=m_archScene->getMesh()->getSubMeshByIndex(0)->getCullFace();
-                m_archScene->getMesh()->setDiffuseAlpha(0.5);
-                m_archScene->getMesh()->setCullFace(ec3dCullFront);
+            if((int)m_archScene->getModel()->getMeshByIndex(0)->getSubMeshCount()>=1){
+                float oldDiffuseAlpha=m_archScene->getModel()->getMeshByIndex(0)->getSubMeshByIndex(0)->getMaterial()->getDiffuse().a();
+                Ec3dCullFace oldCullFace=m_archScene->getModel()->getMeshByIndex(0)->getSubMeshByIndex(0)->getCullFace();
+                m_archScene->getModel()->getMeshByIndex(0)->setDiffuseAlpha(0.5);
+                m_archScene->getModel()->getMeshByIndex(0)->setCullFace(ec3dCullFront);
                 m_archScene->submitIDtriAroundSphere(cellPos,m_cell->getRc()*3);
                 m_archScene->visitDraw();
-                m_archScene->getMesh()->setCullFace(oldCullFace);
-                m_archScene->getMesh()->setDiffuseAlpha(oldDiffuseAlpha);
+                m_archScene->getModel()->getMeshByIndex(0)->setCullFace(oldCullFace);
+                m_archScene->getModel()->getMeshByIndex(0)->setDiffuseAlpha(oldDiffuseAlpha);
                 
             }
             

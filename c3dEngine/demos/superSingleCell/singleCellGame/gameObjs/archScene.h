@@ -18,19 +18,29 @@
 #include "c3dFileUtils.h"
 bool matchPrefix(const string&str,const string&strPrefix);
 #define tag_collisionSubMesh 1
-class CarchScene:public Coctree
+class CarchScene:public Cc3dActor
 {
 public:
     int nSubMesh;//submesh数量--abc
     float modelScale;//模型缩放比例--abc
-
+	Coctree*m_octree;
     CarchScene(){
         nSubMesh=0;
+		m_octree=NULL;
     }
     virtual ~CarchScene() {
-    
+		if(m_octree)m_octree->release();
     }
-    void loadConfig(const string&fileNameWithExt){
+	Cc3dRange getRangeOfIDtrisWithTags(const vector<int>&tagList)const{
+		return m_octree->getRangeOfIDtrisWithTags(tagList,this->getModel());
+	}
+	void updateVisibleIDTriList(const vector<int>&skipTagList){
+		m_octree->updateVisibleIDTriList(skipTagList,this->getModel());
+	}
+	void submitVisibleIDTriList(){
+		m_octree->submitVisibleIDTriList(this->getModel());
+	}
+    void loadConfig(const  string&fileNameWithExt){
         //------------------获得绝对路径--abc
         string pathName=Cc3dFileUtils::sharedFileUtils()->getFullPath(fileNameWithExt);
         
@@ -56,44 +66,40 @@ public:
         fclose(fp);
     }
     void init(const string&configFilePathShort,const string&modelClipPathShort){
-        Coctree::init();
+		m_octree=new Coctree();
+		m_octree->autorelease();
+		m_octree->retain();
+		m_octree->init();
         //加载配置文件--abc
         {
             loadConfig(configFilePathShort);
         }
         //加载模型--abc
         {
-            loadInfo_mesh(this->getMesh(),modelClipPathShort,this->modelScale);
+			Cc3dMesh*mesh=new Cc3dMesh();
+			mesh->autorelease();
+			mesh->init();
+			addMesh(mesh);
+            loadInfo_mesh(this->getModel()->getMeshByIndex(0),modelClipPathShort,this->modelScale);
         }
         //将定位submesh舍去--abc
         {
-            int nSubMesh=(int)this->getMesh()->getSubMeshCount();
+            int nSubMesh=(int)this->getModel()->getMeshByIndex(0)->getSubMeshCount();
             for(int i=0;i<nSubMesh;i++){
-                Cc3dSubMesh*subMesh=this->getMesh()->getSubMeshByIndex(i);
+                Cc3dSubMesh*subMesh=this->getModel()->getMeshByIndex(0)->getSubMeshByIndex(i);
                 if(matchPrefix(getFileNameFromFilePath(subMesh->getTexture()->getFilePath()),"boss")||getFileNameFromFilePath(subMesh->getTexture()->getFilePath())=="myCell.png"){
-                    assert(this->getMesh()->isHaveChild(subMesh));
-                    this->getMesh()->removeMeshByIndex(i);
+                    assert(this->getModel()->getMeshByIndex(0)->isHaveChild(subMesh));
+                    this->getModel()->getMeshByIndex(0)->removeMeshByIndex(i);
                     nSubMesh--;
                     i--;
                 }
             }
-     /*       //对pmeshList进行紧缩--abc
-            int nullCount=0;
-            for(int i=0;i<nSubMesh;i++){
-                if(this->getMesh()->getSubMeshByIndex(i)==NULL){
-                    nullCount++;
-                }else{
-                    this->getMesh()->getSubMeshByIndex(i-nullCount)=this->getMesh()->getSubMeshByIndex(i);
-                }
-            }
-            this->getMesh()->pmeshList.resize(nSubMesh-nullCount);
-      */
         }
         //对collision submesh标记tag
         {
-            int nSubMesh=(int)this->getMesh()->getSubMeshCount();
+            int nSubMesh=(int)this->getModel()->getMeshByIndex(0)->getSubMeshCount();
             for(int i=0;i<nSubMesh;i++){
-                Cc3dSubMesh*subMesh=this->getMesh()->getSubMeshByIndex(i);
+                Cc3dSubMesh*subMesh=this->getModel()->getMeshByIndex(0)->getSubMeshByIndex(i);
                 if(getFileNameFromFilePath(subMesh->getTexture()->getFilePath())=="cb.png"){
                     subMesh->setTag(tag_collisionSubMesh);
                 }
@@ -103,18 +109,18 @@ public:
         }
         //为indexVBO创建缓冲--abc
         {
-            int nSubMesh=(int)this->getMesh()->getSubMeshCount();
+            int nSubMesh=(int)this->getModel()->getMeshByIndex(0)->getSubMeshCount();
             for(int i=0;i<nSubMesh;i++){
-                this->getMesh()->getSubMeshByIndex(i)->getIndexVBO()->genBuffers();
+                this->getModel()->getMeshByIndex(0)->getSubMeshByIndex(i)->getIndexVBO()->genBuffers();
             }
         }
         //制作octree
-        this->makeOctree();
+        m_octree->makeOctree(this->getModel());
         //提交各submesh的顶点数据--abc
         {
-            int nSubMesh=(int)this->getMesh()->getSubMeshCount();
+            int nSubMesh=(int)this->getModel()->getMeshByIndex(0)->getSubMeshCount();
             for(int i=0;i<nSubMesh;i++){
-                this->getMesh()->getSubMeshByIndex(i)->getIndexVBO()->submitVertex(this->getMesh()->getSubMeshByIndex(i)->getSubMeshData()->vlist, GL_STATIC_DRAW);
+                this->getModel()->getMeshByIndex(0)->getSubMeshByIndex(i)->getIndexVBO()->submitVertex(this->getModel()->getMeshByIndex(0)->getSubMeshByIndex(i)->getSubMeshData()->vlist, GL_STATIC_DRAW);
             }
         }
 
@@ -129,24 +135,24 @@ public:
 		//-------------------------获得主角周围的三角形--abc
         vector<int> skipTagList;
         skipTagList.push_back(tag_collisionSubMesh);
-        vector<CIDTriForOctree*> pIDtriExList=getCollisionIDtriList(c, R, skipTagList);
+        vector<CIDTriForOctree*> pIDtriExList=m_octree->getCollisionIDtriList(c, R, skipTagList,this->getModel());
         //将pIDtriExList填充到各submesh
         {
             //----清空各submesh的IDtriList
-            int nSubMesh=(int)this->getMesh()->getSubMeshCount();
+            int nSubMesh=(int)this->getModel()->getMeshByIndex(0)->getSubMeshCount();
             for(int i=0;i<nSubMesh;i++){
-                this->getMesh()->getSubMeshByIndex(i)->getSubMeshData()->IDtriList.clear();
+                this->getModel()->getMeshByIndex(0)->getSubMeshByIndex(i)->getSubMeshData()->IDtriList.clear();
             }
             //----将pIDtriExList中的三角形填充到相应的submesh的IDtriList中--abc
             int nIDtriEx=(int)pIDtriExList.size();
             for(int i=0;i<nIDtriEx;i++){
                 CIDTriForOctree*pIDtriEx=pIDtriExList[i];
                 int meshID=pIDtriEx->getSubMeshID();
-                this->getMesh()->getSubMeshByIndex(meshID)->getSubMeshData()->IDtriList.push_back(pIDtriEx->getIDtri());
+                this->getModel()->getMeshByIndex(0)->getSubMeshByIndex(meshID)->getSubMeshData()->IDtriList.push_back(pIDtriEx->getIDtri());
             }
             //----提交各submesh的索引表--abc
             for(int i=0;i<nSubMesh;i++){
-                this->getMesh()->getSubMeshByIndex(i)->getIndexVBO()->submitIndex(this->getMesh()->getSubMeshByIndex(i)->getSubMeshData()->IDtriList , GL_STREAM_DRAW);
+                this->getModel()->getMeshByIndex(0)->getSubMeshByIndex(i)->getIndexVBO()->submitIndex(this->getModel()->getMeshByIndex(0)->getSubMeshByIndex(i)->getSubMeshData()->IDtriList , GL_STREAM_DRAW);
             }
         }
 
@@ -173,7 +179,7 @@ public:
 		//求球体(c,R)的碰撞三角面集--abc
         vector<int> skipTagList;
         skipTagList.push_back(tag_collisionSubMesh);
-		vector<CtriangleWithNorm> triWithNormList=getCollisionTriangleList(c,R,skipTagList);
+		vector<CtriangleWithNorm> triWithNormList=m_octree->getCollisionTriangleList(c,R,skipTagList,this->getModel());
 		return collisionTest_lineSeg_common(triWithNormList, p1, p2, c, R, p,collisionFaceNorm);
 	}
     float collisionTestWithWall_multiPoint(const Cc3dVector4&c,const float Rc,const float RH,const Cc3dVector4&up,Cc3dVector4&e_back,
@@ -184,7 +190,7 @@ public:
     //若发生碰撞，则e_back带回反弹方向（单位向量，世界坐标)，否则e_back无效--abc
 	{
 		//求球体(c,R)的碰撞三角面集--abc
-		vector<CtriangleWithNorm> triWithNormList=getCollisionTriangleList(c,Rc,skipTagList);
+		vector<CtriangleWithNorm> triWithNormList=m_octree->getCollisionTriangleList(c,Rc,skipTagList,this->getModel());
         return collisionTestWithWall_multiPoint_common(triWithNormList, c, Rc,RH, up, e_back,intended_nSP);
 		
 	}
@@ -197,7 +203,7 @@ public:
     //若发生碰撞，则e_back带回反弹方向（单位向量，世界坐标)，否则e_back无效--abc
 	{
 		//求球体(c,R)的碰撞三角面集--abc
-		vector<CtriangleWithNorm> triWithNormList=getCollisionTriangleList(c,Rc,skipTagList);
+		vector<CtriangleWithNorm> triWithNormList=m_octree->getCollisionTriangleList(c,Rc,skipTagList,this->getModel());
         return collisionTestWithWall_singlePoint_common(triWithNormList, c, Rc,RH, up, e_back,intended_nSP);
 		
 	}
@@ -209,7 +215,7 @@ public:
 		//求球体(c,R)的碰撞三角面集--abc
         vector<int> skipTagList;
         skipTagList.push_back(tag_collisionSubMesh);
-		vector<CtriangleWithNorm> triWithNormList=getCollisionTriangleList(c,Rc,skipTagList);
+		vector<CtriangleWithNorm> triWithNormList=m_octree->getCollisionTriangleList(c,Rc,skipTagList,this->getModel());
         float H;
         H=getH_floor_common(triWithNormList, c, Rc, houseFloorNorm);
 		return H;
@@ -222,7 +228,7 @@ public:
 		//求球体(c,R)的碰撞三角面集--abc
         vector<int> skipTagList;
         skipTagList.push_back(tag_collisionSubMesh);
-		vector<CtriangleWithNorm> triWithNormList=getCollisionTriangleList(c,Rc,skipTagList);
+		vector<CtriangleWithNorm> triWithNormList=m_octree->getCollisionTriangleList(c,Rc,skipTagList,this->getModel());
         float H;
         H=getH_ceil_common(triWithNormList,c, Rc, houseCeilNorm);
         return H;

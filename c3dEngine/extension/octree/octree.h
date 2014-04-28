@@ -79,7 +79,7 @@ public:
 };
 
 
-class Coctree:public Cc3dActor
+class Coctree:public Cc3dObject
 {
 protected:
     CocNode*m_pRoot;//八叉树根指针--abc
@@ -97,34 +97,28 @@ public:
         destory();
     }
     bool init(){
-        Cc3dMesh*mesh=new Cc3dMesh();
-        mesh->autorelease();
-        mesh->init();
-        addMesh(mesh);
+
         return true;
     }
-    Cc3dMesh*getMesh()const{
-        assert(getModel()->getMeshCount()==1);
-        return getModel()->getMeshByIndex(0);
-    }
-    void makeOctree();
+    void makeOctree(Cc3dModel*model);
     Cc3dRange getRangeOfIDtris()const;
-    Cc3dRange getRangeOfIDtrisWithTags(const vector<int>&tagList)const;
+    Cc3dRange getRangeOfIDtrisWithTags(const vector<int>&tagList,Cc3dModel*model)const;
     vector<CocNode*>  getpCollisionLeafList(const Cc3dVector4&c,float R);
-	vector<CtriangleWithNorm> getCollisionTriangleList(const Cc3dVector4&c,float R,const vector<int>&skipTagList);
+	vector<CtriangleWithNorm> getCollisionTriangleList(const Cc3dVector4&c,float R,const vector<int>&skipTagList,Cc3dModel*model);
     int getLeafCount();
-    int getIDtriCount();
-    void updateVisibleIDTriList(const vector<int>&skipTagList);
-    void submitVisibleIDTriList();
-    
+    int getIDtriCount(Cc3dModel*model);
+    void updateVisibleIDTriList(const vector<int>&skipTagList,Cc3dModel*model);
+    void submitVisibleIDTriList(Cc3dModel*model);
+public://temp open
+    vector<CIDTriForOctree*> getCollisionIDtriList(const Cc3dVector4&c,float R,const vector<int>&skipTagList,Cc3dModel*model);
 protected:
     void destory();
-    vector<CIDTriForOctree*> getCollisionIDtriList(const Cc3dVector4&c,float R,const vector<int>&skipTagList);
-	void updateVisibleNodeList();
+   
+	void updateVisibleNodeList(Cc3dModel*model);
     void getLeafCount_inn(CocNode*pNode,int&leafCount);
     void getpCollisionLeafList_inn(CocNode*pNode,const Cc3dVector4&c,float R, vector<CocNode*>&pCollisionLeafList);
-    void updateVisibleNodeList_inn(CocNode*pNode);
-    vector<CIDTriForOctree*> getIDtrisWithTags(const vector<int>&tagList)const;
+    void updateVisibleNodeList_inn(CocNode*pNode,Cc3dModel*model);
+    vector<CIDTriForOctree*> getIDtrisWithTags(const vector<int>&tagList,Cc3dModel*model)const;
     void makeOctree_inn(CocNode*&pNode,const vector<Cc3dSubMesh*>&pmeshList);
     void deletepIDtriExListForEachNONLeafNode(CocNode*pNode);
     void initMembers();

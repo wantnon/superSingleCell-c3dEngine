@@ -99,11 +99,11 @@ void Coctree::destoryAllNode_inn(CocNode*pNode){
     pNode=NULL;//置为NULL
     
 }
-void Coctree::updateVisibleIDTriList(const vector<int>&skipTagList)
+void Coctree::updateVisibleIDTriList(const vector<int>&skipTagList,Cc3dModel*model)
 //显示不透明面--abc
 {
     m_pVisibleIDtriList.clear();//清空可见三角形列表--abc
-    updateVisibleNodeList();//获得与视锥相交的叶子列表--abc
+    updateVisibleNodeList(model);//获得与视锥相交的叶子列表--abc
     //由pVisibleLeafList生成pVisibleIDTriExList
     int nVL=m_pVisibleLeafList.size();
     for(int i=0;i<nVL;i++){
@@ -111,7 +111,7 @@ void Coctree::updateVisibleIDTriList(const vector<int>&skipTagList)
         int nIDtriEx=pOcNode->getIDtriExCount();
         for(int j=0;j<nIDtriEx;j++){
             CIDTriForOctree*pIDtriEx=pOcNode->getpIDtriExByIndex(j);
-            int index=findFirst(skipTagList, this->getMesh()->getSubMeshByIndex(pIDtriEx->getSubMeshID())->getTag());
+            int index=findFirst(skipTagList, model->getMeshByIndex(0)->getSubMeshByIndex(pIDtriEx->getSubMeshID())->getTag());
             if(index>=0)continue;//if found, continue
             if(pIDtriEx->getIsAdded())continue;
             m_pVisibleIDtriList.push_back(pIDtriEx);
@@ -126,25 +126,26 @@ void Coctree::updateVisibleIDTriList(const vector<int>&skipTagList)
     //       cout<<"visible leaf:"<<octree.pVisibleLeafList.top<<endl;
     //       cout<<"visible IDtri:"<<octree.pVisibleIDtriExList.top<<endl;
 }
-void Coctree::submitVisibleIDTriList(){
+void Coctree::submitVisibleIDTriList(Cc3dModel*model){
 
     //画pVisibleIDtriExList
     {
         //----清空各submesh的IDtriList
-        int nSubMesh=(int)this->getMesh()->getSubMeshCount();
+        int nSubMesh=(int)model->getMeshByIndex(0)->getSubMeshCount();
         for(int i=0;i<nSubMesh;i++){
-            this->getMesh()->getSubMeshByIndex(i)->getSubMeshData()->IDtriList.clear();
+			model->getMeshByIndex(0)->getSubMeshByIndex(i)->getSubMeshData()->IDtriList.clear();
+			//cout<<"nIDtri:"<<(int)model->getMeshByIndex(0)->getSubMeshByIndex(i)->getSubMeshData()->IDtriList.size()<<endl;
         }
         //----将octree.pVisibleIDtriExList中的三角形填充到相应submesh.IDtriList中--abc
         int nIDtriEx=m_pVisibleIDtriList.size();
         for(int i=0;i<nIDtriEx;i++){
             CIDTriForOctree*pIDtriEx=m_pVisibleIDtriList[i];
             int meshID=pIDtriEx->getSubMeshID();
-            this->getMesh()->getSubMeshByIndex(meshID)->getSubMeshData()->IDtriList.push_back(pIDtriEx->getIDtri());
+            model->getMeshByIndex(0)->getSubMeshByIndex(meshID)->getSubMeshData()->IDtriList.push_back(pIDtriEx->getIDtri());
         }
         //----提交各submesh的索引表--abc
         for(int i=0;i<nSubMesh;i++){
-            this->getMesh()->getSubMeshByIndex(i)->getIndexVBO()->submitIndex(this->getMesh()->getSubMeshByIndex(i)->getSubMeshData()->IDtriList, GL_STREAM_DRAW);
+            model->getMeshByIndex(0)->getSubMeshByIndex(i)->getIndexVBO()->submitIndex(model->getMeshByIndex(0)->getSubMeshByIndex(i)->getSubMeshData()->IDtriList, GL_STREAM_DRAW);
         }
         
     }
@@ -153,22 +154,22 @@ void Coctree::submitVisibleIDTriList(){
 
 
 
-void Coctree::updateVisibleNodeList()
+void Coctree::updateVisibleNodeList(Cc3dModel*model)
 //获得可见叶子节点列表pVisibleLeafList
 {
     m_pVisibleLeafList.clear(); //清空可见叶节点列表--abc
     //获得可见叶子列表--abc
-    updateVisibleNodeList_inn(m_pRoot);
+    updateVisibleNodeList_inn(m_pRoot,model);
 }
-void Coctree::updateVisibleNodeList_inn(CocNode*pNode){
+void Coctree::updateVisibleNodeList_inn(CocNode*pNode,Cc3dModel*model){
     if(pNode==NULL)return;
     //检查当前节点是否与视截体相交--abc
     const float *c=pNode->getCenter().getArray();
     const float R=pNode->getBoundingSphereRadius();
     //看c到planeList各面中，是否到某个面的距离为负且绝对值大于R，若是，则pNode不可见--abc
     //否则认为可见--abc
-    assert(this->getMesh()->getSubMeshCount()!=0);
-    Cc3dCamera*camera=this->getMesh()->getSubMeshByIndex(0)->getCamera();
+    assert(model->getMeshByIndex(0)->getSubMeshCount()!=0);
+    Cc3dCamera*camera=model->getMeshByIndex(0)->getSubMeshByIndex(0)->getCamera();
     assert(camera);
     bool visible=true;
     for(int i=0;i<=4;i++){
@@ -186,7 +187,7 @@ void Coctree::updateVisibleNodeList_inn(CocNode*pNode){
             m_pVisibleLeafList.push_back(pNode);
         }else{//否则继续递归--abc
             for(int i=0;i<8;i++){
-                updateVisibleNodeList_inn(pNode->getChildByIndex(i));
+                updateVisibleNodeList_inn(pNode->getChildByIndex(i),model);
             }
         }
         
@@ -230,7 +231,7 @@ void Coctree::getLeafCount_inn(CocNode*pNode,int&leafCount){
         getLeafCount_inn(pNode->getChildByIndex(i),leafCount);
     }
 }
-vector<CIDTriForOctree*> Coctree::getCollisionIDtriList(const Cc3dVector4&c,float R,const vector<int>&skipTagList){
+vector<CIDTriForOctree*> Coctree::getCollisionIDtriList(const Cc3dVector4&c,float R,const vector<int>&skipTagList,Cc3dModel*model){
     vector<CIDTriForOctree*> pCollisionIDtriExList;
     vector<CocNode*> pCollisionLeafList=getpCollisionLeafList(c,R);
     //由pCollisionLeafList计算pCollisionIDtriList
@@ -243,7 +244,7 @@ vector<CIDTriForOctree*> Coctree::getCollisionIDtriList(const Cc3dVector4&c,floa
         int nIDtriEx=pNode->getIDtriExCount();
         for(int i=0;i<nIDtriEx;i++){
             CIDTriForOctree*pIDtriEx=pNode->getpIDtriExByIndex(i);
-            int index=findFirst(skipTagList,this->getMesh()->getSubMeshByIndex(pIDtriEx->getSubMeshID())->getTag());
+            int index=findFirst(skipTagList,model->getMeshByIndex(0)->getSubMeshByIndex(pIDtriEx->getSubMeshID())->getTag());
             if(index>=0)continue;//if found, continue
             if(pIDtriEx->getIsAdded()==false){
                 pCollisionIDtriExList.push_back(pIDtriEx);
@@ -262,17 +263,17 @@ vector<CIDTriForOctree*> Coctree::getCollisionIDtriList(const Cc3dVector4&c,floa
     return pCollisionIDtriExList;
 
 }
-vector<CtriangleWithNorm> Coctree::getCollisionTriangleList(const Cc3dVector4&c,float R,const vector<int>&skipTagList){
-    vector<CIDTriForOctree*> pCollisionIDtriExList=getCollisionIDtriList(c, R, skipTagList);
+vector<CtriangleWithNorm> Coctree::getCollisionTriangleList(const Cc3dVector4&c,float R,const vector<int>&skipTagList,Cc3dModel*model){
+    vector<CIDTriForOctree*> pCollisionIDtriExList=getCollisionIDtriList(c, R, skipTagList,model);
     //将pCollisionIDtriList转成triangleWithNormList并返回--abc
     vector<CtriangleWithNorm> triWithNormList;
     {
         int nCollisionIDtri=(int)pCollisionIDtriExList.size();
         for(int i=0;i<nCollisionIDtri;i++){
             CIDTriForOctree*IDtriEx=pCollisionIDtriExList[i];
-            Cc3dVertex&v0=this->getMesh()->getSubMeshByIndex(IDtriEx->getSubMeshID())->getSubMeshData()->vlist[IDtriEx->getIDtri().vID[0]];
-            Cc3dVertex&v1=this->getMesh()->getSubMeshByIndex(IDtriEx->getSubMeshID())->getSubMeshData()->vlist[IDtriEx->getIDtri().vID[1]];
-            Cc3dVertex&v2=this->getMesh()->getSubMeshByIndex(IDtriEx->getSubMeshID())->getSubMeshData()->vlist[IDtriEx->getIDtri().vID[2]];
+            Cc3dVertex&v0=model->getMeshByIndex(0)->getSubMeshByIndex(IDtriEx->getSubMeshID())->getSubMeshData()->vlist[IDtriEx->getIDtri().vID[0]];
+            Cc3dVertex&v1=model->getMeshByIndex(0)->getSubMeshByIndex(IDtriEx->getSubMeshID())->getSubMeshData()->vlist[IDtriEx->getIDtri().vID[1]];
+            Cc3dVertex&v2=model->getMeshByIndex(0)->getSubMeshByIndex(IDtriEx->getSubMeshID())->getSubMeshData()->vlist[IDtriEx->getIDtri().vID[2]];
             Cc3dVector4 pos0=v0.getPos().toV4(1);
             Cc3dVector4 pos1=v1.getPos().toV4(1);
             Cc3dVector4 pos2=v2.getPos().toV4(1);
@@ -317,21 +318,21 @@ void Coctree::getpCollisionLeafList_inn(CocNode*pNode,const Cc3dVector4&c,float 
 }
 
 
-int Coctree::getIDtriCount()
+int Coctree::getIDtriCount(Cc3dModel*model)
 //只在各submesh的IDtriList均未被破坏之前可使用--abc
 {
     int count=0;
-    int nSubMesh=(int)this->getMesh()->getSubMeshCount();
+    int nSubMesh=(int)model->getMeshByIndex(0)->getSubMeshCount();
     for(int i=0;i<nSubMesh;i++){
-        count+=this->getMesh()->getSubMeshByIndex(i)->getSubMeshData()->IDtriList.size();
+        count+=model->getMeshByIndex(0)->getSubMeshByIndex(i)->getSubMeshData()->IDtriList.size();
     }
     return count;
     
 }
-Cc3dRange Coctree::getRangeOfIDtrisWithTags(const vector<int>&tagList)const{
+Cc3dRange Coctree::getRangeOfIDtrisWithTags(const vector<int>&tagList,Cc3dModel*model)const{
     Cc3dRange range;
     float xmin, xmax, ymin, ymax, zmin, zmax;
-    vector<CIDTriForOctree*> pIDtriExList_cbTri=getIDtrisWithTags(tagList);//获得cbTri三角形列表--abc
+    vector<CIDTriForOctree*> pIDtriExList_cbTri=getIDtrisWithTags(tagList,model);//获得cbTri三角形列表--abc
     int ncbTri=(int)pIDtriExList_cbTri.size();
     if(ncbTri==0){
         xmin=0;
@@ -354,9 +355,9 @@ Cc3dRange Coctree::getRangeOfIDtrisWithTags(const vector<int>&tagList)const{
         int meshID=pIDtriEx->getSubMeshID();
         int vID[3]={pIDtriEx->getIDtri().vID[0],pIDtriEx->getIDtri().vID[1],pIDtriEx->getIDtri().vID[2]};
         Cc3dVector4 v[3];//三角形三个顶点--abc
-        v[0]=this->getMesh()->getSubMeshByIndex(meshID)->getSubMeshData()->vlist[vID[0]].getPos().toV4(1);
-        v[1]=this->getMesh()->getSubMeshByIndex(meshID)->getSubMeshData()->vlist[vID[1]].getPos().toV4(1);
-        v[2]=this->getMesh()->getSubMeshByIndex(meshID)->getSubMeshData()->vlist[vID[2]].getPos().toV4(1);
+        v[0]=model->getMeshByIndex(0)->getSubMeshByIndex(meshID)->getSubMeshData()->vlist[vID[0]].getPos().toV4(1);
+        v[1]=model->getMeshByIndex(0)->getSubMeshByIndex(meshID)->getSubMeshData()->vlist[vID[1]].getPos().toV4(1);
+        v[2]=model->getMeshByIndex(0)->getSubMeshByIndex(meshID)->getSubMeshData()->vlist[vID[2]].getPos().toV4(1);
         for(int j=0;j<3;j++){
             if(v[j].x()<xmin)xmin=v[j].x();
             if(v[j].x()>xmax)xmax=v[j].x();
@@ -372,19 +373,19 @@ Cc3dRange Coctree::getRangeOfIDtrisWithTags(const vector<int>&tagList)const{
     return range;
 }
 
-vector<CIDTriForOctree*> Coctree::getIDtrisWithTags(const vector<int>&tagList)const{
+vector<CIDTriForOctree*> Coctree::getIDtrisWithTags(const vector<int>&tagList,Cc3dModel*model)const{
     vector<CIDTriForOctree*> pFilteredIDtriExList;
     int nIDtriEx=(int)m_pIDtriList.size();
     for(int i=0;i<nIDtriEx;i++){
         CIDTriForOctree*pIDtriEx=m_pIDtriList[i];
-        int index=findFirst(tagList, this->getMesh()->getSubMeshByIndex(pIDtriEx->getSubMeshID())->getTag());
+        int index=findFirst(tagList, model->getMeshByIndex(0)->getSubMeshByIndex(pIDtriEx->getSubMeshID())->getTag());
         if(index>=0){//found
             pFilteredIDtriExList.push_back(pIDtriEx);
         }
     }
     return pFilteredIDtriExList;
 }
-void Coctree::makeOctree()
+void Coctree::makeOctree(Cc3dModel*model)
 //对subMesh建立八叉树--abc
 {
     //--------------------建立根节点--abc
@@ -397,9 +398,9 @@ void Coctree::makeOctree()
     float zmin=c3d_INF;
     float zmax=-c3d_INF;
     {
-        int nSubMesh=(int)this->getMesh()->getSubMeshCount();
+        int nSubMesh=(int)model->getMeshByIndex(0)->getSubMeshCount();
         for(int i=0;i<nSubMesh;i++){
-            Cc3dSubMesh&submesh=*this->getMesh()->getSubMeshByIndex(i);
+            Cc3dSubMesh&submesh=*model->getMeshByIndex(0)->getSubMeshByIndex(i);
             int nv=(int)submesh.getSubMeshData()->vlist.size();
             for(int j=0;j<nv;j++){
                 Cc3dVertex&v=submesh.getSubMeshData()->vlist[j];
@@ -433,9 +434,9 @@ void Coctree::makeOctree()
     //------------------建立根节点--abc
     m_pRoot->setRange(Cc3dRange(xmin,xmax,ymin,ymax,zmin,zmax));
     //制作根节点的pIDtriExList
-    int nSubMesh=(int)this->getMesh()->getSubMeshCount();
+    int nSubMesh=(int)model->getMeshByIndex(0)->getSubMeshCount();
     for(int i=0;i<nSubMesh;i++){
-        Cc3dSubMesh&subMesh=*this->getMesh()->getSubMeshByIndex(i);
+        Cc3dSubMesh&subMesh=*model->getMeshByIndex(0)->getSubMeshByIndex(i);
         int nIDtri=(int)subMesh.getSubMeshData()->IDtriList.size();
         for(int j=0;j<nIDtri;j++){
             Cc3dIDTriangle&IDtri=subMesh.getSubMeshData()->IDtriList[j];
@@ -459,10 +460,10 @@ void Coctree::makeOctree()
     //直接将pRoot->pIDtriExList拷贝过来即可--abc
     this->m_pIDtriList=m_pRoot->getpIDTriExList();
     //------------------建立孩子节点--abc
-    makeOctree_inn(m_pRoot,this->getMesh()->getSubMeshList());
+    makeOctree_inn(m_pRoot,model->getMeshByIndex(0)->getSubMeshList());
     //------------------求八叉树叶子数和三角形数--abc
     m_leafCount=getLeafCount();
-    m_IDtriCount=getIDtriCount();
+    m_IDtriCount=getIDtriCount(model);
     //------------------清除各非叶节点的三角面列表--abc
     deletepIDtriExListForEachNONLeafNode(m_pRoot);
     //------------------为各列表开辟空间--abc
