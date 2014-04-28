@@ -1,2 +1,0 @@
-audioFileName backGround6.wav
-alSourcePos 0 50 0

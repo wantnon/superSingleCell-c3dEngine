@@ -1,2 +1,0 @@
-audioFileName backGround4.wav
-alSourcePos 1.35112 282.5 -44.497
