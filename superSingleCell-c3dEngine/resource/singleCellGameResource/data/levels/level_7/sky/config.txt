@@ -1,3 +1,0 @@
-skyTexID 6
-centerY -20
-initRotAngle 180
